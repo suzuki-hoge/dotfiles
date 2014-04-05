@@ -40,7 +40,7 @@ def _move(src_dir, dst_dir):
 			print 'mv %s - %s' % (src, dst)
 			shutil.copy(src, dst)
 
-def close():
+def clean():
 	print '\ncleaning...\n'
 
 	print 'rm -rf %s' % SRC_ROOT
@@ -49,9 +49,9 @@ def close():
 	print '\nall tasks finished.\n'
 
 if __name__ == '__main__':
-	print 'start uwa-.py'
+	print '\nstart zsh-setup.py\n'
 
 	clone()
 	mkdir()
 	move()
-	close()
+	clean()

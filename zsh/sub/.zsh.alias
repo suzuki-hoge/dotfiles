@@ -16,9 +16,9 @@ alias hisg="history | grep"
 
 alias gstp="git status -s | percol --match-method regex | cut -c4- | xargs"
 alias gbhp="git branch | percol --match-method regex | xargs"
-alias gcop="git branch | percol --match-method regex | xargs git checkout"
-alias gplp="git branch | percol --match-method regex | xargs git pull origin"
-alias gpsp="git branch | percol --match-method regex | xargs git push origin"
+alias gcop="git branch | percol --match-method regex | cut -c2- | xargs git checkout"
+alias gplp="git branch | percol --match-method regex | cut -c2- | xargs git pull origin"
+alias gpsp="git branch | percol --match-method regex | cut -c2- | xargs git push origin"
 
 alias -g G='| grep'
 alias -g V='| grep -v'
@@ -27,8 +27,10 @@ alias -g P="| percol | xargs"
 
 # vagrant環境内にうわーってドットファイルを展開する
 function uwa-(){
- #todo host_shareが無ければ抜ける
- cp ~/.dotfiles/uwa-.py ./host_share
+ cp ~/.dotfiles/zsh/zsh-setup.py ./host_share
+ cp ~/.dotfiles/percol/percol-setup.sh ./host_share
+ cp ~/.dotfiles/percol/rc.py ./host_share
  vagrant rsync
- vagrant ssh -c 'python /guest_share/uwa-.py'
+ vagrant ssh -c 'python /guest_share/zsh-setup.py'
+ vagrant ssh -c 'sh /guest_share/percol-setup.sh'
 }

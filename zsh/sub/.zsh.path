@@ -1,4 +1,4 @@
 hash -d slf=~/Documents/projects/slf
 hash -d dev=~/Development
-hash -d dot=~/Documents/dotfiles
+hash -d dot=~/.dotfiles
 hash -d tmp=~/Documents/tmp
