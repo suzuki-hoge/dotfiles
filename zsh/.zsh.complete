@@ -1,0 +1,9 @@
+# 有効化
+autoload -U compinit
+compinit
+
+# shift-tab で逆順補完
+bindkey '^[[Z' reverse-menu-complete
+
+# 大文字小文字を無視
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'

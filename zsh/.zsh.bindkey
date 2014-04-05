@@ -1,0 +1,2 @@
+# コマンドラインスタック
+bindkey '^U' push-line

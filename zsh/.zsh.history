@@ -1,0 +1,27 @@
+# 履歴ファイル
+HISTFILE=~/.zsh_history
+
+# キャッシュ上限
+HISTSIZE=5000
+
+# ファイル上限
+SAVEHIST=5000
+
+# 重複させない
+setopt HIST_IGNORE_DUPS
+
+# 履歴をさかのぼる
+bindkey '^P' history-beginning-search-backward
+bindkey '^N' history-beginning-search-forward
+
+# percol
+ # 関数
+ function percol_select_history() {
+     BUFFER=$(history -n 1 | tail -r | percol --match-method regex --query "$LBUFFER")
+     CURSOR=$#BUFFER
+     zle clear-screen
+ }
+ zle -N percol_select_history
+ 
+ # 呼び出し
+ bindkey '^O' percol_select_history

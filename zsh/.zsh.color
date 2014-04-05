@@ -1,0 +1,2 @@
+# lsに色をつける
+export CLICOLOR=true

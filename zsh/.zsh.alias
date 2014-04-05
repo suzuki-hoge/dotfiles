@@ -1,0 +1,25 @@
+alias reload='source ~/.zshrc'
+
+alias ...='../../'
+alias ....='../../../'
+
+alias ll="ls -l"
+alias llg="ls -l | grep"
+alias llp="ls | percol | xargs"
+
+alias lla="ls -la"
+alias llag="ls -la | grep"
+alias llap="ls -a | percol | xargs"
+
+alias his="history"
+alias hisg="history | grep"
+
+alias gstp="git status -s | percol --match-method regex | cut -c4- | xargs"
+alias gbhp="git branch | percol --match-method regex | xargs"
+alias gcop="git branch | percol --match-method regex | xargs git checkout"
+alias gplp="git branch | percol --match-method regex | xargs git pull origin"
+alias gpsp="git branch | percol --match-method regex | xargs git push origin"
+
+alias -g G='| grep'
+alias -g V='| grep -v'
+alias -g P="| percol | xargs"

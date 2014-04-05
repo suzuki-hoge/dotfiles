@@ -1,0 +1,63 @@
+# 左プロンプト
+PROMPT="
+%d
+> "
+
+# 右プロンプト
+RPROMPT=$'`get_branch_info`'
+
+ # 毎回評価
+ setopt prompt_subst
+ autoload -U colors; colors
+
+ # git管理下の場合、ブランチ名を色付きで取得
+ function get_branch_info {
+  local prefix branchname suffix
+
+  # .git
+  if [[ "$PWD" =~ '/\.git(/.*)?$' ]]; then
+      return
+  fi
+
+  branchname=`get_branch_name_or_none`
+
+  # not git workspace
+  if [[ -z $branchname ]]; then
+   return
+  fi
+
+  prefix=`get-color`
+  suffix='%{'${reset_color}'%}'
+
+  echo ${prefix}${branchname}${suffix}
+ }
+
+ # ブランチ名取得
+ function get_branch_name_or_none {
+  echo `git rev-parse --abbrev-ref HEAD 2> /dev/null`
+ }
+
+ # 色判定
+ function get-color {
+  local color
+  output=`git status --short 2> /dev/null`
+
+  # clean
+  if [ -z "$output" ]; then
+   color='%{'${fg[green]}'%}'
+
+  # untracked
+  elif [[ $output =~ "[\n]?\?\? " ]]; then
+   color='%{'${fg[yellow]}'%}'
+
+  # modified
+  elif [[ $output =~ "[\n]? M " ]]; then
+   color='%{'${fg[red]}'%}'
+
+  # added to commit
+  else
+   color='%{'${fg[cyan]}'%}'
+  fi
+
+  echo ${color}
+ }
