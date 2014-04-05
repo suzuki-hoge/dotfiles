@@ -23,3 +23,12 @@ alias gpsp="git branch | percol --match-method regex | xargs git push origin"
 alias -g G='| grep'
 alias -g V='| grep -v'
 alias -g P="| percol | xargs"
+
+
+# vagrant環境内にうわーってドットファイルを展開する
+function uwa-(){
+ #todo host_shareが無ければ抜ける
+ cp ~/.dotfiles/uwa-.py ./host_share
+ vagrant rsync
+ vagrant ssh -c 'python /guest_share/uwa-.py'
+}
