@@ -1,2 +1,0 @@
-# dotfiles
-DOTFILES=~/.dotfiles

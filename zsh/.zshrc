@@ -1,9 +1,0 @@
-[ -f $DOTFILES/zsh/.zsh.alias ]     && source $DOTFILES/zsh/.zsh.alias
-[ -f $DOTFILES/zsh/.zsh.bindkey ]   && source $DOTFILES/zsh/.zsh.bindkey
-[ -f $DOTFILES/zsh/.zsh.color ]     && source $DOTFILES/zsh/.zsh.color
-[ -f $DOTFILES/zsh/.zsh.complete ]  && source $DOTFILES/zsh/.zsh.complete
-[ -f $DOTFILES/zsh/.zsh.directory ] && source $DOTFILES/zsh/.zsh.directory
-[ -f $DOTFILES/zsh/.zsh.history ]   && source $DOTFILES/zsh/.zsh.history
-[ -f $DOTFILES/zsh/.zsh.options ]   && source $DOTFILES/zsh/.zsh.options
-[ -f $DOTFILES/zsh/.zsh.path ]      && source $DOTFILES/zsh/.zsh.path
-[ -f $DOTFILES/zsh/.zsh.prompt ]    && source $DOTFILES/zsh/.zsh.prompt

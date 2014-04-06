@@ -1,0 +1,7 @@
+# dotfiles
+DOTFILES=~/.dotfiles
+
+# my wrappers
+export DOTFILES
+PATH=$PATH:$DOTFILES/git/bin
+PATH=$PATH:$DOTFILES/vagrant/bin
