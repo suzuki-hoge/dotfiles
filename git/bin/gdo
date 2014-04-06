@@ -1,0 +1,23 @@
+#!/usr/bin/python
+
+import os
+import argparse
+import subprocess
+
+parser = argparse.ArgumentParser(description = 'execute command to number of gst -n')
+parser.add_argument('target', action = 'store', type = int, nargs = '+', help = 'target num(s)')
+parser.add_argument('command', metavar = 'command', type = str, help = 'request command (if command is not one word, surround with single quotation)')
+parser.add_argument('-e', '--echo', default = False, action = 'store_true', help = 'echo command only, not execute')
+args = parser.parse_args()
+
+gstLines = [line.rstrip() for line in subprocess.Popen(['git', 'status', '-s', '-b'], stdout = subprocess.PIPE).stdout]
+
+targetLines = []
+for target in args.target:
+	targetLines.append(gstLines[target][3:])
+
+for line in targetLines:
+	exe = '%s %s' % (args.command, line)
+	print exe
+	if not args.echo:
+		os.system(exe)

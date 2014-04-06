@@ -1,0 +1,25 @@
+#!/usr/bin/python
+
+import os
+import sys
+import argparse
+
+parser = argparse.ArgumentParser(description = 'output formated "git log"')
+parser.add_argument('num', default = 3, metavar = 'Num', type = int, nargs = '?', help = 'request log count (default : 3)')
+parser.add_argument('-d', '--diff', default = False, action = 'store_true', help = "output with change file's path")
+parser.add_argument('-f', '--full', default = False, action = 'store_true', help = "output with change file's full path")
+parser.add_argument('-H', '--hash', default = False, action = 'store_true', help = 'output with hashcode')
+parser.add_argument('-a', '--all',  default = False, action = 'store_true', help = 'enable all options')
+args = parser.parse_args()
+
+
+if args.all:
+	options = {'num' : '-' + str(args.num), 'full' : True, 'diff' : True, 'hash' : True}
+else:
+	options = {'num' : '-' + str(args.num), 'full' : args.full, 'diff' : args.diff, 'hash' : args.hash}
+
+sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/../Log'))
+from Parser import Parser
+
+parser = Parser(options)
+parser.output()

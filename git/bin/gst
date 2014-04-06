@@ -1,0 +1,15 @@
+#!/usr/bin/python
+
+import os
+import argparse
+import subprocess
+
+parser = argparse.ArgumentParser(description = 'alias git status -s -b')
+parser.add_argument('-n', '--num', default = False, action = 'store_true', help = 'add serial number')
+args = parser.parse_args()
+
+fetchLines = subprocess.Popen(['git', 'status', '-s', '-b'], stdout = subprocess.PIPE).stdout
+for i, line in enumerate(fetchLines):
+	if args.num and i != 0:
+		print '%2d ' % i,
+	print line.rstrip()

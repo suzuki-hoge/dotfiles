@@ -1,0 +1,16 @@
+#!/usr/bin/python
+
+import os
+import argparse
+
+parser = argparse.ArgumentParser(description = 'alias git stash --sub --message')
+parser.add_argument('sub', default = 'l', metavar = 'Sub', type = str, nargs = '?', help = 'sub command [list/save/pop] (default : list)')
+parser.add_argument('message', default = '', metavar = 'Message', type = str, nargs = '?', help = 'save message, enable only at save (default : '')')
+args = parser.parse_args()
+
+subs = {'l' : 'list', 's' : 'save', 'p' : 'pop'}
+
+sub = subs[args.sub]
+message = '%s' % args.message if sub == 'save' else ''
+
+os.system('git stash %s%s%s' % (sub, ' ' if message != '' else '', message))
