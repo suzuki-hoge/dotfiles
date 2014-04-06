@@ -3,13 +3,13 @@ alias reload='source ~/.zshrc'
 alias ...='../../'
 alias ....='../../../'
 
-alias ll="ls -l"
-alias llg="ls -l | grep"
-alias llp="ls | percol | xargs"
+alias l="ls -l"
+alias lg="ls -l | grep"
+alias lp="ls | percol | xargs"
 
-alias lla="ls -la"
-alias llag="ls -la | grep"
-alias llap="ls -a | percol | xargs"
+alias la="ls -la"
+alias lag="ls -la | grep"
+alias lap="ls -a | percol | xargs"
 
 alias his="history"
 alias hisg="history | grep"
