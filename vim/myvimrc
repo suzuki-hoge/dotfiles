@@ -1,0 +1,24 @@
+" vim:set ft=vim:
+
+" dotfiles
+let $dot = $HOME . '/.dotfiles/'
+
+" vim rc files
+let $myrc = $dot . '/vim/sub'
+
+" tmp
+let $tmp = $HOME . '/Documents/tmp'
+
+" KeyRemap4MacBook - private.xml
+let $private = $HOME . '/Library/Application Support/KeyRemap4MacBook/private.xml'
+
+" todo
+let $todo = $HOME . '/Dropbox/todo.txt'
+
+" import myrc
+source $myrc/autocommands
+source $myrc/commands
+source $myrc/commandline
+source $myrc/map
+source $myrc/options
+source $myrc/tab

@@ -1,0 +1,54 @@
+" vim:set ft=vim:
+
+" move
+nnoremap <S-k> 10<UP>
+vnoremap <S-k> 10<UP>
+
+nnoremap <S-j> 10<DOWN>
+vnoremap <S-j> 10<DOWN>
+
+nnoremap <S-h> 10<LEFT>
+vnoremap <S-h> 10<LEFT>
+
+nnoremap <S-l> 10<RIGHT>
+vnoremap <S-l> 10<RIGHT>
+
+" emacs (move)
+inoremap <C-p> <UP>
+inoremap <C-n> <DOWN>
+inoremap <C-b> <LEFT>
+inoremap <C-f> <RIGHT>
+inoremap <C-a> <HOME>
+inoremap <C-e> <END>
+
+" emacs (edit)
+inoremap <C-h> <BS>
+inoremap <C-d> <Del>
+inoremap <C-w> <C-w>
+inoremap <C-k> <C-o><S-d>
+inoremap <C-u> <C-u>
+
+" auto ime off
+inoremap <ESC> <ESC>:set iminsert=0<CR>
+
+" complement
+inoremap <M-CR>   <C-p>
+inoremap <S-M-CR> <C-n>
+
+" select all
+vnoremap , <ESC>ggVG
+
+" visual box
+vnoremap v <C-v>
+
+" Scrolling relative to cursor 
+nnoremap , zz
+
+" highlight under cursor word
+nnoremap * *Nzz
+
+" redo
+nmap <S-u> <C-r>
+
+" highlight off
+nmap <silent><ESC><ESC> :noh<CR>

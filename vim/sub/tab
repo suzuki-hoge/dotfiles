@@ -1,0 +1,14 @@
+" vim:set ft=vim:
+
+" change tab
+nnoremap <Space> gt
+nnoremap <S-Space> gT
+
+" new tab
+nnoremap <M-Space> :tabedit 
+
+" close tab
+nnoremap <C-Space>   :bd<CR>
+
+" close tab (force)
+nnoremap <S-C-Space> :bd!<CR>

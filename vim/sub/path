@@ -1,0 +1,3 @@
+let $dot = $HOME . '/.dotfiles/'
+
+let $myrc = $dot/vim/sub'
