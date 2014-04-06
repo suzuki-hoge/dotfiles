@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<root>
+	<appdef>
+		<appname>TERMINAL</appname>
+		<equal>com.apple.Terminal</equal>
+	</appdef>
+	<appdef>
+		<appname>VIM</appname>
+		<equal>org.vim.MacVim</equal>
+	</appdef>
+
+	<item>
+		<name>Global</name>
+		<list>
+			<item>
+				<name>Ten Key</name>
+				<identifier>Global Ten Key</identifier>
+
+				<autogen>--KeyToKey-- KeyCode::N,     ModifierFlag::OPTION_L | ModifierFlag::NONE, KeyCode::KEY_0</autogen>
+				<autogen>--KeyToKey-- KeyCode::M,     ModifierFlag::OPTION_L | ModifierFlag::NONE, KeyCode::KEY_1</autogen>
+				<autogen>--KeyToKey-- KeyCode::COMMA, ModifierFlag::OPTION_L | ModifierFlag::NONE, KeyCode::KEY_2</autogen>
+				<autogen>--KeyToKey-- KeyCode::DOT,   ModifierFlag::OPTION_L | ModifierFlag::NONE, KeyCode::KEY_3</autogen>
+				<autogen>--KeyToKey-- KeyCode::J,     ModifierFlag::OPTION_L | ModifierFlag::NONE, KeyCode::KEY_4</autogen>
+				<autogen>--KeyToKey-- KeyCode::K,     ModifierFlag::OPTION_L | ModifierFlag::NONE, KeyCode::KEY_5</autogen>
+				<autogen>--KeyToKey-- KeyCode::L,     ModifierFlag::OPTION_L | ModifierFlag::NONE, KeyCode::KEY_6</autogen>
+				<autogen>--KeyToKey-- KeyCode::U,     ModifierFlag::OPTION_L | ModifierFlag::NONE, KeyCode::KEY_7</autogen>
+				<autogen>--KeyToKey-- KeyCode::I,     ModifierFlag::OPTION_L | ModifierFlag::NONE, KeyCode::KEY_8</autogen>
+				<autogen>--KeyToKey-- KeyCode::O,     ModifierFlag::OPTION_L | ModifierFlag::NONE, KeyCode::KEY_9</autogen>
+			</item>
+
+			<item>
+				<name>Shift Ten Key</name>
+				<identifier>Global Shift Ten Key</identifier>
+
+				<autogen>--KeyToKey-- KeyCode::M,     ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L, KeyCode::KEY_1, ModifierFlag::SHIFT_L</autogen>
+				<autogen>--KeyToKey-- KeyCode::COMMA, ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L, KeyCode::KEY_2, ModifierFlag::SHIFT_L</autogen>
+				<autogen>--KeyToKey-- KeyCode::DOT,   ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L, KeyCode::KEY_3, ModifierFlag::SHIFT_L</autogen>
+				<autogen>--KeyToKey-- KeyCode::K,     ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L, KeyCode::KEY_5, ModifierFlag::SHIFT_L</autogen>
+				<autogen>--KeyToKey-- KeyCode::L,     ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L, KeyCode::KEY_6, ModifierFlag::SHIFT_L</autogen>
+				<autogen>--KeyToKey-- KeyCode::U,     ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L, KeyCode::KEY_7, ModifierFlag::SHIFT_L</autogen>
+				<autogen>--KeyToKey-- KeyCode::I,     ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L, KeyCode::KEY_8, ModifierFlag::SHIFT_L</autogen>
+				<autogen>--KeyToKey-- KeyCode::O,     ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L, KeyCode::KEY_9, ModifierFlag::SHIFT_L</autogen>
+			</item>
+
+			<item>
+				<name>Symbol Key</name>
+				<identifier>Global Symbol Key</identifier>
+
+				<autogen>--KeyToKey-- KeyCode::H,         ModifierFlag::OPTION_L | ModifierFlag::NONE, KeyCode::EQUAL, ModifierFlag::SHIFT_L</autogen>
+				<autogen>--KeyToKey-- KeyCode::SEMICOLON, ModifierFlag::OPTION_L | ModifierFlag::NONE, KeyCode::MINUS</autogen>
+				<autogen>--KeyToKey-- KeyCode::P,         ModifierFlag::OPTION_L | ModifierFlag::NONE, KeyCode::MINUS, ModifierFlag::SHIFT_L</autogen>
+			</item>
+
+			<item>
+				<name>Shift Symbol Key</name>
+				<identifier>Global Shift Symbol Key</identifier>
+
+				<autogen>--KeyToKey-- KeyCode::SEMICOLON, ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L, KeyCode::MINUS, KeyCode::DOT, ModifierFlag::SHIFT_L</autogen>
+				<autogen>--KeyToKey-- KeyCode::P,         ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L, KeyCode::MINUS, ModifierFlag::SHIFT_L, KeyCode::DOT, ModifierFlag::SHIFT_L</autogen>
+				<autogen>--KeyToKey-- KeyCode::Y,         ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L, KeyCode::VK_JIS_BACKSLASH</autogen>
+				<autogen>--KeyToKey-- KeyCode::N,         ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L, KeyCode::JIS_YEN, ModifierFlag::SHIFT_L</autogen>
+			</item>
+
+			<item>
+				<name>Word Delete</name>
+				<identifier>Global Word Delete</identifier>
+
+				<autogen>--KeyToKey-- KeyCode::W, VK_CONTROL, KeyCode::DELETE, ModifierFlag::OPTION_L</autogen>
+			</item>
+		</list>
+
+	</item>
+
+	<item>
+		<name>Home / End</name>
+		<list>
+			<item>
+				<name>VIM</name>
+				<identifier>VIM Home / End</identifier>
+				<only>VIM</only>
+
+				<autogen>--KeyToKey-- KeyCode::J, ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L, KeyCode::KEY_4, ModifierFlag::SHIFT_L</autogen>
+				<autogen>--KeyToKey-- KeyCode::H, ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L, KeyCode::EQUAL</autogen>
+			</item>
+
+			<item>
+				<name>TERMINAL</name>
+				<identifier>TERMINAL Home / End</identifier>
+				<only>TERMINAL</only>
+
+				<autogen>--KeyToKey-- KeyCode::J, ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L, KeyCode::KEY_4, ModifierFlag::SHIFT_L</autogen>
+				<autogen>--KeyToKey-- KeyCode::H, ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L, KeyCode::EQUAL</autogen>
+			</item>
+
+			<item>
+				<name>Else Applications</name>
+				<identifier>Else Applications Home / End</identifier>
+				<not>VIM</not>
+
+				<autogen>--KeyToKey-- KeyCode::J, ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L, KeyCode::E, VK_CONTROL</autogen>
+				<autogen>--KeyToKey-- KeyCode::H, ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L, KeyCode::A, VK_CONTROL</autogen>
+			</item>
+		</list>
+	</item>
+
+	<item>
+		<name>Tab</name>
+		<list>
+			<item>
+				<name>Change</name>
+				<identifier>Tab Change</identifier>
+
+				<autogen>--KeyToKey-- KeyCode::TAB, ModifierFlag::OPTION_L | ModifierFlag::NONE,                         KeyCode::TAB, VK_CONTROL</autogen>
+				<autogen>--KeyToKey-- KeyCode::TAB, ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::NONE, KeyCode::TAB, ModifierFlag::SHIFT_L | VK_CONTROL</autogen>
+				<autogen>--KeyToKey-- KeyCode::TAB, ModifierFlag::OPTION_L | ModifierFlag::SHIFT_R | ModifierFlag::NONE, KeyCode::TAB, ModifierFlag::SHIFT_L | VK_CONTROL</autogen>
+			</item>
+		</list>
+	</item>
+</root>
+
+<!--
+BACKQUOTE		`
+BACKSLASH		]
+BRACKET_LEFT	@
+BRACKET_RIGHT	[
+COMMA			,
+DOT				.
+EQUAL			^
+MINUS			-
+QUOTE			:
+SEMICOLON		;
+SLASH			/
+-->
