@@ -46,7 +46,7 @@ class Log:
 		return self
 
 	def output(self, options):
-		print '%s' % ('-' * 99)
+		print '%s' % ('-' * 80)
 
 		if options['hash']:
 			print 'hash    : %s' % self.hash

@@ -5,7 +5,9 @@ nnoremap <Space> gt
 nnoremap <S-Space> gT
 
 " new tab
-nnoremap <M-Space> :tabedit 
+"  Actual input is <C-Space>.
+"  but <C-Space> was disabled by ATOK. (ref. private.xml)
+nnoremap <D-Space> :tabedit 
 
 " close tab
 nnoremap <C-Space>   :bd<CR>

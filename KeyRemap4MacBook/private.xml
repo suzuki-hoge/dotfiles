@@ -116,6 +116,18 @@
 			</item>
 		</list>
 	</item>
+
+	<item>
+		<name>for Vim Mapping</name>
+		<list>
+			<item>
+				<name>Ctrl + Space -> Command + Space</name>
+				<identifier>for Vim Mapping Ctrl + Space -> Command + Space</identifier>
+
+				<autogen>--KeyToKey-- KeyCode::SPACE, ModifierFlag::OPTION_L | ModifierFlag::NONE, KeyCode::SPACE, ModifierFlag::COMMAND_L</autogen>
+			</item>
+		</list>
+	</item>
 </root>
 
 <!--

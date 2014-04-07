@@ -1,4 +1,7 @@
 " vim:set ft=vim:
 
 " edit todo
-command Todo tabe $todo
+command! Todo tabe $todo
+
+" message
+command! M messages

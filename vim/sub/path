@@ -1,3 +1,5 @@
+" vim:set ft=vim:
+
 let $dot = $HOME . '/.dotfiles/'
 
-let $myrc = $dot/vim/sub'
+let $myrc = $dot . '/vim/sub'

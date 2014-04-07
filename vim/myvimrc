@@ -18,7 +18,10 @@ let $todo = $HOME . '/Dropbox/todo.txt'
 " import myrc
 source $myrc/autocommands
 source $myrc/commands
-source $myrc/commandline
-source $myrc/map
+source $myrc/map-c
+source $myrc/map-i
+source $myrc/map-n
+source $myrc/map-v
 source $myrc/options
+source $myrc/path
 source $myrc/tab

@@ -1,0 +1,27 @@
+" vim:set ft=vim:
+
+" move
+nnoremap <S-k> 10<UP>
+nnoremap <S-j> 10<DOWN>
+nnoremap <S-h> 10<LEFT>
+nnoremap <S-l> 10<RIGHT>
+
+" redo
+nnoremap <S-u> <C-r>
+
+" Scrolling relative to cursor 
+nnoremap , zz
+nnoremap zj zt
+nnoremap zk zb
+
+" highlight under cursor word
+nnoremap * *Nzz
+
+" command line window
+nnoremap æ q:
+
+" history search
+nnoremap <C-p> :<UP>
+
+" highlight off
+nnoremap <silent><ESC><ESC> :noh<CR>
