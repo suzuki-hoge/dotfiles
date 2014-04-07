@@ -22,6 +22,7 @@ source $myrc/map-c
 source $myrc/map-i
 source $myrc/map-n
 source $myrc/map-v
+source $myrc/mark
 source $myrc/options
 source $myrc/path
 source $myrc/tab
