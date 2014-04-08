@@ -1,0 +1,7 @@
+" vim:set ft=vim:
+
+source $plugin/wrapper/Buffer
+source $pete/PetroniusTheArbiter
+
+nnoremap ÷ :call PetroniusTheArbiter(PETE_COMMENT_ON)<CR>
+vnoremap ÷ :call PetroniusTheArbiter(PETE_COMMENT_ON)<CR>

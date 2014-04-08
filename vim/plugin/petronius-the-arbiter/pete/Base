@@ -1,0 +1,25 @@
+" vim:set ft=vim:
+
+python <<EOM
+
+from abc import ABCMeta, abstractmethod
+
+class Base:
+
+	__metaclass__ = ABCMeta
+
+	def __init__(self):
+		self.buffer = Buffer()
+
+	def commentOn(self, firstLine, lastLine):
+		self.buffer.commentOn(firstLine, lastLine, self.getCommentHeadString(), self.getCommentTailString())
+
+	@abstractmethod
+	def getCommentHeadString(self):
+		pass
+
+	@abstractmethod
+	def getCommentTailString(self):
+		pass
+
+EOM

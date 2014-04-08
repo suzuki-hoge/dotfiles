@@ -1,0 +1,16 @@
+" vim:set ft=vim:
+
+python <<EOM
+
+import vim
+
+class Buffer:
+
+	def __init__(self):
+		self._buffer = vim.current.buffer
+	
+	def commentOn(self, firstLine, lastLine, commentHeadString, commentTailString):
+		for lineNum in range(firstLine - 1, lastLine):
+			self._buffer[lineNum] = '%s%s%s' % (commentHeadString, self._buffer[lineNum], commentTailString)
+
+EOM

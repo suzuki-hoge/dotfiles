@@ -2,10 +2,14 @@
 
 " dotfiles
 let $dot = $HOME . '/.dotfiles'
-let $egg = $HOME . '/.dotfiles'
 
 " vim rc files
+let $rc   = $dot . '/vim/rc/myvimrc'
 let $myrc = $dot . '/vim/rc/sub'
+
+" plugin
+let $plugin = $dot . '/vim/plugin'
+let $pete   = $dot . '/vim/plugin/petronius-the-arbiter'
 
 " tmp
 let $tmp = $HOME . '/Documents/tmp'
@@ -24,5 +28,6 @@ source $myrc/map-i
 source $myrc/map-n
 source $myrc/map-v
 source $myrc/mark
+source $myrc/plugin
 source $myrc/options
 source $myrc/tab
