@@ -1,10 +1,11 @@
 " vim:set ft=vim:
 
 " dotfiles
-let $dot = $HOME . '/.dotfiles/'
+let $dot = $HOME . '/.dotfiles'
+let $egg = $HOME . '/.dotfiles'
 
 " vim rc files
-let $myrc = $dot . '/vim/sub'
+let $myrc = $dot . '/vim/rc/sub'
 
 " tmp
 let $tmp = $HOME . '/Documents/tmp'
@@ -24,5 +25,4 @@ source $myrc/map-n
 source $myrc/map-v
 source $myrc/mark
 source $myrc/options
-source $myrc/path
 source $myrc/tab
