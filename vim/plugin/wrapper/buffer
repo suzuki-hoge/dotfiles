@@ -3,6 +3,7 @@
 python <<EOM
 
 import vim
+import re
 
 class Buffer:
 
@@ -11,6 +12,36 @@ class Buffer:
 	
 	def commentOn(self, firstLine, lastLine, commentHeadString, commentTailString):
 		for lineNum in range(firstLine - 1, lastLine):
-			self._buffer[lineNum] = '%s%s%s' % (commentHeadString, self._buffer[lineNum], commentTailString)
+			line = self._buffer[lineNum]
+			if not self._isBlankLine(line):
+				self._commentOn(lineNum, line, commentHeadString, commentTailString)
 
+	def commentOff(self, firstLine, lastLine, commentHeadString, commentTailString):
+		for lineNum in range(firstLine - 1, lastLine):
+			line = self._buffer[lineNum]
+			if self._isCommentedLine(line, commentHeadString):
+				self._commentOff(lineNum, line, commentHeadString, commentTailString)
+
+	def commentSwitch(self, firstLine, lastLine, commentHeadString, commentTailString):
+		for lineNum in range(firstLine - 1, lastLine):
+			line = self._buffer[lineNum]
+			if self._isBlankLine(line):
+				continue
+			elif self._isCommentedLine(line, commentHeadString):
+				self._commentOff(lineNum, line, commentHeadString, commentTailString)
+			else:
+				self._commentOn(lineNum, line, commentHeadString, commentTailString)
+
+	def _isCommentedLine(self, line, commentHeadString):
+		return re.search('^' + commentHeadString, line)
+
+	def _isBlankLine(self, line):
+		return line.strip() == ''
+
+	def _commentOn(self, lineNum, line, commentHeadString, commentTailString):
+		self._buffer[lineNum] = '%s%s%s' % (commentHeadString, line, commentTailString)
+
+	def _commentOff(self, lineNum, line, commentHeadString, commentTailString):
+		self._buffer[lineNum] = line.replace(commentHeadString, '', 1).replace(commentTailString, '', 1)
+		
 EOM

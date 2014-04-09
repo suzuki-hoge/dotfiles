@@ -3,5 +3,11 @@
 source $plugin/wrapper/Buffer
 source $pete/PetroniusTheArbiter
 
-nnoremap ÷ :call PetroniusTheArbiter(PETE_COMMENT_ON)<CR>
-vnoremap ÷ :call PetroniusTheArbiter(PETE_COMMENT_ON)<CR>
+nnoremap ÷ :call PetroniusTheArbiter($PETE_COMMENT_ON)<CR>
+vnoremap ÷ :call PetroniusTheArbiter($PETE_COMMENT_ON)<CR>
+
+nnoremap ? :call PetroniusTheArbiter($PETE_COMMENT_OFF)<CR>
+vnoremap ? :call PetroniusTheArbiter($PETE_COMMENT_OFF)<CR>
+
+nnoremap ¿ :call PetroniusTheArbiter($PETE_COMMENT_SWITCH)<CR>
+vnoremap ¿ :call PetroniusTheArbiter($PETE_COMMENT_SWITCH)<CR>

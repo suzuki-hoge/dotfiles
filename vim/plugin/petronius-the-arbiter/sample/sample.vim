@@ -1,7 +1,8 @@
 hoge
-fuga
-piyo
-foo
-bar
+"fuga
+"piyo
+
+"foo
+"b"hoge"ar
 egg
 spam

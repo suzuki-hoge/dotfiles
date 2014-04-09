@@ -14,6 +14,12 @@ class Base:
 	def commentOn(self, firstLine, lastLine):
 		self.buffer.commentOn(firstLine, lastLine, self.getCommentHeadString(), self.getCommentTailString())
 
+	def commentOff(self, firstLine, lastLine):
+		self.buffer.commentOff(firstLine, lastLine, self.getCommentHeadString(), self.getCommentTailString())
+
+	def commentSwitch(self, firstLine, lastLine):
+		self.buffer.commentSwitch(firstLine, lastLine, self.getCommentHeadString(), self.getCommentTailString())
+
 	@abstractmethod
 	def getCommentHeadString(self):
 		pass

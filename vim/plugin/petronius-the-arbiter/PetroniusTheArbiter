@@ -3,7 +3,9 @@
 source $pete/pete/Base
 source $pete/pete/Vim
 
-let PETE_COMMENT_ON = 'add'
+let $PETE_COMMENT_ON = 0
+let $PETE_COMMENT_OFF = 1
+let $PETE_COMMENT_OFF = 2
 
 function! PetroniusTheArbiter(mode) range
 python <<EOM
@@ -13,13 +15,31 @@ import vim
 mode = vim.eval('a:mode')
 firstLine = int(vim.eval('a:firstline'))
 lastLine = int(vim.eval('a:lastline'))
-filetype = vim.eval('&filetype')
+fileType = vim.eval('&filetype')
 
-# factory
-# getPete(filetype)
-pete = Vim()
-
-pete.commentOn(firstLine, lastLine)
+call(mode, fileType, firstLine, lastLine)
 
 EOM
 endfunction
+
+python <<EOM
+
+import vim
+
+def call(mode, fileType, firstLine, lastLine):
+	pete = getPete(fileType)
+
+	if mode == vim.eval('$PETE_COMMENT_ON'):
+		pete.commentOn(firstLine, lastLine)
+
+	elif mode == vim.eval('$PETE_COMMENT_OFF'):
+		pete.commentOff(firstLine, lastLine)
+	
+	elif mode == vim.eval('$PETE_COMMENT_SWITCH'):
+		pete.commentSwitch(firstLine, lastLine)
+	
+def getPete(fileType):
+	if fileType == 'vim':
+		return Vim()
+
+EOM
