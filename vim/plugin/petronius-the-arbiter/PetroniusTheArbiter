@@ -3,6 +3,7 @@
 source $pete/pete/Base
 
 source $pete/pete/Python
+source $pete/pete/Shell
 source $pete/pete/Vim
 
 let $PETE_COMMENT_ON  = 0
@@ -27,8 +28,6 @@ endfunction
 
 python <<EOM
 
-import vim
-
 def call(mode, fileType, firstLine, lastLine):
 	pete = createPete(fileType)
 
@@ -45,10 +44,13 @@ def call(mode, fileType, firstLine, lastLine):
 		pete.run()
 	
 def createPete(fileType):
-	if fileType == 'vim':
-		return Vim()
-
-	elif fileType == 'python':
+	if fileType == 'python':
 		return Python()
+
+	elif fileType == 'sh':
+		return Shell()
+
+	elif fileType == 'vim':
+		return Vim()
 
 EOM
