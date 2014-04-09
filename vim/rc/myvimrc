@@ -2,10 +2,14 @@
 
 " dotfiles
 let $dot = $HOME . '/.dotfiles'
-let $egg = $HOME . '/.dotfiles'
 
 " vim rc files
-let $myrc = $dot . '/vim/rc/sub'
+let $rc   = $dot . '/vim/rc/myvimrc'
+let $subrc = $dot . '/vim/rc/sub'
+
+" plugin
+let $plugin = $dot . '/vim/plugin'
+let $pete   = $plugin . '/petronius-the-arbiter'
 
 " tmp
 let $tmp = $HOME . '/Documents/tmp'
@@ -16,13 +20,14 @@ let $private = $HOME . '/Library/Application Support/KeyRemap4MacBook/private.xm
 " todo
 let $todo = $HOME . '/Dropbox/todo.txt'
 
-" import myrc
-source $myrc/autocommands
-source $myrc/commands
-source $myrc/map-c
-source $myrc/map-i
-source $myrc/map-n
-source $myrc/map-v
-source $myrc/mark
-source $myrc/options
-source $myrc/tab
+" import subrc
+source $subrc/autocommands
+source $subrc/commands
+source $subrc/map-c
+source $subrc/map-i
+source $subrc/map-n
+source $subrc/map-v
+source $subrc/mark
+source $subrc/plugin
+source $subrc/options
+source $subrc/tab
