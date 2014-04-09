@@ -13,4 +13,7 @@ class Vim(Base):
 	def getCommentTailString(self):
 		return ''
 
+	def run(self):
+		pass
+
 EOM

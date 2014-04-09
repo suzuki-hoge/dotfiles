@@ -11,3 +11,5 @@ vnoremap ? :call PetroniusTheArbiter($PETE_COMMENT_OFF)<CR>
 
 nnoremap ¿ :call PetroniusTheArbiter($PETE_COMMENT_SWITCH)<CR>
 vnoremap ¿ :call PetroniusTheArbiter($PETE_COMMENT_SWITCH)<CR>
+
+command! W wall | call PetroniusTheArbiter($PETE_RUN)

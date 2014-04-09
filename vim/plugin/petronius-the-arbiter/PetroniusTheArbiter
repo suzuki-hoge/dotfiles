@@ -5,19 +5,20 @@ source $pete/pete/Base
 source $pete/pete/Python
 source $pete/pete/Vim
 
-let $PETE_COMMENT_ON = 0
+let $PETE_COMMENT_ON  = 0
 let $PETE_COMMENT_OFF = 1
 let $PETE_COMMENT_OFF = 2
+let $PETE_RUN         = 3
 
 function! PetroniusTheArbiter(mode) range
 python <<EOM
 
 import vim
 
-mode = vim.eval('a:mode')
+mode      = vim.eval('a:mode')
 firstLine = int(vim.eval('a:firstline'))
-lastLine = int(vim.eval('a:lastline'))
-fileType = vim.eval('&filetype')
+lastLine  = int(vim.eval('a:lastline'))
+fileType  = vim.eval('&filetype')
 
 call(mode, fileType, firstLine, lastLine)
 
@@ -39,6 +40,9 @@ def call(mode, fileType, firstLine, lastLine):
 	
 	elif mode == vim.eval('$PETE_COMMENT_SWITCH'):
 		pete.commentSwitch(firstLine, lastLine)
+	
+	elif mode == vim.eval('$PETE_RUN'):
+		pete.run()
 	
 def createPete(fileType):
 	if fileType == 'vim':

@@ -28,4 +28,8 @@ class Base:
 	def getCommentTailString(self):
 		pass
 
+	@abstractmethod
+	def run(self):
+		pass
+
 EOM

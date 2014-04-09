@@ -1,8 +1,2 @@
-hoge
-"fuga
-"piyo
-
-"foo
-"b"hoge"ar
-"egg
-"spam
+let hoge = 'hoge'
+echo hoge

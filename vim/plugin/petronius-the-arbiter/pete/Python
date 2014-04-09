@@ -13,4 +13,7 @@ class Python(Base):
 	def getCommentTailString(self):
 		return ''
 
+	def run(self):
+		vim.command('!python -B %')
+
 EOM
