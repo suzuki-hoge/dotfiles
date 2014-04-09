@@ -1,6 +1,8 @@
 " vim:set ft=vim:
 
 source $pete/pete/Base
+
+source $pete/pete/Python
 source $pete/pete/Vim
 
 let $PETE_COMMENT_ON = 0
@@ -27,7 +29,7 @@ python <<EOM
 import vim
 
 def call(mode, fileType, firstLine, lastLine):
-	pete = getPete(fileType)
+	pete = createPete(fileType)
 
 	if mode == vim.eval('$PETE_COMMENT_ON'):
 		pete.commentOn(firstLine, lastLine)
@@ -38,8 +40,11 @@ def call(mode, fileType, firstLine, lastLine):
 	elif mode == vim.eval('$PETE_COMMENT_SWITCH'):
 		pete.commentSwitch(firstLine, lastLine)
 	
-def getPete(fileType):
+def createPete(fileType):
 	if fileType == 'vim':
 		return Vim()
+
+	elif fileType == 'python':
+		return Python()
 
 EOM

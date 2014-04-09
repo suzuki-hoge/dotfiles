@@ -1,0 +1,16 @@
+" vim:set ft=vim:
+
+python <<EOM
+
+class Python(Base):
+
+	def __init__(self):
+		Base.__init__(self)
+
+	def getCommentHeadString(self):
+		return '#'
+
+	def getCommentTailString(self):
+		return ''
+
+EOM

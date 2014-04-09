@@ -4,5 +4,5 @@ hoge
 
 "foo
 "b"hoge"ar
-egg
-spam
+"egg
+"spam
