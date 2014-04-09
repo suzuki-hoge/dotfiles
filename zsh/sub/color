@@ -1,2 +1,4 @@
+# vim:set ft=sh:
+
 # lsに色をつける
 export CLICOLOR=true

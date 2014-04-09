@@ -1,3 +1,5 @@
+# vim:set ft=sh:
+
 # 有効化
 autoload -U compinit
 compinit

@@ -1,3 +1,5 @@
+# vim:set ft=sh:
+
 hash -d slf=~/Documents/projects/slf
 hash -d dev=~/Development
 hash -d dot=~/.dotfiles

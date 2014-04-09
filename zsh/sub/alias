@@ -1,3 +1,5 @@
+# vim:set ft=sh:
+
 alias reload='source ~/.zshrc'
 
 alias ...='../../'

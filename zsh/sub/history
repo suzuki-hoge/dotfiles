@@ -1,3 +1,5 @@
+# vim:set ft=sh:
+
 # 履歴ファイル
 HISTFILE=~/.zsh_history
 

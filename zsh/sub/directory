@@ -1,3 +1,5 @@
+# vim:set ft=sh:
+
 # ディレクトリ名のみで移動
 setopt auto_cd
 

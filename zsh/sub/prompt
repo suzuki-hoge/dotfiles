@@ -1,3 +1,5 @@
+# vim:set ft=sh:
+
 # 左プロンプト
 PROMPT="
 %d
