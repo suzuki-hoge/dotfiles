@@ -4,10 +4,10 @@
 HISTFILE=~/.zsh_history
 
 # キャッシュ上限
-HISTSIZE=5000
+HISTSIZE=100000
 
 # ファイル上限
-SAVEHIST=5000
+SAVEHIST=100000
 
 # 重複させない
 setopt HIST_IGNORE_DUPS
