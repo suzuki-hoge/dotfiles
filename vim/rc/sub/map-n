@@ -15,7 +15,7 @@ nnoremap zj zt
 nnoremap zk zb
 
 " highlight under cursor word
-nnoremap * *Nzz
+nnoremap * :let pos = getpos('.')<CR>*:call setpos('.', pos)<CR>
 
 " command line window
 nnoremap æ q:

@@ -13,11 +13,8 @@ alias la="ls -la"
 alias lag="ls -la | grep"
 alias lap="ls -a | percol | xargs"
 
-alias his="history"
-alias hisg="history | grep"
-
 alias gstp="git status -s | percol --match-method regex | cut -c4- | xargs"
-alias gbhp="git branch | percol --match-method regex | xargs"
+alias gdfp="git status -s | percol --match-method regex | cut -c4- | xargs git diff"
 alias gcop="git branch | percol --match-method regex | cut -c2- | xargs git checkout"
 alias gplp="git branch | percol --match-method regex | cut -c2- | xargs git pull origin"
 alias gpsp="git branch | percol --match-method regex | cut -c2- | xargs git push origin"
@@ -26,8 +23,6 @@ alias -g G='| grep'
 alias -g V='| grep -v'
 alias -g P="| percol | xargs"
 
-
-# vagrant環境内にうわーってドットファイルを展開する
 function uwa-(){
  cp ~/.dotfiles/zsh/zsh-setup.py ./host_share
  cp ~/.dotfiles/percol/percol-setup.sh ./host_share
@@ -36,3 +31,14 @@ function uwa-(){
  vagrant ssh -c 'python /guest_share/zsh-setup.py'
  vagrant ssh -c 'sh /guest_share/percol-setup.sh'
 }
+
+alias commands_add=" history -1 | cut -c7- | sed -e 's/$/ #(0)/' | xargs echo >> $COMMANDS;vi $COMMANDS"
+
+function percol_select_command() {
+ LINE=`cat $COMMANDS | percol --query "$LBUFFER"`
+ BUFFER=`echo $LINE | sed -e "s/ #.*//"`
+ CURSOR=`echo $LINE | sed -e "s/^.*(\(.*\)).*$/\1/"`
+ zle clear-screen
+}
+zle -N percol_select_command
+bindkey '^V' percol_select_command

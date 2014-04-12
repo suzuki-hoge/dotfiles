@@ -7,3 +7,6 @@ DOTFILES=~/.dotfiles
 export DOTFILES
 PATH=$PATH:$DOTFILES/git/bin
 PATH=$PATH:$DOTFILES/vagrant/bin
+
+# commands
+COMMANDS=~/.commands

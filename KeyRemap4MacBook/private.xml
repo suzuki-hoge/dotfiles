@@ -64,6 +64,7 @@
 			<item>
 				<name>Word Delete</name>
 				<identifier>Global Word Delete</identifier>
+				<not>TERMINAL</not>
 
 				<autogen>--KeyToKey-- KeyCode::W, VK_CONTROL, KeyCode::DELETE, ModifierFlag::OPTION_L</autogen>
 			</item>
