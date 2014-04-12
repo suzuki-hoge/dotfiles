@@ -16,14 +16,11 @@ setopt HIST_IGNORE_DUPS
 bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
 
-# percol
- # 関数
- function percol_select_history() {
-     BUFFER=$(history -n 1 | tail -r | percol --match-method regex --query "$LBUFFER")
-     CURSOR=$#BUFFER
-     zle clear-screen
- }
- zle -N percol_select_history
- 
- # 呼び出し
- bindkey '^O' percol_select_history
+# 実行履歴一覧からコマンドを選択して実行する
+function percol_select_history() {
+ BUFFER=`history -n 1 | tail -r | percol --match-method regex --query "$LBUFFER"`
+ CURSOR=$#BUFFER
+ zle clear-screen
+}
+zle -N percol_select_history
+bindkey '^O' percol_select_history

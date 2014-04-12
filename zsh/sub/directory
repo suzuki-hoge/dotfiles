@@ -3,26 +3,47 @@
 # ディレクトリ名のみで移動
 setopt auto_cd
 
-# push
+# 移動するたびにディレクトリスタックに積む
 setopt AUTO_PUSHD
 
-# 重複させない
+# ディレクトリスタックを重複させない
 setopt PUSHD_IGNORE_DUPS
 
-# ディレクトリを作り、そこに移動する
-function take(){
- mkdir -p "$1"
- cd "$1"
+# ディレクトリスタック一覧からディレクトリを選択して移動する
+function percol_select_dirstack_entry() {
+ BUFFER=`dirs -pl | percol --match-method regex --query "$LBUFFER"`
+ CURSOR=$#BUFFER
+ zle clear-screen
+}
+zle -N percol_select_dirstack_entry
+bindkey '^J' percol_select_dirstack_entry
+
+# ディレクトリの作成と移動
+function take() {
+ mkdir -p $1
+ cd $1
 }
 
-# percol
- # 関数
- function percol_select_dirstack_entry() {
-  BUFFER=$(dirs -pl | percol --match-method regex --query "$LBUFFER")
-  CURSOR=$#BUFFER
-  zle clear-screen
- }
- zle -N percol_select_dirstack_entry
+# ディレクトリ一覧からディレクトリを選択して移動する
+function cdp() {
+ if [ -z $1 ];then
+  local ROOT=.
+ else
+  local ROOT=$1
+ fi
+ local LEN=`expr $#ROOT + 2`
+ local DIR=`find $ROOT -type d -maxdepth 1 | cut -c$LEN- | percol`
+ cd $ROOT/$DIR
+}
 
- # 呼び出し
- bindkey '^J' percol_select_dirstack_entry
+# ディレクトリ一覧（再帰）からディレクトリを選択して移動する
+function cdpr() {
+ if [ -z $1 ];then
+  local ROOT=.
+ else
+  local ROOT=$1
+ fi
+ local LEN=`expr $#ROOT + 2`
+ local DIR=`find $ROOT -name .git -prune -or -name .svn -prune -or -name .vagrant -prune -or -name Library -prune -or -type d | cut -c$LEN- | percol`
+ cd $ROOT/$DIR
+}
