@@ -1,7 +1,4 @@
 " vim:set ft=vim:
 
-autocmd BufWinEnter * set nowrap
-autocmd BufWinEnter * set nrformats=
-autocmd BufWinEnter * set textwidth=0
-autocmd BufWinEnter * set fileformat=unix
-autocmd BufWinEnter * set encoding=utf8
+autocmd VimEnter * set nowrap
+autocmd VimEnter * set nrformats=
