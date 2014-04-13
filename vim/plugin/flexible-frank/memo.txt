@@ -193,3 +193,5 @@
 	working2.frank : フランク２の作業用テキスト
 	working3.frank : フランク３の作業用テキスト
 	ignore.frank   : 無視リスト
+
+

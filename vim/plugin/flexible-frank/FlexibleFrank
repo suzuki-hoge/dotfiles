@@ -9,14 +9,32 @@ augroup END
 autocmd autocmdFrank FocusLost *.frank :call CloseAll()
 autocmd autocmdFrank TabLeave  *.frank :call CloseAll()
 
-function! FlexibleFrank()
+function! FlexibleFrank(...)
+
+let path1 = '.'
+let path2 = ''
+
+let i = 0
+for var in a:000
+	if i == 0
+		let path1 = var
+	elseif i == 1
+		let path2 = var
+	else
+		throw "too many arguments."
+	endif
+	let i += 1
+endfor
+
 python <<EOM
 
 import vim
 
-targetDir = './'
-Tab.expandTab('frank1.frank', 'frank2.frank', 'frank3.frank')
-Tab.switchTab('frank1.frank')
+#Tab.expandTab('frank1.frank', 'frank2.frank', 'frank3.frank')
+#Tab.switchTab('frank1.frank')
+
+frank = Frank(vim.eval('path1'))
+frank.dump()
 
 EOM
 endfunction

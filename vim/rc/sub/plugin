@@ -17,10 +17,11 @@ command! W wall | call PetroniusTheArbiter($PETE_RUN)
 
 source $frank/Tab
 source $frank/FlexibleFrank
+source $frank/Frank
+source $frank/Entry
 
-nnoremap <S-M-CR> :FF<CR>
-command! FF call FlexibleFrank()
-"command! -nargs=1 -complete=dir FF call FlexibleFrankController(<f-args>)
+nnoremap <S-M-CR> :FF .<CR>
+command! -nargs=* -complete=dir FF call FlexibleFrank(<f-args>)
 
 nnoremap <Tab>   <C-w>w
 nnoremap <S-Tab> <C-w>W
