@@ -1,0 +1,30 @@
+" vim:set ft=vim:
+
+"source $pete/pete/Python
+
+augroup autocmdFrank
+	autocmd!
+augroup END
+
+autocmd autocmdFrank FocusLost *.frank :call CloseAll()
+autocmd autocmdFrank TabLeave  *.frank :call CloseAll()
+
+function! FlexibleFrank()
+python <<EOM
+
+import vim
+
+targetDir = './'
+Tab.expandTab('frank1.frank', 'frank2.frank', 'frank3.frank')
+Tab.switchTab('frank1.frank')
+
+EOM
+endfunction
+
+function! CloseAll()
+python <<EOM
+vim.command('bdelete!')
+vim.command('bdelete!')
+vim.command('bdelete!')
+EOM
+endfunction

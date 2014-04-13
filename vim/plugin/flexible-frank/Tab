@@ -1,0 +1,42 @@
+" vim:set ft=vim:
+
+python <<EOM
+
+import vim
+
+class Tab:
+	
+	BUF1 = 0
+	BUF2 = 0
+	BUF3 = 0
+
+	@staticmethod
+	def isBlankTab():
+		return len(vim.current.buffer) == 1 and vim.current.buffer[0] == ''
+
+	@staticmethod
+	def switchTab(target):
+		while True:
+			current = vim.current.buffer.name.split('/')[-1]
+			if current != target:
+				vim.command('execute ":normal gw"')
+				break
+
+	@staticmethod
+	def expandTab(buf1, buf2, buf3):
+		if Tab.isBlankTab():
+			vim.command('edit ' + buf2)
+		else:
+			vim.command('tabedit ' + buf2)
+			Tab.BUF2 = vim.current.buffer.number
+
+		vim.command('vsplit ' + buf1)
+		Tab.BUF1 = vim.current.buffer.number
+
+		vim.command('botright 9 split ' + buf3)
+		Tab.BUF3 = vim.current.buffer.number
+
+	@staticmethod
+	def closeAll():
+		print TabBUF1
+EOM
