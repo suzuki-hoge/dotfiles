@@ -1,0 +1,13 @@
+" vim:set ft=vim:
+
+python <<EOM
+
+class File(Entry):
+
+	def __init__(self, fullpath):
+		Entry.__init__(self, fullpath)
+
+	def dump(self):
+		print self.fullpath
+
+EOM

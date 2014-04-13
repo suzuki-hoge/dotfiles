@@ -1,0 +1,27 @@
+" vim:set ft=vim:
+
+python <<EOM
+
+class Directory(Entry):
+
+	def __init__(self, fullpath):
+		Entry.__init__(self, fullpath)
+		self.entries = self.getEntries()
+
+	def getEntries(self):
+		entries = []
+		for entryName in os.listdir(self.fullpath):
+			subpath = os.path.join(self.fullpath, entryName)
+			if os.path.isfile(subpath):
+				entries.append(File(subpath))
+
+			if os.path.isdir(subpath):
+				entries.append(Directory(subpath))
+
+		return entries
+
+	def dump(self):
+		print self.fullpath
+		[e.dump() for e in self.entries]
+
+EOM

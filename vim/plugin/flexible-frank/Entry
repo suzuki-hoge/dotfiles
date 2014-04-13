@@ -4,9 +4,7 @@ python <<EOM
 
 class Entry:
 
-	def __init__(self, path):
-		self.path = path
+	def __init__(self, fullpath):
+		self.fullpath = fullpath
 
-	def dump(self):
-		print self.path
 EOM

@@ -9,20 +9,8 @@ import os.path
 class Frank:
 
 	def __init__(self, root):
-		self.root = root
-		self.updateEntries()
-
-	def updateEntries(self):
-		self.entries = []
-		self.getEntries(self.root)
-
-	def getEntries(self, searchingPath):
-		for entryName in os.listdir(searchingPath):
-			entryPath = os.path.join(searchingPath, entryName)
-			self.entries.append(Entry(entryPath))
-			if os.path.isdir(entryPath):
-				self.getEntries(entryPath)
+		self.node = Directory(root)
 
 	def dump(self):
-		[e.dump() for e in self.entries]
+		self.node.dump()
 EOM
