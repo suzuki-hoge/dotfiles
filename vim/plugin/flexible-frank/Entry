@@ -4,7 +4,27 @@ python <<EOM
 
 class Entry:
 
-	def __init__(self, fullpath):
+	def __init__(self, root, fullpath):
+		self.root = root
 		self.fullpath = fullpath
+		self.path = fullpath[len(root):]
+		self.name = os.path.split(self.path)[1]
+		self.type = 'dir' if os.path.isdir(fullpath) else 'file'
+		self.depth = self.path.count('/')
+		self.output = self.createOutput()
+
+	def isDir(self):
+		return self.type == 'dir'
+
+	def isFile(self):
+		return self.type == 'file'
+
+	def createOutput(self):
+		return '%s%s%s' % (' ' * self.depth, self.name, '/' if self.isDir() else '')
+
+	def dump(self):
+		print self.output
+		if self.isDir():
+			[e.dump() for e in self.entries]
 
 EOM

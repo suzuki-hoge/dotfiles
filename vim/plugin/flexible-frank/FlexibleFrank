@@ -33,7 +33,13 @@ import vim
 #Tab.expandTab('frank1.frank', 'frank2.frank', 'frank3.frank')
 #Tab.switchTab('frank1.frank')
 
-frank = Frank(vim.eval('path1'))
+adjustEndSlash = lambda path : path if path[-1] == '/' else path + '/'
+getOrNone = lambda path : None if path == '' else adjustEndSlash(path)
+
+path1 = adjustEndSlash(vim.eval('path1'))
+path2 = getOrNone(vim.eval('path2'))
+
+frank = Frank(path1)
 frank.dump()
 
 EOM

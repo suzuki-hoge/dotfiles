@@ -4,10 +4,7 @@ python <<EOM
 
 class File(Entry):
 
-	def __init__(self, fullpath):
-		Entry.__init__(self, fullpath)
-
-	def dump(self):
-		print self.fullpath
+	def __init__(self, root, fullpath):
+		Entry.__init__(self, root, fullpath)
 
 EOM

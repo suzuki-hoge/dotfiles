@@ -4,24 +4,21 @@ python <<EOM
 
 class Directory(Entry):
 
-	def __init__(self, fullpath):
-		Entry.__init__(self, fullpath)
+	def __init__(self, root, fullpath):
+		Entry.__init__(self, root, fullpath)
 		self.entries = self.getEntries()
 
+	# .git
 	def getEntries(self):
 		entries = []
 		for entryName in os.listdir(self.fullpath):
 			subpath = os.path.join(self.fullpath, entryName)
 			if os.path.isfile(subpath):
-				entries.append(File(subpath))
+				entries.append(File(self.root, subpath))
 
 			if os.path.isdir(subpath):
-				entries.append(Directory(subpath))
+				entries.append(Directory(self.root, subpath))
 
 		return entries
-
-	def dump(self):
-		print self.fullpath
-		[e.dump() for e in self.entries]
 
 EOM

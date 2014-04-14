@@ -9,7 +9,7 @@ import os.path
 class Frank:
 
 	def __init__(self, root):
-		self.node = Directory(root)
+		self.node = Directory(root, root)
 
 	def dump(self):
 		self.node.dump()
