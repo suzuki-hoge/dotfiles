@@ -8,7 +8,6 @@ class Directory(Entry):
 		Entry.__init__(self, root, fullpath)
 		self.entries = self.getEntries()
 
-	# .git
 	def getEntries(self):
 		entries = []
 		for entryName in os.listdir(self.fullpath):
@@ -20,5 +19,14 @@ class Directory(Entry):
 				entries.append(Directory(self.root, subpath))
 
 		return entries
+
+	def getOutputs(self, outputs):
+		outputs.append(self.output)
+		[e.getOutputs(outputs) for e in self.entries]
+		return outputs
+
+	def dump(self):
+		print self.output
+		[e.dump() for e in self.entries]
 
 EOM

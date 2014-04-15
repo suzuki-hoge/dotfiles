@@ -2,29 +2,47 @@
 
 python <<EOM
 
+from abc import ABCMeta, abstractmethod
+
 class Entry:
+
+	__metaclass__ = ABCMeta
 
 	def __init__(self, root, fullpath):
 		self.root = root
 		self.fullpath = fullpath
 		self.path = fullpath[len(root):]
 		self.name = os.path.split(self.path)[1]
-		self.type = 'dir' if os.path.isdir(fullpath) else 'file'
 		self.depth = self.path.count('/')
 		self.output = self.createOutput()
 
-	def isDir(self):
-		return self.type == 'dir'
+	def _isDir(self):
+		return os.path.isdir(self.fullpath)
 
-	def isFile(self):
-		return self.type == 'file'
+	def _isFile(self):
+		return os.path.isfile(self.fullpath)
+
+	def _isPointed(self):
+		return False
+
+	def _isFolded(self):
+		return True
+
+	def _getIndent(self):
+		return ' ' * self.depth
+
+	def _getEndSlash(self):
+		return '/' if self._isDir() else ''
 
 	def createOutput(self):
-		return '%s%s%s' % (' ' * self.depth, self.name, '/' if self.isDir() else '')
+		return '%s%s%s' % (self._getIndent(), self.name, self._getEndSlash())
 
+	@abstractmethod
+	def getOutputs(self, buffer):
+		pass
+
+	@abstractmethod
 	def dump(self):
-		print self.output
-		if self.isDir():
-			[e.dump() for e in self.entries]
+		pass
 
 EOM

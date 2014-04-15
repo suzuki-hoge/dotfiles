@@ -7,4 +7,10 @@ class File(Entry):
 	def __init__(self, root, fullpath):
 		Entry.__init__(self, root, fullpath)
 
+	def getOutputs(self, outputs):
+		return outputs.append(self.output)
+
+	def dump(self):
+		print self.output
+
 EOM

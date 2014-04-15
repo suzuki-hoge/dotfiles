@@ -16,6 +16,7 @@ command! W wall | call PetroniusTheArbiter($PETE_RUN)
 
 
 source $frank/Tab
+source $frank/Buffer2
 source $frank/FlexibleFrank
 source $frank/Frank
 source $frank/Entry

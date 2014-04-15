@@ -1,0 +1,15 @@
+" vim:set ft=vim:
+
+python <<EOM
+
+import vim
+
+class Buffer2:
+
+	def __init__(self):
+		self.lines = vim.current.buffer
+	
+	def output(self, node):
+		self.lines[:] = node.getOutputs([])
+
+EOM

@@ -10,6 +10,10 @@ class Frank:
 
 	def __init__(self, root):
 		self.node = Directory(root, root)
+		self.buffer = Buffer2()
+
+	def output(self):
+		self.buffer.output(self.node)
 
 	def dump(self):
 		self.node.dump()
