@@ -19,7 +19,12 @@ else:
 	options = {'num' : '-' + str(args.num), 'full' : args.full, 'diff' : args.diff, 'hash' : args.hash}
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/../Log'))
-from Parser import Parser
+#from Parser import Parser
+import lib
 
-parser = Parser(options)
-parser.output()
+#parser = Parser(options)
+#parser.output()
+
+fetched = lib.execute(options)
+logs = lib.parse(fetched)
+lib.output(logs)

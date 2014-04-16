@@ -29,10 +29,11 @@ class Log:
 
 			elif line.startswith('abs_date:'):
 				p = parsedate(line[9:])
-				self.absDate = '%04d/%02d/%02d %02d:%02d:%02d' % (int(p[0]), int(p[1]), int(p[2]), int(p[3]), int(p[4]), int(p[5]))
+				self.ymd = '%04d/%02d/%02d' % (int(p[0]), int(p[1]), int(p[2]))
+				self.hm  = '%02d:%02d:%02d' % (int(p[3]), int(p[4]), int(p[5]))
 
 			elif line.startswith('rel_date:'):
-				self.relDate = line[9:]
+				self.rel = line[9:]
 
 			elif line.startswith('subject:'):
 				self.subject = line[8:]
@@ -45,23 +46,24 @@ class Log:
 
 		return self
 
-	def output(self, options):
-		print '%s' % ('-' * 80)
+#	def output(self, options):
+#		print '%s%s (%s) %s' % ('-' * 40, self.absDate, self.relDate, '-' * 40)
+##		print '%s' % ('-' * 80)
 
-		if options['hash']:
-			print 'hash    : %s' % self.hash
-		print 'name    : %s' % self.name
-		print 'absDate : %s' % self.absDate
-		print 'relDate : %s' % self.relDate
-		print 'subject : %s' % self.subject
+#		if options['hash']:
+#			print 'hash    : %s' % self.hash
+#		print 'name    : %s' % self.name
+##		print 'absDate : %s' % self.absDate
+##		print 'relDate : %s' % self.relDate
+#		print 'subject : %s' % self.subject
 
-		if options['diff']:
-			for line in self.files:
-				print '  %s' % line
+#		if options['diff']:
+#			for line in self.files:
+#				print '  %s' % line
 
-		if options['full']:
-			head = os.getcwd()
-			for line in self.files:
-				print '  %s/%s' % (head, line)
+#		if options['full']:
+#			head = os.getcwd()
+#			for line in self.files:
+#				print '  %s/%s' % (head, line)
 
-		print ' '
+#		print ' '
