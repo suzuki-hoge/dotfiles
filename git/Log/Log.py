@@ -6,11 +6,17 @@ from email.utils import parsedate
 
 class Log:
 
+	KEY_HASH      = 'hash:'
+	KEY_COMMITTER = 'committer:'
+	KEY_ABS_DATE  = 'abs_date:'
+	KEY_REL_DATE  = 'rel_date:'
+	KEY_SUBJECT   = 'subject:'
+
 	def __init__(self):
 		self.lines = []
 
 		self.hash    = None
-		self.name    = None
+		self.committer    = None
 		self.absDate = None
 		self.relDate = None
 		self.subject = None
@@ -21,22 +27,22 @@ class Log:
 
 	def parse(self):
 		for line in self.lines:
-			if line.startswith('hash:'):
-				self.hash = line[5:]
+			if line.startswith(Log.KEY_HASH):
+				self.hash = line[len(Log.KEY_HASH):]
 
-			elif line.startswith('name:'):
-				self.name = line[5:]
+			elif line.startswith(Log.KEY_COMMITTER):
+				self.committer = line[len(Log.KEY_COMMITTER):]
 
-			elif line.startswith('abs_date:'):
-				p = parsedate(line[9:])
+			elif line.startswith(Log.KEY_ABS_DATE):
+				p = parsedate(line[len(Log.KEY_ABS_DATE):])
 				self.ymd = '%04d/%02d/%02d' % (int(p[0]), int(p[1]), int(p[2]))
-				self.hm  = '%02d:%02d:%02d' % (int(p[3]), int(p[4]), int(p[5]))
+				self.hms = '%02d:%02d:%02d' % (int(p[3]), int(p[4]), int(p[5]))
 
-			elif line.startswith('rel_date:'):
-				self.rel = line[9:]
+			elif line.startswith(Log.KEY_REL_DATE):
+				self.rel = line[len(Log.KEY_REL_DATE):]
 
-			elif line.startswith('subject:'):
-				self.subject = line[8:]
+			elif line.startswith(Log.KEY_SUBJECT):
+				self.subject = line[len(Log.KEY_SUBJECT):]
 
 			elif line.strip() == '' or re.search('\d+ files? changed,', line):
 				pass
@@ -45,25 +51,3 @@ class Log:
 				self.files.append(line)
 
 		return self
-
-#	def output(self, options):
-#		print '%s%s (%s) %s' % ('-' * 40, self.absDate, self.relDate, '-' * 40)
-##		print '%s' % ('-' * 80)
-
-#		if options['hash']:
-#			print 'hash    : %s' % self.hash
-#		print 'name    : %s' % self.name
-##		print 'absDate : %s' % self.absDate
-##		print 'relDate : %s' % self.relDate
-#		print 'subject : %s' % self.subject
-
-#		if options['diff']:
-#			for line in self.files:
-#				print '  %s' % line
-
-#		if options['full']:
-#			head = os.getcwd()
-#			for line in self.files:
-#				print '  %s/%s' % (head, line)
-
-#		print ' '
