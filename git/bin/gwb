@@ -2,8 +2,13 @@
 
 import re
 import os
+import sys
+import os.path
 import argparse
 import subprocess
+
+sys.path.append(os.path.abspath('%s/../../' % os.path.abspath(__file__)))
+import util
 
 parser = argparse.ArgumentParser(description = "open web page")
 parser.add_argument('-b', '--branch', default = None, action = 'store', help = 'target branch (default : current branch)')
@@ -15,12 +20,10 @@ page_group.add_argument('-n', '--network', default = False, action = 'store_true
 
 args = parser.parse_args()
 
-getStdOut = lambda command: subprocess.Popen(command.split(), stdout = subprocess.PIPE).stdout.read().strip()
-
 page = 'tree' if args.tree else 'network' if args.network else 'commits'
-branch = '' if args.network else getStdOut('git rev-parse --abbrev-ref HEAD') if args.branch is None else args.branch
+branch = '' if args.network else util.getCurrentBranch() if args.branch is None else args.branch
 
-root = getStdOut('git rev-parse --show-toplevel')
+root = util.getRootDir()
 conf = open('%s/.git/config' % root, 'r').read()
 
 src = re.search(r'\n\surl.*\n', conf).group().strip()
