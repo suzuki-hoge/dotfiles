@@ -51,3 +51,21 @@ class Log:
 				self.files.append(line)
 
 		return self
+
+	def outputDetailInfo(self):
+		print 'hash      : %s'    % self.hash
+		print 'committer : %s'    % self.committer
+		print 'datetime  : %s %s' % (self.ymd, self.hms)
+		print 'rel date  : %s'    % self.rel
+		print 'subject   : %s'    % self.subject
+
+	def outputFiles(self):
+		print '\nfiles'
+		if self.files:
+			for file in self.files:
+				print '  %s' % file
+		else:
+			print '  -'
+
+	def outputInfo(self, length):
+		print '  %s - %s' % (self.committer.ljust(length, ' '), self.subject)

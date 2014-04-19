@@ -5,14 +5,14 @@ import sys
 import argparse
 
 parser = argparse.ArgumentParser(description = 'output formated "git log"')
-parser.add_argument('num', metavar = 'num', type = int, nargs = '?', help = 'request log count (default : no option -> 10, else -> 3)')
+parser.add_argument('num', metavar = 'num', type = int, nargs = '?', help = 'request log count (default : no option -> 5, else -> 3)')
 parser.add_argument('-d', '--detail', default = False, action = 'store_true', help = 'output details (default : False)')
 parser.add_argument('-f', '--files', default = False, action = 'store_true', help = 'output details and output changed files (default : False)')
 args = parser.parse_args()
 
 
-getNum = lambda num, detail, files: num if num is not None else 10 if not detail and not files else 3
-options = {'num' : '-' + str(getNum(args.num, args.detail, args.files)), 'detail' : args.detail, 'files' : args.files}
+getNum = lambda args: args.num if args.num is not None else 5 if not args.detail and not args.files else 3
+options = {'num' : '-' + str(getNum(args)), 'detail' : args.detail, 'files' : args.files}
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/../Log'))
 

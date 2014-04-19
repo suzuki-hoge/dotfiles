@@ -39,44 +39,32 @@ def output(logs, options):
 	else:
 		_outputSimply(logs)
 
+def _outputBeginLine():
+	print '%s' % ('-' * 80)
+
+def _outputEndLine():
+	print ' '
+
 def _outputInDetailWithFiles(logs):
 	for log in logs:
-		print '%s' % ('-' * 80)
-
-		print 'hash      : %s'    % log.hash
-		print 'committer : %s'    % log.committer
-		print 'datetime  : %s %s' % (log.ymd, log.hms)
-		print 'rel date  : %s'    % log.rel
-		print 'subject   : %s'    % log.subject
-
-		print '\nfiles'
-		if log.files:
-			for file in log.files:
-				print '  %s' % file
-		else:
-			print '  -'
-
-		print ' '
+		_outputBeginLine()
+		log.outputDetailInfo()
+		log.outputFiles()
+		_outputEndLine()
 
 def _outputInDetail(logs):
 	for log in logs:
-		print '%s' % ('-' * 80)
+		_outputBeginLine()
+		log.outputDetailInfo()
+		_outputEndLine()
 
-		print 'hash      : %s'    % log.hash
-		print 'committer : %s'    % log.committer
-		print 'datetime  : %s %s' % (log.ymd, log.hms)
-		print 'rel date  : %s'    % log.rel
-		print 'subject   : %s'    % log.subject
-
-		print ' '
+def _outputDateOrNone(i, logs):
+	if logs[i].ymd != logs[i - 1].ymd or i == 0:
+		print '\n%s' % logs[i].ymd
 
 def _outputSimply(logs):
-	maxlen = 0
-	for log in logs:
-		if maxlen < len(log.committer):
-			maxlen = len(log.committer)
+	maxCommitterLength = len(max(logs, key = lambda log: log.committer).committer)
 
 	for i, log in enumerate(logs):
-		if log.ymd != logs[i - 1].ymd or i == 0:
-			print '\n%s' % log.ymd
-		print '  %s - %s' % (log.committer.ljust(maxlen, ' '), log.subject)
+		_outputDateOrNone(i, logs)
+		log.outputInfo(maxCommitterLength)
