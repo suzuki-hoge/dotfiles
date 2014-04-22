@@ -25,6 +25,10 @@ alias -g G='| grep'
 alias -g V='| grep -v'
 alias -g P="| percol --match-method regex | xargs"
 
+function qlook(){
+ qlmanage -p $1 >& /dev/null
+}
+
 function uwa-(){
  cp ~/.dotfiles/zsh/zsh-setup.py ./host_share
  cp ~/.dotfiles/percol/percol-setup.sh ./host_share
