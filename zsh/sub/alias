@@ -29,15 +29,6 @@ function qlook(){
  qlmanage -p $1 >& /dev/null
 }
 
-function uwa-(){
- cp ~/.dotfiles/zsh/zsh-setup.py ./host_share
- cp ~/.dotfiles/percol/percol-setup.sh ./host_share
- cp ~/.dotfiles/percol/rc.py ./host_share
- vagrant rsync
- vagrant ssh -c 'python /guest_share/zsh-setup.py'
- vagrant ssh -c 'sh /guest_share/percol-setup.sh'
-}
-
 alias commands_add=" history -1 | cut -c7- | sed -e 's/$/ #(0)/' | xargs echo >> $COMMANDS;vi $COMMANDS"
 
 function percol_select_command() {
