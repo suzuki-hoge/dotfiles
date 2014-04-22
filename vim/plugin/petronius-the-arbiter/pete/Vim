@@ -8,11 +8,14 @@ class Vim(Base):
 		Base.__init__(self)
 
 	def getCommentHeadString(self):
-		return '"'
+		if self.buffer.inPython():
+			return '#'
+		else:
+			return '"'
 
 	def getCommentTailString(self):
 		return ''
-
+		
 	def run(self):
 		pass
 

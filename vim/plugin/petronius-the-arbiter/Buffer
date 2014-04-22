@@ -43,5 +43,23 @@ class Buffer:
 
 	def _commentOff(self, lineNum, line, commentHeadString, commentTailString):
 		self._buffer[lineNum] = line.replace(commentHeadString, '', 1).replace(commentTailString, '', 1)
-		
+
+	def inPython(self):
+		lineNum = self._getLineNum()
+		if self._isContainAt(lineNum, 'EOM'):
+			return False
+		for i in range(lineNum - 1, 0, -1):
+			if self._isContainAt(i, 'python <<EOM'):
+				return True
+			if self._isContainAt(i, 'EOM'):
+				return False
+		else:
+			return False
+
+	def _getLineNum(self):
+		return int(vim.eval("getpos('.')[1]")) - 1
+
+	def _isContainAt(self, lineNum, heredocmark):
+		return heredocmark in self._buffer[lineNum]
+
 EOM
