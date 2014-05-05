@@ -25,3 +25,6 @@ nnoremap <C-p> :<UP>
 
 " highlight off
 nnoremap <silent><ESC><ESC> :noh<CR>
+
+" reload vimrc
+nnoremap ® :source $rc<CR>

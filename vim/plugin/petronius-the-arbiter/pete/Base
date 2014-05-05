@@ -12,20 +12,20 @@ class Base:
 		self.buffer = Buffer()
 
 	def commentOn(self, firstLine, lastLine):
-		self.buffer.commentOn(firstLine, lastLine, self.getCommentHeadString(), self.getCommentTailString())
+		self.buffer.commentOn(firstLine, lastLine, self.getHeadMark(), self.getTailMark())
 
 	def commentOff(self, firstLine, lastLine):
-		self.buffer.commentOff(firstLine, lastLine, self.getCommentHeadString(), self.getCommentTailString())
+		self.buffer.commentOff(firstLine, lastLine, self.getHeadMark(), self.getTailMark())
 
 	def commentSwitch(self, firstLine, lastLine):
-		self.buffer.commentSwitch(firstLine, lastLine, self.getCommentHeadString(), self.getCommentTailString())
+		self.buffer.commentSwitch(firstLine, lastLine, self.getHeadMark(), self.getTailMark())
 
 	@abstractmethod
-	def getCommentHeadString(self):
+	def getHeadMark(self):
 		pass
 
 	@abstractmethod
-	def getCommentTailString(self):
+	def getTailMark(self):
 		pass
 
 	@abstractmethod
