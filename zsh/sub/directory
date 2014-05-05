@@ -32,7 +32,7 @@ function cdp() {
   local ROOT=$1
  fi
  local LEN=`expr $#ROOT + 2`
- local DIR=`find $ROOT -type d -maxdepth 1 | cut -c$LEN- | percol`
+ local DIR=`find $ROOT -type d -maxdepth 1 | cut -c$LEN- | percol --match-method regex`
  cd $ROOT/$DIR
 }
 
@@ -44,6 +44,6 @@ function cdpr() {
   local ROOT=$1
  fi
  local LEN=`expr $#ROOT + 2`
- local DIR=`find $ROOT -name .git -prune -or -name .svn -prune -or -name .vagrant -prune -or -name Library -prune -or -type d | cut -c$LEN- | percol`
+ local DIR=`find $ROOT -name .git -prune -or -name .svn -prune -or -name .vagrant -prune -or -name Library -prune -or -type d | cut -c$LEN- | percol --match-method regex`
  cd $ROOT/$DIR
 }

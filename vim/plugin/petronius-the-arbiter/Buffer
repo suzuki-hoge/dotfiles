@@ -8,40 +8,58 @@ import re
 class Buffer:
 
 	def __init__(self):
-		self._buffer = vim.current.buffer
+		self.lines = vim.current.buffer
 	
-	def commentOn(self, firstLine, lastLine, commentHeadString, commentTailString):
+	def commentOn(self, firstLine, lastLine, headMark, tailMark):
 		for lineNum in range(firstLine - 1, lastLine):
-			line = self._buffer[lineNum]
+			line = self.lines[lineNum]
 			if not self._isBlankLine(line):
-				self._commentOn(lineNum, line, commentHeadString, commentTailString)
+				self._commentOn(lineNum, line, headMark, tailMark)
 
-	def commentOff(self, firstLine, lastLine, commentHeadString, commentTailString):
+	def commentOff(self, firstLine, lastLine, headMark, tailMark):
 		for lineNum in range(firstLine - 1, lastLine):
-			line = self._buffer[lineNum]
-			if self._isCommentedLine(line, commentHeadString):
-				self._commentOff(lineNum, line, commentHeadString, commentTailString)
+			line = self.lines[lineNum]
+			if self._isCommentedLine(line, headMark):
+				self._commentOff(lineNum, line, headMark, tailMark)
 
-	def commentSwitch(self, firstLine, lastLine, commentHeadString, commentTailString):
+	def commentSwitch(self, firstLine, lastLine, headMark, tailMark):
 		for lineNum in range(firstLine - 1, lastLine):
-			line = self._buffer[lineNum]
+			line = self.lines[lineNum]
 			if self._isBlankLine(line):
 				continue
-			elif self._isCommentedLine(line, commentHeadString):
-				self._commentOff(lineNum, line, commentHeadString, commentTailString)
+			elif self._isCommentedLine(line, headMark):
+				self._commentOff(lineNum, line, headMark, tailMark)
 			else:
-				self._commentOn(lineNum, line, commentHeadString, commentTailString)
+				self._commentOn(lineNum, line, headMark, tailMark)
 
-	def _isCommentedLine(self, line, commentHeadString):
-		return re.search('^' + commentHeadString, line)
+	def _isCommentedLine(self, line, headMark):
+		return re.search('^' + headMark, line)
 
 	def _isBlankLine(self, line):
 		return line.strip() == ''
 
-	def _commentOn(self, lineNum, line, commentHeadString, commentTailString):
-		self._buffer[lineNum] = '%s%s%s' % (commentHeadString, line, commentTailString)
+	def _commentOn(self, lineNum, line, headMark, tailMark):
+		self.lines[lineNum] = '%s%s%s' % (headMark, line, tailMark)
 
-	def _commentOff(self, lineNum, line, commentHeadString, commentTailString):
-		self._buffer[lineNum] = line.replace(commentHeadString, '', 1).replace(commentTailString, '', 1)
-		
+	def _commentOff(self, lineNum, line, headMark, tailMark):
+		self.lines[lineNum] = line.replace(headMark, '', 1).replace(tailMark, '', 1)
+
+	def inPython(self):
+		lineNum = self._getLineNum()
+		if self._isContainAt(lineNum, 'EOM'):
+			return False
+		for i in range(lineNum - 1, 0, -1):
+			if self._isContainAt(i, 'python <<EOM'):
+				return True
+			if self._isContainAt(i, 'EOM'):
+				return False
+		else:
+			return False
+
+	def _getLineNum(self):
+		return int(vim.eval("getpos('.')[1]")) - 1
+
+	def _isContainAt(self, lineNum, heredocmark):
+		return heredocmark in self.lines[lineNum]
+
 EOM

@@ -13,6 +13,8 @@ alias la="ls -la"
 alias lag="ls -la | grep"
 alias lap="ls -a | percol | xargs"
 
+alias vip="ls -a | percol --match-method regex | xargs -o vi"
+
 alias gstp="git status -s | percol --match-method regex | cut -c4- | xargs"
 alias gdfp="git status -s | percol --match-method regex | cut -c4- | xargs git diff"
 alias gcop="git branch | percol --match-method regex | cut -c2- | xargs git checkout"
@@ -21,21 +23,16 @@ alias gpsp="git branch | percol --match-method regex | cut -c2- | xargs git push
 
 alias -g G='| grep'
 alias -g V='| grep -v'
-alias -g P="| percol | xargs"
+alias -g P="| percol --match-method regex | xargs"
 
-function uwa-(){
- cp ~/.dotfiles/zsh/zsh-setup.py ./host_share
- cp ~/.dotfiles/percol/percol-setup.sh ./host_share
- cp ~/.dotfiles/percol/rc.py ./host_share
- vagrant rsync
- vagrant ssh -c 'python /guest_share/zsh-setup.py'
- vagrant ssh -c 'sh /guest_share/percol-setup.sh'
+function qlook(){
+ qlmanage -p $1 >& /dev/null
 }
 
 alias commands_add=" history -1 | cut -c7- | sed -e 's/$/ #(0)/' | xargs echo >> $COMMANDS;vi $COMMANDS"
 
 function percol_select_command() {
- LINE=`cat $COMMANDS | percol --query "$LBUFFER"`
+ LINE=`cat $COMMANDS | percol --match-method regex --query "$LBUFFER"`
  BUFFER=`echo $LINE | sed -e "s/ #.*//"`
  CURSOR=`echo $LINE | sed -e "s/^.*(\(.*\)).*$/\1/"`
  zle clear-screen

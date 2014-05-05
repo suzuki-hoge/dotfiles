@@ -1,0 +1,33 @@
+#!/usr/bin/python
+
+import re
+import os
+import sys
+import os.path
+import argparse
+import subprocess
+
+sys.path.append(os.path.abspath('%s/../../' % os.path.abspath(__file__)))
+import util
+
+parser = argparse.ArgumentParser(description = "open web page")
+parser.add_argument('-b', '--branch', default = None, action = 'store', help = 'target branch (default : current branch)')
+
+page_group = parser.add_mutually_exclusive_group()
+page_group.add_argument('-t', '--tree', default = False, action = 'store_true', help = 'open tree page (default : False)')
+page_group.add_argument('-c', '--commits', default = False, action = 'store_true', help = 'open commits page (default : True)')
+page_group.add_argument('-n', '--network', default = False, action = 'store_true', help = 'open network page (default : False)')
+
+args = parser.parse_args()
+
+page = 'tree' if args.tree else 'network' if args.network else 'commits'
+branch = '' if args.network else util.getCurrentBranch() if args.branch is None else args.branch
+
+root = util.getRootDir()
+conf = open('%s/.git/config' % root, 'r').read()
+
+src = re.search(r'\n\surl.*\n', conf).group().strip()
+dst = re.sub(r'^.*@', '', src).replace(':', '/')[:-4]
+url = 'https://%s' % dst
+
+os.system('open %s/%s/%s' % (url, page, branch))

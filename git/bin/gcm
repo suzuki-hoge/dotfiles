@@ -3,8 +3,10 @@
 import os
 import argparse
 
-parser = argparse.ArgumentParser(description = 'alias git commit -m "--message"')
+parser = argparse.ArgumentParser(description = 'alias git commit (--amend) -m "message"')
 parser.add_argument('message', action = 'store', help = 'commit message')
+parser.add_argument('-a', '--amend',  default = False, action = 'store_true', help = 'add option --amend')
 args = parser.parse_args()
 
-os.system('git commit -m "%s"' % args.message)
+amend = ' --amend' if args.amend else ''
+os.system('git commit%s -m "%s"' % (amend, args.message))

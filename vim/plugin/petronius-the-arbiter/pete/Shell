@@ -7,10 +7,10 @@ class Shell(Base):
 	def __init__(self):
 		Base.__init__(self)
 
-	def getCommentHeadString(self):
+	def getHeadMark(self):
 		return '#'
 
-	def getCommentTailString(self):
+	def getTailMark(self):
 		return ''
 
 	def run(self):
