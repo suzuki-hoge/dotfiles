@@ -6,8 +6,7 @@ augroup autocmdFrank
 	autocmd!
 augroup END
 
-autocmd autocmdFrank FocusLost *.frank :call CloseAll()
-autocmd autocmdFrank TabLeave  *.frank :call CloseAll()
+autocmd autocmdFrank BufEnter  *.frank call KeyMapping()
 
 function! FlexibleFrank(dir, ...)
 
@@ -45,10 +44,15 @@ frank.output()
 EOM
 endfunction
 
-function! CloseAll()
+function! ActionDispatch(action)
 python <<EOM
-#vim.command('bdelete!')
-#vim.command('bdelete!')
-#vim.command('bdelete!')
+action = vim.eval('a:action')
+
+if action == 'copy':
+	print 'copy'
 EOM
+endfunction
+
+function! KeyMapping()
+	nnoremap <buffer> cp :call ActionDispatch('copy')<CR>
 endfunction

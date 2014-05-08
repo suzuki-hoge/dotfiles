@@ -19,9 +19,9 @@ source $frank/Tab
 source $frank/Buffer2
 source $frank/FlexibleFrank
 source $frank/Frank
-source $frank/Entry
-source $frank/Directory
-source $frank/File
+source $frank/Entry/Entry
+source $frank/Entry/Directory
+source $frank/Entry/File
 
 nnoremap <S-M-CR> :FF .<CR>
 command! -nargs=* -complete=dir FF call FlexibleFrank(<f-args>)

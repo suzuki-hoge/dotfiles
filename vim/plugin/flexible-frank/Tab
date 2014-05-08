@@ -16,6 +16,7 @@ class Tab:
 
 	@staticmethod
 	def switchTab(target):
+		return
 		while True:
 			current = vim.current.buffer.name.split('/')[-1]
 			if current != target:
@@ -24,6 +25,8 @@ class Tab:
 
 	@staticmethod
 	def expandTab(buf1, buf2, buf3):
+		vim.command('tabe ' + buf1)
+		return
 		if Tab.isBlankTab():
 			vim.command('edit ' + buf2)
 		else:
