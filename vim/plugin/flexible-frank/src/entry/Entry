@@ -22,14 +22,20 @@ class Entry:
 		self.point = Point()
 
 	def createOutput(self):
-		return '%s%s%s%s' % (self.point.getPartOfOutput(), self.depth.getPartOfOutput(), self.name.getPartOfOutput(), self.path.getEndSlash())
+		p = self.point.value if self.point.isOn() else '  '
+		return '%2s : %s%s%s' % (p, self.depth.getPartOfOutput(), self.name.getPartOfOutput(), self.path.getEndSlash())
+#		return '%s%s%s%s' % (self.point.getPartOfOutput(), self.depth.getPartOfOutput(), self.name.getPartOfOutput(), self.path.getEndSlash())
 
 	@abstractmethod
 	def getOutputs(self, result):
 		pass
 
 	@abstractmethod
-	def pointSwitch(self, target, value):
+	def pointOn(self, target):
+		pass
+
+	@abstractmethod
+	def pointOff(self, target):
 		pass
 
 EOM

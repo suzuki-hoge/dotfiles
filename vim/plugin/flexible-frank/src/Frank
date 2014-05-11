@@ -10,6 +10,7 @@ class Frank:
 
 	def __init__(self, root):
 		Num.init()
+		Point.init()
 		root = Path(root)
 		self.node = Directory(root, root)
 		self.buffer = Buffer2()
@@ -18,9 +19,9 @@ class Frank:
 		self.buffer.output(self.node.getOutputs([]))
 
 	def pointOn(self):
-		self.node.pointSwitch(Cursor.getCurrentLineNum(), True)
+		self.node.pointOn(Cursor.getCurrentLineNum())
 
 	def pointOff(self):
-		self.node.pointSwitch(Cursor.getCurrentLineNum(), False)
+		self.node.pointOff(Cursor.getCurrentLineNum())
 
 EOM
