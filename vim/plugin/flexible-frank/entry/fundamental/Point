@@ -1,0 +1,22 @@
+" vim:set ft=vim:
+
+python <<EOM
+
+class Point():
+
+	def __init__(self):
+		self.value = False
+
+	def switch(self):
+		if self.isOn():
+			self.value = False
+		else:
+			self.value = True
+
+	def isOn(self):
+		return self.value
+
+	def getPartOfOutput(self):
+		return '*' if self.isOn() else ''
+
+EOM

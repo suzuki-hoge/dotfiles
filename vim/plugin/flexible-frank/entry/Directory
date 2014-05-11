@@ -25,10 +25,7 @@ class Directory(Entry):
 
 	def pointSwitch(self, target):
 		if self.num.isTarget(target):
-			if self._isPointed():
-				self.pointed = False
-			else:
-				self.pointed = True
+			self.point.switch()
 		else:
 			[e.pointSwitch(target) for e in self.entries]
 

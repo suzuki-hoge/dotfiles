@@ -4,6 +4,7 @@ source $frank/Entry/fundamental/Num
 source $frank/Entry/fundamental/Path
 source $frank/Entry/fundamental/Name
 source $frank/Entry/fundamental/Depth
+source $frank/Entry/fundamental/Point
 
 python <<EOM
 
@@ -18,17 +19,10 @@ class Entry:
 		self.path = path
 		self.name = Name(path)
 		self.depth = Depth(root, path)
-
-		self.pointed = False
-
-	def _isPointed(self):
-		return self.pointed
-
-	def _getPointMark(self):
-		return '*' if self._isPointed() else ''
+		self.point = Point()
 
 	def createOutput(self):
-		return '%s%s%s%s' % (self._getPointMark(), self.depth.getPartOfOutput(), self.name.getPartOfOutput(), self.path.getEndSlash())
+		return '%s%s%s%s' % (self.point.getPartOfOutput(), self.depth.getPartOfOutput(), self.name.getPartOfOutput(), self.path.getEndSlash())
 
 	@abstractmethod
 	def getOutputs(self, result):
