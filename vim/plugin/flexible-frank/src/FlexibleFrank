@@ -29,7 +29,11 @@ python <<EOM
 
 import vim
 
-Tab.expandTab('frank1.frank', 'frank2.frank', 'frank3.frank')
+p1 = '/Users/ryo/.dotfiles/vim/plugin/flexible-frank/workspace/frank1.frank'
+p2 = '/Users/ryo/.dotfiles/vim/plugin/flexible-frank/workspace/frank2.frank'
+p3 = '/Users/ryo/.dotfiles/vim/plugin/flexible-frank/workspace/frank3.frank'
+
+Tab.expandTab(p1, p2, p3)
 Tab.switchTab('frank1.frank')
 
 adjustEndSlash = lambda path : path if path[-1] == '/' else path + '/'

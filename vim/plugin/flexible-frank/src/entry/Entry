@@ -1,10 +1,10 @@
 " vim:set ft=vim:
 
-source $frank/Entry/fundamental/Num
-source $frank/Entry/fundamental/Path
-source $frank/Entry/fundamental/Name
-source $frank/Entry/fundamental/Depth
-source $frank/Entry/fundamental/Point
+source $frank/src/Entry/fundamental/Num
+source $frank/src/Entry/fundamental/Path
+source $frank/src/Entry/fundamental/Name
+source $frank/src/Entry/fundamental/Depth
+source $frank/src/Entry/fundamental/Point
 
 python <<EOM
 
