@@ -40,4 +40,12 @@ class Entry:
 	def pointOff(self, target):
 		pass
 
+	@abstractmethod
+	def foldOn(self, target):
+		pass
+
+	@abstractmethod
+	def foldOff(self, target):
+		pass
+
 EOM

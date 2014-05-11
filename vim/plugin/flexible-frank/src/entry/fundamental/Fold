@@ -6,6 +6,7 @@ class Fold():
 
 	def __init__(self):
 		self.value = True
+		self.value = False
 
 	def on(self):
 		self.value = True

@@ -24,4 +24,10 @@ class Frank:
 	def pointOff(self):
 		self.node.pointOff(Cursor.getCurrentLineNum())
 
+	def foldOn(self):
+		self.node.foldOn(Cursor.getCurrentLineNum())
+
+	def foldOff(self):
+		self.node.foldOff(Cursor.getCurrentLineNum())
+
 EOM

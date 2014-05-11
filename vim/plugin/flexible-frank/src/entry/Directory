@@ -20,7 +20,8 @@ class Directory(Entry):
 
 	def getOutputs(self, result):
 		result.append(self.createOutput())
-		[e.getOutputs(result) for e in self.entries if not e.fold.isOn()]
+		if not self.fold.isOn():
+			[e.getOutputs(result) for e in self.entries]
 		return result
 
 	def pointOn(self, target):
@@ -34,5 +35,17 @@ class Directory(Entry):
 			self.point.off()
 		else:
 			[e.pointOff(target) for e in self.entries]
+
+	def foldOn(self, target):
+		if self.num.isTarget(target):
+			self.fold.on()
+		else:
+			[e.foldOn(target) for e in self.entries]
+
+	def foldOff(self, target):
+		if self.num.isTarget(target):
+			self.fold.off()
+		else:
+			[e.foldOff(target) for e in self.entries]
 
 EOM
