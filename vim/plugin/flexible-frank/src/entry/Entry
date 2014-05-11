@@ -5,6 +5,7 @@ source $frank/src/Entry/fundamental/Path
 source $frank/src/Entry/fundamental/Name
 source $frank/src/Entry/fundamental/Depth
 source $frank/src/Entry/fundamental/Point
+source $frank/src/Entry/fundamental/Fold
 
 python <<EOM
 
@@ -20,6 +21,7 @@ class Entry:
 		self.name = Name(path)
 		self.depth = Depth(root, path)
 		self.point = Point()
+		self.fold = Fold()
 
 	def createOutput(self):
 		p = self.point.value if self.point.isOn() else '  '

@@ -1,0 +1,22 @@
+" vim:set ft=vim:
+
+python <<EOM
+
+class Fold():
+
+	def __init__(self):
+		self.value = True
+
+	def on(self):
+		self.value = True
+
+	def off(self):
+		self.value = False
+
+	def isOn(self):
+		return self.value
+
+	def getPartOfOutput(self):
+		return '+' if self.isOn() else ''
+
+EOM
