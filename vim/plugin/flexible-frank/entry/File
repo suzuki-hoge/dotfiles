@@ -4,8 +4,8 @@ python <<EOM
 
 class File(Entry):
 
-	def __init__(self, root, fullpath):
-		Entry.__init__(self, root, fullpath)
+	def __init__(self, root, path):
+		Entry.__init__(self, root, path)
 
 	def getOutputs(self, result):
 		return result.append(self.createOutput())

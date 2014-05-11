@@ -1,0 +1,20 @@
+" vim:set ft=vim:
+
+python <<EOM
+
+class Path():
+
+	def __init__(self, value):
+		if os.path.isabs(value):
+			self.value = value
+		else:
+			self.value = os.path.abspath(os.path.join(vim.eval("getcwd()"), value))
+
+	def isDir(self):
+		return os.path.isdir(self.value)
+
+	# generator
+	def getSubpaths(self):
+		return [Path(os.path.join(self.value, path)) for path in os.listdir(self.value)]
+
+EOM

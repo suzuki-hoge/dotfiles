@@ -4,19 +4,17 @@ python <<EOM
 
 class Directory(Entry):
 
-	def __init__(self, root, fullpath):
-		Entry.__init__(self, root, fullpath)
-		self.entries = self.getEntries()
+	def __init__(self, root, path):
+		Entry.__init__(self, root, path)
+		self.entries = self.getEntries(root)
 
-	def getEntries(self):
+	def getEntries(self, root):
 		entries = []
-		for entryName in os.listdir(self.fullpath):
-			subpath = os.path.join(self.fullpath, entryName)
-			if os.path.isfile(subpath):
-				entries.append(File(self.root, subpath))
-
-			if os.path.isdir(subpath):
-				entries.append(Directory(self.root, subpath))
+		for subpath in self.path.getSubpaths():
+			if subpath.isDir():
+				entries.append(Directory(root, subpath))
+			else:
+				entries.append(File(root, subpath))
 
 		return entries
 

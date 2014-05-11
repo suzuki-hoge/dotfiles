@@ -1,5 +1,7 @@
 " vim:set ft=vim:
 
+source $frank/Entry/fundamental/Path
+
 python <<EOM
 
 from abc import ABCMeta, abstractmethod
@@ -17,22 +19,21 @@ class Entry:
 	def nextNum():
 		Entry.Num = Entry.Num + 1
 
-	def __init__(self, root, fullpath):
+	def __init__(self, root, path):
 		self.num = Entry.Num
 		Entry.nextNum()
 
-		self.root = root
-		self.fullpath = fullpath
-		self.path = fullpath[len(root):]
-		self.name = os.path.split(self.path)[1]
-		self.depth = self.path.count('/')
+		print root.value
+		print path.value
+		print ' '
+
+		self.path = path
+		tmppath = path.value[len(root.value):]
+
+		self.name = os.path.split(tmppath)[1]
+		self.depth = tmppath.count('/')
+
 		self.pointed = False
-
-	def _isDir(self):
-		return os.path.isdir(self.fullpath)
-
-	def _isFile(self):
-		return os.path.isfile(self.fullpath)
 
 	def _isPointed(self):
 		return self.pointed
@@ -47,7 +48,7 @@ class Entry:
 		return ' ' * self.depth
 
 	def _getEndSlash(self):
-		return '/' if self._isDir() else ''
+		return '/' if self.path.isDir() else ''
 
 	def createOutput(self):
 		return '%s%s%s%s' % (self._getPointMark(), self._getIndent(), self.name, self._getEndSlash())

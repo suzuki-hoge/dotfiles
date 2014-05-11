@@ -8,7 +8,7 @@ augroup END
 
 autocmd autocmdFrank BufEnter  *.frank call KeyMapping()
 
-function! FlexibleFrank(dir, ...)
+function! FlexibleFrank(...)
 
 let path1 = '.'
 let path2 = ''
