@@ -1,0 +1,22 @@
+" vim:set ft=vim:
+
+python <<EOM
+
+class Num():
+
+	@staticmethod
+	def init():
+		Num.value = 1
+
+	@staticmethod
+	def next():
+		Num.value = Num.value + 1
+
+	def __init__(self):
+		self.value = Num.value
+		Num.next()
+
+	def isTarget(self, target):
+		return self.value == target
+
+EOM

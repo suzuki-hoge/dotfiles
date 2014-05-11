@@ -1,5 +1,6 @@
 " vim:set ft=vim:
 
+source $frank/Entry/fundamental/Num
 source $frank/Entry/fundamental/Path
 source $frank/Entry/fundamental/Name
 source $frank/Entry/fundamental/Depth
@@ -11,20 +12,9 @@ from abc import ABCMeta, abstractmethod
 class Entry:
 
 	__metaclass__ = ABCMeta
-	Num = 1
-
-	@staticmethod
-	def initNum():
-		Entry.Num = 1
-
-	@staticmethod
-	def nextNum():
-		Entry.Num = Entry.Num + 1
 
 	def __init__(self, root, path):
-		self.num = Entry.Num
-		Entry.nextNum()
-
+		self.num = Num()
 		self.path = path
 		self.name = Name(path)
 		self.depth = Depth(root, path)
@@ -33,9 +23,6 @@ class Entry:
 
 	def _isPointed(self):
 		return self.pointed
-
-	def _isFolded(self):
-		return True
 
 	def _getPointMark(self):
 		return '*' if self._isPointed() else ''
@@ -48,7 +35,7 @@ class Entry:
 		pass
 
 	@abstractmethod
-	def pointSwitch(self, num):
+	def pointSwitch(self, target):
 		pass
 
 EOM
