@@ -1,0 +1,13 @@
+" vim:set ft=vim:
+
+python <<EOM
+
+import vim
+
+class Cursor:
+	
+	@staticmethod
+	def getCurrentLineNum():
+		return vim.eval('getpos(".")')[1]
+
+EOM

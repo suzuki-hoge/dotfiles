@@ -19,6 +19,7 @@ source $frank/src/FlexibleFrank
 source $frank/src/Frank
 source $frank/src/vim/Tab
 source $frank/src/vim/Buffer2
+source $frank/src/vim/Cursor
 source $frank/src/Entry/Entry
 source $frank/src/Entry/Directory
 source $frank/src/Entry/File

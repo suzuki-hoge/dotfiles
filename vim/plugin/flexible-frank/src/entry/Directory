@@ -23,10 +23,10 @@ class Directory(Entry):
 		[e.getOutputs(result) for e in self.entries]
 		return result
 
-	def pointSwitch(self, target):
+	def pointSwitch(self, target, value):
 		if self.num.isTarget(target):
-			self.point.switch()
+			self.point.switch(value)
 		else:
-			[e.pointSwitch(target) for e in self.entries]
+			[e.pointSwitch(target, value) for e in self.entries]
 
 EOM

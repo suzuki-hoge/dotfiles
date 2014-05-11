@@ -17,6 +17,6 @@ class Num():
 		Num.next()
 
 	def isTarget(self, target):
-		return self.value == target
+		return self.value == int(target)
 
 EOM

@@ -52,13 +52,18 @@ function! ActionDispatch(action)
 python <<EOM
 action = vim.eval('a:action')
 
-if action == 'PointSwitch':
-	frank.pointSwitch()
+if action == 'PointOn':
+	frank.pointOn()
+	frank.output()
+
+elif action == 'PointOff':
+	frank.pointOff()
 	frank.output()
 
 EOM
 endfunction
 
 function! KeyMapping()
-	nnoremap <buffer> p :call ActionDispatch('PointSwitch')<CR>
+	nnoremap <buffer> p :call ActionDispatch('PointOn')<CR>
+	nnoremap <buffer> P :call ActionDispatch('PointOff')<CR>
 endfunction

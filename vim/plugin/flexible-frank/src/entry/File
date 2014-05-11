@@ -10,8 +10,8 @@ class File(Entry):
 	def getOutputs(self, result):
 		return result.append(self.createOutput())
 
-	def pointSwitch(self, target):
+	def pointSwitch(self, target, value):
 		if self.num.isTarget(target):
-			self.point.switch()
+			self.point.switch(value)
 
 EOM

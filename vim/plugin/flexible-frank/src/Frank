@@ -17,7 +17,10 @@ class Frank:
 	def output(self):
 		self.buffer.output(self.node.getOutputs([]))
 
-	def pointSwitch(self):
-		self.node.pointSwitch(5)
+	def pointOn(self):
+		self.node.pointSwitch(Cursor.getCurrentLineNum(), True)
+
+	def pointOff(self):
+		self.node.pointSwitch(Cursor.getCurrentLineNum(), False)
 
 EOM

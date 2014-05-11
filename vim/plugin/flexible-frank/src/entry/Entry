@@ -29,7 +29,7 @@ class Entry:
 		pass
 
 	@abstractmethod
-	def pointSwitch(self, target):
+	def pointSwitch(self, target, value):
 		pass
 
 EOM
