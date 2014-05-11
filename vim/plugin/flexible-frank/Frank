@@ -9,12 +9,14 @@ import os.path
 class Frank:
 
 	def __init__(self, root):
+		Entry.initNum()
 		self.node = Directory(root, root)
 		self.buffer = Buffer2()
 
 	def output(self):
-		self.buffer.output(self.node)
+		self.buffer.output(self.node.getOutputs([]))
 
-	def dump(self):
-		self.node.dump()
+	def pointSwitch(self):
+		self.node.pointSwitch(5)
+
 EOM

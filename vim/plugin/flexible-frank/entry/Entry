@@ -7,14 +7,26 @@ from abc import ABCMeta, abstractmethod
 class Entry:
 
 	__metaclass__ = ABCMeta
+	Num = 1
+
+	@staticmethod
+	def initNum():
+		Entry.Num = 1
+
+	@staticmethod
+	def nextNum():
+		Entry.Num = Entry.Num + 1
 
 	def __init__(self, root, fullpath):
+		self.num = Entry.Num
+		Entry.nextNum()
+
 		self.root = root
 		self.fullpath = fullpath
 		self.path = fullpath[len(root):]
 		self.name = os.path.split(self.path)[1]
 		self.depth = self.path.count('/')
-		self.output = self.createOutput()
+		self.pointed = False
 
 	def _isDir(self):
 		return os.path.isdir(self.fullpath)
@@ -23,10 +35,13 @@ class Entry:
 		return os.path.isfile(self.fullpath)
 
 	def _isPointed(self):
-		return False
+		return self.pointed
 
 	def _isFolded(self):
 		return True
+
+	def _getPointMark(self):
+		return '*' if self._isPointed() else ''
 
 	def _getIndent(self):
 		return ' ' * self.depth
@@ -35,14 +50,14 @@ class Entry:
 		return '/' if self._isDir() else ''
 
 	def createOutput(self):
-		return '%s%s%s' % (self._getIndent(), self.name, self._getEndSlash())
+		return '%s%s%s%s' % (self._getPointMark(), self._getIndent(), self.name, self._getEndSlash())
 
 	@abstractmethod
-	def getOutputs(self, buffer):
+	def getOutputs(self, result):
 		pass
 
 	@abstractmethod
-	def dump(self):
+	def pointSwitch(self, num):
 		pass
 
 EOM

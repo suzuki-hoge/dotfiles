@@ -20,13 +20,18 @@ class Directory(Entry):
 
 		return entries
 
-	def getOutputs(self, outputs):
-		outputs.append(self.output)
-		[e.getOutputs(outputs) for e in self.entries]
-		return outputs
+	def getOutputs(self, result):
+		result.append(self.createOutput())
+		[e.getOutputs(result) for e in self.entries]
+		return result
 
-	def dump(self):
-		print self.output
-		[e.dump() for e in self.entries]
+	def pointSwitch(self, num):
+		if self.num == num:
+			if self._isPointed():
+				self.pointed = False
+			else:
+				self.pointed = True
+		else:
+			[e.pointSwitch(num) for e in self.entries]
 
 EOM

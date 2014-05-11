@@ -48,11 +48,13 @@ function! ActionDispatch(action)
 python <<EOM
 action = vim.eval('a:action')
 
-if action == 'copy':
-	print 'copy'
+if action == 'PointSwitch':
+	frank.pointSwitch()
+	frank.output()
+
 EOM
 endfunction
 
 function! KeyMapping()
-	nnoremap <buffer> cp :call ActionDispatch('copy')<CR>
+	nnoremap <buffer> p :call ActionDispatch('PointSwitch')<CR>
 endfunction

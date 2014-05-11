@@ -7,10 +7,14 @@ class File(Entry):
 	def __init__(self, root, fullpath):
 		Entry.__init__(self, root, fullpath)
 
-	def getOutputs(self, outputs):
-		return outputs.append(self.output)
+	def getOutputs(self, result):
+		return result.append(self.createOutput())
 
-	def dump(self):
-		print self.output
+	def pointSwitch(self, num):
+		if self.num == num:
+			if self._isPointed():
+				self.pointed = False
+			else:
+				self.pointed = True
 
 EOM

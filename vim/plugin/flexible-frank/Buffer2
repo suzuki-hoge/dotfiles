@@ -9,7 +9,7 @@ class Buffer2:
 	def __init__(self):
 		self.lines = vim.current.buffer
 	
-	def output(self, node):
-		self.lines[:] = node.getOutputs([])
+	def output(self, outputs):
+		self.lines[:] = outputs
 
 EOM
