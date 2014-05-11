@@ -26,8 +26,14 @@ class Frank:
 
 	def foldOn(self):
 		self.node.foldOn(Cursor.getCurrentLineNum())
+		self.numbering()
 
 	def foldOff(self):
 		self.node.foldOff(Cursor.getCurrentLineNum())
+		self.numbering()
+
+	def numbering(self):
+		Num.init()
+		self.node.numbering()
 
 EOM

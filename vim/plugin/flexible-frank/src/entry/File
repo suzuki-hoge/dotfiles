@@ -24,4 +24,7 @@ class File(Entry):
 	def foldOff(self, target):
 		pass
 
+	def numbering(self):
+		self.num = Num()
+
 EOM

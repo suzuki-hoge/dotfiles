@@ -26,6 +26,6 @@ class Point():
 		return self.value
 
 	def getPartOfOutput(self):
-		return '*' if self.isOn() else ''
+		return '*' if self.isOn() else ' '
 
 EOM

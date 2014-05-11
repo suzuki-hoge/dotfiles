@@ -48,4 +48,9 @@ class Directory(Entry):
 		else:
 			[e.foldOff(target) for e in self.entries]
 
+	def numbering(self):
+		self.num = Num()
+		if not self.fold.isOn():
+			[e.numbering() for e in self.entries]
+
 EOM

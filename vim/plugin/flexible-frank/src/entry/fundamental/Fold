@@ -5,7 +5,6 @@ python <<EOM
 class Fold():
 
 	def __init__(self):
-		self.value = True
 		self.value = False
 
 	def on(self):
@@ -17,7 +16,7 @@ class Fold():
 	def isOn(self):
 		return self.value
 
-	def getPartOfOutput(self):
-		return '+' if self.isOn() else ''
+	def getPartOfOutput(self, path):
+		return ' ' if not path.isDir() else '>' if self.isOn() else 'v'
 
 EOM

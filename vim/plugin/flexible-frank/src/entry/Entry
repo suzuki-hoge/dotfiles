@@ -23,10 +23,10 @@ class Entry:
 		self.point = Point()
 		self.fold = Fold()
 
+	#file, dir
+	#fold, endslash...
 	def createOutput(self):
-		p = self.point.value if self.point.isOn() else '  '
-		return '%2s : %s%s%s' % (p, self.depth.getPartOfOutput(), self.name.getPartOfOutput(), self.path.getEndSlash())
-#		return '%s%s%s%s' % (self.point.getPartOfOutput(), self.depth.getPartOfOutput(), self.name.getPartOfOutput(), self.path.getEndSlash())
+		return '%s %s%s%s%s' % (self.fold.getPartOfOutput(self.path), self.point.getPartOfOutput(), self.depth.getPartOfOutput(), self.name.getPartOfOutput(), self.path.getEndSlash())
 
 	@abstractmethod
 	def getOutputs(self, result):
@@ -46,6 +46,10 @@ class Entry:
 
 	@abstractmethod
 	def foldOff(self, target):
+		pass
+
+	@abstractmethod
+	def numbering(self):
 		pass
 
 EOM
