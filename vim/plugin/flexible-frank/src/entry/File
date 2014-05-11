@@ -9,7 +9,7 @@ class File(Entry):
 		self.type = Type(Type.FILE)
 
 	def createOutput(self):
-		return '%s %s%s%s%s' % (self.fold.getPartOfOutputAtFile(), self.point.getPartOfOutput(), self.depth.getPartOfOutput(), self.name.getPartOfOutput(), self.type.getEndSlash())
+		return '%s %s%s%s%s' % (self.fold.getPartOfOutputAtFile(), self.point.getPartOfOutput(), self.depth.getPartOfOutput(), self.path.getPartOfOutput(), self.type.getPartOfOutputAtFile())
 
 	def getOutputs(self, result):
 		return result.append(self.createOutput())

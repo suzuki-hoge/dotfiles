@@ -2,7 +2,6 @@
 
 source $frank/src/Entry/fundamental/Num
 source $frank/src/Entry/fundamental/Path
-source $frank/src/Entry/fundamental/Name
 source $frank/src/Entry/fundamental/Depth
 source $frank/src/Entry/fundamental/Point
 source $frank/src/Entry/fundamental/Fold
@@ -19,7 +18,6 @@ class Entry:
 	def __init__(self, root, path):
 		self.num = Num()
 		self.path = path
-		self.name = Name(path)
 		self.depth = Depth(root, path)
 		self.point = Point()
 		self.fold = Fold()

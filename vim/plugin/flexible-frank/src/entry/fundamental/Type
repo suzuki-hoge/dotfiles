@@ -16,7 +16,10 @@ class Type():
 	def isFile(self):
 		return not self.isDir()
 
-	def getEndSlash(self):
-		return '/' if self.isDir() else ''
+	def getPartOfOutputAtDir(self):
+		return '/'
+
+	def getPartOfOutputAtFile(self):
+		return ''
 
 EOM

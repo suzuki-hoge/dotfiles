@@ -20,4 +20,7 @@ class Path():
 	def getValue(self):
 		return self.value
 
+	def getPartOfOutput(self):
+		return os.path.split(self.value)[1]
+
 EOM
