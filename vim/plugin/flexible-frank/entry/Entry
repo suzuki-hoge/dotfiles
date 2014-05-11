@@ -1,6 +1,7 @@
 " vim:set ft=vim:
 
 source $frank/Entry/fundamental/Path
+source $frank/Entry/fundamental/Name
 
 python <<EOM
 
@@ -23,14 +24,10 @@ class Entry:
 		self.num = Entry.Num
 		Entry.nextNum()
 
-		print root.value
-		print path.value
-		print ' '
-
 		self.path = path
 		tmppath = path.value[len(root.value):]
 
-		self.name = os.path.split(tmppath)[1]
+		self.name = Name(path)
 		self.depth = tmppath.count('/')
 
 		self.pointed = False
@@ -51,7 +48,7 @@ class Entry:
 		return '/' if self.path.isDir() else ''
 
 	def createOutput(self):
-		return '%s%s%s%s' % (self._getPointMark(), self._getIndent(), self.name, self._getEndSlash())
+		return '%s%s%s%s' % (self._getPointMark(), self._getIndent(), self.name.getPartOfOutput(), self._getEndSlash())
 
 	@abstractmethod
 	def getOutputs(self, result):

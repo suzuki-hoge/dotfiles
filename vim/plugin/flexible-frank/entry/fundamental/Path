@@ -17,4 +17,7 @@ class Path():
 	def getSubpaths(self):
 		return [Path(os.path.join(self.value, path)) for path in os.listdir(self.value)]
 
+	def getValue(self):
+		return self.value
+
 EOM
