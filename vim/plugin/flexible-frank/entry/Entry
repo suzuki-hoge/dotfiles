@@ -2,6 +2,7 @@
 
 source $frank/Entry/fundamental/Path
 source $frank/Entry/fundamental/Name
+source $frank/Entry/fundamental/Depth
 
 python <<EOM
 
@@ -25,10 +26,8 @@ class Entry:
 		Entry.nextNum()
 
 		self.path = path
-		tmppath = path.value[len(root.value):]
-
 		self.name = Name(path)
-		self.depth = tmppath.count('/')
+		self.depth = Depth(root, path)
 
 		self.pointed = False
 
@@ -41,14 +40,8 @@ class Entry:
 	def _getPointMark(self):
 		return '*' if self._isPointed() else ''
 
-	def _getIndent(self):
-		return ' ' * self.depth
-
-	def _getEndSlash(self):
-		return '/' if self.path.isDir() else ''
-
 	def createOutput(self):
-		return '%s%s%s%s' % (self._getPointMark(), self._getIndent(), self.name.getPartOfOutput(), self._getEndSlash())
+		return '%s%s%s%s' % (self._getPointMark(), self.depth.getPartOfOutput(), self.name.getPartOfOutput(), self.path.getEndSlash())
 
 	@abstractmethod
 	def getOutputs(self, result):

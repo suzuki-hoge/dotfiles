@@ -1,0 +1,14 @@
+" vim:set ft=vim:
+
+python <<EOM
+
+class Depth():
+
+	def __init__(self, root, path):
+		rootLen = len(root.getValue())
+		self.value = path.getValue()[rootLen:].count('/')
+
+	def getPartOfOutput(self):
+		return ' ' * self.value
+
+EOM
