@@ -6,6 +6,7 @@ source $frank/src/Entry/fundamental/Name
 source $frank/src/Entry/fundamental/Depth
 source $frank/src/Entry/fundamental/Point
 source $frank/src/Entry/fundamental/Fold
+source $frank/src/Entry/fundamental/Type
 
 python <<EOM
 
@@ -23,10 +24,9 @@ class Entry:
 		self.point = Point()
 		self.fold = Fold()
 
-	#file, dir
-	#fold, endslash...
+	@abstractmethod
 	def createOutput(self):
-		return '%s %s%s%s%s' % (self.fold.getPartOfOutput(self.path), self.point.getPartOfOutput(), self.depth.getPartOfOutput(), self.name.getPartOfOutput(), self.path.getEndSlash())
+		pass
 
 	@abstractmethod
 	def getOutputs(self, result):

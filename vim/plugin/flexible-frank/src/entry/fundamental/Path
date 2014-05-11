@@ -20,8 +20,4 @@ class Path():
 	def getValue(self):
 		return self.value
 
-	def getEndSlash(self):
-		return '/' if self.isDir() else ''
-
-
 EOM

@@ -1,0 +1,22 @@
+" vim:set ft=vim:
+
+python <<EOM
+
+class Type():
+	
+	DIR = 'dir'
+	FILE = 'file'
+
+	def __init__(self, value):
+		self.value = value
+
+	def isDir(self):
+		return self.value == Type.DIR
+
+	def isFile(self):
+		return not self.isDir()
+
+	def getEndSlash(self):
+		return '/' if self.isDir() else ''
+
+EOM

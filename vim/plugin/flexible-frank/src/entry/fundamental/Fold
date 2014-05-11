@@ -16,7 +16,13 @@ class Fold():
 	def isOn(self):
 		return self.value
 
-	def getPartOfOutput(self, path):
-		return ' ' if not path.isDir() else '>' if self.isOn() else 'v'
+	def isOff(self):
+		return not self.isOn()
+
+	def getPartOfOutputAtDir(self):
+		return '>' if self.isOn() else 'v'
+
+	def getPartOfOutputAtFile(self):
+		return ' '
 
 EOM

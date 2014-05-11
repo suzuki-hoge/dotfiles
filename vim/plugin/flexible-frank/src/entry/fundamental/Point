@@ -25,6 +25,9 @@ class Point():
 	def isOn(self):
 		return self.value
 
+	def isOff(self):
+		return not self.isOn()
+
 	def getPartOfOutput(self):
 		return '*' if self.isOn() else ' '
 

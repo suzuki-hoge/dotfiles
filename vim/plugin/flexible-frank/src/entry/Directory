@@ -6,6 +6,7 @@ class Directory(Entry):
 
 	def __init__(self, root, path):
 		Entry.__init__(self, root, path)
+		self.type = Type(Type.DIR)
 		self.entries = self.getEntries(root)
 
 	def getEntries(self, root):
@@ -17,6 +18,9 @@ class Directory(Entry):
 				entries.append(File(root, subpath))
 
 		return entries
+
+	def createOutput(self):
+		return '%s %s%s%s%s' % (self.fold.getPartOfOutputAtDir(), self.point.getPartOfOutput(), self.depth.getPartOfOutput(), self.name.getPartOfOutput(), self.type.getEndSlash())
 
 	def getOutputs(self, result):
 		result.append(self.createOutput())

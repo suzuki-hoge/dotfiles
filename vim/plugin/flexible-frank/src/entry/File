@@ -6,6 +6,10 @@ class File(Entry):
 
 	def __init__(self, root, path):
 		Entry.__init__(self, root, path)
+		self.type = Type(Type.FILE)
+
+	def createOutput(self):
+		return '%s %s%s%s%s' % (self.fold.getPartOfOutputAtFile(), self.point.getPartOfOutput(), self.depth.getPartOfOutput(), self.name.getPartOfOutput(), self.type.getEndSlash())
 
 	def getOutputs(self, result):
 		return result.append(self.createOutput())
