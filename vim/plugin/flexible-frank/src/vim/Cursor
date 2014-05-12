@@ -8,6 +8,6 @@ class Cursor:
 	
 	@staticmethod
 	def getCurrentLineNum():
-		return vim.eval('getpos(".")')[1]
+		return int(vim.eval('getpos(".")')[1])
 
 EOM

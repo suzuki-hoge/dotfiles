@@ -13,27 +13,38 @@ class Frank:
 		Point.init()
 		root = Path(root)
 		self.node = Directory(root, root)
+		self.header = self.createHeader()
 		self.buffer = Buffer2()
 
+	def createHeader(self):
+		root = self.node.path.getValue()
+		return ['-' * len(root), root, '-' * len(root), '']
+
 	def output(self):
-		self.buffer.output(self.node.getOutputs([]))
+		self.buffer.output(self.node.getOutputs([]), self.header)
 
 	def pointOn(self):
-		self.node.pointOn(Cursor.getCurrentLineNum())
+		self.node.pointOn(self.adjustLineNum())
 
 	def pointOff(self):
-		self.node.pointOff(Cursor.getCurrentLineNum())
+		self.node.pointOff(self.adjustLineNum())
 
 	def foldOn(self):
-		self.node.foldOn(Cursor.getCurrentLineNum())
+		self.node.foldOn(self.adjustLineNum())
 		self.numbering()
 
 	def foldOff(self):
-		self.node.foldOff(Cursor.getCurrentLineNum())
+		self.node.foldOff(self.adjustLineNum())
 		self.numbering()
 
 	def numbering(self):
 		Num.init()
 		self.node.numbering()
+
+	def adjustLineNum(self):
+		cursorPos = Cursor.getCurrentLineNum()
+		headerLen = len(self.header)
+
+		return cursorPos - headerLen + 1
 
 EOM

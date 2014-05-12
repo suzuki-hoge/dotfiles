@@ -9,7 +9,14 @@ class Buffer2:
 	def __init__(self):
 		self.lines = vim.current.buffer
 	
-	def output(self, outputs):
-		self.lines[:] = outputs
+	def output(self, outputs, header):
+		self._outputHeader(header)
+		self._outputEntries(header, outputs)
+
+	def _outputHeader(self, header):
+		self.lines[:len(header)] = header
+		
+	def _outputEntries(self, header, outputs):
+		self.lines[len(header):] = outputs[1:]
 
 EOM
