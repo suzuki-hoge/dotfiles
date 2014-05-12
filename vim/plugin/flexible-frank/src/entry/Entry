@@ -1,12 +1,5 @@
 " vim:set ft=vim:
 
-source $frank/src/Entry/fundamental/Num
-source $frank/src/Entry/fundamental/Path
-source $frank/src/Entry/fundamental/Depth
-source $frank/src/Entry/fundamental/Point
-source $frank/src/Entry/fundamental/Fold
-source $frank/src/Entry/fundamental/Type
-
 python <<EOM
 
 from abc import ABCMeta, abstractmethod

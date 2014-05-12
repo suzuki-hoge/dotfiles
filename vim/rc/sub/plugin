@@ -14,19 +14,12 @@ vnoremap ¿ :call PetroniusTheArbiter($PETE_COMMENT_SWITCH)<CR>
 
 command! W wall | call PetroniusTheArbiter($PETE_RUN)
 
-
-source $frank/src/FlexibleFrank
-source $frank/src/Frank
-source $frank/src/vim/Tab
-source $frank/src/vim/Buffer2
-source $frank/src/vim/Cursor
-source $frank/src/Entry/Entry
-source $frank/src/Entry/Directory
-source $frank/src/Entry/File
+source $frank/src/Loader
 
 nnoremap <S-M-CR> :FF .<CR>
 command! -nargs=* -complete=dir FF call FlexibleFrank(<f-args>)
 
+" buffer local?
 nnoremap <Tab>   <C-w>w
 nnoremap <S-Tab> <C-w>W
 nnoremap gw      <C-w>w

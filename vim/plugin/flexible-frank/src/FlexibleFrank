@@ -1,7 +1,5 @@
 " vim:set ft=vim:
 
-"source $pete/pete/Python
-
 augroup autocmdFrank
 	autocmd!
 augroup END

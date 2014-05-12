@@ -9,6 +9,6 @@ class Depth():
 		self.value = path.getValue()[rootLen:].count('/')
 
 	def getPartOfOutput(self):
-		return ' ' * self.value
+		return '\t' * self.value
 
 EOM
