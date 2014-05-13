@@ -67,6 +67,10 @@ elif action == 'FoldOff':
 	frank.foldOff()
 	frank.output()
 
+elif action == 'RecFoldOn':
+	frank.recFoldOn()
+	frank.output()
+
 EOM
 endfunction
 
@@ -76,4 +80,6 @@ function! KeyMapping()
 
 	nnoremap <buffer> fh :call ActionDispatch('FoldOn')<CR>
 	nnoremap <buffer> fl :call ActionDispatch('FoldOff')<CR>
+	nnoremap <buffer> fH :call ActionDispatch('RecFoldOn')<CR>
+	nnoremap <buffer> fL :call ActionDispatch('RecFoldOff')<CR>
 endfunction

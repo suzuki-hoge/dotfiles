@@ -40,6 +40,10 @@ class Entry:
 		pass
 
 	@abstractmethod
+	def recFoldOn(self, target):
+		pass
+
+	@abstractmethod
 	def numbering(self):
 		pass
 

@@ -37,6 +37,10 @@ class Frank:
 		self.node.foldOff(self.adjustLineNum())
 		self.numbering()
 
+	def recFoldOn(self):
+		self.node.recFoldOn(self.adjustLineNum())
+		self.numbering()
+
 	def numbering(self):
 		Num.init()
 		self.node.numbering()

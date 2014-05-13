@@ -28,6 +28,12 @@ class File(Entry):
 	def foldOff(self, target):
 		pass
 
+	def recFoldOn(self, target):
+		pass
+
+	def _recFoldOn(self):
+		pass
+
 	def numbering(self):
 		self.num = Num()
 
