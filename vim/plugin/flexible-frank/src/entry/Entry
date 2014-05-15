@@ -47,4 +47,14 @@ class Entry:
 	def numbering(self):
 		pass
 
+	def __iter__(self):
+		return self.generator()
+
+	def generator(self):
+		yield self
+		if self.type.isDir():
+			for subEntry in self.entries:
+				for eachSubEntry in subEntry.generator():
+					yield eachSubEntry
+
 EOM

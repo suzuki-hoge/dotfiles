@@ -51,4 +51,8 @@ class Frank:
 
 		return cursorPos - headerLen + 1
 
+	def loop(self):
+		for e in self.node:
+			print e.path.value
+
 EOM
