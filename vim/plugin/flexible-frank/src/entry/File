@@ -22,18 +22,6 @@ class File(Entry):
 		if self.num.isTarget(target):
 			self.point.off()
 
-	def foldOn(self, target):
-		pass
-
-	def foldOff(self, target):
-		pass
-
-	def recFoldOn(self, target):
-		pass
-
-	def _recFoldOn(self):
-		pass
-
 	def numbering(self):
 		self._createAndNext()
 

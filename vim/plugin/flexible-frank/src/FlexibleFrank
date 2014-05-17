@@ -51,14 +51,16 @@ function! ActionDispatch(action)
 python <<EOM
 action = vim.eval('a:action')
 
-if action == 'Dump':
+if action == 'dump':
+	e = frank.findOneByCursor()
+	e._dump()
+
+elif action == 'Dump':
 	frank.dump()
 
 elif action == 'PointOn':
-	e = frank.findOneByCursor()
-	print e.path.value
-#	frank.pointOn()
-#	frank.output()
+	frank.pointOn()
+	frank.output()
 
 elif action == 'PointOff':
 	frank.pointOff()
@@ -80,6 +82,7 @@ EOM
 endfunction
 
 function! KeyMapping()
+	nnoremap <buffer> d  :call ActionDispatch('dump')<CR>
 	nnoremap <buffer> D  :call ActionDispatch('Dump')<CR>
 
 	nnoremap <buffer> p  :call ActionDispatch('PointOn')<CR>

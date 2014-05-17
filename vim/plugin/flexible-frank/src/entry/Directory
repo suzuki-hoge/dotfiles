@@ -40,28 +40,6 @@ class Directory(Entry):
 		else:
 			[e.pointOff(target) for e in self.entries]
 
-	def foldOn(self, target):
-		if self.num.isTarget(target):
-			self.fold.on()
-		else:
-			[e.foldOn(target) for e in self.entries]
-
-	def foldOff(self, target):
-		if self.num.isTarget(target):
-			self.fold.off()
-		else:
-			[e.foldOff(target) for e in self.entries]
-
-	def recFoldOn(self, target):
-		if self.num.isTarget(target):
-			self._recFoldOn()
-		else:
-			[e.recFoldOn(target) for e in self.entries]
-
-	def _recFoldOn(self):
-		self.fold.on()
-		[e._recFoldOn() for e in self.entries]
-
 	def numbering(self):
 		self._createAndNext()
 		if self.fold.isOn():

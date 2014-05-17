@@ -32,18 +32,6 @@ class Entry:
 		pass
 
 	@abstractmethod
-	def foldOn(self, target):
-		pass
-
-	@abstractmethod
-	def foldOff(self, target):
-		pass
-
-	@abstractmethod
-	def recFoldOn(self, target):
-		pass
-
-	@abstractmethod
 	def numbering(self):
 		pass
 
@@ -64,4 +52,5 @@ class Entry:
 
 	def _dump(self):
 		print '%s : %s' % (self.num.value, self.path.value)
+
 EOM
