@@ -8,27 +8,7 @@ class File(Entry):
 		Entry.__init__(self, root, path)
 		self.type = Type(Type.FILE)
 
-	def createOutput(self):
+	def _createOutput(self):
 		return '%2d : %s %s%s%s%s' % (self.num.value, self.fold.getPartOfOutputAtFile(), self.point.getPartOfOutput(), self.depth.getPartOfOutput(), self.path.getPartOfOutput(), self.type.getPartOfOutputAtFile())
-
-	def getOutputs(self, result):
-		return result.append(self.createOutput())
-
-	def pointOn(self, target):
-		if self.num.isTarget(target):
-			self.point.on()
-
-	def pointOff(self, target):
-		if self.num.isTarget(target):
-			self.point.off()
-
-	def numbering(self):
-		self._createAndNext()
-
-	def _createAndNext(self):
-		self.num = Num.createAndNext()
-
-	def _createNotOutput(self):
-		self.num = Num.createNotOutput()
 
 EOM

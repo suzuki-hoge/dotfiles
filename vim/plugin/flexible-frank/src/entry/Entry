@@ -2,11 +2,7 @@
 
 python <<EOM
 
-from abc import ABCMeta, abstractmethod
-
 class Entry:
-
-	__metaclass__ = ABCMeta
 
 	def __init__(self, root, path):
 		self.num = Num.createAndNext()
@@ -15,42 +11,55 @@ class Entry:
 		self.point = Point()
 		self.fold = Fold()
 
-	@abstractmethod
-	def createOutput(self):
-		pass
+	def subs(self):
+		return self.entries if self.type.isDir() else []
 
-	@abstractmethod
 	def getOutputs(self, result):
-		pass
+		result.append(self._createOutput())
+		if not self.fold.isOn():
+			[e.getOutputs(result) for e in self.subs()]
+		return result
 
-	@abstractmethod
 	def pointOn(self, target):
-		pass
+		if self.num.isTarget(target):
+			self.point.on()
+		else:
+			[e.pointOn(target) for e in self.subs()]
 
-	@abstractmethod
 	def pointOff(self, target):
-		pass
+		if self.num.isTarget(target):
+			self.point.off()
+		else:
+			[e.pointOff(target) for e in self.subs()]
 
-	@abstractmethod
 	def numbering(self):
-		pass
+		self._createAndNext()
+		if self.fold.isOn():
+			[e._createNotOutput() for e in self.subs()]
+		else:
+			[e.numbering() for e in self.subs()]
+
+	def _createAndNext(self):
+		self.num = Num.createAndNext()
+
+	def _createNotOutput(self):
+		self.num = Num.createNotOutput()
+		[e._createNotOutput() for e in self.subs()]
 
 	def __iter__(self):
-		return self.generator()
+		return self._generator()
 
-	def generator(self):
+	def _generator(self):
 		yield self
-		if self.type.isDir():
-			for subEntry in self.entries:
-				for eachSubEntry in subEntry.generator():
-					yield eachSubEntry
+		for subEntry in self.subs():
+			for eachSubEntry in subEntry._generator():
+				yield eachSubEntry
 
 	def dump(self):
 		self._dump()
-		if self.type.isDir():
-			[e.dump() for e in self.entries]
+		[e.dump() for e in self.subs()]
 
 	def _dump(self):
-		print '%s : %s' % (self.num.value, self.path.value)
+		print '%2d : %s' % (self.num.value, self.path.value)
 
 EOM

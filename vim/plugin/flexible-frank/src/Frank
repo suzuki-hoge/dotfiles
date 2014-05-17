@@ -13,10 +13,10 @@ class Frank:
 		Point.init()
 		root = Path(root)
 		self.node = Directory(root, root)
-		self.header = self.createHeader()
+		self.header = self._createHeader()
 		self.buffer = Buffer2()
 
-	def createHeader(self):
+	def _createHeader(self):
 		root = self.node.path.getValue()
 		return ['-' * len(root), root, '-' * len(root), '']
 
@@ -24,23 +24,23 @@ class Frank:
 		self.buffer.output(self.node.getOutputs([]), self.header)
 
 	def pointOn(self):
-		self.node.pointOn(self.getCursorLineNum())
+		self.node.pointOn(self._getCursorLineNum())
 
 	def pointOff(self):
-		self.node.pointOff(self.getCursorLineNum())
+		self.node.pointOff(self._getCursorLineNum())
 
-	def numbering(self):
+	def _numbering(self):
 		Num.init()
 		self.node.numbering()
 
-	def getCursorLineNum(self):
+	def _getCursorLineNum(self):
 		cursorPos = Cursor.getCurrentLineNum()
 		headerLen = len(self.header)
 
 		return cursorPos - headerLen + 1
 
 	def findOneByCursor(self):
-		num = self.getCursorLineNum()
+		num = self._getCursorLineNum()
 
 		for e in self.node:
 			if e.num.isTarget(num):

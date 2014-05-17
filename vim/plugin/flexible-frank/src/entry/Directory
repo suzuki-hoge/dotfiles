@@ -19,39 +19,7 @@ class Directory(Entry):
 
 		return entries
 
-	def createOutput(self):
+	def _createOutput(self):
 		return '%2d : %s %s%s%s%s' % (self.num.value, self.fold.getPartOfOutputAtDir(), self.point.getPartOfOutput(), self.depth.getPartOfOutput(), self.path.getPartOfOutput(), self.type.getPartOfOutputAtDir())
-
-	def getOutputs(self, result):
-		result.append(self.createOutput())
-		if not self.fold.isOn():
-			[e.getOutputs(result) for e in self.entries]
-		return result
-
-	def pointOn(self, target):
-		if self.num.isTarget(target):
-			self.point.on()
-		else:
-			[e.pointOn(target) for e in self.entries]
-
-	def pointOff(self, target):
-		if self.num.isTarget(target):
-			self.point.off()
-		else:
-			[e.pointOff(target) for e in self.entries]
-
-	def numbering(self):
-		self._createAndNext()
-		if self.fold.isOn():
-			[e._createNotOutput() for e in self.entries]
-		else:
-			[e.numbering() for e in self.entries]
-
-	def _createAndNext(self):
-		self.num = Num.createAndNext()
-
-	def _createNotOutput(self):
-		self.num = Num.createNotOutput()
-		[e._createNotOutput() for e in self.entries]
 
 EOM
