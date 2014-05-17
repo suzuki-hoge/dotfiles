@@ -4,6 +4,8 @@ python <<EOM
 
 class Num():
 
+	NOT_OUTPUT = -1
+
 	@staticmethod
 	def init():
 		Num.value = 1
@@ -12,9 +14,19 @@ class Num():
 	def next():
 		Num.value = Num.value + 1
 
-	def __init__(self):
-		self.value = Num.value
+	@staticmethod
+	def createAndNext():
+		n = Num(Num.value)
 		Num.next()
+		return n
+
+	@staticmethod
+	def createNotOutput():
+		n = Num(Num.NOT_OUTPUT)
+		return n
+
+	def __init__(self, value):
+		self.value = value
 
 	def isTarget(self, target):
 		return self.value == target

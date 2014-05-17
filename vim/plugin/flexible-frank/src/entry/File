@@ -35,6 +35,12 @@ class File(Entry):
 		pass
 
 	def numbering(self):
-		self.num = Num()
+		self._createAndNext()
+
+	def _createAndNext(self):
+		self.num = Num.createAndNext()
+
+	def _createNotOutput(self):
+		self.num = Num.createNotOutput()
 
 EOM

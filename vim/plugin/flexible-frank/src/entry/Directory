@@ -63,8 +63,17 @@ class Directory(Entry):
 		[e._recFoldOn() for e in self.entries]
 
 	def numbering(self):
-		self.num = Num()
-		if not self.fold.isOn():
+		self._createAndNext()
+		if self.fold.isOn():
+			[e._createNotOutput() for e in self.entries]
+		else:
 			[e.numbering() for e in self.entries]
+
+	def _createAndNext(self):
+		self.num = Num.createAndNext()
+
+	def _createNotOutput(self):
+		self.num = Num.createNotOutput()
+		[e._createNotOutput() for e in self.entries]
 
 EOM

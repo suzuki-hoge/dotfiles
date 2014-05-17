@@ -9,7 +9,7 @@ class Entry:
 	__metaclass__ = ABCMeta
 
 	def __init__(self, root, path):
-		self.num = Num()
+		self.num = Num.createAndNext()
 		self.path = path
 		self.depth = Depth(root, path)
 		self.point = Point()
