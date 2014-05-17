@@ -20,7 +20,7 @@ class Directory(Entry):
 		return entries
 
 	def createOutput(self):
-		return '%s %s%s%s%s' % (self.fold.getPartOfOutputAtDir(), self.point.getPartOfOutput(), self.depth.getPartOfOutput(), self.path.getPartOfOutput(), self.type.getPartOfOutputAtDir())
+		return '%2d : %s %s%s%s%s' % (self.num.value, self.fold.getPartOfOutputAtDir(), self.point.getPartOfOutput(), self.depth.getPartOfOutput(), self.path.getPartOfOutput(), self.type.getPartOfOutputAtDir())
 
 	def getOutputs(self, result):
 		result.append(self.createOutput())

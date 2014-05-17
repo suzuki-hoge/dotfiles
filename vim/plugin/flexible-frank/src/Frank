@@ -24,35 +24,43 @@ class Frank:
 		self.buffer.output(self.node.getOutputs([]), self.header)
 
 	def pointOn(self):
-		self.node.pointOn(self.adjustLineNum())
+		self.node.pointOn(self.getCursorLineNum())
 
 	def pointOff(self):
-		self.node.pointOff(self.adjustLineNum())
+		self.node.pointOff(self.getCursorLineNum())
 
 	def foldOn(self):
-		self.node.foldOn(self.adjustLineNum())
+		self.node.foldOn(self.getCursorLineNum())
 		self.numbering()
 
 	def foldOff(self):
-		self.node.foldOff(self.adjustLineNum())
+		self.node.foldOff(self.getCursorLineNum())
 		self.numbering()
 
 	def recFoldOn(self):
-		self.node.recFoldOn(self.adjustLineNum())
+		self.node.recFoldOn(self.getCursorLineNum())
 		self.numbering()
 
 	def numbering(self):
 		Num.init()
 		self.node.numbering()
 
-	def adjustLineNum(self):
+	def getCursorLineNum(self):
 		cursorPos = Cursor.getCurrentLineNum()
 		headerLen = len(self.header)
 
 		return cursorPos - headerLen + 1
 
-	def loop(self):
+	def findOneByCursor(self):
+		num = self.getCursorLineNum()
+
 		for e in self.node:
-			print e.path.value
+			if e.num.isTarget(num):
+				return e
+
+		# exception
+
+	def dump(self):
+		self.node.dump()
 
 EOM

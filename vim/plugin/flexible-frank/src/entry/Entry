@@ -57,4 +57,11 @@ class Entry:
 				for eachSubEntry in subEntry.generator():
 					yield eachSubEntry
 
+	def dump(self):
+		self._dump()
+		if self.type.isDir():
+			[e.dump() for e in self.entries]
+
+	def _dump(self):
+		print '%s : %s' % (self.num.value, self.path.value)
 EOM
