@@ -6,16 +6,20 @@ import vim
 
 class Tab:
 	
+	FRANK_1 = vim.eval('$_frank_frank1')
+	FRANK_2 = vim.eval('$_frank_frank2')
+	FRANK_3 = vim.eval('$_frank_frank3')
+
 	BUF_NUM_1 = 0
 	BUF_NUM_2 = 0
 	BUF_NUM_3 = 0
 
 	@staticmethod
-	def isBlankTab():
+	def __isBlankTab():
 		return len(vim.current.buffer) == 1 and vim.current.buffer[0] == ''
 
 	@staticmethod
-	def switchTab(target):
+	def switch(target):
 		for i in range(4):
 			current = vim.current.buffer.name
 			if current != target:
@@ -24,17 +28,17 @@ class Tab:
 				return
 
 	@staticmethod
-	def expandTab(buf1, buf2, buf3):
-		if Tab.isBlankTab():
-			vim.command('edit ' + buf2)
+	def __expand():
+		if Tab.__isBlankTab():
+			vim.command('edit ' + Tab.FRANK_2)
 		else:
-			vim.command('tabedit ' + buf2)
+			vim.command('tabedit ' + Tab.FRANK_2)
 			Tab.BUF_NUM_2 = vim.current.buffer.number
 
-		vim.command('vsplit ' + buf1)
+		vim.command('vsplit ' + Tab.FRANK_1)
 		Tab.BUF_NUM_1 = vim.current.buffer.number
 
-		vim.command('botright 9 split ' + buf3)
+		vim.command('botright 9 split ' + Tab.FRANK_3)
 		Tab.BUF_NUM_3 = vim.current.buffer.number
 
 	@staticmethod
@@ -42,5 +46,10 @@ class Tab:
 		vim.command('bdelete! %s' % Tab.BUF_NUM_1)
 		vim.command('bdelete! %s' % Tab.BUF_NUM_2)
 		vim.command('bdelete! %s' % Tab.BUF_NUM_3)
+
+	@staticmethod
+	def expand():
+		Tab.__expand()
+		Tab.switch(Tab.FRANK_1)
 
 EOM

@@ -28,22 +28,16 @@ python <<EOM
 
 import vim
 
+convertFullpath = lambda p: os.path.abspath(os.path.join(vim.eval('getcwd()'), vim.eval(p)))
+isNotEmpty = lambda p: vim.eval(p)
+
+path1 = convertFullpath('path1')
+path2 = convertFullpath('path2') if isNotEmpty('path2') else None
+
 pathStacks = []
-
-frank1 = vim.eval('$_frank_frank1')
-frank2 = vim.eval('$_frank_frank2')
-frank3 = vim.eval('$_frank_frank3')
-
-Tab.expandTab(frank1, frank2, frank3)
-Tab.switchTab(frank1)
-
-adjustEndSlash = lambda path : path if path[-1] == '/' else path + '/'
-getOrNone = lambda path : None if path == '' else adjustEndSlash(path)
-
-path1 = adjustEndSlash(vim.eval('path1'))
-path2 = getOrNone(vim.eval('path2'))
-
 pathStacks.append(path1)
+
+Tab.expand()
 
 frank = Frank(path1)
 frank.output()
