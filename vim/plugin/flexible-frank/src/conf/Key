@@ -4,6 +4,8 @@ function! KeyMapping()
 	nnoremap <buffer> d  :call ActionDispatch('dump')<CR>
 	nnoremap <buffer> D  :call ActionDispatch('Dump')<CR>
 
+	nnoremap <buffer> R  :call ActionDispatch('Reload')<CR>
+
 	nnoremap <buffer> p  :call ActionDispatch('PointOn')<CR>
 	nnoremap <buffer> P  :call ActionDispatch('PointOff')<CR>
 

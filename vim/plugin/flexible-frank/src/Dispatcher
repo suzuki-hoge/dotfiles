@@ -11,6 +11,10 @@ if action == 'dump':
 elif action == 'Dump':
 	frank.dump()
 
+elif action == 'Reload':
+	frank = Frank(path1)
+	frank.output()
+
 elif action == 'PointOn':
 	e = frank.findOneByCursor()
 	e.pointOn()
