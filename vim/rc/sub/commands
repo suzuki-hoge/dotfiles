@@ -8,3 +8,13 @@ command! M messages
 
 " edit temporary source code at workspace
 command! -nargs=1 Tmp tabedit $workspace/tmp.<args>
+
+" open directory at path, or current
+command! -nargs=? -complete=dir Dir call OpenDir(<f-args>)
+function! OpenDir(...)
+python <<EOM
+path = vim.eval('a:1') if len(vim.eval('a:000')) != 0 else '.'
+fullpath = os.path.abspath(os.path.join(vim.eval('getcwd()'), path))
+os.system('open %s' % fullpath)
+EOM
+endfunction
