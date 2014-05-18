@@ -9,6 +9,9 @@ function! KeyMapping()
 	nnoremap <buffer> p  :call ActionDispatch('PointOn')<CR>
 	nnoremap <buffer> P  :call ActionDispatch('PointOff')<CR>
 
+	nnoremap <buffer> h  :call ActionDispatch('MoveUp')<CR>
+	nnoremap <buffer> l  :call ActionDispatch('MovePrev')<CR>
+
 	nnoremap <buffer> fh :call ActionDispatch('FoldOn')<CR>
 	nnoremap <buffer> fl :call ActionDispatch('FoldOff')<CR>
 	nnoremap <buffer> fH :call ActionDispatch('RecFoldOn')<CR>

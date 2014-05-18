@@ -25,6 +25,19 @@ elif action == 'PointOff':
 	e.pointOff()
 	frank.output()
 
+elif action == 'MoveUp':
+	upperPath = '%s../' % pathStacks[-1]
+	pathStacks.append(upperPath)
+	frank = Frank(upperPath)
+	frank.output()
+
+elif action == 'MovePrev':
+	if len(pathStacks) != 1:
+		pathStacks.pop()
+	prevPath = pathStacks[-1]
+	frank = Frank(prevPath)
+	frank.output()
+
 elif action == 'FoldOn':
 	e = frank.findOneByCursor()
 	e.foldOn()
