@@ -1,0 +1,61 @@
+" vim:set ft=vim:
+
+function! ActionDispatch(action)
+python <<EOM
+action = vim.eval('a:action')
+
+if action == 'dump':
+	e = frank.findOneByCursor()
+	e._dump()
+
+elif action == 'Dump':
+	frank.dump()
+
+elif action == 'PointOn':
+	e = frank.findOneByCursor()
+	e.pointOn()
+	frank.output()
+
+elif action == 'PointOff':
+	e = frank.findOneByCursor()
+	e.pointOff()
+	frank.output()
+
+elif action == 'FoldOn':
+	e = frank.findOneByCursor()
+	e.foldOn()
+	frank.reNumbering()
+	frank.output()
+
+elif action == 'FoldOff':
+	e = frank.findOneByCursor()
+	e.foldOff()
+	frank.reNumbering()
+	frank.output()
+
+elif action == 'RecFoldOn':
+	e = frank.findOneByCursor()
+	e.recFoldOn()
+	frank.reNumbering()
+	frank.output()
+
+elif action == 'RecFoldOff':
+	e = frank.findOneByCursor()
+	e.recFoldOff()
+	frank.reNumbering()
+	frank.output()
+
+elif action == 'AllFoldOn':
+	es = frank.getNodeSubs()
+	[e.recFoldOn() for e in es]
+	frank.reNumbering()
+	frank.output()
+
+elif action == 'AllFoldOff':
+	es = frank.getNodeSubs()
+	[e.recFoldOff() for e in es]
+	frank.reNumbering()
+	frank.output()
+
+EOM
+endfunction

@@ -28,11 +28,11 @@ python <<EOM
 
 import vim
 
-p1 = '/Users/ryo/.dotfiles/vim/plugin/flexible-frank/workspace/frank1.frank'
-p2 = '/Users/ryo/.dotfiles/vim/plugin/flexible-frank/workspace/frank2.frank'
-p3 = '/Users/ryo/.dotfiles/vim/plugin/flexible-frank/workspace/frank3.frank'
+frank1 = vim.eval('$_frank_frank1')
+frank2 = vim.eval('$_frank_frank2')
+frank3 = vim.eval('$_frank_frank3')
 
-Tab.expandTab(p1, p2, p3)
+Tab.expandTab(frank1, frank2, frank3)
 Tab.switchTab('frank1.frank')
 
 adjustEndSlash = lambda path : path if path[-1] == '/' else path + '/'
@@ -45,79 +45,4 @@ frank = Frank(path1)
 frank.output()
 
 EOM
-endfunction
-
-function! ActionDispatch(action)
-python <<EOM
-action = vim.eval('a:action')
-
-if action == 'dump':
-	e = frank.findOneByCursor()
-	e._dump()
-
-elif action == 'Dump':
-	frank.dump()
-
-elif action == 'PointOn':
-	e = frank.findOneByCursor()
-	e.pointOn()
-	frank.output()
-
-elif action == 'PointOff':
-	e = frank.findOneByCursor()
-	e.pointOff()
-	frank.output()
-
-elif action == 'FoldOn':
-	e = frank.findOneByCursor()
-	e.foldOn()
-	frank.reNumbering()
-	frank.output()
-
-elif action == 'FoldOff':
-	e = frank.findOneByCursor()
-	e.foldOff()
-	frank.reNumbering()
-	frank.output()
-
-elif action == 'RecFoldOn':
-	e = frank.findOneByCursor()
-	e.recFoldOn()
-	frank.reNumbering()
-	frank.output()
-
-elif action == 'RecFoldOff':
-	e = frank.findOneByCursor()
-	e.recFoldOff()
-	frank.reNumbering()
-	frank.output()
-
-elif action == 'AllFoldOn':
-	es = frank.getNodeSubs()
-	[e.recFoldOn() for e in es]
-	frank.reNumbering()
-	frank.output()
-
-elif action == 'AllFoldOff':
-	es = frank.getNodeSubs()
-	[e.recFoldOff() for e in es]
-	frank.reNumbering()
-	frank.output()
-
-EOM
-endfunction
-
-function! KeyMapping()
-	nnoremap <buffer> d  :call ActionDispatch('dump')<CR>
-	nnoremap <buffer> D  :call ActionDispatch('Dump')<CR>
-
-	nnoremap <buffer> p  :call ActionDispatch('PointOn')<CR>
-	nnoremap <buffer> P  :call ActionDispatch('PointOff')<CR>
-
-	nnoremap <buffer> fh :call ActionDispatch('FoldOn')<CR>
-	nnoremap <buffer> fl :call ActionDispatch('FoldOff')<CR>
-	nnoremap <buffer> fH :call ActionDispatch('RecFoldOn')<CR>
-	nnoremap <buffer> fL :call ActionDispatch('RecFoldOff')<CR>
-	nnoremap <buffer> FH :call ActionDispatch('AllFoldOn')<CR>
-	nnoremap <buffer> FL :call ActionDispatch('AllFoldOff')<CR>
 endfunction

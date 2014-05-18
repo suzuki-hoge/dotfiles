@@ -1,0 +1,16 @@
+" vim:set ft=vim:
+
+function! KeyMapping()
+	nnoremap <buffer> d  :call ActionDispatch('dump')<CR>
+	nnoremap <buffer> D  :call ActionDispatch('Dump')<CR>
+
+	nnoremap <buffer> p  :call ActionDispatch('PointOn')<CR>
+	nnoremap <buffer> P  :call ActionDispatch('PointOff')<CR>
+
+	nnoremap <buffer> fh :call ActionDispatch('FoldOn')<CR>
+	nnoremap <buffer> fl :call ActionDispatch('FoldOff')<CR>
+	nnoremap <buffer> fH :call ActionDispatch('RecFoldOn')<CR>
+	nnoremap <buffer> fL :call ActionDispatch('RecFoldOff')<CR>
+	nnoremap <buffer> FH :call ActionDispatch('AllFoldOn')<CR>
+	nnoremap <buffer> FL :call ActionDispatch('AllFoldOff')<CR>
+endfunction

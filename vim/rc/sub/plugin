@@ -14,7 +14,7 @@ vnoremap ¿ :call PetroniusTheArbiter($PETE_COMMENT_SWITCH)<CR>
 
 command! W wall | call PetroniusTheArbiter($PETE_RUN)
 
-source $frank/src/Loader
+source $frank/src/conf/Loader
 
 nnoremap <S-M-CR> :FF .<CR>
 command! -nargs=* -complete=dir FF call FlexibleFrank(<f-args>)
