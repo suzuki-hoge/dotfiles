@@ -33,7 +33,7 @@ frank2 = vim.eval('$_frank_frank2')
 frank3 = vim.eval('$_frank_frank3')
 
 Tab.expandTab(frank1, frank2, frank3)
-Tab.switchTab('frank1.frank')
+Tab.switchTab(frank1)
 
 adjustEndSlash = lambda path : path if path[-1] == '/' else path + '/'
 getOrNone = lambda path : None if path == '' else adjustEndSlash(path)
