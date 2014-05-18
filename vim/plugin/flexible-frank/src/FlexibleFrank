@@ -81,7 +81,27 @@ elif action == 'FoldOff':
 	frank.output()
 
 elif action == 'RecFoldOn':
-	frank.recFoldOn()
+	e = frank.findOneByCursor()
+	e.recFoldOn()
+	frank.reNumbering()
+	frank.output()
+
+elif action == 'RecFoldOff':
+	e = frank.findOneByCursor()
+	e.recFoldOff()
+	frank.reNumbering()
+	frank.output()
+
+elif action == 'AllFoldOn':
+	es = frank.getNodeSubs()
+	[e.recFoldOn() for e in es]
+	frank.reNumbering()
+	frank.output()
+
+elif action == 'AllFoldOff':
+	es = frank.getNodeSubs()
+	[e.recFoldOff() for e in es]
+	frank.reNumbering()
 	frank.output()
 
 EOM
@@ -98,4 +118,6 @@ function! KeyMapping()
 	nnoremap <buffer> fl :call ActionDispatch('FoldOff')<CR>
 	nnoremap <buffer> fH :call ActionDispatch('RecFoldOn')<CR>
 	nnoremap <buffer> fL :call ActionDispatch('RecFoldOff')<CR>
+	nnoremap <buffer> FH :call ActionDispatch('AllFoldOn')<CR>
+	nnoremap <buffer> FL :call ActionDispatch('AllFoldOff')<CR>
 endfunction

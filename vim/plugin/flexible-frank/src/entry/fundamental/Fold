@@ -20,9 +20,14 @@ class Fold():
 		return not self.isOn()
 
 	def getPartOfOutputAtDir(self):
-		return '>' if self.isOn() else 'v'
+		return '-' if self.isOn() else '+'
 
 	def getPartOfOutputAtFile(self):
 		return ' '
 
+	def dump(self):
+		if self.isOn():
+			return 'on : folding'
+		else:
+			return 'off : not folding'
 EOM

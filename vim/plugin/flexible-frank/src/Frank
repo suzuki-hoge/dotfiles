@@ -42,6 +42,9 @@ class Frank:
 
 		# exception
 
+	def getNodeSubs(self):
+		return self.node.getSubs()
+
 	def dump(self):
 		self.node.dump()
 
