@@ -23,15 +23,17 @@ class Frank:
 	def output(self):
 		self.buffer.output(self.node.getOutputs([]), self.header)
 
-	def pointOn(self):
-		self.node.pointOn(self._getCursorLineNum())
+	def foldOn(self):
+		self.node.foldOn(self._getCursorLineNum())
+		self._reNumbering()
 
-	def pointOff(self):
-		self.node.pointOff(self._getCursorLineNum())
+	def foldOff(self):
+		self.node.foldOff(self._getCursorLineNum())
+		self._reNumbering()
 
-	def _numbering(self):
+	def _reNumbering(self):
 		Num.init()
-		self.node.numbering()
+		self.node.reNumbering()
 
 	def _getCursorLineNum(self):
 		cursorPos = Cursor.getCurrentLineNum()

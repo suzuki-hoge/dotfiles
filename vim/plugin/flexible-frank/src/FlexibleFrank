@@ -59,11 +59,13 @@ elif action == 'Dump':
 	frank.dump()
 
 elif action == 'PointOn':
-	frank.pointOn()
+	e = frank.findOneByCursor()
+	e.pointOn()
 	frank.output()
 
 elif action == 'PointOff':
-	frank.pointOff()
+	e = frank.findOneByCursor()
+	e.pointOff()
 	frank.output()
 
 elif action == 'FoldOn':

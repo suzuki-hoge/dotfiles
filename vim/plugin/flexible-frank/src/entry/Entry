@@ -20,24 +20,30 @@ class Entry:
 			[e.getOutputs(result) for e in self.subs()]
 		return result
 
-	def pointOn(self, target):
-		if self.num.isTarget(target):
-			self.point.on()
-		else:
-			[e.pointOn(target) for e in self.subs()]
+	def pointOn(self):
+		self.point.on()
 
-	def pointOff(self, target):
-		if self.num.isTarget(target):
-			self.point.off()
-		else:
-			[e.pointOff(target) for e in self.subs()]
+	def pointOff(self):
+		self.point.off()
 
-	def numbering(self):
+	def foldOn(self, target):
+		if self.num.isTarget(target):
+			self.fold.on()
+		else:
+			[e.foldOn(target) for e in self.subs()]
+
+	def foldOff(self, target):
+		if self.num.isTarget(target):
+			self.fold.off()
+		else:
+			[e.foldOff(target) for e in self.subs()]
+
+	def reNumbering(self):
 		self._createAndNext()
 		if self.fold.isOn():
 			[e._createNotOutput() for e in self.subs()]
 		else:
-			[e.numbering() for e in self.subs()]
+			[e.reNumbering() for e in self.subs()]
 
 	def _createAndNext(self):
 		self.num = Num.createAndNext()
