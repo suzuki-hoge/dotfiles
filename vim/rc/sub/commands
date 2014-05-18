@@ -5,3 +5,6 @@ command! Todo tabe $todo
 
 " message
 command! M messages
+
+" edit temporary source code at workspace
+command! -nargs=1 Tmp tabedit $workspace/tmp.<args>
