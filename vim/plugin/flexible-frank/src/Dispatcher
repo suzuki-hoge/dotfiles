@@ -38,6 +38,14 @@ elif action == 'MovePrev':
 	frank = Frank(prevPath)
 	frank.output()
 
+elif action == 'ChangeDir':
+	e = frank.findOneByCursor()
+	if e.type.isDir():
+		changePath = e.path.value
+		pathStacks.append(changePath)
+		frank = Frank(changePath)
+		frank.output()
+
 elif action == 'FoldOn':
 	e = frank.findOneByCursor()
 	e.foldOn()

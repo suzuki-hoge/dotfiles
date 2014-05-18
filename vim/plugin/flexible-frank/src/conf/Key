@@ -11,6 +11,7 @@ function! KeyMapping()
 
 	nnoremap <buffer> h  :call ActionDispatch('MoveUp')<CR>
 	nnoremap <buffer> l  :call ActionDispatch('MovePrev')<CR>
+	nnoremap <buffer> cd :call ActionDispatch('ChangeDir')<CR>
 
 	nnoremap <buffer> fh :call ActionDispatch('FoldOn')<CR>
 	nnoremap <buffer> fl :call ActionDispatch('FoldOff')<CR>
