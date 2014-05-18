@@ -69,11 +69,15 @@ elif action == 'PointOff':
 	frank.output()
 
 elif action == 'FoldOn':
-	frank.foldOn()
+	e = frank.findOneByCursor()
+	e.foldOn()
+	frank.reNumbering()
 	frank.output()
 
 elif action == 'FoldOff':
-	frank.foldOff()
+	e = frank.findOneByCursor()
+	e.foldOff()
+	frank.reNumbering()
 	frank.output()
 
 elif action == 'RecFoldOn':

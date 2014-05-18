@@ -14,6 +14,9 @@ class Entry:
 	def subs(self):
 		return self.entries if self.type.isDir() else []
 
+	def subfiles(self):
+		return [e for e in self.entries if e.type.isFile()] if self.type.isDir() else []
+
 	def getOutputs(self, result):
 		result.append(self._createOutput())
 		if not self.fold.isOn():
@@ -26,17 +29,13 @@ class Entry:
 	def pointOff(self):
 		self.point.off()
 
-	def foldOn(self, target):
-		if self.num.isTarget(target):
-			self.fold.on()
-		else:
-			[e.foldOn(target) for e in self.subs()]
+	def foldOn(self):
+		self.fold.on()
+		[e.fold.on() for e in self.subfiles()]
 
-	def foldOff(self, target):
-		if self.num.isTarget(target):
-			self.fold.off()
-		else:
-			[e.foldOff(target) for e in self.subs()]
+	def foldOff(self):
+		self.fold.off()
+		[e.fold.off() for e in self.subfiles()]
 
 	def reNumbering(self):
 		self._createAndNext()
@@ -66,6 +65,6 @@ class Entry:
 		[e.dump() for e in self.subs()]
 
 	def _dump(self):
-		print '%2d : %s' % (self.num.value, self.path.value)
+		print '%s %2d : %s' % ('v' if self.fold.value else '>', self.num.value, self.path.value)
 
 EOM

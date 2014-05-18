@@ -20,6 +20,6 @@ class Directory(Entry):
 		return entries
 
 	def _createOutput(self):
-		return '%2d : %s %s%s%s%s' % (self.num.value, self.fold.getPartOfOutputAtDir(), self.point.getPartOfOutput(), self.depth.getPartOfOutput(), self.path.getPartOfOutput(), self.type.getPartOfOutputAtDir())
+		return '%s %s%s%s%s' % (self.fold.getPartOfOutputAtDir(), self.point.getPartOfOutput(), self.depth.getPartOfOutput(), self.path.getPartOfOutput(), self.type.getPartOfOutputAtDir())
 
 EOM
