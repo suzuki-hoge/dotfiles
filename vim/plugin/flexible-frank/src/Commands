@@ -1,0 +1,105 @@
+" vim:set ft=vim:
+python <<EOM
+
+def findOneByCursor(func):
+	def _wrapper():
+		e = frank.findOneByCursor()
+		func(e)
+	return _wrapper
+
+def output(func):
+	def _wrapper():
+		func()
+		frank.output()
+	return _wrapper
+
+def reNumbering(func):
+	def _wrapper():
+		func()
+		frank.reNumbering()
+	return _wrapper
+
+@findOneByCursor
+def dump(e):
+	print frank
+	e._dump()
+
+def Dump():
+	print frank
+	frank.dump()
+
+def Reload():
+	global frank
+	frank = Frank(pathStacks[-1])
+
+@output
+@findOneByCursor
+def PointOn(e):
+	e.pointOn()
+
+@output
+@findOneByCursor
+def PointOff(e):
+	e.pointOff()
+
+@output
+def MoveUp():
+	upperPath = os.path.abspath(os.path.join(pathStacks[-1], '..'))
+	pathStacks.append(upperPath)
+	global frank
+	frank = Frank(upperPath)
+
+@output
+def MovePrev():
+	if len(pathStacks) != 1:
+		pathStacks.pop()
+	prevPath = pathStacks[-1]
+	global frank
+	frank = Frank(prevPath)
+
+@output
+@findOneByCursor
+def ChangeDir(e):
+	if e.type.isDir():
+		changePath = e.path.value
+		pathStacks.append(changePath)
+		global frank
+		frank = Frank(changePath)
+
+@output
+@reNumbering
+@findOneByCursor
+def FoldOn(e):
+	e.foldOn()
+
+@output
+@reNumbering
+@findOneByCursor
+def FoldOff(e):
+	e.foldOff()
+
+@output
+@reNumbering
+@findOneByCursor
+def RecFoldOn(e):
+	e.recFoldOn()
+
+@output
+@reNumbering
+@findOneByCursor
+def RecFoldOff(e):
+	e.recFoldOff()
+
+@output
+@reNumbering
+def AllFoldOn():
+	es = frank.getNodeSubs()
+	[e.recFoldOn() for e in es]
+
+@output
+@reNumbering
+def AllFoldOff():
+	es = frank.getNodeSubs()
+	[e.recFoldOff() for e in es]
+
+EOM

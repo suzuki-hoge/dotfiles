@@ -28,3 +28,5 @@ source $_frank_fundtamental/Depth
 source $_frank_fundtamental/Point
 source $_frank_fundtamental/Fold
 source $_frank_fundtamental/Type
+
+source $_frank_src/Commands

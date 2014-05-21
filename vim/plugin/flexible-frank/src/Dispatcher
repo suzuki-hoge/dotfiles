@@ -5,82 +5,46 @@ python <<EOM
 action = vim.eval('a:action')
 
 if action == 'dump':
-	e = frank.findOneByCursor()
-	e._dump()
+	dump()
 
 elif action == 'Dump':
-	frank.dump()
+	Dump()
 
 elif action == 'Reload':
-	frank = Frank(pathStacks[-1])
-	frank.output()
+	Reload()
 
 elif action == 'PointOn':
-	e = frank.findOneByCursor()
-	e.pointOn()
-	frank.output()
+	PointOn()
 
 elif action == 'PointOff':
-	e = frank.findOneByCursor()
-	e.pointOff()
-	frank.output()
+	PointOff()
 
 elif action == 'MoveUp':
-	upperPath = os.path.abspath(os.path.join(pathStacks[-1], '..'))
-	pathStacks.append(upperPath)
-	frank = Frank(upperPath)
-	frank.output()
+	MoveUp()
 
 elif action == 'MovePrev':
-	if len(pathStacks) != 1:
-		pathStacks.pop()
-	prevPath = pathStacks[-1]
-	frank = Frank(prevPath)
-	frank.output()
+	MovePrev()
 
 elif action == 'ChangeDir':
-	e = frank.findOneByCursor()
-	if e.type.isDir():
-		changePath = e.path.value
-		pathStacks.append(changePath)
-		frank = Frank(changePath)
-		frank.output()
+	ChangeDir()
 
 elif action == 'FoldOn':
-	e = frank.findOneByCursor()
-	e.foldOn()
-	frank.reNumbering()
-	frank.output()
+	FoldOn()
 
 elif action == 'FoldOff':
-	e = frank.findOneByCursor()
-	e.foldOff()
-	frank.reNumbering()
-	frank.output()
+	FoldOff()
 
 elif action == 'RecFoldOn':
-	e = frank.findOneByCursor()
-	e.recFoldOn()
-	frank.reNumbering()
-	frank.output()
+	RecFoldOn()
 
 elif action == 'RecFoldOff':
-	e = frank.findOneByCursor()
-	e.recFoldOff()
-	frank.reNumbering()
-	frank.output()
+	RecFoldOff()
 
 elif action == 'AllFoldOn':
-	es = frank.getNodeSubs()
-	[e.recFoldOn() for e in es]
-	frank.reNumbering()
-	frank.output()
+	AllFoldOn()
 
 elif action == 'AllFoldOff':
-	es = frank.getNodeSubs()
-	[e.recFoldOff() for e in es]
-	frank.reNumbering()
-	frank.output()
+	AllFoldOff()
 
 elif action == 'CloseAll':
 	Tab.closeAll()
