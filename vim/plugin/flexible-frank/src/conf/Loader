@@ -1,15 +1,17 @@
 " vim:set ft=vim:
 
 let $_frank_src = $frank . '/src'
+let $_frank_app = $_frank_src . '/app'
 let $_frank_vim = $_frank_src . '/vim'
 let $_frank_entry = $_frank_src . '/entry'
 let $_frank_fundtamental = $_frank_entry . '/fundamental'
 let $_frank_conf = $_frank_src . '/conf'
 let $_frank_workspace = $frank . '/workspace'
 
-source $_frank_src/FlexibleFrank
-source $_frank_src/Dispatcher
-source $_frank_src/Frank
+source $_frank_app/FlexibleFrank
+source $_frank_app/Dispatcher
+source $_frank_app/Frank
+source $_frank_app/Commands
 
 source $_frank_vim/Tab
 source $_frank_vim/Buffer2
@@ -28,5 +30,3 @@ source $_frank_fundtamental/Depth
 source $_frank_fundtamental/Point
 source $_frank_fundtamental/Fold
 source $_frank_fundtamental/Type
-
-source $_frank_src/Commands

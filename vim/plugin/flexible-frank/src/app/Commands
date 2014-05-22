@@ -1,43 +1,6 @@
 " vim:set ft=vim:
 python <<EOM
 
-def findOneByCursor(func):
-	def _findOneByCursor():
-		global e
-		e = frank.findOneByCursor()
-		func()
-	return _findOneByCursor
-
-def output(func):
-	def _output():
-		func()
-		frank.output()
-	return _output
-
-def reNumbering(func):
-	def _reNumbering():
-		func()
-		frank.reNumbering()
-	return _reNumbering
-
-def dirOnly(func):
-	def _dirOnly():
-		e = frank.findOneByCursor()
-		if e.type.isDir():
-			func()
-		else:
-			print 'dir only'
-	return _dirOnly
-
-@dirOnly
-@findOneByCursor
-@output
-def ChangeDir():
-	changePath = e.path.value
-	pathStacks.append(changePath)
-	global frank
-	frank = Frank(changePath)
-
 @findOneByCursor
 def dump():
 	print frank
@@ -75,6 +38,15 @@ def MovePrev():
 	prevPath = pathStacks[-1]
 	global frank
 	frank = Frank(prevPath)
+
+@dirOnly
+@findOneByCursor
+@output
+def ChangeDir():
+	changePath = e.path.value
+	pathStacks.append(changePath)
+	global frank
+	frank = Frank(changePath)
 
 @findOneByCursor
 @output
