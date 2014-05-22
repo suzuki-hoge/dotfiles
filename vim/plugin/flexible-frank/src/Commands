@@ -2,25 +2,44 @@
 python <<EOM
 
 def findOneByCursor(func):
-	def _wrapper():
+	def _findOneByCursor():
+		global e
 		e = frank.findOneByCursor()
-		func(e)
-	return _wrapper
+		func()
+	return _findOneByCursor
 
 def output(func):
-	def _wrapper():
+	def _output():
 		func()
 		frank.output()
-	return _wrapper
+	return _output
 
 def reNumbering(func):
-	def _wrapper():
+	def _reNumbering():
 		func()
 		frank.reNumbering()
-	return _wrapper
+	return _reNumbering
+
+def dirOnly(func):
+	def _dirOnly():
+		e = frank.findOneByCursor()
+		if e.type.isDir():
+			func()
+		else:
+			print 'dir only'
+	return _dirOnly
+
+@dirOnly
+@findOneByCursor
+@output
+def ChangeDir():
+	changePath = e.path.value
+	pathStacks.append(changePath)
+	global frank
+	frank = Frank(changePath)
 
 @findOneByCursor
-def dump(e):
+def dump():
 	print frank
 	e._dump()
 
@@ -32,14 +51,14 @@ def Reload():
 	global frank
 	frank = Frank(pathStacks[-1])
 
-@output
 @findOneByCursor
-def PointOn(e):
+@output
+def PointOn():
 	e.pointOn()
 
-@output
 @findOneByCursor
-def PointOff(e):
+@output
+def PointOff():
 	e.pointOff()
 
 @output
@@ -57,37 +76,28 @@ def MovePrev():
 	global frank
 	frank = Frank(prevPath)
 
-@output
 @findOneByCursor
-def ChangeDir(e):
-	if e.type.isDir():
-		changePath = e.path.value
-		pathStacks.append(changePath)
-		global frank
-		frank = Frank(changePath)
-
 @output
 @reNumbering
-@findOneByCursor
-def FoldOn(e):
+def FoldOn():
 	e.foldOn()
 
+@findOneByCursor
 @output
 @reNumbering
-@findOneByCursor
-def FoldOff(e):
+def FoldOff():
 	e.foldOff()
 
+@findOneByCursor
 @output
 @reNumbering
-@findOneByCursor
-def RecFoldOn(e):
+def RecFoldOn():
 	e.recFoldOn()
 
+@findOneByCursor
 @output
 @reNumbering
-@findOneByCursor
-def RecFoldOff(e):
+def RecFoldOff():
 	e.recFoldOff()
 
 @output
