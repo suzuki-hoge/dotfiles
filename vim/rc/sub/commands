@@ -18,3 +18,12 @@ fullpath = os.path.abspath(os.path.join(vim.eval('getcwd()'), path))
 os.system('open %s' % fullpath)
 EOM
 endfunction
+
+" search with google chrome, or open search box
+command! -nargs=* G call Google(<f-args>)
+function! Google(...)
+python <<EOM
+q = '+'.join(vim.eval('a:000'))
+os.system('open -a Google\ Chrome http://www.google.co.jp/search?q=%s' % q)
+EOM
+endfunction
