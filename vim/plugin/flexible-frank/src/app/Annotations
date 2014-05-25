@@ -20,13 +20,36 @@ def reNumbering(func):
 		frank.reNumbering()
 	return _reNumbering
 
-def dirOnly(func):
-	def _dirOnly():
-		e = frank.findOneByCursor()
-		if e.type.isDir():
-			func()
-		else:
-			print 'dir only'
-	return _dirOnly
+def forbiddenTarget(*targets):
+	def _wrapper(func):
+		def __wrapper():
+			e = frank.findOneByCursor()
+			try:
+				[checker(e) for checker in targets]
+
+			except Exception, exp:
+				print exp
+
+			else:
+				func()
+
+		return __wrapper
+	return _wrapper
+
+#def forbiddenMode(*modes):
+#	e = 'normal'
+
+#	def _wrapper(func):
+#		def __wrapper():
+#			try:
+#				[checker(e, func) for checker in modes]
+
+#			except Exception, exp:
+#				print exp
+
+#			else:
+#				func()
+#		return __wrapper
+#	return _wrapper
 
 EOM

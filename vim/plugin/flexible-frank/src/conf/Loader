@@ -11,6 +11,8 @@ let $_frank_workspace = $frank . '/workspace'
 source $_frank_app/FlexibleFrank
 source $_frank_app/Dispatcher
 source $_frank_app/Frank
+source $_frank_app/Exception
+source $_frank_app/Annotations
 source $_frank_app/Commands
 
 source $_frank_vim/Tab
