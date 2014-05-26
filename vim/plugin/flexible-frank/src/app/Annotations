@@ -1,26 +1,33 @@
 " vim:set ft=vim:
 python <<EOM
 
-def findOneByCursor(func):
-	def _findOneByCursor():
+def FindOneByCursor(func):
+	def _FindOneByCursor():
 		global e
 		e = frank.findOneByCursor()
 		func()
-	return _findOneByCursor
+	return _FindOneByCursor
 
-def output(func):
-	def _output():
+def Output(func):
+	def _Output():
 		func()
 		frank.output()
-	return _output
+	return _Output
 
-def reNumbering(func):
-	def _reNumbering():
+def ReNumbering(func):
+	def _ReNumbering():
 		func()
 		frank.reNumbering()
-	return _reNumbering
+	return _ReNumbering
 
-def forbiddenTarget(*targets):
+def RestoreCursor(func):
+	def _RestoreCursor():
+		pos = Cursor.getPos()
+		func()
+		Cursor.setPos(pos)
+	return _RestoreCursor
+
+def ForbiddenTarget(*targets):
 	def _wrapper(func):
 		def __wrapper():
 			e = frank.findOneByCursor()

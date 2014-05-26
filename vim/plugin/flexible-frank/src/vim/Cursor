@@ -10,4 +10,12 @@ class Cursor:
 	def getCurrentLineNum():
 		return int(vim.eval('getpos(".")')[1])
 
+	@staticmethod
+	def getPos():
+		return vim.eval('getpos(".")')
+
+	@staticmethod
+	def setPos(pos):
+		vim.command('call cursor(%s, %s, %s)' % (pos[1], pos[2], pos[3]))
+
 EOM
