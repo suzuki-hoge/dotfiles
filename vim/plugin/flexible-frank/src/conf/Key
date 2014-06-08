@@ -20,7 +20,8 @@ function! KeyMapping()
 	nnoremap <buffer> FH :call ActionDispatch('AllFoldOn')<CR>
 	nnoremap <buffer> FL :call ActionDispatch('AllFoldOff')<CR>
 
-	nnoremap <buffer> e  :call ActionDispatch('Edit')<CR>
+	nnoremap <buffer> e  :call ActionDispatch('edit')<CR>
+	nnoremap <buffer> E  :call ActionDispatch('Edit')<CR>
 
 	nnoremap <buffer> <C-Space> :call ActionDispatch('CloseAll')<CR>
 endfunction

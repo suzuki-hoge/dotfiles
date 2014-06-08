@@ -48,13 +48,13 @@ class Frank:
 	def dump(self):
 		self.node.dump()
 
-	def getPointedEntriesOrderByPath(self):
-		return self.getPointedEntries(lambda e: e.path.value)
+	def findPointedEntriesOrderByPath(self):
+		return self.findPointedEntries(lambda e: e.path.value)
 
-	def getPointedEntriesOrderByPoint(self):
-		return self.getPointedEntries(lambda e: e.point.value)
+	def findPointedEntriesOrderByPoint(self):
+		return self.findPointedEntries(lambda e: e.point.value)
 
-	def getPointedEntries(self, func):
+	def findPointedEntries(self, func):
 		return sorted([e for e in self.node if e.point.isOn()], key = func)
 
 EOM

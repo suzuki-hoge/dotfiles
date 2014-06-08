@@ -8,7 +8,7 @@ class cEdit(cBase):
 
 	def do(self):
 		func = lambda e: vim.command('tabedit %s' % e.path.value)
-		[func(e) for e in self.entries]
+		[func(e) for e in self.entries if e.type.isFile()]
 
 	def undo(self):
 		pass

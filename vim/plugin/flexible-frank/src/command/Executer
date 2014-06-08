@@ -93,13 +93,19 @@ def AllFoldOff():
 
 @ForbiddenTarget(dir)
 def edit():
-	es = frank.getPointedEntriesOrderByPath()
+	es = frank.findPointedEntriesOrderByPath()
+	if not es:
+		e = frank.findOneByCursor()
+		es = [e]
 	command = cEdit(es)
 	command.do()
 
 @ForbiddenTarget(dir)
 def Edit():
-	es = frank.getPointedEntriesOrderByPoint()
+	es = frank.findPointedEntriesOrderByPoint()
+	if not es:
+		e = frank.findOneByCursor()
+		es = [e]
 	command = cEdit(es)
 	command.do()
 
