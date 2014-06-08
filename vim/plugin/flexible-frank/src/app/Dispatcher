@@ -49,6 +49,9 @@ elif action == 'AllFoldOff':
 elif action == 'CloseAll':
 	Tab.closeAll()
 
+elif action == 'edit':
+	edit()
+
 elif action == 'Edit':
 	Edit()
 

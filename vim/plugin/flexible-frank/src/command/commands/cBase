@@ -1,0 +1,12 @@
+" vim:set ft=vim:
+python <<EOM
+
+class cBase():
+
+	def do(self):
+		pass
+
+	def undo(self):
+		pass
+
+EOM

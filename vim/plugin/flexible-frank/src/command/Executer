@@ -92,8 +92,14 @@ def AllFoldOff():
 	[e.recFoldOff() for e in es]
 
 @ForbiddenTarget(dir)
+def edit():
+	es = frank.getPointedEntriesOrderByPath()
+	command = cEdit(es)
+	command.do()
+
+@ForbiddenTarget(dir)
 def Edit():
-	es = frank.getPointedEntries()
+	es = frank.getPointedEntriesOrderByPoint()
 	command = cEdit(es)
 	command.do()
 
