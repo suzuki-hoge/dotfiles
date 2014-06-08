@@ -1,9 +1,9 @@
 " vim:set ft=vim:
 python <<EOM
 
-@FindOneByCursor
 def dump():
 	print frank
+	e = frank.findOneByCursor()
 	e._dump()
 
 def Dump():
@@ -15,14 +15,14 @@ def Reload():
 	global frank
 	frank = Frank(pathStacks[-1])
 
-@FindOneByCursor
 @Output
 def PointOn():
+	e = frank.findOneByCursor()
 	e.pointOn()
 
-@FindOneByCursor
 @Output
 def PointOff():
+	e = frank.findOneByCursor()
 	e.pointOff()
 
 @Output
@@ -41,40 +41,40 @@ def MovePrev():
 	frank = Frank(prevPath)
 
 @ForbiddenTarget(file)
-@FindOneByCursor
 @Output
 def ChangeDir():
+	global frank
+	e = frank.findOneByCursor()
 	changePath = e.path.value
 	pathStacks.append(changePath)
-	global frank
 	frank = Frank(changePath)
 
 @RestoreCursor
-@FindOneByCursor
 @Output
 @ReNumbering
 def FoldOn():
+	e = frank.findOneByCursor()
 	e.foldOn()
 
 @RestoreCursor
-@FindOneByCursor
 @Output
 @ReNumbering
 def FoldOff():
+	e = frank.findOneByCursor()
 	e.foldOff()
 
 @RestoreCursor
-@FindOneByCursor
 @Output
 @ReNumbering
 def RecFoldOn():
+	e = frank.findOneByCursor()
 	e.recFoldOn()
 
 @RestoreCursor
-@FindOneByCursor
 @Output
 @ReNumbering
 def RecFoldOff():
+	e = frank.findOneByCursor()
 	e.recFoldOff()
 
 @RestoreCursor
@@ -90,5 +90,11 @@ def AllFoldOn():
 def AllFoldOff():
 	es = frank.getNodeSubs()
 	[e.recFoldOff() for e in es]
+
+@ForbiddenTarget(dir)
+def Edit():
+	es = frank.getPointedEntries()
+	command = cEdit(es)
+	command.do()
 
 EOM

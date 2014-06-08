@@ -1,13 +1,6 @@
 " vim:set ft=vim:
 python <<EOM
 
-def FindOneByCursor(func):
-	def _FindOneByCursor():
-		global e
-		e = frank.findOneByCursor()
-		func()
-	return _FindOneByCursor
-
 def Output(func):
 	def _Output():
 		func()
