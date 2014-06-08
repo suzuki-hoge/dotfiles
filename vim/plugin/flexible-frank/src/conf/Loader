@@ -31,6 +31,8 @@ source $_frank_command/Executer
 source $_frank_commands/cBase
 source $_frank_commands/cEdit
 source $_frank_commands/cOpen
+source $_frank_commands/cApp
+source $_frank_commands/cQuick
 
 source $_frank_fundtamental/Num
 source $_frank_fundtamental/Path

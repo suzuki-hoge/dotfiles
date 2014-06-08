@@ -91,7 +91,7 @@ def AllFoldOff():
 	es = frank.getNodeSubs()
 	[e.recFoldOff() for e in es]
 
-@ForbiddenTarget(dir)
+@ForbiddenTarget(directory)
 def edit():
 	es = frank.findPointedEntriesOrderByPath()
 	if not es:
@@ -100,7 +100,7 @@ def edit():
 	command = cEdit(es)
 	command.do()
 
-@ForbiddenTarget(dir)
+@ForbiddenTarget(directory)
 def Edit():
 	es = frank.findPointedEntriesOrderByPoint()
 	if not es:
@@ -113,6 +113,18 @@ def Edit():
 def Open():
 	e = frank.findOneByCursor()
 	command = cOpen(e)
+	command.do()
+
+@ForbiddenTarget(directory)
+def App():
+	e = frank.findOneByCursor()
+	command = cApp(e)
+	command.do()
+
+@ForbiddenTarget(directory)
+def Quick():
+	e = frank.findOneByCursor()
+	command = cQuick(e)
 	command.do()
 
 EOM
