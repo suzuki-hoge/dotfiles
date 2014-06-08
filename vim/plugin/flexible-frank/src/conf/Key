@@ -23,5 +23,7 @@ function! KeyMapping()
 	nnoremap <buffer> e  :call ActionDispatch('edit')<CR>
 	nnoremap <buffer> E  :call ActionDispatch('Edit')<CR>
 
+	nnoremap <buffer> o  :call ActionDispatch('Open')<CR>
+
 	nnoremap <buffer> <C-Space> :call ActionDispatch('CloseAll')<CR>
 endfunction

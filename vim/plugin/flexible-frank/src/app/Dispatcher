@@ -55,5 +55,8 @@ elif action == 'edit':
 elif action == 'Edit':
 	Edit()
 
+elif action == 'Open':
+	Open()
+
 EOM
 endfunction

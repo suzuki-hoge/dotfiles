@@ -1,11 +1,17 @@
 " vim:set ft=vim:
 python <<EOM
 
+from abc import ABCMeta, abstractmethod
+
 class cBase():
 
+	__metaclass__ = ABCMeta
+
+	@abstractmethod
 	def do(self):
 		pass
 
+	@abstractmethod
 	def undo(self):
 		pass
 

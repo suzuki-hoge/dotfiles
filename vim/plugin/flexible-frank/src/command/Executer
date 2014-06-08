@@ -109,4 +109,10 @@ def Edit():
 	command = cEdit(es)
 	command.do()
 
+@ForbiddenTarget(file)
+def Open():
+	e = frank.findOneByCursor()
+	command = cOpen(e)
+	command.do()
+
 EOM

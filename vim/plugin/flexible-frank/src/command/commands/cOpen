@@ -1,0 +1,16 @@
+" vim:set ft=vim:
+python <<EOM
+
+class cOpen(cBase):
+
+	def __init__(self, entry):
+		self.entry = entry
+
+	def do(self):
+		func = lambda e: vim.command('silent !open %s' % e.path.value)
+		func(self.entry)
+
+	def undo(self):
+		pass
+
+EOM
