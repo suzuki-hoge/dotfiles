@@ -36,11 +36,7 @@ class Frank:
 	def findOneByCursor(self):
 		num = self._getCursorLineNum()
 
-		for e in self.node:
-			if e.num.isTarget(num):
-				return e
-
-		# exception
+		return [e for e in self.node if e.num.isTarget(num)][0]
 
 	def getNodeSubs(self):
 		return self.node.getSubs()
@@ -56,5 +52,9 @@ class Frank:
 
 	def findPointedEntries(self, func):
 		return sorted([e for e in self.node if e.point.isOn()], key = func)
+
+	def findListOrFindByCursor(self, func):
+		es = func()
+		return es if es else [self.findOneByCursor()]
 
 EOM
