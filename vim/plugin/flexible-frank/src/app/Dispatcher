@@ -49,6 +49,12 @@ elif action == 'AllFoldOff':
 elif action == 'CloseAll':
 	Tab.closeAll()
 
+elif action == 'NextDir':
+	NextDir()
+
+elif action == 'PrevDir':
+	PrevDir()
+
 elif action == 'edit':
 	edit()
 

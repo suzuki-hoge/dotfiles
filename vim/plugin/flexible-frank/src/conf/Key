@@ -20,6 +20,9 @@ function! KeyMapping()
 	nnoremap <buffer> FH :call ActionDispatch('AllFoldOn')<CR>
 	nnoremap <buffer> FL :call ActionDispatch('AllFoldOff')<CR>
 
+	nnoremap <buffer> mn :call ActionDispatch('NextDir')<CR>
+	nnoremap <buffer> mN :call ActionDispatch('PrevDir')<CR>
+
 	nnoremap <buffer> e  :call ActionDispatch('edit')<CR>
 	nnoremap <buffer> E  :call ActionDispatch('Edit')<CR>
 

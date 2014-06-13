@@ -91,6 +91,14 @@ def AllFoldOff():
 	es = frank.getNodeSubs()
 	[e.recFoldOff() for e in es]
 
+def NextDir():
+	vim.command('/[a-z]*\/$')
+	vim.command('normal w')
+
+def PrevDir():
+	vim.command('?[a-z]*\/$')
+	vim.command('normal w')
+
 @ForbiddenTarget(directory)
 def edit():
 	es = frank.findListOrFindByCursor(frank.findPointedEntriesOrderByPoint)
