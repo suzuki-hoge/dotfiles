@@ -35,3 +35,4 @@ source $subrc/mark
 source $subrc/plugin
 source $subrc/options
 source $subrc/tab
+source $subrc/vundle
