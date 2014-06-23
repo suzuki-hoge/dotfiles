@@ -6,5 +6,6 @@ set rtp+=~/.vim/vundle.git
 call vundle#rc()
 
 Bundle 'majutsushi/tagbar'
+Bundle 'thinca/vim-ref'
 
 filetype plugin indent on
