@@ -5,11 +5,18 @@ source $pete/pete/Base
 source $pete/pete/Python
 source $pete/pete/Shell
 source $pete/pete/Vim
+source $pete/pete/Scala
 
 let $PETE_COMMENT_ON  = 0
 let $PETE_COMMENT_OFF = 1
 let $PETE_COMMENT_OFF = 2
 let $PETE_RUN         = 3
+
+augroup autocmdPete
+	autocmd!
+augroup END
+
+autocmd autocmdPete BufEnter  *.scala set filetype=scala
 
 function! PetroniusTheArbiter(mode) range
 python <<EOM
@@ -52,5 +59,8 @@ def createPete(fileType):
 
 	elif fileType == 'vim':
 		return Vim()
+
+	elif fileType == 'scala':
+		return Scala()
 
 EOM
