@@ -6,6 +6,9 @@ source $pete/pete/Python
 source $pete/pete/Shell
 source $pete/pete/Vim
 source $pete/pete/Scala
+source $pete/pete/Html
+source $pete/pete/Javascript
+source $pete/pete/Css
 
 let $PETE_COMMENT_ON  = 0
 let $PETE_COMMENT_OFF = 1
@@ -66,5 +69,14 @@ def createPete(fileType):
 
 	elif fileType == 'scala':
 		return Scala()
+
+	elif fileType == 'html':
+		return Html()
+
+	elif fileType == 'javascript':
+		return Javascript()
+
+	elif fileType == 'css':
+		return Css()
 
 EOM
