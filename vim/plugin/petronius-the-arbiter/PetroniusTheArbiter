@@ -6,11 +6,15 @@ source $pete/pete/Python
 source $pete/pete/Shell
 source $pete/pete/Vim
 source $pete/pete/Scala
+source $pete/pete/Html
+source $pete/pete/Javascript
+source $pete/pete/Css
 
 let $PETE_COMMENT_ON  = 0
 let $PETE_COMMENT_OFF = 1
 let $PETE_COMMENT_OFF = 2
 let $PETE_RUN         = 3
+let $PETE_RELOAD      = 4
 
 augroup autocmdPete
 	autocmd!
@@ -49,6 +53,9 @@ def call(mode, fileType, firstLine, lastLine):
 	
 	elif mode == vim.eval('$PETE_RUN'):
 		pete.run()
+
+	elif mode == vim.eval('$PETE_RELOAD'):
+		pete.browserReload()
 	
 def createPete(fileType):
 	if fileType == 'python':
@@ -62,5 +69,14 @@ def createPete(fileType):
 
 	elif fileType == 'scala':
 		return Scala()
+
+	elif fileType == 'html':
+		return Html()
+
+	elif fileType == 'javascript':
+		return Javascript()
+
+	elif fileType == 'css':
+		return Css()
 
 EOM

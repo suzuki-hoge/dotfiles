@@ -32,4 +32,9 @@ class Base:
 	def run(self):
 		pass
 
+	def browserReload(self, browser = 'chrome'):
+		script = '%s/%s.app' % (os.path.join(vim.eval('$pete'), 'scripts', 'reload'), browser)
+
+		vim.command('silent !open %s' % script)
+
 EOM

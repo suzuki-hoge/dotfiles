@@ -1,0 +1,19 @@
+" vim:set ft=vim:
+
+python <<EOM
+
+class Html(Base):
+
+	def __init__(self):
+		Base.__init__(self)
+
+	def getHeadMark(self):
+		return '<!--'
+
+	def getTailMark(self):
+		return '-->'
+
+	def run(self):
+		self.browserReload()
+
+EOM
