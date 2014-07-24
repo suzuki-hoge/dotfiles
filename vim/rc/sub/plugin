@@ -14,6 +14,8 @@ vnoremap ¿ :call PetroniusTheArbiter($PETE_COMMENT_SWITCH)<CR>
 
 command! W wall | call PetroniusTheArbiter($PETE_RUN)
 
+command! R wall | call PetroniusTheArbiter($PETE_RELOAD)
+
 source $frank/src/conf/Loader
 
 nnoremap <S-M-CR> :FF .<CR>
