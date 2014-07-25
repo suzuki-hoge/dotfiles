@@ -19,4 +19,7 @@ class Vim(Base):
 	def run(self):
 		pass
 
+	def getDebugLines(self, var):
+		return []
+
 EOM

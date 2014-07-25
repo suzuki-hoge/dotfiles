@@ -16,4 +16,7 @@ class Shell(Base):
 	def run(self):
 		vim.command('!sh %')
 
+	def getDebugLines(self, var):
+		return []
+
 EOM

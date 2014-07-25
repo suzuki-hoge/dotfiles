@@ -37,4 +37,20 @@ class Base:
 
 		vim.command('silent !open %s' % script)
 
+	def debug(self, option):
+		 var = option if not option == '' else self.getUnderCursorWord()
+		 self.addDebugLines(var)
+
+	def getUnderCursorWord(self):
+		return vim.eval("expand('<cword>')")
+
+	def addDebugLines(self, var):
+		lines = self.getDebugLines(var)
+		for line in lines:
+			vim.command('normal o%s' % line)
+
+	@abstractmethod
+	def getDebugLines(self, var):
+		pass
+
 EOM

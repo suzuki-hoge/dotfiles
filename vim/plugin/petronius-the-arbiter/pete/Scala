@@ -16,4 +16,7 @@ class Scala(Base):
 	def run(self):
 		vim.command('!scala %')
 
+	def getDebugLines(self, var):
+		return []
+
 EOM

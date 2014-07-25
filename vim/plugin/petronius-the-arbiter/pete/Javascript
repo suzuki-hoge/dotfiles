@@ -16,4 +16,11 @@ class Javascript(Base):
 	def run(self):
 		self.browserReload()
 
+	def getDebugLines(self, var):
+		return [
+			'',
+			'console.log(%s)' % var,
+			''
+		]
+
 EOM

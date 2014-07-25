@@ -16,4 +16,11 @@ class Python(Base):
 	def run(self):
 		vim.command('!python -B %')
 
+	def getDebugLines(self, var):
+		return [
+			'',
+			'print %s' % var,
+			''
+		]
+
 EOM
