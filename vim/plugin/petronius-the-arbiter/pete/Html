@@ -16,4 +16,7 @@ class Html(Base):
 	def run(self):
 		self.browserReload()
 
+	def getDebugLines(self, var):
+		return []
+
 EOM

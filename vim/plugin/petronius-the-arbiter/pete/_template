@@ -16,4 +16,7 @@ class _template(Base):
 	def run(self):
 		pass
 
+	def addDebugLines(self, var):
+		pass
+
 EOM
