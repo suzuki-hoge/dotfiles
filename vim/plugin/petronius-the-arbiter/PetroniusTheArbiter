@@ -9,6 +9,7 @@ source $pete/pete/Scala
 source $pete/pete/Html
 source $pete/pete/Javascript
 source $pete/pete/Css
+source $pete/pete/HtmlDjango
 
 let $PETE_COMMENT_ON     = 0
 let $PETE_COMMENT_OFF    = 1
@@ -94,5 +95,8 @@ def createPete(fileType):
 
 	elif fileType == 'css':
 		return Css()
+
+	elif fileType == 'htmldjango':
+		return HtmlDjango()
 
 EOM
