@@ -8,9 +8,10 @@ let $rc    = $dot . '/vim/rc/myvimrc'
 let $subrc = $dot . '/vim/rc/sub'
 
 " plugin
-let $plugin = $dot . '/vim/plugin'
-let $pete   = $plugin . '/petronius-the-arbiter'
-let $frank  = $plugin . '/flexible-frank'
+let $plugin      = $dot . '/vim/plugin'
+let $pete        = $plugin . '/petronius-the-arbiter'
+let $frank       = $plugin . '/flexible-frank'
+let $surroundtag = $plugin . '/surround-tag'
 
 " tmp
 let $tmp = $HOME . '/Documents/tmp'
