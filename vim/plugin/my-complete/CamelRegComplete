@@ -11,18 +11,17 @@ function! CamelRegComplete(findstart, base)
 
     let words = GetWord()
 	let pattern = CreatePattern(a:base)
-	echomsg pattern
 
 	return Filter(words, pattern)
 endfunction
 
 function! FindWordHeadPos()
 	let currentLine = strpart(getline('.'), 0, col('.') - 1)
-	return match(currentLine, '\f*$')
+	return match(currentLine, '[a-zA-Z*_]*$')
 endfunction
 
 function! GetWord()
-	return ['serviceEntity', 'serviceEntities', 'serviceRepository', 'serviceRequestMapper', 'serviceEntityList', 'serverEntityList']
+	return ['serviceEntity', 'serviceEntities', 'serviceRepository', 'serviceRequestMapper', 'serviceEntityList', 'serverEntityList', 'serverEntityLink']
 endfunction
 
 function! CreatePattern(base)
@@ -55,12 +54,17 @@ for c in vim.eval('a:base'):
 			f = '%s.*%s.*'
 		else:
 			f = '%s%s.*'
+	elif c == '*':
+		f = '%s.%s'
 	else:
 		f = '%s%s'
 
 	r = f % (r, c)
 
-vim.command('return "^%s$"' % r)
+if '*' in r:
+	vim.command('return "^%s$"' % r)
+else:
+	vim.command('return "^%s"' % r)
 
 EOM
 endfunction
@@ -74,12 +78,17 @@ python << EOM
 
 cases = Cases('CreateReg')
 
-cases.add('service',  '^service$')
-cases.add('serviceE', '^service.*E.*$')
-cases.add('sEL',      '^s.*E.*L.*$')
-cases.add('sEy',      '^s.*E.*y$')
-cases.add('serviEL',  '^servi.*E.*L.*$')
-cases.add('serviEs',  '^servi.*E.*s$')
+cases.add('service',   '^service')
+cases.add('serviceE',  '^service.*E.*$')
+cases.add('sEL',       '^s.*E.*L.*$')
+cases.add('sEy',       '^s.*E.*y$')
+cases.add('serviEL',   '^servi.*E.*L.*$')
+cases.add('serviEs',   '^servi.*E.*s$')
+cases.add('s*vice',    '^s.*vice$')
+cases.add('s*vice*',   '^s.*vice.*$')
+cases.add('s*viceEs',  '^s.*vice.*E.*s$')
+cases.add('s*viceEL',  '^s.*vice.*E.*L.*$')
+cases.add('s*viceELt', '^s.*vice.*E.*L.*t$')
 
 cases.test()
 
@@ -105,6 +114,8 @@ class Cases:
 
 	def __output(self, actual, case):
 		print '[%s] %s(%s) -> %s' % ('OK' if case.expected == actual else 'NG', self.func, case.base, actual)
+		if case.expected != actual:
+			print '  expected : %s\n  actual   : %s' % (case.expected, actual)
 
 	def __test(self, case):
 		return vim.eval("%s('%s')" % (self.func, case.base))
