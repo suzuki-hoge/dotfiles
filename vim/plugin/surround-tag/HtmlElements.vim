@@ -20,6 +20,12 @@ def isFirstArg():
 	CmdLine = vim.eval('a:CmdLine')
 	return True if CmdLine.count(' ') == 1 else False
 
+def toString(func):
+	def _toString():
+		list = func()
+		return "\n".join(list)
+	return _toString
+
 @toString
 def tagComplete():
 	path = vim.eval('$SURR_TAG_TAGS')
@@ -35,12 +41,6 @@ def isNotDup(line):
 
 def byList(path, func):
 	return [line.strip() for line in open(path).readlines() if func(line)]
-
-def toString(func):
-	def _toString():
-		list = func()
-		return "\n".join(list)
-	return _toString
 
 def toVim(line):
 	vim.command('return "%s"' % line)

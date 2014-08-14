@@ -1,0 +1,118 @@
+" vim:set ft=vim:
+
+setlocal completefunc=CamelRegComplete
+
+inoremap <RIGHT> <C-x><C-u>
+
+function! CamelRegComplete(findstart, base)
+    if a:findstart
+		return FindWordHeadPos()
+    endif
+
+    let words = GetWord()
+	let pattern = CreatePattern(a:base)
+	echomsg pattern
+
+	return Filter(words, pattern)
+endfunction
+
+function! FindWordHeadPos()
+	let currentLine = strpart(getline('.'), 0, col('.') - 1)
+	return match(currentLine, '\f*$')
+endfunction
+
+function! GetWord()
+	return ['serviceEntity', 'serviceEntities', 'serviceRepository', 'serviceRequestMapper', 'serviceEntityList', 'serverEntityList']
+endfunction
+
+function! CreatePattern(base)
+	if a:base == ''
+		return '.*'
+	else
+		return CreateReg(a:base)
+	endif
+endfunction
+
+function! Filter(words, pattern)
+    let result = []
+    for word in a:words
+		if word =~# a:pattern
+			call add(result, {'word' : word})
+		endif
+    endfor
+
+    return result
+endfunction
+
+function! CreateReg(base)
+python << EOM
+r = ''
+firstUpper = True
+for c in vim.eval('a:base'):
+	if c.isupper():
+		if firstUpper:
+			firstUpper = False
+			f = '%s.*%s.*'
+		else:
+			f = '%s%s.*'
+	else:
+		f = '%s%s'
+
+	r = f % (r, c)
+
+vim.command('return "^%s$"' % r)
+
+EOM
+endfunction
+
+
+
+
+
+function! CreateRegTest()
+python << EOM
+
+cases = Cases('CreateReg')
+
+cases.add('service',  '^service$')
+cases.add('serviceE', '^service.*E.*$')
+cases.add('sEL',      '^s.*E.*L.*$')
+cases.add('sEy',      '^s.*E.*y$')
+cases.add('serviEL',  '^servi.*E.*L.*$')
+cases.add('serviEs',  '^servi.*E.*s$')
+
+cases.test()
+
+EOM
+endfunction
+
+python << EOM
+
+class Cases:
+
+	def __init__(self, func):
+		self.func = func
+		self.cases = []
+
+	def add(self, base, expected):
+		case = Case(base, expected)
+		self.cases.append(case)
+
+	def test(self):
+		for case in self.cases:
+			actual = self.__test(case)
+			self.__output(actual, case)
+
+	def __output(self, actual, case):
+		print '[%s] %s(%s) -> %s' % ('OK' if case.expected == actual else 'NG', self.func, case.base, actual)
+
+	def __test(self, case):
+		return vim.eval("%s('%s')" % (self.func, case.base))
+
+	class Case:
+
+		def __init__(self, base, expected):
+			self.base = base
+			self.expected = expected
+
+EOM

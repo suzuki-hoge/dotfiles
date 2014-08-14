@@ -32,3 +32,5 @@ nnoremap gw      <C-w>w
 source $surroundtag/SurroundTag.vim
 command!        -nargs=* -complete=custom,HtmlElements NTag  :              call SurroundTag($SURR_TAG_NORMAL, <f-args>)
 command! -range -nargs=* -complete=custom,HtmlElements VTag :<line1>,<line2>call SurroundTag($SURR_TAG_VISUAL, <f-args>)
+
+source $mycomplete/CamelRegComplete
