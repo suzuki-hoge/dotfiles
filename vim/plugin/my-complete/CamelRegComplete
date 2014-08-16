@@ -21,7 +21,7 @@ function! FindWordHeadPos()
 endfunction
 
 function! GetWord()
-	return ['serviceEntity', 'serviceEntities', 'serviceRepository', 'serviceRequestMapper', 'serviceEntityList', 'serverEntityList', 'serverEntityLink']
+	return ['serviceEntity', 'serviceEntities', 'serviceRepository', 'serviceRequestMapper', 'serviceEntityList', 'serverEntityList', 'serverEntityLink', 'memberEntity']
 endfunction
 
 function! CreatePattern(base)
@@ -73,57 +73,89 @@ endfunction
 
 
 
-function! CreateRegTest()
+command! -bar TimerStart let start_time = reltime()
+command! -bar TimerEnd   echo reltimestr(reltime(start_time)) | unlet start_time
+
+
+
+
+function! FindByPythonWithCompile()
 python << EOM
 
-cases = Cases('CreateReg')
+pattern = re.compile(r'[A-Za-z_]*[A-Za-z_]')
+words = lambda line: pattern.findall(line)
 
-cases.add('service',   '^service')
-cases.add('serviceE',  '^service.*E.*$')
-cases.add('sEL',       '^s.*E.*L.*$')
-cases.add('sEy',       '^s.*E.*y$')
-cases.add('serviEL',   '^servi.*E.*L.*$')
-cases.add('serviEs',   '^servi.*E.*s$')
-cases.add('s*vice',    '^s.*vice$')
-cases.add('s*vice*',   '^s.*vice.*$')
-cases.add('s*viceEs',  '^s.*vice.*E.*s$')
-cases.add('s*viceEL',  '^s.*vice.*E.*L.*$')
-cases.add('s*viceELt', '^s.*vice.*E.*L.*t$')
+import vim
+result = []
+for buf in vim.buffers:
+	for line in buf:
+		result = result + words(line)
 
-cases.test()
-
+vim.command('return %s' % len(result))
 EOM
 endfunction
 
+function! FindByPython()
 python << EOM
 
-class Cases:
+pattern = r'[A-Za-z_]*[A-Za-z_]'
+words = lambda line: re.findall(pattern, line)
 
-	def __init__(self, func):
-		self.func = func
-		self.cases = []
 
-	def add(self, base, expected):
-		case = Case(base, expected)
-		self.cases.append(case)
+import vim
+result = []
+for buf in vim.buffers:
+	for line in buf:
+		result = result + words(line)
 
-	def test(self):
-		for case in self.cases:
-			actual = self.__test(case)
-			self.__output(actual, case)
-
-	def __output(self, actual, case):
-		print '[%s] %s(%s) -> %s' % ('OK' if case.expected == actual else 'NG', self.func, case.base, actual)
-		if case.expected != actual:
-			print '  expected : %s\n  actual   : %s' % (case.expected, actual)
-
-	def __test(self, case):
-		return vim.eval("%s('%s')" % (self.func, case.base))
-
-	class Case:
-
-		def __init__(self, base, expected):
-			self.base = base
-			self.expected = expected
-
+vim.command('return %s' % len(result))
 EOM
+endfunction
+
+function! FindByVimscript()
+	let result = []
+	for i in range(1, bufnr('$'))
+		let lines = getbufline(bufname(i), 1, '$')
+		for line in lines
+			let result += split(line, '[^A-Za-z_]')
+		endfor
+	endfor
+
+	return len(result)
+endfunction
+
+
+function! Call()
+echo 'find by python...'
+echo 'matched : ' . FindByPython()
+
+for i in range(10)
+	TimerStart
+	call FindByPython()
+	TimerEnd
+endfor
+
+
+
+
+echo 'find by python with compile...'
+echo 'matched : ' . FindByPythonWithCompile()
+
+for i in range(10)
+	TimerStart
+	call FindByPythonWithCompile()
+	TimerEnd
+endfor
+
+
+
+
+echo 'find by vimscript...'
+echo 'matched : ' . FindByVimscript()
+
+for i in range(10)
+	TimerStart
+	call FindByVimscript()
+	TimerEnd
+endfor
+endfunction
