@@ -1,8 +1,6 @@
 " vim:set ft=vim:
 
-setlocal completefunc=CamelRegComplete
-
-inoremap <RIGHT> <C-x><C-u>
+autocmd BufEnter * :set completefunc=CamelRegComplete
 
 function! CamelRegComplete(findstart, base)
     if a:findstart
@@ -12,7 +10,7 @@ function! CamelRegComplete(findstart, base)
     let words = FindWords()
 	let pattern = CreatePattern(a:base)
 
-	return CompleteAdd(words, pattern)
+	call CompleteAdd(words, pattern)
 endfunction
 
 function! FindWordHeadPos()
@@ -23,7 +21,8 @@ endfunction
 function! FindWords()
 python << EOM
 
-pattern = re.compile(r'[A-Za-z_]*[A-Za-z_]')
+pattern = re.compile(r'\w\w*\w')
+
 words = lambda line: pattern.findall(line)
 
 import vim
@@ -32,7 +31,7 @@ for buf in vim.buffers:
 	for line in buf:
 		result = result + words(line)
 
-vim.command('return %s' % sorted(result))
+vim.command('return %s' % sorted(result, key=lambda c: c.lower()))
 
 EOM
 endfunction

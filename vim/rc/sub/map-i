@@ -15,9 +15,9 @@ inoremap <C-w> <C-w>
 inoremap <C-k> <C-o><S-d>
 inoremap <C-u> <C-u>
 
-" complement
-inoremap <M-CR>   <C-p>
-inoremap <S-M-CR> <C-n>
-
 " auto ime off
 inoremap <ESC> <ESC>:set iminsert=0<CR>
+
+" complete-func
+inoremap <expr> <M-CR>   pumvisible() ? "\<C-p>" : "\<C-x><C-u>"
+inoremap <expr> <S-M-CR> pumvisible() ? "\<C-n>" : "\<C-x><C-u>"
