@@ -9,10 +9,10 @@ function! CamelRegComplete(findstart, base)
 		return FindWordHeadPos()
     endif
 
-    let words = GetWord()
+    let words = FindWords()
 	let pattern = CreatePattern(a:base)
 
-	return Filter(words, pattern)
+	return CompleteAdd(words, pattern)
 endfunction
 
 function! FindWordHeadPos()
@@ -20,66 +20,7 @@ function! FindWordHeadPos()
 	return match(currentLine, '[a-zA-Z*_]*$')
 endfunction
 
-function! GetWord()
-	return ['serviceEntity', 'serviceEntities', 'serviceRepository', 'serviceRequestMapper', 'serviceEntityList', 'serverEntityList', 'serverEntityLink', 'memberEntity']
-endfunction
-
-function! CreatePattern(base)
-	if a:base == ''
-		return '.*'
-	else
-		return CreateReg(a:base)
-	endif
-endfunction
-
-function! Filter(words, pattern)
-    let result = []
-    for word in a:words
-		if word =~# a:pattern
-			call add(result, {'word' : word})
-		endif
-    endfor
-
-    return result
-endfunction
-
-function! CreateReg(base)
-python << EOM
-r = ''
-firstUpper = True
-for c in vim.eval('a:base'):
-	if c.isupper():
-		if firstUpper:
-			firstUpper = False
-			f = '%s.*%s.*'
-		else:
-			f = '%s%s.*'
-	elif c == '*':
-		f = '%s.%s'
-	else:
-		f = '%s%s'
-
-	r = f % (r, c)
-
-if '*' in r:
-	vim.command('return "^%s$"' % r)
-else:
-	vim.command('return "^%s"' % r)
-
-EOM
-endfunction
-
-
-
-
-
-command! -bar TimerStart let start_time = reltime()
-command! -bar TimerEnd   echo reltimestr(reltime(start_time)) | unlet start_time
-
-
-
-
-function! FindByPythonWithCompile()
+function! FindWords()
 python << EOM
 
 pattern = re.compile(r'[A-Za-z_]*[A-Za-z_]')
@@ -91,71 +32,52 @@ for buf in vim.buffers:
 	for line in buf:
 		result = result + words(line)
 
-vim.command('return %s' % len(result))
+vim.command('return %s' % sorted(result))
+
 EOM
 endfunction
 
-function! FindByPython()
+function! CreatePattern(base)
+	if a:base == ''
+		return '.*'
+	else
+		return CreateReg(a:base)
+	endif
+endfunction
+
+function! CreateReg(base)
 python << EOM
 
-pattern = r'[A-Za-z_]*[A-Za-z_]'
-words = lambda line: re.findall(pattern, line)
+result = ''
+firstUpper = True
+for c in vim.eval('a:base'):
+	if c.isupper():
+		if firstUpper:
+			firstUpper = False
+			tmpformat = '%s.*%s.*'
+		else:
+			tmpformat = '%s%s.*'
+	elif c == '*':
+		tmpformat = '%s.%s'
+	else:
+		tmpformat = '%s%s'
+
+	result = tmpformat % (result, c)
 
 
-import vim
-result = []
-for buf in vim.buffers:
-	for line in buf:
-		result = result + words(line)
+lastformat = '^%s$' if '*' in result else '^%s'
 
-vim.command('return %s' % len(result))
+vim.command('return "%s"' % (lastformat % result))
+
 EOM
 endfunction
 
-function! FindByVimscript()
-	let result = []
-	for i in range(1, bufnr('$'))
-		let lines = getbufline(bufname(i), 1, '$')
-		for line in lines
-			let result += split(line, '[^A-Za-z_]')
-		endfor
-	endfor
-
-	return len(result)
+function! CompleteAdd(words, pattern)
+    for word in a:words
+		if word =~# a:pattern
+			call complete_add({'word' : word})
+		endif
+    endfor
 endfunction
 
-
-function! Call()
-echo 'find by python...'
-echo 'matched : ' . FindByPython()
-
-for i in range(10)
-	TimerStart
-	call FindByPython()
-	TimerEnd
-endfor
-
-
-
-
-echo 'find by python with compile...'
-echo 'matched : ' . FindByPythonWithCompile()
-
-for i in range(10)
-	TimerStart
-	call FindByPythonWithCompile()
-	TimerEnd
-endfor
-
-
-
-
-echo 'find by vimscript...'
-echo 'matched : ' . FindByVimscript()
-
-for i in range(10)
-	TimerStart
-	call FindByVimscript()
-	TimerEnd
-endfor
-endfunction
+source $mycomplete/CamelRegCompleteTest
