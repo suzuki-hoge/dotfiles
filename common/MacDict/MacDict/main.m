@@ -32,7 +32,7 @@ Boolean isTarget(NSObject *available)
 
 DCSDictionaryRef getDict()
 {
-    DCSDictionaryRef dict;
+    DCSDictionaryRef dict = NULL;
     for (NSObject *available in DCSCopyAvailableDictionaries())
         if (isTarget(available))
             dict = (__bridge DCSDictionaryRef)available;
@@ -56,10 +56,16 @@ NSString *lookUp(DCSDictionaryRef dict, CFStringRef word, CFRange range)
 
 void output(NSString *result)
 {
-    if (result)
-        printf("%s", [result UTF8String]);
-    else
-        printf("%s", [@"no hit" UTF8String]);
+    for (NSInteger index = 0; index < result.length; index++) {
+        UniChar c = [result characterAtIndex:index];
+        NSString *s = [NSString stringWithFormat:@"%C", c];
+        switch (c) {
+            case L'▸':
+                return;
+            default:
+                printf("%s", [s cStringUsingEncoding:NSUTF8StringEncoding]);
+        }
+    }
 }
 
 int main(int argc, char** argv)
