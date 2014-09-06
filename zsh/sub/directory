@@ -3,21 +3,6 @@
 # ディレクトリ名のみで移動
 setopt auto_cd
 
-# 移動するたびにディレクトリスタックに積む
-setopt AUTO_PUSHD
-
-# ディレクトリスタックを重複させない
-setopt PUSHD_IGNORE_DUPS
-
-# ディレクトリスタック一覧からディレクトリを選択して移動する
-function percol_select_dirstack_entry() {
- BUFFER=`dirs -pl | percol --match-method regex --query "$LBUFFER"`
- CURSOR=$#BUFFER
- zle clear-screen
-}
-zle -N percol_select_dirstack_entry
-bindkey '^J' percol_select_dirstack_entry
-
 # ディレクトリを作成してそこに移動する
 function take() {
  mkdir -p $1
