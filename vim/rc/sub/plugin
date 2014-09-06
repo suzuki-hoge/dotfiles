@@ -34,3 +34,5 @@ command!        -nargs=* -complete=custom,HtmlElements NTag  :              call
 command! -range -nargs=* -complete=custom,HtmlElements VTag :<line1>,<line2>call SurroundTag($SURR_TAG_VISUAL, <f-args>)
 
 source $mycomplete/CamelRegComplete
+
+source $todoplg/conf

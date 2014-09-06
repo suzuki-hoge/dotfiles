@@ -13,6 +13,7 @@ let $pete        = $plugin . '/petronius-the-arbiter'
 let $frank       = $plugin . '/flexible-frank'
 let $surroundtag = $plugin . '/surround-tag'
 let $mycomplete  = $plugin . '/my-complete'
+let $todoplg     = $plugin . '/todo'
 
 " tmp
 let $tmp = $HOME . '/Documents/tmp'
@@ -24,7 +25,7 @@ let $workspace = $HOME . '/Documents/workspace'
 let $private = $HOME . '/Library/Application Support/KeyRemap4MacBook/private.xml'
 
 " todo
-let $todo = $HOME . '/Dropbox/todo.txt'
+let $todo = $HOME . '/Dropbox/list.todo'
 
 " import subrc
 source $subrc/autocommands

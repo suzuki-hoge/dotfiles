@@ -28,3 +28,5 @@ alias -g P="| percol --match-method regex | xargs"
 function qlook(){
  qlmanage -p $1 >& /dev/null
 }
+
+alias todo="vim /Users/ryo/Dropbox/todo.txt"
