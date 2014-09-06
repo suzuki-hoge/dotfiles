@@ -28,14 +28,3 @@ alias -g P="| percol --match-method regex | xargs"
 function qlook(){
  qlmanage -p $1 >& /dev/null
 }
-
-alias commands_add=" history -1 | cut -c7- | sed -e 's/$/ #(0)/' | xargs echo >> $COMMANDS;vi $COMMANDS"
-
-function percol_select_command() {
- LINE=`cat $COMMANDS | percol --match-method regex --query "$LBUFFER"`
- BUFFER=`echo $LINE | sed -e "s/ #.*//"`
- CURSOR=`echo $LINE | sed -e "s/^.*(\(.*\)).*$/\1/"`
- zle clear-screen
-}
-zle -N percol_select_command
-bindkey '^V' percol_select_command
