@@ -1,4 +1,3 @@
-" Quit when a (custom) syntax file was already loaded
 if exists("b:current_syntax")
   finish
 endif
@@ -6,12 +5,13 @@ endif
 let s:cpo_save = &cpo
 set cpo&vim
 
-"タブで始まり最後に半角スペースが入るもの
-syntax match feDir "\t*.\+\s$"
+syntax match done  "^\s*+ .*$"
+syntax match doing "^\s*# .*$"
+syntax match yet   "^\s*- .*"
 
-" Define the default highlighting.
-" Only used when an item doesn't have highlighting yet
-hi def link feDir Comment
+hi def link done  Type
+hi def link doing PreProc
+hi def link yet   Statement
 
 let b:current_syntax = "todo"
 
