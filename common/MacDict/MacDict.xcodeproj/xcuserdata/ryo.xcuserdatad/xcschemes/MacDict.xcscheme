@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0460"
+   LastUpgradeVersion = "0510"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2A7B303F1957AA1100DFA9D4"
-               BuildableName = "translate"
-               BlueprintName = "translate"
-               ReferencedContainer = "container:translate.xcodeproj">
+               BlueprintIdentifier = "2A33233819BAE24F003DB872"
+               BuildableName = "MacDict"
+               BlueprintName = "MacDict"
+               ReferencedContainer = "container:MacDict.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2A7B303F1957AA1100DFA9D4"
-            BuildableName = "translate"
-            BlueprintName = "translate"
-            ReferencedContainer = "container:translate.xcodeproj">
+            BlueprintIdentifier = "2A33233819BAE24F003DB872"
+            BuildableName = "MacDict"
+            BlueprintName = "MacDict"
+            ReferencedContainer = "container:MacDict.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -51,10 +51,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2A7B303F1957AA1100DFA9D4"
-            BuildableName = "translate"
-            BlueprintName = "translate"
-            ReferencedContainer = "container:translate.xcodeproj">
+            BlueprintIdentifier = "2A33233819BAE24F003DB872"
+            BuildableName = "MacDict"
+            BlueprintName = "MacDict"
+            ReferencedContainer = "container:MacDict.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -69,10 +69,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2A7B303F1957AA1100DFA9D4"
-            BuildableName = "translate"
-            BlueprintName = "translate"
-            ReferencedContainer = "container:translate.xcodeproj">
+            BlueprintIdentifier = "2A33233819BAE24F003DB872"
+            BuildableName = "MacDict"
+            BlueprintName = "MacDict"
+            ReferencedContainer = "container:MacDict.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

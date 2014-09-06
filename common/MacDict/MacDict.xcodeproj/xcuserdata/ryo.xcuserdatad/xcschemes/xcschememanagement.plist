@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>translate.xcscheme</key>
+		<key>MacDict.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,7 +12,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2A7B303F1957AA1100DFA9D4</key>
+		<key>2A33233819BAE24F003DB872</key>
 		<dict>
 			<key>primary</key>
 			<true/>

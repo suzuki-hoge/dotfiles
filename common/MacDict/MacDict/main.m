@@ -64,15 +64,15 @@ void output(NSString *result)
 
 int main(int argc, char** argv)
 {
-
+    
     @autoreleasepool{
         NSString *arg = getArg();
         DCSDictionaryRef dict = getDict();
         CFStringRef word = getWord(arg);
         CFRange range = getRange(arg);
-    
+        
         NSString *result = lookUp(dict, word, range);
-    
+        
         output(result);
     }
 }
