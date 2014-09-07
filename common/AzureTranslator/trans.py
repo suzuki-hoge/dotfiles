@@ -8,13 +8,15 @@ from Dispatch import Dispatch
 from Translator import Translator
 
 parser = argparse.ArgumentParser(description = 'translate text with microsoft azure translator api')
-parser.add_argument('text', action = 'store', help = 'text')
+parser.add_argument('text', metavar = 'text', type = str, nargs = '*', help = 'text you want to translate')
 args = parser.parse_args()
 
-if Dispatch.isEn(args.text):
-	translator = Translator('en', 'ja', args.text)
-else:
-	translator = Translator('ja', 'en', args.text)
+text = ' '.join(args.text)
 
-print args.text
+if Dispatch.isEn(text):
+	translator = Translator('en', 'ja', text)
+else:
+	translator = Translator('ja', 'en', text)
+
+print text
 print translator.execute()
