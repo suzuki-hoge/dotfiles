@@ -1,9 +1,6 @@
-# -*- coding: utf-8 -*-
-
 import urllib
 import urllib2
 import json
-import re
 
 import os.path
 import os
@@ -24,7 +21,6 @@ class Token:
 
 	@staticmethod
 	def __isTooOld():
-		return True
 		last = Token.__getLastUpdateAt()
 		now = Token.__getNow()
 
@@ -65,5 +61,3 @@ class Token:
 
 		_file.write(token)
 		_file.close()
-
-print Token.get()

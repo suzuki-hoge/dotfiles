@@ -1,3 +1,4 @@
 .DS_Store
 *.pyc
 AccessInfo.py
+stored-token.txt
