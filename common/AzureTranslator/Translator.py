@@ -31,6 +31,3 @@ class Translator:
 
 	def parseXml(self, string):
 		return re.sub(r'<[^>]*>', '', string)
-
-t = Translator('en', 'ja', 'apple')
-print t.execute()
