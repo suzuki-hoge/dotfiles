@@ -1,5 +1,7 @@
-import urllib2
 import re
+import sys
+
+import urllib2
 
 from Token import Token
 from AccessInfo import AccessInfo
@@ -25,7 +27,13 @@ class Translator:
 
 		request = urllib2.Request(url)
 		request.add_header(*header)
-		response = urllib2.urlopen(request)
+
+		try:
+			response = urllib2.urlopen(request, timeout = 3)
+
+		except Exception as e:
+			print 'translator connection error'
+			sys.exit()
 
 		return response.read()
 

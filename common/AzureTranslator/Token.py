@@ -2,8 +2,9 @@ import urllib
 import urllib2
 import json
 
-import os.path
 import os
+import sys
+import os.path
 import datetime
 
 from AccessInfo import AccessInfo
@@ -40,7 +41,14 @@ class Token:
 	def __fromServer():
 		params = urllib.urlencode(AccessInfo.Token.Params)
 		request = urllib2.Request(AccessInfo.Token.Url, params)
-		response = urllib2.urlopen(request)
+
+		try:
+			response = urllib2.urlopen(request, timeout = 3)
+
+		except Exception as e:
+			print 'token connection error'
+			sys.exit()
+
 		jsonData = json.loads(response.read())
 
 		token = jsonData[AccessInfo.Token.Key]
