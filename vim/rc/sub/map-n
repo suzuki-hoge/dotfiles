@@ -17,8 +17,8 @@ nnoremap zk zb
 " highlight under cursor word
 nnoremap * :let pos = getpos('.')<CR>*:call setpos('.', pos)<CR>
 
-" command line window
-nnoremap æ q:
+" colon with !
+nnoremap æ :!
 
 " history search
 nnoremap <C-p> :<UP>

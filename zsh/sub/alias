@@ -5,11 +5,9 @@ alias reload='source ~/.zshrc'
 alias ...='../../'
 alias ....='../../../'
 
-alias l="ls -l"
 alias lg="ls -l | grep"
 alias lp="ls | percol | xargs"
 
-alias la="ls -la"
 alias lag="ls -la | grep"
 alias lap="ls -a | percol | xargs"
 
