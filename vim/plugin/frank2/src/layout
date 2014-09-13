@@ -1,0 +1,63 @@
+" vim:set ft=vim:
+
+function! Frank2Open()
+	if s:isFrank()
+		echo 'frank is already opened.'
+		return
+	endif
+
+	call s:openWork2()
+	call s:openWork1()
+	call s:openWork3()
+
+	call s:windowSwitch(s:workfile1_bufnum)
+endfunction
+
+function! CloseAll()
+	call s:close(g:workfile1_bufnum)
+	call s:close(g:workfile2_bufnum)
+	call s:close(g:workfile3_bufnum)
+endfunction
+
+function! s:openWork1()
+	execute 'vsplit ' . g:workfile1
+	let g:workfile1_bufnum = bufnr('')
+endfunction
+
+function! s:openWork2()
+	execute 'tabedit ' . g:workfile2
+	let g:workfile2_bufnum = bufnr('')
+endfunction
+
+function! s:openWork3()
+	execute 'botright 9 split ' . g:workfile3
+	let g:workfile3_bufnum = bufnr('')
+endfunction
+
+function! s:close(bufnum)
+	execute 'bdelete! ' . a:bufnum
+endfunction
+
+function! s:windowSwitch(bufnum)
+	let winnum = bufwinnr(a:bufnum)
+	execute winnum . 'wincmd w'
+endfunction
+
+function! s:isWork1()
+	let l:bufnum = bufnr('')
+	return l:bufnum == g:workfile1_bufnum
+endfunction
+
+function! s:isWork2()
+	let l:bufnum = bufnr('')
+	return l:bufnum == g:workfile2_bufnum
+endfunction
+
+function! s:isWork3()
+	let l:bufnum = bufnr('')
+	return l:bufnum == g:workfile3_bufnum
+endfunction
+
+function! s:isFrank()
+	return 1 == s:isWork1() + s:isWork2() + s:isWork3()
+endfunction

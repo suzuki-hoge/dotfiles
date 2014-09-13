@@ -1,0 +1,14 @@
+" vim:set ft=vim:
+
+let g:workfile1 = $frank2 . '/workfiles/workfile1.frank2'
+let g:workfile2 = $frank2 . '/workfiles/workfile2.frank2'
+let g:workfile3 = $frank2 . '/workfiles/workfile3.frank2'
+
+let g:workfile1_bufnum = 0
+let g:workfile2_bufnum = 0
+let g:workfile3_bufnum = 0
+
+nnoremap √ :call CloseAll()<CR>
+command! F call Frank2Open()
+
+source $frank2/src/layout

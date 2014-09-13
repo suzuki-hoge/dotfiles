@@ -36,3 +36,5 @@ command! -range -nargs=* -complete=custom,HtmlElements VTag :<line1>,<line2>call
 source $mycomplete/CamelRegComplete
 
 source $todoplg/conf
+
+source $frank2/src/main

@@ -15,6 +15,8 @@ let $surroundtag = $plugin . '/surround-tag'
 let $mycomplete  = $plugin . '/my-complete'
 let $todoplg     = $plugin . '/todo'
 
+let $frank2     = $plugin . '/frank2'
+
 " tmp
 let $tmp = $HOME . '/Documents/tmp'
 
