@@ -1,5 +1,11 @@
 " vim:set ft=vim:
 
+augroup frank2
+	autocmd!
+	"autocmd BufEnter *.frank2 call KeyMapping()
+	autocmd BufEnter workfile1.frank2 source $frank2/src/syntax
+augroup END
+
 let g:workfile1 = $frank2 . '/workfiles/workfile1.frank2'
 let g:workfile2 = $frank2 . '/workfiles/workfile2.frank2'
 let g:workfile3 = $frank2 . '/workfiles/workfile3.frank2'

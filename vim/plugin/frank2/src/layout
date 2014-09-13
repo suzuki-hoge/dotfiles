@@ -10,7 +10,7 @@ function! Frank2Open()
 	call s:openWork1()
 	call s:openWork3()
 
-	call s:windowSwitch(s:workfile1_bufnum)
+	call s:windowSwitch(g:workfile1_bufnum)
 
 	call s:output('/Users/ryo/.dotfiles/vim')
 endfunction
