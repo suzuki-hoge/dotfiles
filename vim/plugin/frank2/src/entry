@@ -19,9 +19,10 @@ endfunction
 function! s:convert(basepath, paths)
 	let s:baselen = len(a:basepath)
 
+	let index = 4
 	let entries = []
 	for path in split(a:paths)
-		let entry = {'path' : path, 'isDir' : isdirectory(path), 'fold' : 0, 'point' : 0}
+		let entry = {'path' : path, 'isDir' : isdirectory(path), 'fold' : 0, 'point' : 0, 'index' : index}
 
 		function! entry.output()
 			let fold = self.isDir ? (self.fold ? '- ' : '+ ') : '  '
@@ -33,6 +34,7 @@ function! s:convert(basepath, paths)
 		endfunction
 
 		let entries = entries + [entry]
+		let index += 1
 	endfor
 
 	return entries[1:]

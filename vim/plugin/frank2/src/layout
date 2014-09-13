@@ -32,7 +32,11 @@ function! s:openWork1()
 endfunction
 
 function! s:openWork2()
-	execute 'tabedit ' . s:workfile2
+	if s:isBlank()
+		execute 'edit ' . s:workfile2
+	else
+		execute 'tabedit ' . s:workfile2
+	endif
 	let s:workfile2_bufnum = bufnr('')
 endfunction
 
@@ -66,6 +70,10 @@ function! s:isFrank()
 	return 1 == s:isWork1() + s:isWork2() + s:isWork3()
 endfunction
 
+function! s:isBlank()
+	return bufname('%') == ''
+endfunction
+
 function! s:output(path)
 	call s:clearnBuffer()
 	call s:outputHead(a:path)
@@ -74,12 +82,13 @@ function! s:output(path)
 endfunction
 
 function! s:clearnBuffer()
-	execute ':normal ggdG'
+	execute 'normal ggdG'
 endfunction
 
 function! s:outputHead(path)
 	call append(0, a:path)
-	execute ':normal ggYPVr-Yjp'
+	call append(0, a:path)
+	call append(0, a:path)
 endfunction
 
 function! s:outputBody()
@@ -89,5 +98,5 @@ function! s:outputBody()
 endfunction
 
 function! s:cursorAdjust()
-	execute ':normal 5gg'
+	execute 'normal 5gg0'
 endfunction

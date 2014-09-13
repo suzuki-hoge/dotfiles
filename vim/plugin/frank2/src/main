@@ -7,7 +7,7 @@ augroup frank2
 augroup END
 
 nnoremap √ :call CloseAll()<CR>
-command! F call Frank2Open('/Users/ryo/.dotfiles/vim')
+command! F call Frank2Open('/Users/ryo/.dotfiles/vim/plugin/flexible-frank')
 
 source $frank2/src/layout
 source $frank2/src/entry
@@ -16,4 +16,13 @@ source $frank2/src/action
 function! KeyMapping()
 	nnoremap <buffer> e :call N_Edit()<CR>
 	vnoremap <buffer> e :call V_Edit()<CR>
+
+	nnoremap <buffer> p :call N_PointOn()<CR>
+	vnoremap <buffer> p :call V_PointOn()<CR>
+
+	nnoremap <buffer> P :call N_PointOff()<CR>
+	vnoremap <buffer> P :call V_PointOff()<CR>
+
+	nnoremap <buffer> d : call Dump()<CR>
+	nnoremap <buffer> D : call DumpAll()<CR>
 endfunction
