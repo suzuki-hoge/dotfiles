@@ -2,20 +2,18 @@
 
 augroup frank2
 	autocmd!
-	"autocmd BufEnter *.frank2 call KeyMapping()
+	autocmd BufEnter workfile1.frank2 call KeyMapping()
 	autocmd BufEnter workfile1.frank2 source $frank2/src/syntax
 augroup END
 
-let g:workfile1 = $frank2 . '/workfiles/workfile1.frank2'
-let g:workfile2 = $frank2 . '/workfiles/workfile2.frank2'
-let g:workfile3 = $frank2 . '/workfiles/workfile3.frank2'
-
-let g:workfile1_bufnum = 0
-let g:workfile2_bufnum = 0
-let g:workfile3_bufnum = 0
-
 nnoremap √ :call CloseAll()<CR>
-command! F call Frank2Open()
+command! F call Frank2Open('/Users/ryo/.dotfiles/vim')
 
 source $frank2/src/layout
 source $frank2/src/entry
+source $frank2/src/action
+
+function! KeyMapping()
+	nnoremap <buffer> e :call N_Edit()<CR>
+	vnoremap <buffer> e :call V_Edit()<CR>
+endfunction

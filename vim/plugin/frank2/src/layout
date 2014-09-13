@@ -1,6 +1,10 @@
 " vim:set ft=vim:
 
-function! Frank2Open()
+let s:workfile1 = $frank2 . '/workfiles/workfile1.frank2'
+let s:workfile2 = $frank2 . '/workfiles/workfile2.frank2'
+let s:workfile3 = $frank2 . '/workfiles/workfile3.frank2'
+
+function! Frank2Open(path)
 	if s:isFrank()
 		echo 'frank is already opened.'
 		return
@@ -10,30 +14,31 @@ function! Frank2Open()
 	call s:openWork1()
 	call s:openWork3()
 
-	call s:windowSwitch(g:workfile1_bufnum)
+	call s:windowSwitch(s:workfile1_bufnum)
 
-	call s:output('/Users/ryo/.dotfiles/vim')
+	call CreateTree(a:path)
+	call s:output(a:path)
 endfunction
 
 function! CloseAll()
-	call s:close(g:workfile1_bufnum)
-	call s:close(g:workfile2_bufnum)
-	call s:close(g:workfile3_bufnum)
+	call s:close(s:workfile1_bufnum)
+	call s:close(s:workfile2_bufnum)
+	call s:close(s:workfile3_bufnum)
 endfunction
 
 function! s:openWork1()
-	execute 'vsplit ' . g:workfile1
-	let g:workfile1_bufnum = bufnr('')
+	execute 'vsplit ' . s:workfile1
+	let s:workfile1_bufnum = bufnr('')
 endfunction
 
 function! s:openWork2()
-	execute 'tabedit ' . g:workfile2
-	let g:workfile2_bufnum = bufnr('')
+	execute 'tabedit ' . s:workfile2
+	let s:workfile2_bufnum = bufnr('')
 endfunction
 
 function! s:openWork3()
-	execute 'botright 9 split ' . g:workfile3
-	let g:workfile3_bufnum = bufnr('')
+	execute 'botright 9 split ' . s:workfile3
+	let s:workfile3_bufnum = bufnr('')
 endfunction
 
 function! s:close(bufnum)
@@ -41,23 +46,20 @@ function! s:close(bufnum)
 endfunction
 
 function! s:windowSwitch(bufnum)
-	let winnum = bufwinnr(a:bufnum)
+	let l:winnum = bufwinnr(a:bufnum)
 	execute winnum . 'wincmd w'
 endfunction
 
 function! s:isWork1()
-	let l:bufnum = bufnr('')
-	return l:bufnum == g:workfile1_bufnum
+	return !exists('s:workfile1_bufnum') ? 0 : bufnr('') == s:workfile1_bufnum
 endfunction
 
 function! s:isWork2()
-	let l:bufnum = bufnr('')
-	return l:bufnum == g:workfile2_bufnum
+	return !exists('s:workfile2_bufnum') ? 0 : bufnr('') == s:workfile2_bufnum
 endfunction
 
 function! s:isWork3()
-	let l:bufnum = bufnr('')
-	return l:bufnum == g:workfile3_bufnum
+	return !exists('s:workfile3_bufnum') ? 0 : bufnr('') == s:workfile3_bufnum
 endfunction
 
 function! s:isFrank()
@@ -67,7 +69,7 @@ endfunction
 function! s:output(path)
 	call s:clearnBuffer()
 	call s:outputHead(a:path)
-	call s:outputBody(a:path)
+	call s:outputBody()
 	call s:cursorAdjust()
 endfunction
 
@@ -80,10 +82,9 @@ function! s:outputHead(path)
 	execute ':normal ggYPVr-Yjp'
 endfunction
 
-function! s:outputBody(path)
-	let entries = GetTree(a:path)
-	for entry in entries
-		call append('$', entry.output)
+function! s:outputBody()
+	for entry in g:entries
+		call append('$', entry.output())
 	endfor
 endfunction
 

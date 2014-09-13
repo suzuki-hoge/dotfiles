@@ -2,11 +2,9 @@
 
 let s:blacklist = ['.git', '.svn', '.vagrant', '.DS_Store', '*.pyc']
 
-nnoremap ß :call GetTree('/Users/ryo/.dotfiles/vim')<CR>
-
-function! GetTree(path)
+function! CreateTree(path)
 	let paths = s:finder(a:path)
-	return s:convert(a:path, paths)
+	let g:entries = s:convert(a:path, paths)
 endfunction
 
 function! s:finder(path)
@@ -19,14 +17,22 @@ function! s:finder(path)
 endfunction
 
 function! s:convert(basepath, paths)
+	let s:baselen = len(a:basepath)
+
 	let entries = []
 	for path in split(a:paths)
-		let isDir = isdirectory(path)
-		let tail = path[len(a:basepath) + 1:]
-		let name = substitute(tail, '[^/]*/', '    ', 'g')
-		let slash = isDir ? '/' : ''
+		let entry = {'path' : path, 'isDir' : isdirectory(path), 'fold' : 0, 'point' : 0}
 
-		let entries = entries + [{'path' : path, 'isDir' : isDir, 'output' : name . slash}]
+		function! entry.output()
+			let fold = self.isDir ? (self.fold ? '- ' : '+ ') : '  '
+			let point = self.point ? '* ' : '  '
+			let name = substitute(self.path[s:baselen + 1:], '[^/]*/', '    ', 'g')
+			let slash = self.isDir ? '/' : ''
+
+			return fold . point . name . slash
+		endfunction
+
+		let entries = entries + [entry]
 	endfor
 
 	return entries[1:]
