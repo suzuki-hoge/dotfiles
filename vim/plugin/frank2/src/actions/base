@@ -22,6 +22,16 @@ function! GetByRange(first, last)
 	return g:entries[ a:first - 5 : a:last - 5 ]
 endfunction
 
+function! GetByPoint()
+	let result = []
+	for entry in g:entries
+		if entry.point
+			let result = result + [entry]
+		endif
+	endfor
+	return result
+endfunction
+
 function! Update(entry)
 	execute a:entry.index . 'delete'
 	call append(a:entry.index - 1, a:entry.output())

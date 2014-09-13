@@ -1,7 +1,11 @@
 " vim:set ft=vim:
 
 function! N_Edit()
-	" point
+	let entries = GetByPoint()
+	if entries != []
+		call s:edit(entries)
+	endif
+
 	let entry = GetOneByCursor()
 	call s:edit([entry])
 endfunction
