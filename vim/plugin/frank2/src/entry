@@ -1,0 +1,12 @@
+" vim:set ft=vim:
+
+let s:blacklist = ['.git', '.svn', '.vagrant', '.DS_Store', '*.pyc']
+
+function! Finder(path)
+	let blacks = ''
+	for black in s:blacklist
+		let blacks .= ' -name "' . black . '" -prune -or'
+	endfor
+
+	return system('find ' . a:path . blacks . ' -print')
+endfunction
