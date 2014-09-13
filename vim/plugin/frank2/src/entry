@@ -2,11 +2,32 @@
 
 let s:blacklist = ['.git', '.svn', '.vagrant', '.DS_Store', '*.pyc']
 
-function! Finder(path)
+nnoremap ß :call GetTree('/Users/ryo/.dotfiles/vim')<CR>
+
+function! GetTree(path)
+	let paths = s:finder(a:path)
+	return s:convert(a:path, paths)
+endfunction
+
+function! s:finder(path)
 	let blacks = ''
 	for black in s:blacklist
 		let blacks .= ' -name "' . black . '" -prune -or'
 	endfor
 
 	return system('find ' . a:path . blacks . ' -print')
+endfunction
+
+function! s:convert(basepath, paths)
+	let entries = []
+	for path in split(a:paths)
+		let isDir = isdirectory(path)
+		let tail = path[len(a:basepath) + 1:]
+		let name = substitute(tail, '[^/]*/', '    ', 'g')
+		let slash = isDir ? '/' : ''
+
+		let entries = entries + [{'path' : path, 'isDir' : isDir, 'output' : name . slash}]
+	endfor
+
+	return entries[1:]
 endfunction
