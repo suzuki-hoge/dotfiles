@@ -1,0 +1,29 @@
+" vim:set ft=vim:
+
+source $frank2/src/actions/edit
+source $frank2/src/actions/point
+
+function! KeyMapping()
+	nnoremap <buffer> e :call N_Edit()<CR>
+	vnoremap <buffer> e :call V_Edit()<CR>
+
+	nnoremap <buffer> p :call N_PointChange(1)<CR>
+	vnoremap <buffer> p :call V_PointChange(1)<CR>
+
+	nnoremap <buffer> P :call N_PointChange(0)<CR>
+	vnoremap <buffer> P :call V_PointChange(0)<CR>
+endfunction
+
+function! GetOneByCursor()
+	return g:entries[getpos('.')[1] - 5]
+endfunction
+
+function! GetByRange(first, last)
+	return g:entries[ a:first - 5 : a:last - 5 ]
+endfunction
+
+function! Update(entry)
+	execute a:entry.index . 'delete'
+	call append(a:entry.index - 1, a:entry.output())
+	execute 'normal ' . a:entry.index . 'gg0'
+endfunction

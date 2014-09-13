@@ -1,0 +1,18 @@
+" vim:set ft=vim:
+
+function! N_Edit()
+	" point
+	let entry = GetOneByCursor()
+	call s:edit([entry])
+endfunction
+
+function! V_Edit() range
+	let entries = GetByRange(a:firstline, a:lastline)
+	call s:edit(entries)
+endfunction
+
+function! s:edit(entries)
+	for entry in a:entries
+		execute 'tabedit ' . entry.path
+	endfor
+endfunction

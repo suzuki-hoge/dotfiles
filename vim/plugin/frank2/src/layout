@@ -86,9 +86,11 @@ function! s:clearnBuffer()
 endfunction
 
 function! s:outputHead(path)
-	call append(0, a:path)
-	call append(0, a:path)
-	call append(0, a:path)
+	execute ':normal ggO'
+	execute ':normal ' . len(a:path) . 'i-'
+	call append(1, a:path)
+	execute ':normal GO'
+	execute ':normal ' . len(a:path) . 'i-'
 endfunction
 
 function! s:outputBody()
