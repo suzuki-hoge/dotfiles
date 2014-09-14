@@ -10,6 +10,8 @@ function! Frank2Open(path)
 		return
 	endif
 
+	call DSNew()
+
 	call s:openWork2()
 	call s:openWork1()
 	call s:openWork3()
@@ -157,6 +159,13 @@ endfunction
 function! DSPush(path)
 	let s:directoryStacks = s:directoryStacks + [a:path]
 	return a:path
+endfunction	
+
+function! DSPop()
+	if len(s:directoryStacks) != 1
+		call remove(s:directoryStacks, -1)
+	endif
+	return s:directoryStacks[-1]
 endfunction	
 
 function! DSLast()

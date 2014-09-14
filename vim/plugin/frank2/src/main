@@ -6,8 +6,6 @@ augroup frank2
 	autocmd BufEnter workfile1.frank2 source $frank2/src/syntax
 augroup END
 
-call DSNew()
-
 nnoremap <S-M-CR> :FF .<CR>
 command! -nargs=1 -complete=dir FF call Frank2Open(<f-args>)
 
