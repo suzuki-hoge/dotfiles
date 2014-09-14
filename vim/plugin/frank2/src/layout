@@ -102,11 +102,15 @@ function! s:clearnBuffer()
 endfunction
 
 function! s:outputHead(path)
+	let path = a:path
+	if path == '.'
+		let path = fnamemodify('.', ':p')[:-2]
+	endif
 	execute ':normal ggO'
-	execute ':normal ' . len(a:path) . 'i-'
-	call append(1, a:path)
+	execute ':normal ' . len(path) . 'i-'
+	call append(1, path)
 	execute ':normal GO'
-	execute ':normal ' . len(a:path) . 'i-'
+	execute ':normal ' . len(path) . 'i-'
 endfunction
 
 function! s:outputBody()

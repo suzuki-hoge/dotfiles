@@ -18,10 +18,10 @@ command! R call PetroniusTheArbiter($PETE_RELOAD)
 
 command! -nargs=* D call PetroniusTheArbiter($PETE_DEBUG, <f-args>)
 
-source $frank/src/conf/Loader
+"source $frank/src/conf/Loader
 
-nnoremap <S-M-CR> :FF .<CR>
-command! -nargs=* -complete=dir FF call FlexibleFrank(<f-args>)
+"nnoremap <S-M-CR> :FF .<CR>
+"command! -nargs=* -complete=dir FF call FlexibleFrank(<f-args>)
 
 " buffer local?
 nnoremap <Tab>   <C-w>w
