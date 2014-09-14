@@ -14,10 +14,8 @@ function! Frank2Open(path)
 	call s:openWork1()
 	call s:openWork3()
 
-	call s:windowSwitch(s:workfile1_bufnum)
-
 	call CreateTree(a:path)
-	call s:output(a:path)
+	call s:outputWork1(a:path)
 endfunction
 
 function! CloseAll()
@@ -49,6 +47,18 @@ function! s:close(bufnum)
 	execute 'bdelete! ' . a:bufnum
 endfunction
 
+function! WindowSwitch1()
+	call s:windowSwitch(s:workfile1_bufnum)
+endfunction
+
+function! WindowSwitch2()
+	call s:windowSwitch(s:workfile2_bufnum)
+endfunction
+
+function! WindowSwitch3()
+	call s:windowSwitch(s:workfile3_bufnum)
+endfunction
+
 function! s:windowSwitch(bufnum)
 	let l:winnum = bufwinnr(a:bufnum)
 	execute winnum . 'wincmd w'
@@ -74,15 +84,16 @@ function! s:isBlank()
 	return bufname('%') == ''
 endfunction
 
-function! s:output(path)
+function! s:outputWork1(path)
+	call WindowSwitch1()
 	call s:clearnBuffer()
 	call s:outputHead(a:path)
 	call s:outputBody()
-	call s:cursorAdjust()
+	call s:cursorAdjustWork1()
 endfunction
 
 function! s:clearnBuffer()
-	execute 'normal ggdG'
+	execute '0,$delete'
 endfunction
 
 function! s:outputHead(path)
@@ -99,6 +110,22 @@ function! s:outputBody()
 	endfor
 endfunction
 
-function! s:cursorAdjust()
+function! s:outputLines(lines)
+	call append(0, a:lines)
+	execute '$delete' 
+endfunction
+
+function! s:cursorAdjustWork1()
 	execute 'normal 5gg0'
+endfunction
+
+function! s:cursorAdjustWork3()
+	execute 'normal gg0'
+endfunction
+
+function! OutputWork3(lines)
+	call WindowSwitch3()
+	call s:clearnBuffer()
+	call s:outputLines(a:lines)
+	call s:cursorAdjustWork3()
 endfunction

@@ -15,6 +15,7 @@ function! KeyMapping()
 	vnoremap <buffer> P :call V_PointChange(0)<CR>
 
 	nnoremap <buffer> to :call N_TerminalOpen()<CR>
+	nnoremap <buffer> tl :call N_TerminalListSegments()<CR>
 endfunction
 
 function! GetOneByCursor()
