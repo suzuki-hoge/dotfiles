@@ -6,7 +6,6 @@ augroup frank2
 	autocmd BufEnter workfile1.frank2 source $frank2/src/syntax
 augroup END
 
-nnoremap √ :call CloseAll()<CR>
 command! F call Frank2Open('/Users/ryo/.dotfiles/vim/plugin/flexible-frank')
 
 source $frank2/src/layout

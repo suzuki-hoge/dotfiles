@@ -5,7 +5,7 @@ let s:workfile2 = $frank2 . '/workfiles/workfile2.frank2'
 let s:workfile3 = $frank2 . '/workfiles/workfile3.frank2'
 
 function! Frank2Open(path)
-	if s:isFrank()
+	if IsFrank()
 		echo 'frank is already opened.'
 		return
 	endif
@@ -66,7 +66,7 @@ function! s:isWork3()
 	return !exists('s:workfile3_bufnum') ? 0 : bufnr('') == s:workfile3_bufnum
 endfunction
 
-function! s:isFrank()
+function! IsFrank()
 	return 1 == s:isWork1() + s:isWork2() + s:isWork3()
 endfunction
 

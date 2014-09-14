@@ -2,6 +2,7 @@
 
 source $frank2/src/actions/edit
 source $frank2/src/actions/point
+source $frank2/src/actions/terminal
 
 function! KeyMapping()
 	nnoremap <buffer> e :call N_Edit()<CR>
@@ -12,6 +13,8 @@ function! KeyMapping()
 
 	nnoremap <buffer> P :call N_PointChange(0)<CR>
 	vnoremap <buffer> P :call V_PointChange(0)<CR>
+
+	nnoremap <buffer> to :call N_TerminalOpen()<CR>
 endfunction
 
 function! GetOneByCursor()
