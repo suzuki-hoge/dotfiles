@@ -1,0 +1,11 @@
+" vim:set ft=vim:
+
+function! N_DirUp()
+	let upper = fnamemodify(DSLast(), ':h')
+	call s:cd(upper)
+	call DSPush(upper)
+endfunction
+
+function! s:cd(path)
+	call Remake(a:path)
+endfunction

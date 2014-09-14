@@ -5,6 +5,7 @@ source $frank2/src/actions/point
 source $frank2/src/actions/terminal
 source $frank2/src/actions/open
 source $frank2/src/actions/read
+source $frank2/src/actions/directory
 
 function! KeyMapping()
 	nnoremap <buffer> e  :call N_Edit()<CR>
@@ -24,6 +25,10 @@ function! KeyMapping()
 	nnoremap <buffer> q  :call N_Open('qlmanage -p', 0)<CR>
 
 	nnoremap <buffer> rd :call N_Read()<CR>
+
+	nnoremap <buffer> h  :call N_DirUp()<CR>
+	nnoremap <buffer> l  :call N_DirDown()<CR>
+	nnoremap <buffer> -  :call N_DirPrev()<CR>
 endfunction
 
 function! GetOneByCursor()

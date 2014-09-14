@@ -14,11 +14,17 @@ function! Frank2Open(path)
 	call s:openWork1()
 	call s:openWork3()
 
-	" reload
+	let abspath = s:absPath(a:path)
+
+	let path = DSPush(abspath)
+
+	call Remake(path)
+endfunction
+
+function! Remake(path)
 	call CreateEntries(a:path)
 	call WindowSwitch1()
 	call s:outputEntries(a:path)
-	" reload
 endfunction
 
 function! CloseAll()
@@ -102,15 +108,11 @@ function! s:clearnBuffer()
 endfunction
 
 function! s:outputHead(path)
-	let path = a:path
-	if path == '.'
-		let path = fnamemodify('.', ':p')[:-2]
-	endif
 	execute ':normal ggO'
-	execute ':normal ' . len(path) . 'i-'
-	call append(1, path)
+	execute ':normal ' . len(a:path) . 'i-'
+	call append(1, a:path)
 	execute ':normal GO'
-	execute ':normal ' . len(path) . 'i-'
+	execute ':normal ' . len(a:path) . 'i-'
 endfunction
 
 function! s:outputBody()
@@ -143,3 +145,20 @@ function! OutputFile(path)
 	execute 'r ' . a:path
 	execute '0delete' 
 endfunction
+
+function! s:absPath(path)
+	return (a:path == '.' ) ? fnamemodify('.', ':p')[:-2] : a:path
+endfunction
+
+function! DSNew()
+	let s:directoryStacks = []
+endfunction	
+
+function! DSPush(path)
+	let s:directoryStacks = s:directoryStacks + [a:path]
+	return a:path
+endfunction	
+
+function! DSLast()
+	return s:directoryStacks[-1]
+endfunction	
