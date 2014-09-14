@@ -2,9 +2,7 @@
 
 function! N_Open(command, isDir)
 	let entry = GetOneByCursor()
-	if entry.isDir != a:isDir
-		echo 'this command is enabled only at ' . (a:isDir ? 'directory' : 'file')
-	else
+	if entry.isDir == a:isDir
 		call s:open(entry, a:command)
 	endif
 endfunction

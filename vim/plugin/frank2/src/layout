@@ -14,8 +14,11 @@ function! Frank2Open(path)
 	call s:openWork1()
 	call s:openWork3()
 
-	call CreateTree(a:path)
-	call s:outputWork1(a:path)
+	" reload
+	call CreateEntries(a:path)
+	call WindowSwitch1()
+	call s:outputEntries(a:path)
+	" reload
 endfunction
 
 function! CloseAll()
@@ -27,6 +30,7 @@ endfunction
 function! s:openWork1()
 	execute 'vsplit ' . s:workfile1
 	let s:workfile1_bufnum = bufnr('')
+	call s:clearnBuffer()
 endfunction
 
 function! s:openWork2()
@@ -36,11 +40,13 @@ function! s:openWork2()
 		execute 'tabedit ' . s:workfile2
 	endif
 	let s:workfile2_bufnum = bufnr('')
+	call s:clearnBuffer()
 endfunction
 
 function! s:openWork3()
 	execute 'botright 9 split ' . s:workfile3
 	let s:workfile3_bufnum = bufnr('')
+	call s:clearnBuffer()
 endfunction
 
 function! s:close(bufnum)
@@ -84,8 +90,7 @@ function! s:isBlank()
 	return bufname('%') == ''
 endfunction
 
-function! s:outputWork1(path)
-	call WindowSwitch1()
+function! s:outputEntries(path)
 	call s:clearnBuffer()
 	call s:outputHead(a:path)
 	call s:outputBody()
@@ -123,9 +128,14 @@ function! s:cursorAdjustWork3()
 	execute 'normal gg0'
 endfunction
 
-function! OutputWork3(lines)
-	call WindowSwitch3()
+function! OutputLines(lines)
 	call s:clearnBuffer()
 	call s:outputLines(a:lines)
 	call s:cursorAdjustWork3()
+endfunction
+
+function! OutputFile(path)
+	call s:clearnBuffer()
+	execute 'r ' . a:path
+	execute '0delete' 
 endfunction

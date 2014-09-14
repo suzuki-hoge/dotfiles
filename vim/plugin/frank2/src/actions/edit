@@ -17,6 +17,8 @@ endfunction
 
 function! s:edit(entries)
 	for entry in a:entries
-		execute 'tabedit ' . entry.path
+		if !entry.isDir
+			execute 'tabedit ' . entry.path
+		endif
 	endfor
 endfunction

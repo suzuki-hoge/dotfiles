@@ -2,7 +2,9 @@
 
 function! N_TerminalOpen()
 	let entry = GetOneByCursor()
-	call s:open(entry)
+	if entry.isDir
+		call s:open(entry)
+	endif
 endfunction
 
 function! N_TerminalListSegments()
@@ -11,7 +13,7 @@ function! N_TerminalListSegments()
 endfunction
 
 function! s:open(entry)
-	execute '!open -a Terminal ' . a:entry.path
+	execute 'silent !open -a Terminal ' . a:entry.path
 endfunction
 
 function! s:ls(entry)
@@ -26,13 +28,15 @@ function! s:lsDir(entry)
 	let result  = system('ls -ld ' . a:entry.path) . "\n"
 	let result .= system('ls -l ' . a:entry.path . ' | tail +2')
 
-	call OutputWork3(split(result, '\n'))
+	call WindowSwitch3()
+	call OutputLines(split(result, '\n'))
 	call WindowSwitch1()
 endfunction
 
 function! s:lsFile(entry)
 	let result = system('ls -l ' . a:entry.path)
 
-	call OutputWork3(split(result, '\n'))
+	call WindowSwitch3()
+	call OutputLines(split(result, '\n'))
 	call WindowSwitch1()
 endfunction

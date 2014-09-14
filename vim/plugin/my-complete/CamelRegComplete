@@ -1,6 +1,9 @@
 " vim:set ft=vim:
 
-autocmd BufEnter * :set completefunc=CamelRegComplete
+augroup mycomplete
+	autocmd!
+	autocmd BufEnter * :set completefunc=CamelRegComplete
+augroup END
 
 function! CamelRegComplete(findstart, base)
     if a:findstart

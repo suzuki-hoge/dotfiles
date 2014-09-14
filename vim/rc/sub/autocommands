@@ -1,4 +1,7 @@
 " vim:set ft=vim:
 
-autocmd VimEnter * set nowrap
-autocmd VimEnter * set nrformats=
+augroup subrc
+	autocmd!
+	autocmd VimEnter * set nowrap
+	autocmd VimEnter * set nrformats=
+augroup END

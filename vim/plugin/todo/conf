@@ -1,3 +1,6 @@
 " vim:set ft=vim:
 
-autocmd BufEnter  *.todo source $todoplg/todo.vim
+augroup todo
+	autocmd!
+	autocmd BufEnter  *.todo source $todoplg/todo.vim
+augroup END
