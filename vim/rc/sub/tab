@@ -10,7 +10,18 @@ nnoremap <S-Space> gT
 nnoremap <D-Space> :tabedit 
 
 " close tab
-nnoremap <C-Space>   :bd<CR>
+" --------
+" is frank
+" --------
+nnoremap <C-Space>   :call CloseAllFrankOrBDelete()<CR>
+
+function! CloseAllFrankOrBDelete()
+	if IsFrank()
+		call CloseAll()
+	else
+		execute 'bdelete'
+	endif
+endfunction
 
 " close tab (force)
-nnoremap <S-C-Space> :bd!<CR>
+nnoremap <S-C-Space> :bdelete!<CR>
