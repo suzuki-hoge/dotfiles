@@ -1,0 +1,14 @@
+" vim:set ft=vim:
+
+function! N_Open(command, isDir)
+	let entry = GetOneByCursor()
+	if entry.isDir != a:isDir
+		echo 'this command is enabled only at ' . (a:isDir ? 'directory' : 'file')
+	else
+		call s:open(entry, a:command)
+	endif
+endfunction
+
+function! s:open(entry, command)
+	execute 'silent !' . a:command . ' ' . a:entry.path
+endfunction
