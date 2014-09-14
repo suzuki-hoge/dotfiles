@@ -2,8 +2,13 @@
 
 function! N_DirUp()
 	let upper = fnamemodify(DSLast(), ':h')
-	call s:cd(upper)
-	call DSPush(upper)
+	let depth = len(substitute(upper, '[^/]', '', 'g'))
+	if depth < 3
+		echo 'too many files...'
+	else
+		call s:cd(upper)
+		call DSPush(upper)
+	endif
 endfunction
 
 function! N_DirDown()

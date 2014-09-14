@@ -5,6 +5,12 @@ let s:workfile2 = $frank2 . '/workfiles/workfile2.frank2'
 let s:workfile3 = $frank2 . '/workfiles/workfile3.frank2'
 
 function! Frank2Open(path)
+	let depth = len(substitute(a:path, '[^/]', '', 'g'))
+	if depth < 3
+		echo 'too many files...'
+		return
+	endif
+
 	if IsFrank()
 		echo 'frank is already opened.'
 		return
