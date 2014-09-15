@@ -12,3 +12,5 @@ command! -nargs=1 -complete=dir FF call Frank2Open(<f-args>)
 source $frank2/src/layout
 source $frank2/src/entry
 source $frank2/src/actions/base
+
+source $frank2/launcher/src/main

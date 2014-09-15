@@ -1,0 +1,5 @@
+" vim:set ft=vim:
+
+command! Launch call LauncherToggle()
+
+source $frank2/launcher/src/layout

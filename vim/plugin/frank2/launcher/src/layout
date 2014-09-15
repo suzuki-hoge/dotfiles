@@ -1,0 +1,23 @@
+" vim:set ft=vim:
+
+let s:bookmarks = $frank2 . '/launcher/workfiles/bookmarks.frank2'
+
+function! LauncherToggle()
+	if exists('s:bookmarks_bufnum')
+		call s:launcherClose()
+	else
+		call s:launcherOpen()
+	endif
+endfunction
+
+function! s:launcherOpen()
+	execute 'topleft 15 split ' . s:bookmarks
+	let s:bookmarks_bufnum = bufnr('')
+endfunction
+
+function! s:launcherClose()
+	if exists('s:bookmarks_bufnum')
+		execute 'bwipeout ' . s:bookmarks_bufnum
+		unlet s:bookmarks_bufnum
+	endif
+endfunction
