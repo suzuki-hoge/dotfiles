@@ -10,5 +10,10 @@ function! L_ChangeDirectory()
 endfunction
 
 function! L_FrankOpen()
-	execute 'FF ' . getline('.')
+	let path = getline('.')
+	if IsFrank()
+		call CloseAll()
+	endif
+
+	execute 'FF ' . path
 endfunction

@@ -16,11 +16,11 @@ source $frank2/src/actions/base
 source $frank2/launcher/src/main
 
 function! Dispatch(path)
-	let abspath = fnamemodify('.', ':p')[:-2]
+	let abspath = fnamemodify(a:path, ':p')[:-2]
 	let depth = len(substitute(abspath, '[^/]', '', 'g'))
 
 	if abspath == expand('~')
-		call LauncherToggle()
+		call LauncherOpen()
 		return
 	endif
 

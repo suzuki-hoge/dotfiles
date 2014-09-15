@@ -162,3 +162,14 @@ endfunction
 function! DSLast()
 	return s:directoryStacks[-1]
 endfunction	
+
+function! LauncherOpenAtWork3(bookmarks)
+	call WindowSwitch3()
+	call s:close(s:workfile3_bufnum)
+	call s:openBookmarks(a:bookmarks)
+endfunction
+
+function! s:openBookmarks(path)
+	execute 'botright 10 split ' . a:path
+	let s:workfile3_bufnum = bufnr('')
+endfunction

@@ -2,22 +2,20 @@
 
 let s:bookmarks = $frank2 . '/launcher/workfiles/bookmarks.frank2'
 
-function! LauncherToggle()
-	if exists('s:bookmarks_bufnum')
-		call s:launcherClose()
-	else
-		call s:launcherOpen()
+function! LauncherOpen()
+	if s:isLauncher()
+		echo 'launcher is already opend.'
+		return
 	endif
-endfunction
 
-function! s:launcherOpen()
+	if IsFrank()
+		call LauncherOpenAtWork3(s:bookmarks)
+		return
+	endif
+
 	execute 'topleft 15 split ' . s:bookmarks
-	let s:bookmarks_bufnum = bufnr('')
 endfunction
 
-function! s:launcherClose()
-	if exists('s:bookmarks_bufnum')
-		execute 'bwipeout ' . s:bookmarks_bufnum
-		unlet s:bookmarks_bufnum
-	endif
+function! s:isLauncher()
+	return s:bookmarks == bufname('%')
 endfunction
