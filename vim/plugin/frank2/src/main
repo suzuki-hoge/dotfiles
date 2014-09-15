@@ -7,10 +7,32 @@ augroup frank2
 augroup END
 
 nnoremap <S-M-CR> :FF .<CR>
-command! -nargs=1 -complete=dir FF call Frank2Open(<f-args>)
+command! -nargs=1 -complete=dir FF call Dispatch(<f-args>)
 
 source $frank2/src/layout
 source $frank2/src/entry
 source $frank2/src/actions/base
 
 source $frank2/launcher/src/main
+
+function! Dispatch(path)
+	let abspath = fnamemodify('.', ':p')[:-2]
+	let depth = len(substitute(abspath, '[^/]', '', 'g'))
+
+	if abspath == expand('~')
+		call LauncherToggle()
+		return
+	endif
+
+	if depth < 3
+		echo 'too many files...'
+		return
+	endif
+
+	if IsFrank()
+		echo 'frank is already opened.'
+		return
+	endif
+
+	call Frank2Open(abspath)
+endfunction

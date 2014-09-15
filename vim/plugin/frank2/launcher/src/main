@@ -1,5 +1,11 @@
 " vim:set ft=vim:
 
+augroup launcher
+	autocmd!
+	autocmd BufEnter bookmarks.frank2 call LauncherKeyMap()
+augroup END
+
 command! Launch call LauncherToggle()
 
 source $frank2/launcher/src/layout
+source $frank2/launcher/src/actions

@@ -7,28 +7,15 @@ let s:workfile3 = $frank2 . '/workfiles/workfile3.frank2'
 let s:bookmarks = $frank2 . '/workfiles/bookmarks.frank2'
 
 function! Frank2Open(path)
-	let abspath = s:absPath(a:path)
-
-	let depth = len(substitute(abspath, '[^/]', '', 'g'))
-	if depth < 3
-		echo 'too many files...'
-		return
-	endif
-
-	if IsFrank()
-		echo 'frank is already opened.'
-		return
-	endif
-
 	call DSNew()
 
 	call s:openWork2()
 	call s:openWork1()
 	call s:openWork3()
 
-	let path = DSPush(abspath)
+	call DSPush(a:path)
 
-	call Remake(path)
+	call Remake(a:path)
 endfunction
 
 function! Remake(path)
@@ -161,10 +148,6 @@ function! OutputFile(path)
 	call s:clearnBuffer()
 	execute 'r ' . a:path
 	execute '0delete' 
-endfunction
-
-function! s:absPath(path)
-	return (a:path == '.' ) ? fnamemodify('.', ':p')[:-2] : a:path
 endfunction
 
 function! DSNew()
