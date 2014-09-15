@@ -6,6 +6,7 @@ source $frank2/src/actions/terminal
 source $frank2/src/actions/open
 source $frank2/src/actions/read
 source $frank2/src/actions/directory
+source $frank2/src/actions/bookmark
 
 function! KeyMapping()
 	nnoremap <buffer> e  :call N_Edit()<CR>
@@ -29,6 +30,8 @@ function! KeyMapping()
 	nnoremap <buffer> h  :call N_DirUp()<CR>
 	nnoremap <buffer> l  :call N_DirDown()<CR>
 	nnoremap <buffer> -  :call N_DirPrev()<CR>
+
+	nnoremap <buffer> B  :call N_Bookmarks()<CR>
 endfunction
 
 function! GetOneByCursor()
