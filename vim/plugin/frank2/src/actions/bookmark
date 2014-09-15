@@ -1,5 +1,0 @@
-" vim:set ft=vim:
-
-function! N_Bookmarks()
-	call BookmarksToggle()
-endfunction

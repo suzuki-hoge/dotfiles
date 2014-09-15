@@ -4,8 +4,6 @@ let s:workfile1 = $frank2 . '/workfiles/workfile1.frank2'
 let s:workfile2 = $frank2 . '/workfiles/workfile2.frank2'
 let s:workfile3 = $frank2 . '/workfiles/workfile3.frank2'
 
-let s:bookmarks = $frank2 . '/workfiles/bookmarks.frank2'
-
 function! Frank2Open(path)
 	call DSNew()
 
@@ -28,7 +26,6 @@ function! CloseAll()
 	call s:close(s:workfile1_bufnum)
 	call s:close(s:workfile2_bufnum)
 	call s:close(s:workfile3_bufnum)
-	call s:bookmakrsClose()
 endfunction
 
 function! s:openWork1()
@@ -88,12 +85,8 @@ function! s:isWork3()
 	return !exists('s:workfile3_bufnum') ? 0 : bufnr('') == s:workfile3_bufnum
 endfunction
 
-function! s:isBookmakrs()
-	return !exists('s:bookmarks_bufnum') ? 0 : bufnr('') == s:bookmarks_bufnum
-endfunction
-
 function! IsFrank()
-	return 1 == s:isWork1() + s:isWork2() + s:isWork3() + s:isBookmakrs()
+	return 1 == s:isWork1() + s:isWork2() + s:isWork3()
 endfunction
 
 function! s:isBlank()
@@ -169,28 +162,3 @@ endfunction
 function! DSLast()
 	return s:directoryStacks[-1]
 endfunction	
-
-function! BookmarksToggle()
-	if exists('s:bookmarks_bufnum')
-		call s:bookmakrsClose()
-	else
-		call s:bookmakrsOpen()
-	endif
-endfunction
-
-function! s:bookmakrsOpen()
-	execute 'topleft 15 split ' . s:bookmarks
-	let s:bookmarks_bufnum = bufnr('')
-endfunction
-
-function! s:bookmakrsClose()
-	if exists('s:bookmarks_bufnum')
-		call s:close(s:bookmarks_bufnum)
-		unlet s:bookmarks_bufnum
-	endif
-	if bufexists(s:workfile3_bufnum)
-		call WindowSwitch3()
-		execute 'resize 10'
-		call WindowSwitch1()
-	endif
-endfunction
