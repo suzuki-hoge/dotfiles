@@ -1,0 +1,29 @@
+" vim:set ft=vim:
+
+function! NonameBuffer(bufname, lines)
+	call s:newBuffer(a:bufname)
+	silent put =a:lines
+	call s:format()
+endfunction
+
+function! FiletypeBuffer(filetype)
+	call s:newBuffer('workspace.' . a:filetype)
+
+	let &filetype = a:filetype
+endfunction
+
+function! s:newBuffer(bufname)
+	new
+	setlocal bufhidden=wipe
+	setlocal nobuflisted
+	setlocal buftype=nofile
+
+	silent file `=a:bufname`
+endfunction
+
+function! s:format()
+	try | execute '%s///' | catch | endtry
+	try | execute '1,4g/^$/normal dd' | catch | endtry
+	try | execute '1g/^:.*$/normal dd' | catch | endtry
+	execute 'normal gg'
+endfunction

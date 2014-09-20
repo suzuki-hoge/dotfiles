@@ -3,4 +3,5 @@
 augroup todo
 	autocmd!
 	autocmd BufEnter  *.todo source $todoplg/todo.vim
+	autocmd FileType todo source $todoplg/todo.vim
 augroup END

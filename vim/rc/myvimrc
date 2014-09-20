@@ -14,6 +14,7 @@ let $frank       = $plugin . '/flexible-frank'
 let $surroundtag = $plugin . '/surround-tag'
 let $mycomplete  = $plugin . '/my-complete'
 let $todoplg     = $plugin . '/todo'
+let $tmpplg      = $plugin . '/tmp-buffer'
 
 let $frank2     = $plugin . '/frank2'
 

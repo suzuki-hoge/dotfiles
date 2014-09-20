@@ -38,3 +38,5 @@ source $mycomplete/CamelRegComplete
 source $todoplg/conf
 
 source $frank2/src/main
+
+source $tmpplg/tmp-buffer
