@@ -6,5 +6,17 @@ command! Todo tabe $todo
 " message
 command! M messages
 
-" edit temporary source code at workspace
-command! -nargs=1 Tmp tabedit $workspace/tmp.<args>
+" edit temporary file at noname buffer
+command! -nargs=1 Tmp call FiletypeBuffer(<f-args>)
+
+" redirect command result and output to noname buffer
+command! -nargs=1 -complete=command Cap call Cap(<f-args>)
+ 
+function! Cap(command)
+	redir => result
+	silent execute a:command
+	redir END
+
+	let bufname = 'Capture: ' . a:command
+	call NonameBuffer(bufname, result)
+endfunction
