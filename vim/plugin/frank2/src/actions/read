@@ -8,7 +8,7 @@ endfunction
 function! s:read(entry)
 	if !a:entry.isDir
 		call WindowSwitch2()
-		call OutputFile(a:entry.path)
+		call ReadFile(a:entry.path)
 		call WindowSwitch1()
 	endif
 endfunction

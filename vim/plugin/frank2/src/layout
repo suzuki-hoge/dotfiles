@@ -137,10 +137,14 @@ function! OutputLines(lines)
 	call s:cursorAdjustWork3()
 endfunction
 
-function! OutputFile(path)
+function! ReadFile(path)
 	call s:clearnBuffer()
 	execute 'r ' . a:path
 	execute '0delete' 
+	let extension = fnamemodify(a:path, ':e')
+	" tmp
+	if extension == '' | let extension = 'vim' | endif
+	let &filetype = extension
 endfunction
 
 function! DSNew()
