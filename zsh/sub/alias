@@ -8,10 +8,10 @@ alias ....='../../../'
 alias lg="ls -l | grep"
 alias lp="ls | percol | xargs"
 
-alias lag="ls -la | grep"
-alias lap="ls -a | percol | xargs"
+alias lag="ls -lA | grep"
+alias lap="ls -A | percol | xargs"
 
-alias vip="ls -a | percol --match-method regex | xargs -o vi"
+alias vip="ls -A | percol --match-method regex | xargs -o vi"
 
 alias gstp="git status -s | percol --match-method regex | cut -c4- | xargs"
 alias gdfp="git status -s | percol --match-method regex | cut -c4- | xargs git diff"
