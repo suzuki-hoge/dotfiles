@@ -26,7 +26,7 @@ endfunction
 
 function! s:lsDir(entry)
 	let result  = system('ls -ld ' . a:entry.path) . "\n"
-	let result .= system('ls -l ' . a:entry.path . ' | tail +2')
+	let result .= system('ls -lF ' . a:entry.path . ' | tail +2')
 
 	call WindowSwitch3()
 	call OutputLines(split(result, '\n'))
@@ -34,7 +34,7 @@ function! s:lsDir(entry)
 endfunction
 
 function! s:lsFile(entry)
-	let result = system('ls -l ' . a:entry.path)
+	let result = system('ls -lF ' . a:entry.path)
 
 	call WindowSwitch3()
 	call OutputLines(split(result, '\n'))
