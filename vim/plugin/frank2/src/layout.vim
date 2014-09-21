@@ -99,7 +99,7 @@ function! s:outputEntries(path)
 endfunction
 
 function! s:clearnBuffer()
-	execute '0,$delete'
+	execute '0,$delete _'
 endfunction
 
 function! s:outputHead(path)
@@ -118,7 +118,7 @@ endfunction
 
 function! s:outputLines(lines)
 	call append(0, a:lines)
-	execute '$delete' 
+	execute '$delete _'
 endfunction
 
 function! s:cursorAdjustWork1()
@@ -138,7 +138,7 @@ endfunction
 function! ReadFile(path)
 	call s:clearnBuffer()
 	execute 'r ' . a:path
-	execute '0delete' 
+	execute '0delete _'
 	let extension = fnamemodify(a:path, ':e')
 	" tmp
 	if extension == '' | let extension = 'vim' | endif
