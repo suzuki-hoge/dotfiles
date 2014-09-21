@@ -1,13 +1,9 @@
-let s:workfile1 = $frank2 . '/workfiles/workfile1.frank2'
-let s:workfile2 = $frank2 . '/workfiles/workfile2.frank2'
-let s:workfile3 = $frank2 . '/workfiles/workfile3.frank2'
-
 function! Frank2Open(path)
 	call DSNew()
 
+	call s:openWork3()
 	call s:openWork2()
 	call s:openWork1()
-	call s:openWork3()
 
 	call DSPush(a:path)
 
@@ -21,31 +17,40 @@ function! Remake(path)
 endfunction
 
 function! CloseAll()
-	call s:close(s:workfile1_bufnum)
-	call s:close(s:workfile2_bufnum)
-	call s:close(s:workfile3_bufnum)
+	call s:close(s:frank1)
+	call s:close(s:frank2)
+	call s:close(s:frank3)
 endfunction
 
 function! s:openWork1()
-	execute 'vsplit ' . s:workfile1
-	let s:workfile1_bufnum = bufnr('')
-	call s:clearnBuffer()
+	execute 'vnew'
+	setlocal bufhidden=wipe
+	setlocal nobuflisted
+	setlocal buftype=nofile
+	silent file `='frank-1'`
+	let s:frank1 = bufnr('')
 endfunction
 
 function! s:openWork2()
-	if s:isBlank()
-		execute 'edit ' . s:workfile2
-	else
-		execute 'tabedit ' . s:workfile2
-	endif
-	let s:workfile2_bufnum = bufnr('')
-	call s:clearnBuffer()
+	execute winheight(0) - 10 . 'new'
+	setlocal bufhidden=wipe
+	setlocal nobuflisted
+	setlocal buftype=nofile
+	silent file `='frank-2'`
+	let s:frank2 = bufnr('')
 endfunction
 
 function! s:openWork3()
-	execute 'botright 10 split ' . s:workfile3
-	let s:workfile3_bufnum = bufnr('')
-	call s:clearnBuffer()
+	if s:isBlank()
+		execute 'enew'
+	else
+		execute 'tabnew'
+	endif
+	setlocal bufhidden=wipe
+	setlocal nobuflisted
+	setlocal buftype=nofile
+	silent file `='frank-3'`
+	let s:frank3 = bufnr('')
 endfunction
 
 function! s:close(bufnum)
@@ -55,15 +60,15 @@ function! s:close(bufnum)
 endfunction
 
 function! WindowSwitch1()
-	call s:windowSwitch(s:workfile1_bufnum)
+	call s:windowSwitch(s:frank1)
 endfunction
 
 function! WindowSwitch2()
-	call s:windowSwitch(s:workfile2_bufnum)
+	call s:windowSwitch(s:frank2)
 endfunction
 
 function! WindowSwitch3()
-	call s:windowSwitch(s:workfile3_bufnum)
+	call s:windowSwitch(s:frank3)
 endfunction
 
 function! s:windowSwitch(bufnum)
@@ -72,15 +77,15 @@ function! s:windowSwitch(bufnum)
 endfunction
 
 function! s:isWork1()
-	return !exists('s:workfile1_bufnum') ? 0 : bufnr('') == s:workfile1_bufnum
+	return !exists('s:frank1') ? 0 : bufnr('') == s:frank1
 endfunction
 
 function! s:isWork2()
-	return !exists('s:workfile2_bufnum') ? 0 : bufnr('') == s:workfile2_bufnum
+	return !exists('s:frank2') ? 0 : bufnr('') == s:frank2
 endfunction
 
 function! s:isWork3()
-	return !exists('s:workfile3_bufnum') ? 0 : bufnr('') == s:workfile3_bufnum
+	return !exists('s:frank3') ? 0 : bufnr('') == s:frank3
 endfunction
 
 function! IsFrank()
@@ -167,11 +172,11 @@ endfunction
 
 function! LauncherOpenAtWork3(bookmarks)
 	call WindowSwitch3()
-	call s:close(s:workfile3_bufnum)
+	call s:close(s:frank3)
 	call s:openBookmarks(a:bookmarks)
 endfunction
 
 function! s:openBookmarks(path)
 	execute 'botright 10 split ' . a:path
-	let s:workfile3_bufnum = bufnr('')
+	let s:frank3 = bufnr('')
 endfunction
