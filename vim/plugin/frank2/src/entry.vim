@@ -1,5 +1,3 @@
-" vim:set ft=vim:
-
 let s:blacklist = ['.git', '.svn', '.vagrant', '.DS_Store', '*.pyc']
 
 function! CreateEntries(path)

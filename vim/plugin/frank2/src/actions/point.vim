@@ -1,5 +1,3 @@
-" vim:set ft=vim:
-
 function! N_PointChange(value)
 	let entry = GetOneByCursor()
 	call s:pointChange([entry], a:value)

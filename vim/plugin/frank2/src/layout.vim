@@ -1,5 +1,3 @@
-" vim:set ft=vim:
-
 let s:workfile1 = $frank2 . '/workfiles/workfile1.frank2'
 let s:workfile2 = $frank2 . '/workfiles/workfile2.frank2'
 let s:workfile3 = $frank2 . '/workfiles/workfile3.frank2'

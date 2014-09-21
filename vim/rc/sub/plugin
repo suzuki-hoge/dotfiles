@@ -1,5 +1,3 @@
-" vim:set ft=vim:
-
 source $pete/Buffer
 source $pete/PetroniusTheArbiter
 
@@ -37,6 +35,6 @@ source $mycomplete/CamelRegComplete
 
 source $todoplg/conf
 
-source $frank2/src/main
+source $frank2/src/main.vim
 
 source $tmpplg/tmp-buffer

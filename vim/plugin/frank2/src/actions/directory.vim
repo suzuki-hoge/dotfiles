@@ -1,5 +1,3 @@
-" vim:set ft=vim:
-
 function! N_DirUp()
 	let upper = fnamemodify(DSLast(), ':h')
 	let depth = len(substitute(upper, '[^/]', '', 'g'))

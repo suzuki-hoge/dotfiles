@@ -1,5 +1,3 @@
-" vim:set ft=vim:
-
 function! N_Read()
 	let entry = GetOneByCursor()
 	call s:read(entry)

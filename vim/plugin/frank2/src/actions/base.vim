@@ -1,11 +1,9 @@
-" vim:set ft=vim:
-
-source $frank2/src/actions/edit
-source $frank2/src/actions/point
-source $frank2/src/actions/terminal
-source $frank2/src/actions/open
-source $frank2/src/actions/read
-source $frank2/src/actions/directory
+source $frank2/src/actions/edit.vim
+source $frank2/src/actions/point.vim
+source $frank2/src/actions/terminal.vim
+source $frank2/src/actions/open.vim
+source $frank2/src/actions/read.vim
+source $frank2/src/actions/directory.vim
 
 function! KeyMapping()
 	nnoremap <buffer> e  :call N_Edit()<CR>

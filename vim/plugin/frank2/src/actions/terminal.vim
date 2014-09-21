@@ -1,5 +1,3 @@
-" vim:set ft=vim:
-
 function! N_TerminalOpen()
 	let entry = GetOneByCursor()
 	if entry.isDir

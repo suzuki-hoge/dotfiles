@@ -1,5 +1,3 @@
-" vim:set ft=vim:
-
 let s:bookmarks = $frank2 . '/launcher/workfiles/bookmarks.frank2'
 
 function! LauncherOpen()

@@ -1,5 +1,3 @@
-" vim:set ft=vim:
-
 function! LauncherKeyMap()
 	nnoremap <buffer> cd   :call L_ChangeDirectory()<CR>
 	nnoremap <buffer> <CR> :call L_FrankOpen()<CR>

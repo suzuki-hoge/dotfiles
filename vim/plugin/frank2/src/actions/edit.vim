@@ -1,5 +1,3 @@
-" vim:set ft=vim:
-
 function! N_Edit()
 	let entries = GetByPoint()
 	if entries != []
