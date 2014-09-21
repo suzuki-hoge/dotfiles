@@ -1,4 +1,4 @@
-let s:bookmarks = $frank2 . '/launcher/workfiles/bookmarks.frank2'
+let s:bookmarks = $frank . '/launcher/workfiles/bookmarks.frank2'
 
 function! LauncherOpen()
 	if s:isLauncher()

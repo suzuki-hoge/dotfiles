@@ -1,5 +1,0 @@
-" vim:set ft=vim:
-
-let $_frank_frank1 = $_frank_workspace . '/frank1.frank'
-let $_frank_frank2 = $_frank_workspace . '/frank2.frank'
-let $_frank_frank3 = $_frank_workspace . '/frank3.frank'

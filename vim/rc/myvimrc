@@ -16,8 +16,6 @@ let $mycomplete  = $plugin . '/my-complete'
 let $todoplg     = $plugin . '/todo'
 let $tmpplg      = $plugin . '/tmp-buffer'
 
-let $frank2     = $plugin . '/frank2'
-
 " tmp
 let $tmp = $HOME . '/Documents/tmp'
 

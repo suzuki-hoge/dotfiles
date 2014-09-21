@@ -16,11 +16,6 @@ command! R call PetroniusTheArbiter($PETE_RELOAD)
 
 command! -nargs=* D call PetroniusTheArbiter($PETE_DEBUG, <f-args>)
 
-"source $frank/src/conf/Loader
-
-"nnoremap <S-M-CR> :FF .<CR>
-"command! -nargs=* -complete=dir FF call FlexibleFrank(<f-args>)
-
 " buffer local?
 nnoremap <Tab>   <C-w>w
 nnoremap <S-Tab> <C-w>W
@@ -35,6 +30,6 @@ source $mycomplete/CamelRegComplete
 
 source $todoplg/conf
 
-source $frank2/src/main.vim
+source $frank/src/main.vim
 
 source $tmpplg/tmp-buffer

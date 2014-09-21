@@ -1,4 +1,4 @@
-augroup frank2
+augroup frank
 	autocmd!
 	autocmd BufEnter workfile1.frank2 call KeyMapping()
 	autocmd BufEnter workfile1.frank2 source $frank2/src/frank2.vim
@@ -7,11 +7,11 @@ augroup END
 nnoremap <S-M-CR> :FF .<CR>
 command! -nargs=1 -complete=dir FF call Dispatch(<f-args>)
 
-source $frank2/src/layout.vim
-source $frank2/src/entry.vim
-source $frank2/src/actions/base.vim
+source $frank/src/layout.vim
+source $frank/src/entry.vim
+source $frank/src/actions/base.vim
 
-source $frank2/launcher/src/main.vim
+source $frank/launcher/src/main.vim
 
 function! Dispatch(path)
 	let abspath = fnamemodify(a:path, ':p')[:-2]

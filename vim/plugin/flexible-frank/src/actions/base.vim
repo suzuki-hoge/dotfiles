@@ -1,9 +1,9 @@
-source $frank2/src/actions/edit.vim
-source $frank2/src/actions/point.vim
-source $frank2/src/actions/terminal.vim
-source $frank2/src/actions/open.vim
-source $frank2/src/actions/read.vim
-source $frank2/src/actions/directory.vim
+source $frank/src/actions/edit.vim
+source $frank/src/actions/point.vim
+source $frank/src/actions/terminal.vim
+source $frank/src/actions/open.vim
+source $frank/src/actions/read.vim
+source $frank/src/actions/directory.vim
 
 function! KeyMapping()
 	nnoremap <buffer> e  :call N_Edit()<CR>

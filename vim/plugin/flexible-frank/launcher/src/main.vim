@@ -5,5 +5,5 @@ augroup END
 
 command! Launch call LauncherOpen()
 
-source $frank2/launcher/src/layout.vim
-source $frank2/launcher/src/actions.vim
+source $frank/launcher/src/layout.vim
+source $frank/launcher/src/actions.vim
