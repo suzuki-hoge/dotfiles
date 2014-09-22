@@ -11,7 +11,6 @@ function! s:finder(path)
 		let blacks .= ' -name "' . black . '" -prune -or'
 	endfor
 
-	echomsg 'find ' . a:path . blacks . ' -print'
 	return system('find ' . a:path . blacks . ' -print')
 endfunction
 

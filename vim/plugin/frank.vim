@@ -1,9 +1,3 @@
-augroup frank
-	autocmd!
-	autocmd BufEnter workfile1.frank2 call KeyMapping()
-	autocmd BufEnter workfile1.frank2 source $frank2/src/syntax.vim
-augroup END
-
 nnoremap <S-M-CR> :FF .<CR>
 nnoremap <S-M-CR> :FF $frank<CR>
 command! -nargs=1 -complete=dir FF call Dispatch(<f-args>)

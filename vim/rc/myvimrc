@@ -46,4 +46,3 @@ source $plugin/frank.vim
 
 
 let &runtimepath .= ',' . $plugin
-

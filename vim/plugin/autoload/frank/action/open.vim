@@ -1,5 +1,5 @@
-function! N_Open(command, isDir)
-	let entry = GetOneByCursor()
+function! frank#action#open#exec(command, isDir)
+	let entry = frank#action#base#getByCursor()
 	if entry.isDir == a:isDir
 		call s:open(entry, a:command)
 	endif

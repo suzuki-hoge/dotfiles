@@ -7,12 +7,14 @@ function! frank#window#opener#open(path)
 
 	call frank#dirstack#push(a:path)
 
-	call frank#window#printer#print(a:path)
+	call frank#window#printer#to1(a:path)
 endfunction
 
 function! s:open1()
 	execute 'vnew'
 	call s:new(1)
+	call frank#action#base#keymap()
+	source $frank/syntax.vim
 endfunction
 
 function! s:open2()
