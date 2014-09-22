@@ -1,18 +1,18 @@
-function! DSNew()
+function! frank#dirstack#new()
 	let s:directoryStacks = []
 endfunction	
 
-function! DSPush(path)
+function! frank#dirstack#push(path)
 	let s:directoryStacks = s:directoryStacks + [a:path]
 endfunction	
 
-function! DSPop()
+function! frank#dirstack#pop()
 	if len(s:directoryStacks) != 1
 		call remove(s:directoryStacks, -1)
 	endif
-	return DSLast()
+	return frank#dirstack#last()
 endfunction	
 
-function! DSLast()
+function! frank#dirstack#last()
 	return s:directoryStacks[-1]
 endfunction	

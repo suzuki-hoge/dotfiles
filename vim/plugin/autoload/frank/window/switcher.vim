@@ -1,12 +1,12 @@
-function! WindowSwitch1()
+function! frank#window#switcher#to1()
 	call s:switch(g:frank1)
 endfunction
 
-function! WindowSwitch2()
+function! frank#window#switcher#to2()
 	call s:switch(g:frank2)
 endfunction
 
-function! WindowSwitch3()
+function! frank#window#switcher#to3()
 	call s:switch(g:frank3)
 endfunction
 

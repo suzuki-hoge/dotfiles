@@ -1,28 +1,28 @@
-function! OpenFrank(path)
-	call DSNew()
+function! frank#window#opener#open(path)
+	call frank#dirstack#new()
 
-	call s:openWork3()
-	call s:openWork2()
-	call s:openWork1()
+	call s:open3()
+	call s:open2()
+	call s:open1()
 
-	call DSPush(a:path)
+	call frank#dirstack#push(a:path)
 
-	call PrintEntries(a:path)
+	call frank#window#printer#print(a:path)
 endfunction
 
-function! s:openWork1()
+function! s:open1()
 	execute 'vnew'
 	call s:new(1)
 	let g:frank1 = bufnr('')
 endfunction
 
-function! s:openWork2()
+function! s:open2()
 	execute winheight(0) - 10 . 'new'
 	call s:new(2)
 	let g:frank2 = bufnr('')
 endfunction
 
-function! s:openWork3()
+function! s:open3()
 	if s:isBlank()
 		execute 'enew'
 	else

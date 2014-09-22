@@ -10,7 +10,6 @@ let $subrc = $dot . '/vim/rc/sub'
 " plugin
 let $plugin      = $dot . '/vim/plugin'
 let $pete        = $plugin . '/petronius-the-arbiter'
-let $frank       = $plugin . '/flexible-frank'
 let $surroundtag = $plugin . '/surround-tag'
 let $mycomplete  = $plugin . '/my-complete'
 let $todoplg     = $plugin . '/todo'
@@ -41,3 +40,10 @@ source $subrc/options
 source $subrc/tab
 source $subrc/tagbar
 source $subrc/vundle
+
+let $frank       = $plugin . '/autoload/frank'
+source $plugin/frank.vim
+
+
+let &runtimepath .= ',' . $plugin
+

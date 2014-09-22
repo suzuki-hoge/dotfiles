@@ -30,6 +30,4 @@ source $mycomplete/CamelRegComplete
 
 source $todoplg/conf
 
-source $frank/src/main.vim
-
 source $tmpplg/tmp-buffer

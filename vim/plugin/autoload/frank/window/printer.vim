@@ -1,10 +1,10 @@
-function! PrintEntries(path)
-	call CreateEntries(a:path)
+function! frank#window#printer#print(path)
+	call frank#entry#create(a:path)
 	call s:print(a:path)
 endfunction
 
 function! s:print(path)
-	call WindowSwitch1()
+	call frank#window#switcher#to1()
 	call s:outputHead(a:path)
 	call s:outputBody()
 	execute 'normal 5gg0'

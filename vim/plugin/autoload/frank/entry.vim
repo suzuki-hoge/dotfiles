@@ -1,6 +1,6 @@
 let s:blacklist = ['.git', '.svn', '.vagrant', '.DS_Store', '*.pyc']
 
-function! CreateEntries(path)
+function! frank#entry#create(path)
 	let paths = s:finder(a:path)
 	let g:entries = s:convert(a:path, paths)
 endfunction
