@@ -1,7 +1,7 @@
 augroup frank
 	autocmd!
-	autocmd FocusLost,TabLeave * if frank#window#checker#isFrank() | call frank#window#closer#all() | endif
-	autocmd BufWipeout * if frank#window#checker#isFrank() | call frank#window#closer#all() | endif
+	"autocmd FocusLost,TabLeave * if frank#window#checker#isFrank() | call frank#window#closer#all() | endif
+	"autocmd BufWipeout * if frank#window#checker#isFrank() | call frank#window#closer#all() | endif
 augroup END
 
 nnoremap <S-M-CR> :FF .<CR>

@@ -15,6 +15,8 @@ function! s:open1()
 	call s:new(1)
 	call frank#action#base#keymap()
 	source $frank/syntax.vim
+	setlocal foldmarker={,}
+	setlocal foldmethod=marker
 endfunction
 
 function! s:open2()

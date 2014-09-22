@@ -20,9 +20,35 @@ function! s:outputHead(path)
 endfunction
 
 function! s:outputBody()
-	for entry in g:entries
-		call append('$', entry.output())
+	for i in range(len(g:entries))
+		call append('$', g:entries[i].output() . s:mark(i))
 	endfor
+endfunction
+
+" entry側に持って行くのはありかも
+function! s:mark(i)
+	let nowdepth  = g:entries[a:i].depth
+
+	if a:i == len(g:entries) - 1
+		if nowdepth == 0
+			return ''
+		else
+			return ')'
+		endif
+	else
+		let nextdepth = g:entries[a:i + 1].depth
+	endif
+
+	if nowdepth < nextdepth
+		return '('
+	elseif nowdepth > nextdepth
+		let result = ''
+		for i in range(nowdepth - nextdepth)
+			let result .= ')'
+		endfor
+		return result
+	else
+		return ''
 endfunction
 
 function! frank#window#printer#update(entry)
