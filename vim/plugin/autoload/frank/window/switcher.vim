@@ -1,4 +1,5 @@
 function! frank#window#switcher#switch(n)
-	let n = bufnr('frank-' . a:n)
-	execute n . 'wincmd w'
+	let bufnum = bufnr('frank-' . a:n)
+	let winnum = bufwinnr(bufnum)
+	execute winnum . 'wincmd w'
 endfunction
