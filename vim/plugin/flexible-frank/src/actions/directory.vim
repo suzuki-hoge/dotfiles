@@ -23,5 +23,5 @@ function! N_DirPrev()
 endfunction
 
 function! s:cd(path)
-	call Remake(a:path)
+	call PrintEntries(a:path)
 endfunction

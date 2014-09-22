@@ -10,3 +10,13 @@ function! s:read(entry)
 		call WindowSwitch1()
 	endif
 endfunction
+
+"function! ReadFile(path)
+"	execute 'r ' . a:path
+"	execute '0delete _'
+"	let extension = fnamemodify(a:path, ':e')
+"	" tmp
+"	if extension == '' | let extension = 'vim' | endif
+"	let &filetype = extension
+"endfunction
+
