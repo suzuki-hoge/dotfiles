@@ -13,13 +13,11 @@ endfunction
 function! s:open1()
 	execute 'vnew'
 	call s:new(1)
-	let g:frank1 = bufnr('')
 endfunction
 
 function! s:open2()
 	execute winheight(0) - 10 . 'new'
 	call s:new(2)
-	let g:frank2 = bufnr('')
 endfunction
 
 function! s:open3()
@@ -29,7 +27,6 @@ function! s:open3()
 		execute 'tabnew'
 	endif
 	call s:new(3)
-	let g:frank3 = bufnr('')
 endfunction
 
 function! s:new(n)

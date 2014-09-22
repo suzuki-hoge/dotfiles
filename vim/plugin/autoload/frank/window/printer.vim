@@ -4,7 +4,7 @@ function! frank#window#printer#print(path)
 endfunction
 
 function! s:print(path)
-	call frank#window#switcher#to1()
+	call frank#window#switcher#switch(1)
 	call s:outputHead(a:path)
 	call s:outputBody()
 	execute 'normal 5gg0'

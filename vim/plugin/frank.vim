@@ -5,6 +5,7 @@ augroup frank
 augroup END
 
 nnoremap <S-M-CR> :FF .<CR>
+nnoremap <S-M-CR> :FF $frank<CR>
 command! -nargs=1 -complete=dir FF call Dispatch(<f-args>)
 
 function! Dispatch(path)
