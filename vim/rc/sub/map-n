@@ -15,7 +15,8 @@ nnoremap ,j zt
 nnoremap ,k zb
 
 " highlight under cursor word
-nnoremap * :let pos = getpos('.')<CR>*:call setpos('.', pos)<CR>
+nnoremap * :let @/ = '\<' . expand('<cword>') . '\>'<CR>:set hlsearch<CR>
+nnoremap g* :let @/ = expand('<cword>')<CR>:set hlsearch<CR>
 
 " colon with !
 nnoremap æ :!
