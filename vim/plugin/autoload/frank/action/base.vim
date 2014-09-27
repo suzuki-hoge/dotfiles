@@ -25,8 +25,8 @@ function! frank#action#base#keymap()
 	nnoremap <buffer> L :call frank#action#fold#open()<CR>
 "	nnoremap <buffer> fH :call frank#action#fold#closeall()<CR>
 "	nnoremap <buffer> fL :call frank#action#fold#openall()<CR>
-"	nnoremap <buffer> fk :call frank#action#fold#prev()<CR>
-"	nnoremap <buffer> fj :call frank#action#fold#next()<CR>
+	nnoremap <buffer> fk :call frank#action#fold#prev()<CR>
+	nnoremap <buffer> fj :call frank#action#fold#next()<CR>
 endfunction
 
 function! frank#action#base#getByCursor()

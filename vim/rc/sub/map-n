@@ -10,9 +10,9 @@ nnoremap <S-l> 10<RIGHT>
 nnoremap <S-u> <C-r>
 
 " Scrolling relative to cursor 
-nnoremap , zz
-nnoremap zj zt
-nnoremap zk zb
+nnoremap ,, zz
+nnoremap ,j zt
+nnoremap ,k zb
 
 " highlight under cursor word
 nnoremap * :let pos = getpos('.')<CR>*:call setpos('.', pos)<CR>
