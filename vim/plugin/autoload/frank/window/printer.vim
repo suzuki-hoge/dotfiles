@@ -33,18 +33,18 @@ function! s:mark(i)
 		if nowdepth == 0
 			return ''
 		else
-			return ')'
+			return '}'
 		endif
 	else
 		let nextdepth = g:entries[a:i + 1].depth
 	endif
 
 	if nowdepth < nextdepth
-		return '('
+		return '{'
 	elseif nowdepth > nextdepth
 		let result = ''
 		for i in range(nowdepth - nextdepth)
-			let result .= ')'
+			let result .= '}'
 		endfor
 		return result
 	else
