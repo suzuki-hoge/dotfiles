@@ -11,12 +11,12 @@ function! frank#window#opener#open(path)
 endfunction
 
 function! s:open1()
+	setlocal foldlevelstart=99
 	execute 'vnew'
 	call s:new(1)
 	call frank#action#base#keymap()
 	source $frank/syntax.vim
-	setlocal foldmarker={,}
-	setlocal foldmethod=marker
+	call frank#window#folder#setopt()
 endfunction
 
 function! s:open2()

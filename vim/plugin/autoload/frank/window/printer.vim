@@ -14,7 +14,8 @@ endfunction
 function! s:outputHead(path)
 	execute ':normal ggO'
 	execute ':normal ' . len(a:path) . 'i-'
-	call append(1, a:path)
+	let slashes = len(substitute(a:path, '[^/]', '', 'g'))
+	call append(1, a:path . repeat('}', slashes))
 	execute ':normal GO'
 	execute ':normal ' . len(a:path) . 'i-'
 endfunction
@@ -39,9 +40,9 @@ function! s:mark(i)
 		let nextdepth = g:entries[a:i + 1].depth
 	endif
 
-	if nowdepth < nextdepth
-		return '{'
-	elseif nowdepth > nextdepth
+"	if nowdepth < nextdepth
+"		return '{'
+	if nowdepth > nextdepth
 		let result = ''
 		for i in range(nowdepth - nextdepth)
 			let result .= '}'
