@@ -24,6 +24,7 @@ function! s:convert(basepath, paths)
 		let entry = {'path' : path, 'isDir' : isdirectory(path), 'depth' : depth, 'fold' : 0, 'point' : 0, 'index' : index}
 
 		function! entry.output()
+			" static method的に
 			let fold = self.isDir ? (self.fold ? '- ' : '+ ') : '  '
 			let point = self.point ? '* ' : '  '
 			let name = substitute(self.path[s:baselen + 1:], '[^/]*/', '    ', 'g')

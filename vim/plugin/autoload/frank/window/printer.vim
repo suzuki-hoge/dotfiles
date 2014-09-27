@@ -53,8 +53,15 @@ function! s:mark(i)
 endfunction
 
 function! frank#window#printer#update(entry)
-	execute a:entry.index . 'delete'
-	call append(a:entry.index - 1, a:entry.output())
+	let point = a:entry.point ? '* ' : '  '
+	let fold = a:entry.isDir ? (a:entry.fold ? '- ' : '+ ') : '  '
+	execute 'normal ' . a:entry.index . 'gg0'
+	execute 'normal R' . fold . point
+
+	if a:entry.fold
+		execute 'normal zc'
+	endif
+
 	execute 'normal ' . a:entry.index . 'gg0'
 endfunction
 
