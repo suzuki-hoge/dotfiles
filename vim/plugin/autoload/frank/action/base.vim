@@ -30,11 +30,11 @@ function! frank#action#base#keymap()
 endfunction
 
 function! frank#action#base#getByCursor()
-	return g:entries[getpos('.')[1] - 5]
+	return g:entries[getpos('.')[1] - 1]
 endfunction
 
 function! frank#action#base#getByRange(first, last)
-	return g:entries[ a:first - 5 : a:last - 5 ]
+	return g:entries[a:first - 1 : a:last - 1]
 endfunction
 
 function! frank#action#base#getByPoint()

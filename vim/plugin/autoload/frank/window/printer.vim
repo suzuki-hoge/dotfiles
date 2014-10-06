@@ -6,24 +6,18 @@ endfunction
 function! s:print(path)
 	call frank#window#switcher#to(1)
 	execute '1,$delete _'
-	call s:outputHead(a:path)
 	call s:outputBody()
+	execute '0delete _'
 	execute 'normal 5gg0'
-endfunction
-
-function! s:outputHead(path)
-	execute ':normal ggO'
-	execute ':normal ' . len(a:path) . 'i-'
-	let slashes = len(substitute(a:path, '[^/]', '', 'g'))
-	call append(1, a:path . repeat('}', slashes))
-	execute ':normal GO'
-	execute ':normal ' . len(a:path) . 'i-'
 endfunction
 
 function! s:outputBody()
 	for i in range(len(g:entries))
-		call append('$', g:entries[i].output() . s:mark(i))
+		call append('$', g:entries[i].output())
 	endfor
+"	for i in range(len(g:entries))
+"		call append('$', g:entries[i].output() . s:mark(i))
+"	endfor
 endfunction
 
 " entry側に持って行くのはありかも
@@ -40,8 +34,6 @@ function! s:mark(i)
 		let nextdepth = g:entries[a:i + 1].depth
 	endif
 
-"	if nowdepth < nextdepth
-"		return '{'
 	if nowdepth > nextdepth
 		let result = ''
 		for i in range(nowdepth - nextdepth)
