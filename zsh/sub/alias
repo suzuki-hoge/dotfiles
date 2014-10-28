@@ -21,7 +21,8 @@ alias gpsp="git branch | percol --match-method regex | cut -c2- | xargs git push
 
 alias -g G='| grep'
 alias -g V='| grep -v'
-alias -g P="| percol --match-method regex | xargs"
+alias -g P='| percol --match-method regex | xargs'
+alias -g E='| exit'
 
 function qlook(){
  qlmanage -p $1 >& /dev/null
