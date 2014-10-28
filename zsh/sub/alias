@@ -23,6 +23,7 @@ alias -g G='| grep'
 alias -g V='| grep -v'
 alias -g P='| percol --match-method regex | xargs'
 alias -g E='| exit'
+alias -g C='| pbcopy'
 
 function qlook(){
  qlmanage -p $1 >& /dev/null
