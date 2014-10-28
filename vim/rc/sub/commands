@@ -20,3 +20,6 @@ function! Cap(command)
 	let bufname = 'Capture: ' . a:command
 	call NonameBuffer(bufname, result)
 endfunction
+
+" toggle relative/absolute line number
+command! Rel setlocal relativenumber!
