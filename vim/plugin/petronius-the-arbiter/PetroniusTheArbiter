@@ -11,6 +11,7 @@ source $pete/pete/Javascript
 source $pete/pete/Css
 source $pete/pete/HtmlDjango
 source $pete/pete/Php
+source $pete/pete/Haskell
 
 let $PETE_COMMENT_ON     = 0
 let $PETE_COMMENT_OFF    = 1
@@ -102,5 +103,8 @@ def createPete(fileType):
 
 	elif fileType == 'php':
 		return Php()
+
+	elif fileType == 'haskell':
+		return Haskell()
 
 EOM
