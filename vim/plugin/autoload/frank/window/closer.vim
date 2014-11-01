@@ -1,7 +1,11 @@
 function! frank#window#closer#all()
-	call s:close(1)
-	call s:close(2)
-	call s:close(3)
+	if frank#window#checker#isFrank()
+		call s:close(1)
+		call s:close(2)
+		call s:close(3)
+	else
+		execute 'bdelete'
+	endif
 endfunction
 
 function! s:close(n)
