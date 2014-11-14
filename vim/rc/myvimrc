@@ -25,7 +25,7 @@ let $workspace = $HOME . '/Documents/workspace'
 let $private = $HOME . '/Library/Application Support/KeyRemap4MacBook/private.xml'
 
 " todo
-let $todo = $HOME . '/Dropbox/list.todo'
+let $todo = $HOME . '/Dropbox/todos/list.todo'
 
 " import subrc
 source $subrc/autocommands
