@@ -31,9 +31,18 @@ function _lib_find() {
  echo `find $ROOT -type $TYPE -maxdepth 1 | cut -c$LEN- | percol --match-method regex`
 }
 
+function _lib_recffind() {
+ echo `_lib_recfind $1 f`
+}
+
+function _lib_recdfind() {
+ echo `_lib_recfind $1 d`
+}
+
 # __指定パスのディレクトリを再帰的に表示して絞り込む
 function _lib_recfind() {
  local ROOT=$1
  local LEN=`_lib_cutlen $ROOT`
- echo `find $ROOT -name .git -prune -or -name .svn -prune -or -name .vagrant -prune -or -name Library -prune -or -type d | cut -c$LEN- | percol --match-method regex`
+ local TYPE=$2
+ echo `find $ROOT -name .git -prune -or -name .svn -prune -or -name .vagrant -prune -or -name Library -prune -or -type $TYPE | cut -c$LEN- | percol --match-method regex`
 }

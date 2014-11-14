@@ -19,7 +19,7 @@ function cdp() {
 # 一覧表示（再帰）されたディレクトリを選択して移動する
 function cdpr() {
  local ROOT=`_lib_currentOr $1`
- local TARGET=`_lib_recfind $ROOT`
+ local TARGET=`_lib_recdfind $ROOT`
  cd $ROOT/$TARGET
 }
 
@@ -33,7 +33,7 @@ function dirp() {
 # 一覧表示（再帰）されたディレクトリをFinderで開く
 function dirpr() {
  local ROOT=`_lib_currentOr $1`
- local TARGET=`_lib_recfind $ROOT`
+ local TARGET=`_lib_recdfind $ROOT`
  open $ROOT/$TARGET
 }
 

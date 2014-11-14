@@ -17,6 +17,12 @@ function vip() {
  vi $ROOT/$TARGET
 }
 
+function vipr() {
+ local ROOT=`_lib_currentOr $1`
+ local TARGET=`_lib_recffind $ROOT`
+ vi $ROOT/$TARGET
+}
+
 alias gstp="git status -s | percol --match-method regex | cut -c4- | xargs"
 alias gdfp="git status -s | percol --match-method regex | cut -c4- | xargs git diff"
 alias gcop="git branch | percol --match-method regex | cut -c2- | xargs git checkout"
