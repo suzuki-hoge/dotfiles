@@ -1,0 +1,32 @@
+# vim:set ft=sh:
+
+# __カレントディレクトリを返すデフォルト引数
+function _lib_currentOr() {
+ if [ -z $1 ];then
+  echo .
+ else
+  echo $1
+ fi
+}
+
+# __指定パスのファイルを表示して絞り込む
+function _lib_ffind() {
+ local ROOT=$1
+ local LEN=3
+# local LEN=`__len $ROOT`
+ echo `find $ROOT -type f -maxdepth 1 | cut -c$LEN- | percol --match-method regex`
+}
+
+# __指定パスのディレクトリを表示して絞り込む
+function _lib_find() {
+ local ROOT=$1
+ local LEN=`__len $ROOT`
+ echo `find $ROOT -type d -maxdepth 1 | cut -c$LEN- | percol --match-method regex`
+}
+
+# __指定パスのディレクトリを再帰的に表示して絞り込む
+function _lib_recfind() {
+ local ROOT=$1
+ local LEN=`expr $#1 + 2`
+ echo `find $ROOT -name .git -prune -or -name .svn -prune -or -name .vagrant -prune -or -name Library -prune -or -type d | cut -c$LEN- | percol --match-method regex`
+}

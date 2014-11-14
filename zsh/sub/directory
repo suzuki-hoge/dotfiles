@@ -11,57 +11,34 @@ function take() {
 
 # 一覧表示されたディレクトリを選択して移動する
 function cdp() {
- local ROOT=`__currentOrArg $1`
- local TARGET=`__find $ROOT`
+ local ROOT=`_lib_currentOr $1`
+ local TARGET=`_lib_find $ROOT`
  cd $ROOT/$TARGET
 }
 
 # 一覧表示（再帰）されたディレクトリを選択して移動する
 function cdpr() {
- local ROOT=`__currentOrArg $1`
- local TARGET=`__findr $ROOT`
+ local ROOT=`_lib_currentOr $1`
+ local TARGET=`_lib_recfind $ROOT`
  cd $ROOT/$TARGET
 }
 
 # 一覧表示されたディレクトリをFinderで開く
 function dirp() {
- local ROOT=`__currentOrArg $1`
- local TARGET=`__findr $ROOT`
+ local ROOT=`_lib_currentOr $1`
+ local TARGET=`_lib_recfind $ROOT`
  open $ROOT/$TARGET
 }
 
 # 一覧表示（再帰）されたディレクトリをFinderで開く
 function dirpr() {
- local ROOT=`__currentOrArg $1`
- local TARGET=`__findr $ROOT`
+ local ROOT=`_lib_currentOr $1`
+ local TARGET=`_lib_recfind $ROOT`
  open $ROOT/$TARGET
 }
 
 # 現在のディレクトリもしくは指定のディレクトリをFinderで開く
 function dir() {
- local TARGET=`__currentOrArg $1`
+ local TARGET=`_lib_currentOr $1`
  open $TARGET
-}
-
-# __カレントディレクトリを返すデフォルト引数
-function __currentOrArg() {
- if [ -z $1 ];then
-  echo .
- else
-  echo $1
- fi
-}
-
-# __指定パスのディレクトリを表示して絞り込む
-function __find() {
- local ROOT=$1
- local LEN=`__len $ROOT`
- echo `find $ROOT -type d -maxdepth 1 | cut -c$LEN- | percol --match-method regex`
-}
-
-# __指定パスのディレクトリを再帰的に表示して絞り込む
-function __findr() {
- local ROOT=$1
- local LEN=`expr $#1 + 2`
- echo `find $ROOT -name .git -prune -or -name .svn -prune -or -name .vagrant -prune -or -name Library -prune -or -type d | cut -c$LEN- | percol --match-method regex`
 }

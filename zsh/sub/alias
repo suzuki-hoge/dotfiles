@@ -11,7 +11,12 @@ alias lp="ls | percol | xargs"
 alias lag="ls -lA | grep"
 alias lap="ls -A | percol | xargs"
 
-alias vip="find . -maxdepth 1 -type f | cut -c3- | percol --match-method regex | xargs -o vi"
+#alias vip="find . -maxdepth 1 -type f | cut -c3- | percol --match-method regex | xargs -o vi"
+function vip() {
+ local ROOT=`_lib_currentOr $1`
+ local TARGET=`_lib_ffind $ROOT`
+ vi $ROOT/$TARGET
+}
 
 alias gstp="git status -s | percol --match-method regex | cut -c4- | xargs"
 alias gdfp="git status -s | percol --match-method regex | cut -c4- | xargs git diff"
