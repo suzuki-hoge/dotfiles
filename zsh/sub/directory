@@ -1,6 +1,6 @@
 # vim:set ft=sh:
 
-# ディレクトリ名のみで移動
+# ディレクトリ名のみで移動を可能にする
 setopt auto_cd
 
 # ディレクトリを作成してそこに移動する
@@ -9,36 +9,36 @@ function take() {
  cd $1
 }
 
-# 一覧表示されたディレクトリを選択して移動する
-function cdp() {
- local ROOT=`_lib_currentOr $1`
- local TARGET=`_lib_dfind $ROOT`
- cd $ROOT/$TARGET
+# 現在のディレクトリもしくは指定のディレクトリをFinderで開く
+function dir() {
+ local TARGET=`_lib_currentOr $1`
+ open $TARGET
 }
 
-# 一覧表示（再帰）されたディレクトリを選択して移動する
-function cdpr() {
- local ROOT=`_lib_currentOr $1`
- local TARGET=`_lib_recdfind $ROOT`
- cd $ROOT/$TARGET
-}
-
-# 一覧表示されたディレクトリをFinderで開く
+# [percol] Finderで開く
 function dirp() {
  local ROOT=`_lib_currentOr $1`
  local TARGET=`_lib_dfind $ROOT`
  open $ROOT/$TARGET
 }
 
-# 一覧表示（再帰）されたディレクトリをFinderで開く
+# [rec-percol] Finderで開く
 function dirpr() {
  local ROOT=`_lib_currentOr $1`
  local TARGET=`_lib_recdfind $ROOT`
  open $ROOT/$TARGET
 }
 
-# 現在のディレクトリもしくは指定のディレクトリをFinderで開く
-function dir() {
- local TARGET=`_lib_currentOr $1`
- open $TARGET
+# [percol] 移動
+function cdp() {
+ local ROOT=`_lib_currentOr $1`
+ local TARGET=`_lib_dfind $ROOT`
+ cd $ROOT/$TARGET
+}
+
+# [rec-percol] 移動
+function cdpr() {
+ local ROOT=`_lib_currentOr $1`
+ local TARGET=`_lib_recdfind $ROOT`
+ cd $ROOT/$TARGET
 }
