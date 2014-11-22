@@ -18,26 +18,31 @@ page_group.add_argument('-f', '--find', default = False, action = 'store_true', 
 
 args = parser.parse_args()
 
+def getManager(path, isRecreate):
+	return recreate(path) if isRecreate else byShelf(path)
 
-def getManager(path):
+def byShelf(path):
 	dbpath = os.path.join(os.path.dirname(__file__), 'shelf')
 	shelf = shelve.open(dbpath)
 
 	try:
 		manager = shelf[path]
 	except:
-		manager = Manager(path)
+		manager = recreate(path)
 
 		shelf[path] = manager
 		shelf.close()
 
 	return manager
 
+def recreate(path):
+	print 're'
+	return Manager(path)
 
 path = args.path
 ids = args.ids
 
-manager = getManager(path)
+manager = getManager(path, args.r)
 
 if args.head:
 	print manager.head
