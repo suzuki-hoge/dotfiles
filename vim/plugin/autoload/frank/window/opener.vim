@@ -1,4 +1,4 @@
-function! frank#window#opener#open(path)
+function! frank#window#opener#full(path)
 	call frank#dirstack#new()
 
 	call s:open3()
@@ -7,7 +7,7 @@ function! frank#window#opener#open(path)
 
 	call frank#dirstack#push(a:path)
 
-	call frank#window#printer#to1(a:path)
+	call frank#window#printer#entries(a:path)
 endfunction
 
 function! s:open1()

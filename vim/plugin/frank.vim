@@ -26,5 +26,5 @@ function! Dispatch(path)
 		return
 	endif
 
-	call frank#window#opener#open(abspath)
+	call frank#window#opener#full(abspath)
 endfunction
