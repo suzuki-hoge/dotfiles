@@ -1,12 +1,10 @@
 function! frank#action#edit#normal()
-	let paths = frank#finder#bypos()
-	call s:edit(paths)
+	let path = frank#finder#oneByPos()
+	call s:edit(path)
 endfunction
 
-function! s:edit(paths)
-	for path in split(a:paths, '\n')
-		if !isdirectory(path)
-			execute 'tabedit ' . path
-		endif
-	endfor
+function! s:edit(path)
+	if !isdirectory(a:path)
+		execute 'tabedit ' . a:path
+	endif
 endfunction

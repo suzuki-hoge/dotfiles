@@ -1,38 +1,38 @@
 function! frank#action#terminal#open()
-	let entry = frank#action#base#getByCursor()
-	if entry.isDir
-		call s:open(entry)
+	let path = frank#finder#oneByPos()
+	call s:open(path)
+endfunction
+
+function! s:open(path)
+	if isdirectory(a:path)
+		execute 'silent !open -a Terminal ' . a:path
 	endif
 endfunction
 
 function! frank#action#terminal#ls()
-	let entry = frank#action#base#getByCursor()
-	call s:ls(entry)
+	let path = frank#finder#oneByPos()
+	call s:ls(path)
 endfunction
 
-function! s:open(entry)
-	execute 'silent !open -a Terminal ' . a:entry.path
-endfunction
-
-function! s:ls(entry)
-	if a:entry.isDir
-		call s:lsDir(a:entry)
+function! s:ls(path)
+	if isdirectory(a:path)
+		call s:lsDir(a:path)
 	else
-		call s:lsFile(a:entry)
+		call s:lsFile(a:path)
 	endif
 endfunction
 
-function! s:lsDir(entry)
-	let result  = system('ls -ld ' . a:entry.path) . "\n"
-	let result .= system('ls -lF ' . a:entry.path . ' | tail +2')
+function! s:lsDir(path)
+	let result  = system('ls -ld ' . a:path) . "\n"
+	let result .= system('ls -lF ' . a:path . ' | tail +2')
 
 	call frank#window#switcher#to(3)
 	call frank#window#printer#to3(split(result, '\n'))
 	call frank#window#switcher#to(1)
 endfunction
 
-function! s:lsFile(entry)
-	let result = system('ls -lF ' . a:entry.path)
+function! s:lsFile(path)
+	let result = system('ls -lF ' . a:path)
 
 	call frank#window#switcher#to(3)
 	call frank#window#printer#to3(split(result, '\n'))

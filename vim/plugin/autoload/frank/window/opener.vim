@@ -22,7 +22,7 @@ function! s:open1()
 endfunction
 
 function! s:open2()
-	execute winheight(0) - 10 . 'new'
+	execute winheight(0) - 15 . 'new'
 	call s:new(2)
 endfunction
 

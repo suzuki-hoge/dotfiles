@@ -14,3 +14,10 @@ endfunction
 "	let extension = fnamemodify(a:path, ':e')
 "	let &filetype = extension
 "endfunction
+
+function! frank#window#printer#to3(lines)
+	execute '1,$delete _'
+	call append(0, a:lines)
+	execute '$delete _'
+	execute ':normal 1gg'
+endfunction
