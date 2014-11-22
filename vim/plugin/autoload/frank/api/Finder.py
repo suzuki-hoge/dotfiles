@@ -4,13 +4,31 @@ import shelve
 
 from Manager import Manager
 
-path = sys.argv[1]
+SHELF = './shelf'
 
-shelf = shelve.open('./shelf')
+def header(path):
+	print Manager.header(path)
 
-try:
-	manager = shelf[path]
-except:
-	manager = Manager(path)
+def tree(path):
+	shelf = shelve.open(SHELF)
 
-manager.output()
+	try:
+		manager = shelf[path]
+	except:
+		manager = Manager(path)
+
+		shelf[path] = manager
+		shelf.close()
+
+	manager.output()
+
+if __name__ == '__main__':
+
+	mode = sys.argv[1]
+	path = sys.argv[2]
+
+	if mode == 'header':
+		header(path)
+	elif mode == 'tree':
+		tree(path)
+

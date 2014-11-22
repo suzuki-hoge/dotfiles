@@ -9,6 +9,10 @@ class Manager:
 	def output(self):
 		self.node.output()
 
+	@staticmethod
+	def header(path):
+		bar = '-' * len(path)
+		return '%s\n%s\n%s' % (bar, path, bar)
 
 # todo numner
 # todo {}
