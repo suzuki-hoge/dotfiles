@@ -1,15 +1,14 @@
 import sys
+import os.path
 
 import shelve
 
 from Manager import Manager
 
-SHELF = './shelf'
+SHELF = os.path.join(os.path.dirname(__file__), 'shelf')
 
-def header(path):
-	print Manager.header(path)
-
-def tree(path):
+#todo : force
+def getManager(path):
 	shelf = shelve.open(SHELF)
 
 	try:
@@ -20,15 +19,21 @@ def tree(path):
 		shelf[path] = manager
 		shelf.close()
 
-	manager.output()
+	return manager
 
 if __name__ == '__main__':
 
 	mode = sys.argv[1]
 	path = sys.argv[2]
 
-	if mode == 'header':
-		header(path)
-	elif mode == 'tree':
-		tree(path)
+	manager = getManager(path)
 
+	if mode == 'header':
+		print manager.header
+
+	elif mode == 'tree':
+		print '\n'.join(manager.tree)
+
+	elif mode == 'findOne':
+		id = int(sys.argv[3])
+		print manager.findOne(id)

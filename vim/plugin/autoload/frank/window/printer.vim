@@ -1,4 +1,4 @@
-let s:finder = 'python -b ' .  $frank . '/api/Finder.py'
+let s:finder = 'python -B ' .  $frank . '/api/Finder.py'
 
 function! frank#window#printer#entries(path)
 	let header = system(s:finder . ' header ' . a:path)
