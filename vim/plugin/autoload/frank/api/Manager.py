@@ -8,8 +8,8 @@ class Manager:
 
 		node = Entry(path)
 
-		self.header = self.__header(path)
-		self.tree = self.__byList(node, Entry._tree)
+		self.head = self.__header(path)
+		self.tree = '\n'.join(self.__byList(node, Entry._tree))
 		self.full = self.__byList(node, Entry._full)
 
 	def __header(self, path):
@@ -19,11 +19,5 @@ class Manager:
 	def __byList(self, node, func):
 		return node.byList(func, [])
 
-	def findOne(self, id):
-		return self.full[id]
-
-if __name__ == '__main__':
-	path = '/Users/ryo/Documents/tmp/entries-sample'
-
-	manager = Manager(path)
-	print manager.findOne(5)
+	def find(self, ids):
+		return '\n'.join([self.full[id] for id in ids])
