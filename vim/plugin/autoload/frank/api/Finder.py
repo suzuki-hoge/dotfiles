@@ -36,7 +36,6 @@ def byShelf(path):
 	return manager
 
 def recreate(path):
-	print 're'
 	return Manager(path)
 
 path = args.path

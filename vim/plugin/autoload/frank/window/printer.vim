@@ -1,11 +1,9 @@
-let s:finder = 'python -B ' .  $frank . '/api/Finder.py'
-
-function! frank#window#printer#entries(path)
-	let header = system(s:finder . ' -h ' . a:path)
-	let tree = system(s:finder . ' -t ' . a:path)
+function! frank#window#printer#entries()
+	let head = frank#finder#head()
+	let tree = frank#finder#tree()
 	call frank#window#switcher#to(1)
 	execute '1,$delete _'
-	call append(0, split(header, '\n'))
+	call append(0, split(head, '\n'))
 	call append('$', split(tree, '\n'))
 endfunction
 

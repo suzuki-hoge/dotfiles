@@ -1,22 +1,12 @@
 function! frank#action#edit#normal()
-	let entries = frank#action#base#getByPoint()
-	if entries != []
-		call s:edit(entries)
-	endif
-
-	let entry = frank#action#base#getByCursor()
-	call s:edit([entry])
+	let paths = frank#finder#bypos()
+	call s:edit(paths)
 endfunction
 
-function! frank#action#edit#visual() range
-	let entries = frank#action#base#getByRange(a:firstline, a:lastline)
-	call s:edit(entries)
-endfunction
-
-function! s:edit(entries)
-	for entry in a:entries
-		if !entry.isDir
-			execute 'tabedit ' . entry.path
+function! s:edit(paths)
+	for path in split(a:paths, '\n')
+		if !isdirectory(path)
+			execute 'tabedit ' . path
 		endif
 	endfor
 endfunction

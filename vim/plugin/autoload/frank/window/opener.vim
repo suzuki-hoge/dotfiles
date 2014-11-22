@@ -1,13 +1,15 @@
 function! frank#window#opener#full(path)
+	let g:project_root_path = a:path
+
 	call frank#dirstack#new()
 
 	call s:open3()
 	call s:open2()
 	call s:open1()
 
-	call frank#dirstack#push(a:path)
+	call frank#dirstack#push()
 
-	call frank#window#printer#entries(a:path)
+	call frank#window#printer#entries()
 endfunction
 
 function! s:open1()

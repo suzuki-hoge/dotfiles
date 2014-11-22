@@ -20,4 +20,4 @@ class Manager:
 		return node.byList(func, [])
 
 	def find(self, ids):
-		return '\n'.join([self.full[id] for id in ids])
+		return '\n'.join([self.full[int(id)] for id in ids])
