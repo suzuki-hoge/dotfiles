@@ -9,7 +9,7 @@ let g:full_mode = 0
 
 function! Dispatch(mode, ...) abort
 	try
-		call s:frankCheck()
+		call frank#checker#checkAlreadyFrank()
 
 		if a:mode == 'FFR'
 			let g:full_mode = 1
@@ -25,8 +25,8 @@ function! Dispatch(mode, ...) abort
 		if a:mode == 'FF'
 			let path = s:reqpath(a:000)
 
-			call s:depthCheck(path)
-			call s:existCheck(path)
+			call frank#checker#checkTooShallowDepth(path)
+			call frank#checker#checkNotExistPath(path)
 
 			let g:full_mode = 1
 			let g:root_mode = 0
@@ -47,8 +47,8 @@ function! Dispatch(mode, ...) abort
 		if a:mode == 'F'
 			let path = s:reqpath(a:000)
 
-			call s:depthCheck(path)
-			call s:existCheck(path)
+			call frank#checker#checkTooShallowDepth(path)
+			call frank#checker#checkNotExistPath(path)
 
 			let g:full_mode = 0
 			let g:root_mode = 0
@@ -59,7 +59,7 @@ function! Dispatch(mode, ...) abort
 		echo 'frank is already opened.'
 
 	catch /TooShallowDepth/
-		echo 'too shallow.'
+		echo 'too shallow path.'
 
 	catch /NotExistPath/
 		echo 'request path is not exists.'
@@ -75,28 +75,3 @@ function! s:reqpath(arg)
 
 	return fnamemodify(path, ':p')[:-2]
 endfunction
-
-function! s:frankCheck()
-	if frank#window#checker#isFrank()
-		throw 'AlreadyFrank'
-	endif
-endfunction
-
-function! s:depthCheck(path)
-	let depth = len(substitute(a:path, '[^/]', '', 'g'))
-
-	if depth < 3
-		throw 'TooShallowDepth'
-	endif
-endfunction
-
-function! s:existCheck(path)
-	if !isdirectory(a:path)
-		throw 'NotExistPath'
-	endif
-endfunction
-
-
-
-
-command! Hoge call frank#window#opener#single($tmp)

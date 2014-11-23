@@ -1,5 +1,5 @@
 function! frank#action#read#exec()
-	if !g:full_mode
+	if !frank#checker#isFullMode()
 		echo 'enable only at full mode.'
 		return
 	endif

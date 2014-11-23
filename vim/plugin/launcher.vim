@@ -10,25 +10,22 @@ let s:projects = [
 
 augroup launcher
 	autocmd!
-	autocmd FocusLost,TabLeave * if s:isLauncher() | execute 'bwipeout' | endif
+	autocmd FocusLost,TabLeave * if frank#checker#isLauncher() | execute 'bwipeout' | endif
 augroup END
 
 function! Launch()
-	if s:isLauncher()
-		echo 'launcher is already opend.'
-		return
-	endif
+	try
+		call frank#checker#checkAlreadyLauncher()
+		call frank#checker#checkAlreadyFrank()
 
-	if frank#window#checker#isFrank()
+		call s:new()
+
+	catch /AlreadyFrank/
 		echo 'frank is already opened.'
-		return
-	endif
 
-	call s:new()
-endfunction
-
-function! s:isLauncher()
-	return bufname('%') == 'launcher'
+	catch /AlreadyLauncher/
+		echo 'launcer is already opened.'
+	endtry
 endfunction
 
 function! s:new()

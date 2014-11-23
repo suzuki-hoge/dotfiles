@@ -30,7 +30,7 @@ endfunction
 function! s:setAutocmd()
 	augroup SingleFrank
 		autocmd!
-		autocmd FocusLost,BufLeave * if frank#window#checker#isFrank() && !g:full_mode | execute 'bwipeout' | endif
+		autocmd FocusLost,BufLeave * if frank#checker#isSingleFrank() | execute 'bwipeout' | endif
 	augroup END
 endfunction
 

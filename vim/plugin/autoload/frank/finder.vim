@@ -30,7 +30,7 @@ function! frank#finder#oneByRange(first, last)
 endfunction
 
 function! s:strong(head)
-	if g:root_mode
+	if frank#checker#isRootMode()
 		return substitute(a:head, '-', '=', 'g')
 	else
 		return a:head
@@ -38,7 +38,7 @@ function! s:strong(head)
 endfunction
 
 function! s:isRecreate()
-	if g:root_mode
+	if frank#checker#isRootMode()
 		return ''
 	else
 		return ' -r '
@@ -46,7 +46,7 @@ function! s:isRecreate()
 endfunction
 
 function! s:rootOrCurrent()
-	if g:root_mode
+	if frank#checker#isRootMode()
 		return g:project_root
 	else
 		return g:current_path
