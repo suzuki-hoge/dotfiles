@@ -5,15 +5,19 @@ command! -nargs=? -complete=dir F   call Dispatch('F', <f-args>)
 
 let g:project_root = ''
 let g:root_mode = 0
+let g:full_mode = 0
 
 function! Dispatch(mode, ...) abort
 	try
 		call s:frankCheck()
 
 		if a:mode == 'FFR'
+			let g:full_mode = 1
+
 			if g:project_root == ''
-				execute 'FFL'
+				call Launch()
 			else
+				let g:root_mode = 1
 				call frank#window#opener#frank_full_root()
 			endif
 		endif
@@ -24,13 +28,18 @@ function! Dispatch(mode, ...) abort
 			call s:depthCheck(path)
 			call s:existCheck(path)
 
+			let g:full_mode = 1
+			let g:root_mode = 0
 			call frank#window#opener#frank_full(path)
 		endif
 
 		if a:mode == 'FR'
+			let g:full_mode = 0
+
 			if g:project_root == ''
-				execute 'FL'
+				call Launch()
 			else
+				let g:root_mode = 1
 				call frank#window#opener#frank_root()
 			endif
 		endif
@@ -41,6 +50,8 @@ function! Dispatch(mode, ...) abort
 			call s:depthCheck(path)
 			call s:existCheck(path)
 
+			let g:full_mode = 0
+			let g:root_mode = 0
 			call frank#window#opener#frank(path)
 		endif
 
@@ -84,3 +95,8 @@ function! s:existCheck(path)
 		throw 'NotExistPath'
 	endif
 endfunction
+
+
+
+
+command! Hoge call frank#window#opener#single($tmp)

@@ -1,20 +1,44 @@
 function! frank#window#opener#frank_full_root()
-	let g:root_mode = 1
 	call frank#window#opener#full(g:project_root)
 endfunction
 
 function! frank#window#opener#frank_full(path)
-	let g:root_mode = 0
 	call frank#window#opener#full(a:path)
 endfunction
 
 function! frank#window#opener#frank_root()
-	echo 'FR'
+	call frank#window#opener#single(g:project_root)
 endfunction
 
 function! frank#window#opener#frank(path)
-	echo 'F'
+	call frank#window#opener#single(a:path)
 endfunction
+
+function! frank#window#opener#single(path)
+	let g:current_path = a:path
+
+	call frank#dirstack#new()
+
+	call s:open1('45')
+	call s:setAutocmd()
+
+	call frank#dirstack#push(a:path)
+
+	call frank#window#printer#entries(a:path)
+endfunction
+
+function! s:setAutocmd()
+	augroup SingleFrank
+		autocmd!
+		autocmd FocusLost,BufLeave * if frank#window#checker#isFrank() && !g:full_mode | execute 'bwipeout' | endif
+	augroup END
+endfunction
+
+
+
+
+
+
 
 
 
@@ -26,16 +50,16 @@ function! frank#window#opener#full(path)
 
 	call s:open3()
 	call s:open2()
-	call s:open1()
+	call s:open1('')
 
 	call frank#dirstack#push(a:path)
 
 	call frank#window#printer#entries(a:path)
 endfunction
 
-function! s:open1()
+function! s:open1(width)
 	setlocal foldlevelstart=99
-	execute 'vnew'
+	execute a:width . 'vnew'
 	call s:new(1)
 	call frank#action#base#keymap()
 	source $frank/syntax.vim

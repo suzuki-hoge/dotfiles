@@ -1,4 +1,9 @@
 function! frank#action#read#exec()
+	if !g:full_mode
+		echo 'enable only at full mode.'
+		return
+	endif
+
 	let path = frank#finder#oneByPos()
 	call s:read(path)
 endfunction

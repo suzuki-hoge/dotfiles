@@ -9,6 +9,8 @@ function! frank#launcher#action#select()
 
 	execute 'cd ' . project
 
+	execute 'bwipe'
+
 	if g:full_mode
 		execute 'FFR'
 	else
