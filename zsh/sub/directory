@@ -1,6 +1,6 @@
 # vim:set ft=sh:
 
-# ディレクトリ名のみで移動
+# ディレクトリ名のみで移動を可能にする
 setopt auto_cd
 
 # ディレクトリを作成してそこに移動する
@@ -9,59 +9,36 @@ function take() {
  cd $1
 }
 
-# 一覧表示されたディレクトリを選択して移動する
-function cdp() {
- local ROOT=`__currentOrArg $1`
- local TARGET=`__find $ROOT`
- cd $ROOT/$TARGET
-}
-
-# 一覧表示（再帰）されたディレクトリを選択して移動する
-function cdpr() {
- local ROOT=`__currentOrArg $1`
- local TARGET=`__findr $ROOT`
- cd $ROOT/$TARGET
-}
-
-# 一覧表示されたディレクトリをFinderで開く
-function dirp() {
- local ROOT=`__currentOrArg $1`
- local TARGET=`__findr $ROOT`
- open $ROOT/$TARGET
-}
-
-# 一覧表示（再帰）されたディレクトリをFinderで開く
-function dirpr() {
- local ROOT=`__currentOrArg $1`
- local TARGET=`__findr $ROOT`
- open $ROOT/$TARGET
-}
-
 # 現在のディレクトリもしくは指定のディレクトリをFinderで開く
 function dir() {
- local TARGET=`__currentOrArg $1`
+ local TARGET=`_lib_currentOr $1`
  open $TARGET
 }
 
-# __カレントディレクトリを返すデフォルト引数
-function __currentOrArg() {
- if [ -z $1 ];then
-  echo .
- else
-  echo $1
- fi
+# [percol] Finderで開く
+function dirp() {
+ local ROOT=`_lib_currentOr $1`
+ local TARGET=`_lib_dfind $ROOT`
+ open $ROOT/$TARGET
 }
 
-# __指定パスのディレクトリを表示して絞り込む
-function __find() {
- local ROOT=$1
- local LEN=`__len $ROOT`
- echo `find $ROOT -type d -maxdepth 1 | cut -c$LEN- | percol --match-method regex`
+# [rec-percol] Finderで開く
+function dirpr() {
+ local ROOT=`_lib_currentOr $1`
+ local TARGET=`_lib_recdfind $ROOT`
+ open $ROOT/$TARGET
 }
 
-# __指定パスのディレクトリを再帰的に表示して絞り込む
-function __findr() {
- local ROOT=$1
- local LEN=`expr $#1 + 2`
- echo `find $ROOT -name .git -prune -or -name .svn -prune -or -name .vagrant -prune -or -name Library -prune -or -type d | cut -c$LEN- | percol --match-method regex`
+# [percol] 移動
+function cdp() {
+ local ROOT=`_lib_currentOr $1`
+ local TARGET=`_lib_dfind $ROOT`
+ cd $ROOT/$TARGET
+}
+
+# [rec-percol] 移動
+function cdpr() {
+ local ROOT=`_lib_currentOr $1`
+ local TARGET=`_lib_recdfind $ROOT`
+ cd $ROOT/$TARGET
 }

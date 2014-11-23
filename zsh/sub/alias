@@ -11,8 +11,6 @@ alias lp="ls | percol | xargs"
 alias lag="ls -lA | grep"
 alias lap="ls -A | percol | xargs"
 
-alias vip="ls -A | percol --match-method regex | xargs -o vi"
-
 alias gstp="git status -s | percol --match-method regex | cut -c4- | xargs"
 alias gdfp="git status -s | percol --match-method regex | cut -c4- | xargs git diff"
 alias gcop="git branch | percol --match-method regex | cut -c2- | xargs git checkout"
@@ -21,10 +19,26 @@ alias gpsp="git branch | percol --match-method regex | cut -c2- | xargs git push
 
 alias -g G='| grep'
 alias -g V='| grep -v'
-alias -g P="| percol --match-method regex | xargs"
+alias -g P='| percol --match-method regex | xargs'
+alias -g E='| exit'
+alias -g C='| pbcopy'
+
+alias todo="vim /Users/ryo/Dropbox/todos/list.todo"
+
+# [percol] vi
+function vip() {
+ local ROOT=`_lib_currentOr $1`
+ local TARGET=`_lib_ffind $ROOT`
+ vi $ROOT/$TARGET
+}
+
+# [rec-percol] vi
+function vipr() {
+ local ROOT=`_lib_currentOr $1`
+ local TARGET=`_lib_recffind $ROOT`
+ vi $ROOT/$TARGET
+}
 
 function qlook(){
  qlmanage -p $1 >& /dev/null
 }
-
-alias todo="vim /Users/ryo/Dropbox/list.todo"

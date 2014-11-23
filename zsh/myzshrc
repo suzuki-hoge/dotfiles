@@ -1,5 +1,6 @@
 # vim:set ft=sh:
 
+[ -f $DOTFILES/zsh/sub/_lib ]     && source $DOTFILES/zsh/sub/_lib
 [ -f $DOTFILES/zsh/sub/alias ]     && source $DOTFILES/zsh/sub/alias
 [ -f $DOTFILES/zsh/sub/bindkey ]   && source $DOTFILES/zsh/sub/bindkey
 [ -f $DOTFILES/zsh/sub/color ]     && source $DOTFILES/zsh/sub/color

@@ -2,6 +2,7 @@
 
 python <<EOM
 
+import os.path
 from abc import ABCMeta, abstractmethod
 
 class Base:
