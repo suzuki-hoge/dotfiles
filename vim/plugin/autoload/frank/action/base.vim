@@ -11,9 +11,9 @@ function! frank#action#base#keymap()
 	nnoremap <buffer> to :call frank#action#terminal#open()<CR>
 	nnoremap <buffer> tl :call frank#action#terminal#ls()<CR>
 
-	nnoremap <buffer> o  :call frank#action#open#exec('open', 1)<CR>
-	nnoremap <buffer> a  :call frank#action#open#exec('open', 0)<CR>
-	nnoremap <buffer> q  :call frank#action#open#exec('qlmanage -p', 0)<CR>
+	nnoremap <buffer> o  :call frank#action#open#open()<CR>
+	nnoremap <buffer> a  :call frank#action#open#app()<CR>
+	nnoremap <buffer> q  :call frank#action#open#qlmanage()<CR>
 
 	nnoremap <buffer> rd :call frank#action#read#exec()<CR>
 
