@@ -10,7 +10,14 @@ endfunction
 
 function! s:read(path)
 	if !isdirectory(a:path)
-		call frank#window#printer#to2(a:path)
+		call frank#window#switcher#to(2)
+
+		let lines = readfile(a:path)
+		call lib#buffer#print(lines, 0)
+
+		let extension = lib#path#extension(a:path)
+		let &filetype = extension
+
 		call frank#window#switcher#to(1)
 	endif
 endfunction

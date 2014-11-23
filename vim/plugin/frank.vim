@@ -73,6 +73,5 @@ function! s:reqpath(arg)
 		let path = a:arg[0]
 	endif
 
-	" lib/path
-	return fnamemodify(path, ':p')[:-2]
+	return lib#path#fullpath(path)
 endfunction
