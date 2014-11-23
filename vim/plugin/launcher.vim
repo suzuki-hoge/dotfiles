@@ -13,9 +13,10 @@ augroup launcher
 	autocmd FocusLost,TabLeave * if s:isLauncher() | execute 'bwipeout' | endif
 augroup END
 
-command! FFL call Launch()
+command! FFL call Launch(1)
+command! FL  call Launch(0)
 
-function! Launch()
+function! Launch(mode)
 	if s:isLauncher()
 		echo 'launcher is already opend.'
 		return
@@ -25,6 +26,8 @@ function! Launch()
 		echo 'frank is already opened.'
 		return
 	endif
+
+	let g:full_mode = a:mode
 
 	call s:new()
 endfunction

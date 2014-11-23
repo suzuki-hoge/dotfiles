@@ -8,5 +8,10 @@ function! frank#launcher#action#select()
 	let g:project_root = project
 
 	execute 'cd ' . project
-	execute 'FFR'
+
+	if g:full_mode
+		execute 'FFR'
+	else
+		execute 'FR'
+	endif
 endfunction

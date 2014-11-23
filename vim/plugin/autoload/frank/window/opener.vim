@@ -8,11 +8,13 @@ function! frank#window#opener#frank_full(path)
 	call frank#window#opener#full(a:path)
 endfunction
 
-"function! frank#window#opener#frank_root(path)
-"endfunction
+function! frank#window#opener#frank_root()
+	echo 'FR'
+endfunction
 
-"function! frank#window#opener#frank(path)
-"endfunction
+function! frank#window#opener#frank(path)
+	echo 'F'
+endfunction
 
 
 
