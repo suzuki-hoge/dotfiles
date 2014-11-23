@@ -23,18 +23,22 @@ function! s:ls(path)
 endfunction
 
 function! s:lsDir(path)
-	let result  = system('ls -ld ' . a:path) . "\n"
-	let result .= system('ls -lF ' . a:path . ' | tail +2')
-
 	call frank#window#switcher#to(3)
-	call frank#window#printer#to3(split(result, '\n'))
+
+	let dir = system('ls -ld ' . a:path) . "\n"
+	let files = system('ls -lF ' . a:path . ' | tail +2')[:-2]
+
+	call lib#buffer#print(dir, 0)
+	call lib#buffer#append(files, 0)
+
 	call frank#window#switcher#to(1)
 endfunction
 
 function! s:lsFile(path)
-	let result = system('ls -lF ' . a:path)
-
 	call frank#window#switcher#to(3)
-	call frank#window#printer#to3(split(result, '\n'))
+
+	let file = system('ls -lF ' . a:path)
+	call lib#buffer#print(file, 0)
+
 	call frank#window#switcher#to(1)
 endfunction

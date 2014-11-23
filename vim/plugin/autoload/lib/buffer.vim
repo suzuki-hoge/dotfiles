@@ -9,15 +9,25 @@ function! lib#buffer#print(data, finishpos)
 endfunction
 
 function! lib#buffer#append(data, finishpos)
-	call s:append(a:data)
+	let data = s:split(a:data)
+	call s:append(data)
 	call lib#cursor#move(a:finishpos)
 endfunction
 
 function! s:print(data)
-	call s:append(a:data)
+	let data = s:split(a:data)
+	call s:append(data)
 	execute '1delete _'
 endfunction
 
 function! s:append(data)
 	call append('$', a:data)
+endfunction
+
+function! s:split(data)
+	if type(a:data) == type([])
+		return a:data
+	elseif type(a:data) == type('')
+		return split(a:data, '\n')
+	endif
 endfunction

@@ -2,14 +2,12 @@ let s:finder = 'python -B ' .  $frank . '/api/Finder.py'
 
 function! frank#finder#head(path)
 	let recreate = s:isRecreate()
-	let head = s:strong(system(s:finder . recreate . ' -h ' . a:path)[:-2])
-	return split(head, '\n')
+	return s:strong(system(s:finder . recreate . ' -h ' . a:path)[:-2])
 endfunction
 
 function! frank#finder#tree(path)
 	let recreate = s:isRecreate()
-	let tree = system(s:finder . recreate . ' -t ' . a:path)[:-2]
-	return split(tree, '\n')
+	return system(s:finder . recreate . ' -t ' . a:path)[:-2]
 endfunction
 
 function! frank#finder#find(ids)
