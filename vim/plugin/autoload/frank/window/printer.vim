@@ -7,13 +7,14 @@ function! frank#window#printer#entries()
 	call append('$', split(tree, '\n'))
 endfunction
 
-"function! frank#window#printer#to2(path)
-"	call frank#window#switcher#to(2)
-"	execute 'r ' . a:path
-"	execute '0delete _'
-"	let extension = fnamemodify(a:path, ':e')
-"	let &filetype = extension
-"endfunction
+function! frank#window#printer#to2(path)
+	call frank#window#switcher#to(2)
+	execute '1,$delete _'
+	execute 'r ' . a:path
+	execute '0delete _'
+	let extension = fnamemodify(a:path, ':e')
+	let &filetype = extension
+endfunction
 
 function! frank#window#printer#to3(lines)
 	execute '1,$delete _'

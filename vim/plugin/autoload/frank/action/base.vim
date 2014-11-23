@@ -17,16 +17,16 @@ function! frank#action#base#keymap()
 
 	nnoremap <buffer> rd :call frank#action#read#exec()<CR>
 
-	nnoremap <buffer> h  :call frank#action#directory#up()<CR>
-	nnoremap <buffer> l  :call frank#action#directory#down()<CR>
-	nnoremap <buffer> -  :call frank#action#directory#prev()<CR>
+"	nnoremap <buffer> h  :call frank#action#directory#up()<CR>
+"	nnoremap <buffer> l  :call frank#action#directory#down()<CR>
+"	nnoremap <buffer> -  :call frank#action#directory#prev()<CR>
 
-	nnoremap <buffer> H :call frank#action#fold#close()<CR>
-	nnoremap <buffer> L :call frank#action#fold#open()<CR>
-	nnoremap <buffer> fH :call frank#action#fold#closeall()<CR>
-	nnoremap <buffer> fL :call frank#action#fold#openall()<CR>
-	nnoremap <buffer> fk :call frank#action#fold#prev()<CR>
-	nnoremap <buffer> fj :call frank#action#fold#next()<CR>
+"	nnoremap <buffer> H :call frank#action#fold#close()<CR>
+"	nnoremap <buffer> L :call frank#action#fold#open()<CR>
+"	nnoremap <buffer> fH :call frank#action#fold#closeall()<CR>
+"	nnoremap <buffer> fL :call frank#action#fold#openall()<CR>
+"	nnoremap <buffer> fk :call frank#action#fold#prev()<CR>
+"	nnoremap <buffer> fj :call frank#action#fold#next()<CR>
 endfunction
 
 "function! frank#action#base#getByCursor()

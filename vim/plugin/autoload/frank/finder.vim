@@ -13,7 +13,14 @@ function! frank#finder#find(ids)
 endfunction
 
 function! frank#finder#oneByPos()
-	let pos = line('.') - 5
-	let paths = frank#finder#find(pos)
+	let ids = line('.') - 5
+	let paths = frank#finder#find(ids)
 	return split(paths, '\n')[0]
+endfunction
+
+function! frank#finder#oneByRange(first, last)
+	let range = range(a:first - 5, a:last - 5)
+	let ids = join(range, ' ')
+	let paths = frank#finder#find(ids)
+	return split(paths, '\n')
 endfunction
