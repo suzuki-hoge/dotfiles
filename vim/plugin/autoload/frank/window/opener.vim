@@ -72,7 +72,7 @@ function! s:open2()
 endfunction
 
 function! s:open3()
-	if s:isBlank()
+	if lib#checker#isBlank()
 		execute 'enew'
 	else
 		execute 'tabnew'
@@ -85,8 +85,4 @@ function! s:new(n)
 	setlocal nobuflisted
 	setlocal buftype=nofile
 	silent file `='frank-' . a:n`
-endfunction
-
-function! s:isBlank()
-	return bufname('%') == ''
 endfunction
