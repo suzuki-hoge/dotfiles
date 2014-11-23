@@ -2,8 +2,8 @@ function! frank#dirstack#new()
 	let s:directoryStacks = []
 endfunction	
 
-function! frank#dirstack#push()
-	let s:directoryStacks = s:directoryStacks + [g:project_root_path]
+function! frank#dirstack#push(path)
+	let s:directoryStacks = s:directoryStacks + [a:path]
 endfunction	
 
 function! frank#dirstack#pop()

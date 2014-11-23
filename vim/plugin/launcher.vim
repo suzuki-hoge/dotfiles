@@ -1,4 +1,4 @@
-let s:bookmarks = [
+let s:projects = [
 			\'/Users/ryo/.dotfiles/vim/plugin',
 			\'/Users/ryo/.dotfiles/vim/plugin/autoload/frank/',
 			\'/Users/ryo/.dotfiles/vim/plugin/autoload/frank/launcher/',
@@ -22,6 +22,7 @@ function! Launch()
 	endif
 
 	if frank#window#checker#isFrank()
+		echo 'frank is already opened.'
 		return
 	endif
 
@@ -38,7 +39,7 @@ function! s:new()
 	setlocal nobuflisted
 	setlocal buftype=nofile
 	silent file `='launcher'`
-	call append(1, s:bookmarks)
+	call append(1, s:projects)
 	execute '0delete _'
 	call frank#launcher#action#keymap()
 endfunction

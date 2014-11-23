@@ -1,11 +1,11 @@
 augroup frank
 	autocmd!
-	"autocmd FocusLost,TabLeave * if frank#window#checker#isFrank() | call frank#window#closer#all() | endif
-	"autocmd BufWipeout * if frank#window#checker#isFrank() | call frank#window#closer#all() | endif
 augroup END
 
 nnoremap <S-M-CR> :FF .<CR>
 command! -nargs=1 -complete=dir FF call Dispatch(<f-args>)
+
+let g:project_root = ''
 
 function! Dispatch(path)
 	let abspath = fnamemodify(a:path, ':p')[:-2]
@@ -26,5 +26,9 @@ function! Dispatch(path)
 		return
 	endif
 
-	call frank#window#opener#full(abspath)
+	call frank#window#opener#frank_full(abspath)
 endfunction
+
+
+" if '' => launcher
+command! FFR call frank#window#opener#frank_full_root()

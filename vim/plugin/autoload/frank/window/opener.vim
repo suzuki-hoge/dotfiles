@@ -1,5 +1,24 @@
+function! frank#window#opener#frank_full_root()
+	let g:root_mode = 1
+	call frank#window#opener#full(g:project_root)
+endfunction
+
+function! frank#window#opener#frank_full(path)
+	let g:root_mode = 0
+	call frank#window#opener#full(a:path)
+endfunction
+
+"function! frank#window#opener#frank_root(path)
+"endfunction
+
+"function! frank#window#opener#frank(path)
+"endfunction
+
+
+
+
 function! frank#window#opener#full(path)
-	let g:project_root_path = a:path
+	let g:current_path = a:path
 
 	call frank#dirstack#new()
 
@@ -7,9 +26,9 @@ function! frank#window#opener#full(path)
 	call s:open2()
 	call s:open1()
 
-	call frank#dirstack#push()
+	call frank#dirstack#push(a:path)
 
-	call frank#window#printer#entries()
+	call frank#window#printer#entries(a:path)
 endfunction
 
 function! s:open1()

@@ -1,14 +1,12 @@
 function! frank#launcher#action#keymap()
-	nnoremap <buffer> cd   :call frank#launcher#action#cd()<CR>
-	nnoremap <buffer> <CR> :call frank#launcher#action#ff()<CR>
+	nnoremap <buffer> <CR> :call frank#launcher#action#select()<CR>
 endfunction
 
-function! frank#launcher#action#cd()
-	execute 'cd ' . getline('.')
-endfunction
+function! frank#launcher#action#select()
+	let project = getline('.')
 
-function! frank#launcher#action#ff()
-	let path = getline('.')
+	let g:project_root = project
 
-	execute 'FF ' . path
+	execute 'cd ' . project
+	execute 'FFR'
 endfunction

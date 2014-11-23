@@ -1,15 +1,19 @@
 let s:finder = 'python -B ' .  $frank . '/api/Finder.py'
 
-function! frank#finder#head()
-	return system(s:finder . ' -h ' . g:project_root_path)[:-2]
+function! frank#finder#head(path)
+	let recreate = s:isRecreate()
+	return s:strong(system(s:finder . recreate . ' -h ' . a:path)[:-2])
 endfunction
 
-function! frank#finder#tree()
-	return system(s:finder . ' -t ' . g:project_root_path)[:-2]
+function! frank#finder#tree(path)
+	let recreate = s:isRecreate()
+	return system(s:finder . recreate . ' -t ' . a:path)[:-2]
 endfunction
 
 function! frank#finder#find(ids)
-	return system(s:finder . ' -f ' . g:project_root_path . ' ' . a:ids)[:-2]
+	let recreate = s:isRecreate()
+	let path = s:rootOrCurrent()
+	return system(s:finder . recreate . ' -f ' . path . ' ' . a:ids)[:-2]
 endfunction
 
 function! frank#finder#oneByPos()
@@ -23,4 +27,28 @@ function! frank#finder#oneByRange(first, last)
 	let ids = join(range, ' ')
 	let paths = frank#finder#find(ids)
 	return split(paths, '\n')
+endfunction
+
+function! s:strong(head)
+	if g:root_mode
+		return substitute(a:head, '-', '=', 'g')
+	else
+		return a:head
+	endif
+endfunction
+
+function! s:isRecreate()
+	if g:root_mode
+		return ''
+	else
+		return ' -r '
+	endif
+endfunction
+
+function! s:rootOrCurrent()
+	if g:root_mode
+		return g:project_root
+	else
+		return g:current_path
+	endif
 endfunction
