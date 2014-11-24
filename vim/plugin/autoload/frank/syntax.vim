@@ -9,7 +9,7 @@ syntax match dir "^[^/].*\/"
 syntax match mark "}"
 
 hi def link dir  Comment
-hi def link mark Ignore
+"hi def link mark Ignore
 hi Folded guifg=blue
 
 let b:current_syntax = "frank"

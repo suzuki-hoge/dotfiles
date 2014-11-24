@@ -7,12 +7,13 @@ class Manager:
 		Entry.root = path
 
 		node = Entry(path)
+		listnode = node.toList()
 
-		self.head = self.__header(path)
-		self.tree = '\n'.join(self.__byList(node, Entry._tree))
-		self.full = self.__byList(node, Entry._full)
+		self.head = self.__head(path)
+		self.tree = '\n'.join([entries[0].output(entries[1]) for entries in zip(listnode, listnode[1:] + [None])])
+		self.full = '\n'.join([e.full for e in listnode])
 
-	def __header(self, path):
+	def __head(self, path):
 		bar = '-' * len(path)
 		return '%s\n%s\n%s' % (bar, path, bar)
 
@@ -21,3 +22,9 @@ class Manager:
 
 	def find(self, ids):
 		return '\n'.join([self.full[int(id)] for id in ids])
+
+
+if __name__ == '__main__':
+	m = Manager('/Users/ryo/Development/brass/src/brass/static/css')
+	for t in m.tree:
+		print t

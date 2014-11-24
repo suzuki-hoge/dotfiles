@@ -18,9 +18,7 @@ endfunction
 
 function! frank#finder#oneByPos()
 	let ids = line('.') - 5
-	echomsg ids
 	let paths = frank#finder#find(ids)
-	echomsg split(paths, '\n')[0]
 	return split(paths, '\n')[0]
 endfunction
 

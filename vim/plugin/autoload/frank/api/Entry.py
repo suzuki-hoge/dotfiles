@@ -14,15 +14,13 @@ class Entry:
 			return []
 		return [Entry('%s/%s' % (path, subname)) for subname in os.listdir(path)]
 
-	def _tree(e):
-		indent = '    ' * e.depth
-		slash = ' /'[os.path.isdir(e.path)]
-		return '%s%s%s' % (indent, e.name, slash)
+	def output(self, next):
+		indent = '    ' * self.depth
+		slash = ['', '/'][os.path.isdir(self.path)]
+		mark = '}' * (self.depth - next.depth) if next is not None else '}' * self.depth
+		return '%s%s%s%s' % (indent, self.name, slash, mark)
 
-	def _full(e):
-		return e.full
-
-	def byList(self, func, acm):
-		acm.append(func(self))
-		[e.byList(func, acm) for e in self.subs]
+	def toList(self, acm = []):
+		acm.append(self)
+		[e.toList(acm) for e in self.subs]
 		return acm
