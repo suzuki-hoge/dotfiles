@@ -16,7 +16,7 @@ class Entry:
 
 	def output(self, next):
 		indent = '    ' * self.depth
-		slash = ['', '/'][os.path.isdir(self.path)]
+		slash = ['', '/{'][os.path.isdir(self.path)]
 		mark = '}' * (self.depth - next.depth) if next is not None else '}' * self.depth
 		return '%s%s%s%s' % (indent, self.name, slash, mark)
 
