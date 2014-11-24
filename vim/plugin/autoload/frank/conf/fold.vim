@@ -1,11 +1,11 @@
-function! frank#window#folder#setopt()
+function! frank#conf#fold#setopt()
 	setlocal foldmarker={,}
 	setlocal foldmethod=marker
 	setlocal fillchars=vert:\|
-	setlocal foldtext=frank#window#folder#text()
+	setlocal foldtext=frank#conf#fold#foldtext()
 endfunction
 
-function! frank#window#folder#text()
+function! frank#conf#fold#foldtext()
 	let line = getline(v:foldstart)
 	return getline(v:foldstart)[:-2]
 endfunction

@@ -42,8 +42,8 @@ function! s:open1(width)
 	execute a:width . 'vnew'
 	call s:new(1)
 	call frank#action#base#keymap()
-	source $frank/syntax.vim
-	call frank#window#folder#setopt()
+	source $frank/conf/syntax.vim
+	call frank#conf#fold#setopt()
 endfunction
 
 function! s:open2()
