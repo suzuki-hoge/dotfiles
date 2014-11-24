@@ -15,7 +15,7 @@ parser.add_argument('-b', '--branch', default = None, action = 'store', help = '
 
 page_group = parser.add_mutually_exclusive_group()
 page_group.add_argument('-t', '--tree', default = False, action = 'store_true', help = 'open tree page (default : False)')
-page_group.add_argument('-c', '--commits', default = False, action = 'store_true', help = 'open commits page (default : True)')
+page_group.add_argument('-c', '--commits', default = True, action = 'store_true', help = 'open commits page (default : True)')
 page_group.add_argument('-n', '--network', default = False, action = 'store_true', help = 'open network page (default : False)')
 
 args = parser.parse_args()

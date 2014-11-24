@@ -15,7 +15,7 @@ class Manager:
 
 	def __head(self, path):
 		bar = '-' * len(path)
-		list = [bar, path, bar, '']
+		list = [bar, path, bar, '', '']
 
 		return self.__join(list)
 
