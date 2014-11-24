@@ -15,8 +15,6 @@ function! frank#window#opener#frank(path)
 endfunction
 
 function! frank#window#opener#single(path)
-	let g:current_path = a:path
-
 	call frank#dirstack#new()
 
 	call s:open1('45')
@@ -28,8 +26,6 @@ function! frank#window#opener#single(path)
 endfunction
 
 function! frank#window#opener#full(path)
-	let g:current_path = a:path
-
 	call frank#dirstack#new()
 
 	call s:open3()
