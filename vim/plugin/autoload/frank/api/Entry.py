@@ -16,11 +16,18 @@ class Entry:
 
 	def output(self, next):
 		indent = '    ' * self.depth
-		slash = ['', '/{'][os.path.isdir(self.path)]
-		mark = self.__mark(next)
-		return '%s%s%s%s' % (indent, self.name, slash, mark)
+		slash = ['', '/'][os.path.isdir(self.path)]
+		startmark = self.__startmark()
+		endmark = self.__endmark(next)
+		return '%s%s%s%s%s' % (indent, self.name, slash, startmark, endmark)
 
-	def __mark(self, next):
+	def __startmark(self):
+		if self.subs == []:
+			return ''
+		else:
+			return '{'
+
+	def __endmark(self, next):
 		if next is None:
 			return '}' * self.depth
 		else:
