@@ -1,5 +1,5 @@
 function! frank#window#closer#all()
-	if frank#window#checker#isFrank()
+	if frank#checker#isFrank()
 		call s:close(1)
 		call s:close(2)
 		call s:close(3)

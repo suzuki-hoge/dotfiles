@@ -34,7 +34,6 @@ function! s:new()
 	setlocal nobuflisted
 	setlocal buftype=nofile
 	silent file `='launcher'`
-	call append(1, s:projects)
-	execute '0delete _'
+	call lib#buffer#print(s:projects, 0)
 	call frank#launcher#action#keymap()
 endfunction

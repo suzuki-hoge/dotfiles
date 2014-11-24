@@ -1,27 +1,46 @@
 function! frank#action#directory#up()
-	let upper = fnamemodify(frank#dirstack#last(), ':h')
-	let depth = len(substitute(upper, '[^/]', '', 'g'))
-	if depth < 3
-		echo 'too many files...'
-	else
+	try
+		call frank#checker#checkNotRootMode()
+
+		let upper = lib#path#head(frank#dirstack#last())
+
+		call frank#checker#checkTooShallowDepth(upper)
+
 		call s:cd(upper)
 		call frank#dirstack#push(upper)
-	endif
+
+	catch /RootMode/
+		echo 'disable only at root mode.'
+
+	catch /TooShallowDepth/
+		echo 'too shallow path.'
+	endtry
 endfunction
 
-function! frank#action#directory#down()
-	let entry = frank#action#base#getByCursor()
-	if entry.isDir
-		call s:cd(entry.path)
-		call frank#dirstack#push(entry.path)
-	endif
+function! frank#action#directory#go()
+	try
+		let path = frank#finder#oneByPos()
+
+		if isdirectory(path)
+			call s:cd(path)
+			call frank#dirstack#push(path)
+		endif
+
+	catch /RootMode/
+		echo 'disable only at root mode.'
+	endtry
 endfunction
 
-function! frank#action#directory#prev()
-	let prev = frank#dirstack#pop()
-	call s:cd(prev)
+function! frank#action#directory#back()
+	try
+		let prev = frank#dirstack#pop()
+		call s:cd(prev)
+
+	catch /RootMode/
+		echo 'disable only at root mode.'
+	endtry
 endfunction
 
 function! s:cd(path)
-	call frank#window#printer#to1(a:path)
+	call frank#window#printer#entries(a:path)
 endfunction

@@ -9,7 +9,7 @@ function! frank#checker#checkAlreadyFrank()
 endfunction
 
 function! frank#checker#checkTooShallowDepth(path)
-	let depth = len(substitute(a:path, '[^/]', '', 'g'))
+	let depth = lib#path#depth(a:path)
 
 	if depth < 3
 		throw 'TooShallowDepth'
@@ -40,6 +40,18 @@ function! frank#checker#isFullMode()
 	return g:full_mode
 endfunction
 
+function! frank#checker#checkFullMode()
+	if !frank#checker#isFullMode()
+		throw 'NotFullMode'
+	endif
+endfunction
+
 function! frank#checker#isRootMode()
 	return g:root_mode
+endfunction
+
+function! frank#checker#checkNotRootMode()
+	if frank#checker#isRootMode()
+		throw 'RootMode'
+	endif
 endfunction

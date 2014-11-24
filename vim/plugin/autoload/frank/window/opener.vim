@@ -27,22 +27,6 @@ function! frank#window#opener#single(path)
 	call frank#window#printer#entries(a:path)
 endfunction
 
-function! s:setAutocmd()
-	augroup SingleFrank
-		autocmd!
-		autocmd FocusLost,BufLeave * if frank#checker#isSingleFrank() | execute 'bwipeout' | endif
-	augroup END
-endfunction
-
-
-
-
-
-
-
-
-
-
 function! frank#window#opener#full(path)
 	let g:current_path = a:path
 
@@ -85,4 +69,11 @@ function! s:new(n)
 	setlocal nobuflisted
 	setlocal buftype=nofile
 	silent file `='frank-' . a:n`
+endfunction
+
+function! s:setAutocmd()
+	augroup SingleFrank
+		autocmd!
+		autocmd FocusLost,BufLeave * if frank#checker#isSingleFrank() | execute 'bwipeout' | endif
+	augroup END
 endfunction

@@ -1,11 +1,14 @@
 function! frank#action#read#exec()
-	if !frank#checker#isFullMode()
-		echo 'enable only at full mode.'
-		return
-	endif
+	try
+		call frank#checker#checkFullMode()
 
-	let path = frank#finder#oneByPos()
-	call s:read(path)
+		let path = frank#finder#oneByPos()
+
+		call s:read(path)
+
+	catch /NotFullMode/
+		echo 'enable only at full mode.'
+	endtry
 endfunction
 
 function! s:read(path)

@@ -10,9 +10,7 @@ nnoremap <S-Space> gT
 nnoremap <D-Space> :tabedit 
 
 " close tab
-"nnoremap <C-Space> :bdelete<CR>
 nnoremap <C-Space> :call frank#window#closer#all()<CR>
- 
 
 " close tab (force)
 nnoremap <S-C-Space> :bdelete!<CR>

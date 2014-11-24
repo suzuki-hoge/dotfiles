@@ -14,9 +14,9 @@ function! frank#action#base#keymap()
 
 	nnoremap <buffer> rd :call frank#action#read#exec()<CR>
 
-"	nnoremap <buffer> h  :call frank#action#directory#up()<CR>
-"	nnoremap <buffer> l  :call frank#action#directory#down()<CR>
-"	nnoremap <buffer> -  :call frank#action#directory#prev()<CR>
+	nnoremap <buffer> h  :call frank#action#directory#up()<CR>
+	nnoremap <buffer> l  :call frank#action#directory#go()<CR>
+	nnoremap <buffer> -  :call frank#action#directory#back()<CR>
 
 "	nnoremap <buffer> H :call frank#action#fold#close()<CR>
 "	nnoremap <buffer> L :call frank#action#fold#open()<CR>
