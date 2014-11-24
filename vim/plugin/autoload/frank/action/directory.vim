@@ -42,5 +42,6 @@ function! frank#action#directory#back()
 endfunction
 
 function! s:cd(path)
+	let g:current_path = a:path
 	call frank#window#printer#entries(a:path)
 endfunction

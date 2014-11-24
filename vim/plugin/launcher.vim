@@ -1,11 +1,18 @@
-let s:projects = [
-			\'/Users/ryo/.dotfiles/vim/plugin',
-			\'/Users/ryo/.dotfiles/vim/plugin/autoload/frank/',
-			\'/Users/ryo/.dotfiles/vim/plugin/autoload/frank/launcher/',
-			\'',
-			\'/Users/ryo/.dotfiles/vim/rc/sub/',
-			\'',
-			\'/Users/ryo/.dotfiles/zsh/sub'
+let s:home_projects = [
+	\'$plugin',
+	\'$frank',
+	\'$pete',
+	\'',
+	\'$vimsubs',
+	\'$zshsubs',
+	\'',
+	\'$dev',
+	\'$dev'
+\]
+
+let s:work_projects = [
+	\'$dev',
+	\'$dev'
 \]
 
 augroup launcher
@@ -34,6 +41,13 @@ function! s:new()
 	setlocal nobuflisted
 	setlocal buftype=nofile
 	silent file `='launcher'`
-	call lib#buffer#print(s:projects, 0)
+
+	if lib#checker#isHome()
+		let projects = s:home_projects
+	else
+		let projects = s:work_projects
+	endif
+
+	call lib#buffer#print(projects, 0)
 	call frank#launcher#action#keymap()
 endfunction

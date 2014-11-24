@@ -4,8 +4,8 @@
 let $dot = $HOME . '/.dotfiles'
 
 " vim rc files
-let $rc    = $dot . '/vim/rc/myvimrc'
-let $subrc = $dot . '/vim/rc/sub'
+let $rc      = $dot . '/vim/rc/myvimrc'
+let $vimsubs = $dot . '/vim/rc/sub'
 
 " plugin
 let $plugin      = $dot . '/vim/plugin'
@@ -18,6 +18,12 @@ let $tmpplg      = $plugin . '/tmp-buffer'
 " tmp
 let $tmp = $HOME . '/Documents/tmp'
 
+" zsh rc files
+let $zshsubs = $dot . '/zsh/sub'
+
+" development 
+let $dev = $HOME . '/Development'
+
 " workspace
 let $workspace = $HOME . '/Documents/workspace'
 
@@ -27,22 +33,22 @@ let $private = $HOME . '/Library/Application Support/KeyRemap4MacBook/private.xm
 " todo
 let $todo = $HOME . '/Dropbox/todos/list.todo'
 
-" import subrc
-source $subrc/autocommands
-source $subrc/commands
-source $subrc/map-c
-source $subrc/map-i
-source $subrc/map-n
-source $subrc/map-v
-source $subrc/mark
-source $subrc/plugin
-source $subrc/options
-source $subrc/tab
-source $subrc/tagbar
-source $subrc/vundle
+" import vimsubs
+source $vimsubs/autocommands
+source $vimsubs/commands
+source $vimsubs/map-c
+source $vimsubs/map-i
+source $vimsubs/map-n
+source $vimsubs/map-v
+source $vimsubs/mark
+source $vimsubs/plugin
+source $vimsubs/options
+source $vimsubs/tab
+source $vimsubs/tagbar
+source $vimsubs/vundle
 
 let $autoload = $plugin . '/autoload'
-let $frank   = $autoload . '/frank'
+let $frank    = $autoload . '/frank'
 let $launcher = $autoload . '/frank/launcher'
 
 source $plugin/frank.vim
