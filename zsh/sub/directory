@@ -25,7 +25,8 @@ function dirp() {
 # [rec-percol] Finderで開く
 function dirpr() {
  local ROOT=`_lib_currentOr $1`
- local TARGET=`_lib_recdfind $ROOT`
+ local DEPTH=`_lib_maxOr $2`
+ local TARGET=`_lib_recdfind $ROOT $DEPTH`
  open $ROOT/$TARGET
 }
 
@@ -39,6 +40,7 @@ function cdp() {
 # [rec-percol] 移動
 function cdpr() {
  local ROOT=`_lib_currentOr $1`
- local TARGET=`_lib_recdfind $ROOT`
+ local DEPTH=`_lib_maxOr $2`
+ local TARGET=`_lib_recdfind $ROOT $DEPTH`
  cd $ROOT/$TARGET
 }

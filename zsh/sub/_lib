@@ -34,19 +34,33 @@ function _lib_find() {
 
 # find（再帰、ファイルのみ）
 function _lib_recffind() {
- echo `_lib_recfind $1 f`
+ echo `_lib_recfind $1 $2 f`
 }
 
 # find（再帰、ディレクトリのみ）
 function _lib_recdfind() {
- echo `_lib_recfind $1 d`
+ echo `_lib_recfind $1 $2 d`
 }
 
 # finder（再帰）
 function _lib_recfind() {
  local ROOT=$1
  local LEN=`_lib_cutlen $ROOT`
- local TYPE=$2
+ local DEPTH=$2
+ local TYPE=$3
 
- echo `find $ROOT -name .git -prune -or -name .svn -prune -or -name .vagrant -or -name .DS_Store -prune -or -name .pyc -prune -or -name Library -prune -or -type $TYPE | cut -c$LEN- | percol --match-method regex`
+ echo `find $ROOT -name .git -prune -or -name .svn -prune -or -name .vagrant -or -name .DS_Store -prune -or -name .pyc -prune -or -name Library -prune -or -type $TYPE -maxdepth $DEPTH | cut -c$LEN- | percol --match-method regex`
+}
+
+function _lib_maxOr() {
+ if [ -z $1 ];then
+  echo 99
+ else
+  echo $1
+ fi
+}
+
+function re() {
+ echo $1
+ echo $2
 }

@@ -35,7 +35,8 @@ function vip() {
 # [rec-percol] vi
 function vipr() {
  local ROOT=`_lib_currentOr $1`
- local TARGET=`_lib_recffind $ROOT`
+ local DEPTH=`_lib_maxOr $2`
+ local TARGET=`_lib_recffind $ROOT $DEPTH`
  vi $ROOT/$TARGET
 }
 

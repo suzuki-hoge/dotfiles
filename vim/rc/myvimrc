@@ -51,8 +51,4 @@ let $autoload = $plugin . '/autoload'
 let $frank    = $autoload . '/frank'
 let $launcher = $autoload . '/frank/launcher'
 
-source $plugin/frank.vim
-source $plugin/launcher.vim
-
-
 let &runtimepath .= ',' . $plugin
