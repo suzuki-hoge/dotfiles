@@ -35,24 +35,31 @@ EOM
 
 
 
+" aaaCRT
+" Trans
+" Transfer
 function! CreateRegTest()
 python << EOM
 
 cases = Cases('CreateReg')
 
 cases.add('service',   '^service')
-cases.add('serviceE',  '^service.*E.*$')
-cases.add('sEL',       '^s.*E.*L.*$')
-cases.add('sEy',       '^s.*E.*y$')
-cases.add('serviEL',   '^servi.*E.*L.*$')
-cases.add('serviEs',   '^servi.*E.*s$')
-cases.add('s*vice',    '^s.*vice$')
-cases.add('s*vice*',   '^s.*vice.*$')
-cases.add('s*viceEs',  '^s.*vice.*E.*s$')
-cases.add('s*viceEL',  '^s.*vice.*E.*L.*$')
-cases.add('s*viceELt', '^s.*vice.*E.*L.*t$')
+cases.add('serviceE',  '^service.*E.*')
+cases.add('sEL',       '^s.*E.*L.*')
+cases.add('sEy',       '^s.*E.*y')
+cases.add('serviEL',   '^servi.*E.*L.*')
+cases.add('serviEs',   '^servi.*E.*s')
+cases.add('s*vice',    '^s.*vice')
+cases.add('s*vice*',   '^s.*vice.*')
+cases.add('s*viceEs',  '^s.*vice.*E.*s')
+cases.add('s*viceEL',  '^s.*vice.*E.*L.*')
+cases.add('s*viceELt', '^s.*vice.*E.*L.*t')
+cases.add('CRT',       '^C.*R.*T.*')
+cases.add('Tr',        '^T.*r')
 
 cases.test()
 
 EOM
 endfunction
+
+"command! T source $rc | call CreateRegTest()

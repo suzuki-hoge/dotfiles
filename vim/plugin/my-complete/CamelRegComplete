@@ -2,7 +2,8 @@
 
 augroup mycomplete
 	autocmd!
-	autocmd BufEnter * :set completefunc=CamelRegComplete
+"	autocmd BufEnter * :set completefunc=CamelRegComplete
+	autocmd BufEnter * :set completefunc=RegexComplete
 augroup END
 
 function! CamelRegComplete(findstart, base)
@@ -14,11 +15,6 @@ function! CamelRegComplete(findstart, base)
 	let pattern = CreatePattern(a:base)
 
 	call CompleteAdd(words, pattern)
-endfunction
-
-function! FindWordHeadPos()
-	let currentLine = strpart(getline('.'), 0, col('.') - 1)
-	return match(currentLine, '[a-zA-Z*_]*$')
 endfunction
 
 function! FindWords()
@@ -52,11 +48,16 @@ python << EOM
 
 result = ''
 firstUpper = True
-for c in vim.eval('a:base'):
+base = vim.eval('a:base')
+for i in range(len(base)):
+	c = base[i]
 	if c.isupper():
 		if firstUpper:
 			firstUpper = False
-			tmpformat = '%s.*%s.*'
+			if i == 0:
+				tmpformat = '%s%s.*'
+			else:
+				tmpformat = '%s.*%s.*'
 		else:
 			tmpformat = '%s%s.*'
 	elif c == '*':
@@ -67,7 +68,7 @@ for c in vim.eval('a:base'):
 	result = tmpformat % (result, c)
 
 
-lastformat = '^%s$' if '*' in result else '^%s'
+lastformat = '^%s' if '*' in result else '^%s'
 
 vim.command('return "%s"' % (lastformat % result))
 
@@ -83,3 +84,49 @@ function! CompleteAdd(words, pattern)
 endfunction
 
 source $mycomplete/CamelRegCompleteTest
+
+
+
+
+
+"todo s:
+
+
+function! RegexComplete(findstart, base)
+    if a:findstart
+		return FindWordHeadPos()
+    endif
+
+    let words = FindWords2()
+	let pattern = CreatePattern2(a:base)
+
+	call AddComplete(words, pattern)
+endfunction
+
+function! FindWordHeadPos()
+	let currentLine = strpart(getline('.'), 0, col('.') - 1)
+	return match(currentLine, '[a-zA-Z*$_]*$')
+endfunction
+
+function! FindWords2()
+	return ['hoge', 'fuga', 'piyo']
+endfunction
+
+function! CreatePattern2(base)
+	return '.*'
+endfunction
+
+function! AddComplete(words, pattern)
+	return '.*'
+endfunction
+
+function! AddComplete(words, pattern)
+	let result = []
+    for word in a:words
+		if word =~? a:pattern
+			call complete_add({'word' : word})
+			let result = add(result, word)
+		endif
+    endfor
+	return result
+endfunction
