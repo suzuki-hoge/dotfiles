@@ -116,39 +116,51 @@ function! CreatePattern2(base)
 	let result = ''
 
 	for i in range(len(a:base))
-		" first character
-		if i == 0
-			" *hoge -> .*
-			if a:base[i] == '*'
-				let result .= '.*'
+		if IsFirstCharacter(i)
+			let result .= FirstCharacter(i, a:base)
 
-			" hoge -> ^h.*
-			else
-				let result .= '^' . a:base[i] . '.*'
-			endif
+		elseif IsLastCharacter(i, a:base)
+			let result .= LastCharacter(i, a:base)
 
-		" last character
-		elseif i == len(a:base) - 1
-			" hoge$ -> $
-			if a:base[i] == '$'
-				let result .= '$'
-
-			" hoge -> e.*
-			else
-				let result .= a:base[i] . '.*'
-			endif
-
-		" not first and last
 		else
-			let result .= a:base[i] . '.*'
+			let result .= MiddleCharacter(i, a:base)
 		endif
 	endfor
 
 	return result
 endfunction
 
-function! AddComplete(words, pattern)
-	return '.*'
+function! IsFirstCharacter(i)
+	return a:i == 0
+endfunction
+
+function! IsLastCharacter(i, string)
+	return a:i == len(a:string) - 1
+endfunction
+
+" *abc -> .*
+" abc -> ^a.*
+function! FirstCharacter(i, string)
+	if a:string[a:i] == '*'
+		return '.*'
+	else
+		return '^' . a:string[a:i] . '.*'
+	endif
+endfunction
+
+" abc$ -> $
+" abc -> c.*
+function! LastCharacter(i, string)
+	if a:string[a:i] == '$'
+		return '$'
+	else
+		return a:string[a:i] . '.*'
+	endif
+endfunction
+
+" abc -> b.*
+function! MiddleCharacter(i, string)
+	return a:string[a:i] . '.*'
 endfunction
 
 function! AddComplete(words, pattern)

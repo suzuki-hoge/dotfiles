@@ -67,6 +67,7 @@ endfunction
 
 function! CreateRegTest2()
 	call s:test([], '',       '',             [])
+	call s:test([], '*',      '.*',           [])
 	call s:test([], 'a',      '^a.*',         [])
 	call s:test([], 'abc',    '^a.*b.*c.*',   [])
 	call s:test([], '*abc',   '.*a.*b.*c.*',  [])
