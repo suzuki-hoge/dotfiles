@@ -2,8 +2,8 @@
 
 augroup mycomplete
 	autocmd!
-"	autocmd BufEnter * :set completefunc=CamelRegComplete
-	autocmd BufEnter * :set completefunc=RegexComplete
+	autocmd BufEnter * :set completefunc=CamelRegComplete
+"	autocmd BufEnter * :set completefunc=RegexComplete
 augroup END
 
 function! CamelRegComplete(findstart, base)

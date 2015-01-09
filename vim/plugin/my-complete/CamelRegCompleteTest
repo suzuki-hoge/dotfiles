@@ -62,4 +62,42 @@ cases.test()
 EOM
 endfunction
 
-"command! T source $rc | call CreateRegTest()
+"command! T w | source $rc | call CreateRegTest()
+"command! T w | source $rc | call CreateRegTest2()
+
+function! CreateRegTest2()
+	call s:test(['hoge', 'fuga'], '', '.*', ['hoge', 'fuga'])
+	call s:test(['hoge', 'fuga'], '', 'invalid', ['hoge', 'fuga'])
+endfunction
+
+function! s:test(words, key, pattern, result)
+	call s:patternTest(a:key, a:pattern)
+	call s:completeTest(a:words, a:pattern, a:result)
+	echo ' '
+endfunction
+
+function! s:patternTest(key, pattern)
+	let expected = a:pattern
+	let actual = CreatePattern2(a:key)
+
+	call s:assert(expected, actual)
+endfunction
+
+function! s:completeTest(words, pattern, result)
+	let expected = a:result
+	let actual = AddComplete(a:words, a:pattern)
+
+	call s:assert(expected, actual)
+endfunction
+
+function! s:assert(expected, actual)
+	echo ''
+	if a:expected == a:actual
+		echon 'OK | '
+	else
+		echon 'NG | '
+	endif
+	echon a:expected
+	echon ' -> '
+	echon a:actual
+endfunction
