@@ -18,11 +18,9 @@ class Php(Base):
 
 	def getDebugLines(self, var):
 		return [
-			'',
 			"echo '<pre>';",
 			'var_dump($%s);' % var,
-			'exit',
-			''
+			'exit;'
 		]
 
 EOM

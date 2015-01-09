@@ -18,9 +18,7 @@ class Javascript(Base):
 
 	def getDebugLines(self, var):
 		return [
-			'',
-			'console.log(%s)' % var,
-			''
+			'console.log(%s);' % var
 		]
 
 EOM

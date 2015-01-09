@@ -18,9 +18,7 @@ class Python(Base):
 
 	def getDebugLines(self, var):
 		return [
-			'',
-			'print %s' % var,
-			''
+			'print %s' % var
 		]
 
 EOM
