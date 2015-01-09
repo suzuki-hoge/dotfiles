@@ -66,13 +66,19 @@ endfunction
 "command! T w | source $rc | call CreateRegTest2()
 
 function! CreateRegTest2()
-	call s:test(['hoge', 'fuga'], '', '.*', ['hoge', 'fuga'])
-	call s:test(['hoge', 'fuga'], '', 'invalid', ['hoge', 'fuga'])
+	call s:test([], '',       '',             [])
+	call s:test([], 'a',      '^a.*',         [])
+	call s:test([], 'abc',    '^a.*b.*c.*',   [])
+	call s:test([], '*abc',   '.*a.*b.*c.*',  [])
+	call s:test([], 'abc$',   '^a.*b.*c.*$',  [])
+	call s:test([], '*abc$',  '.*a.*b.*c.*$', [])
+	call s:test([], 'aBc',    '^a.*B.*c.*',   [])
+	call s:test([], 'aBC',    '^a.*B.*C.*',   [])
 endfunction
 
 function! s:test(words, key, pattern, result)
 	call s:patternTest(a:key, a:pattern)
-	call s:completeTest(a:words, a:pattern, a:result)
+"	call s:completeTest(a:words, a:pattern, a:result)
 	echo ' '
 endfunction
 
@@ -91,11 +97,10 @@ function! s:completeTest(words, pattern, result)
 endfunction
 
 function! s:assert(expected, actual)
-	echo ''
 	if a:expected == a:actual
-		echon 'OK | '
+		echo 'OK | '
 	else
-		echon 'NG | '
+		echo 'NG | '
 	endif
 	echon a:expected
 	echon ' -> '

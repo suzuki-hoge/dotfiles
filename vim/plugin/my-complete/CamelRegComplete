@@ -113,7 +113,38 @@ function! FindWords2()
 endfunction
 
 function! CreatePattern2(base)
-	return '.*'
+	let result = ''
+
+	for i in range(len(a:base))
+		" first character
+		if i == 0
+			" *hoge -> .*
+			if a:base[i] == '*'
+				let result .= '.*'
+
+			" hoge -> ^h.*
+			else
+				let result .= '^' . a:base[i] . '.*'
+			endif
+
+		" last character
+		elseif i == len(a:base) - 1
+			" hoge$ -> $
+			if a:base[i] == '$'
+				let result .= '$'
+
+			" hoge -> e.*
+			else
+				let result .= a:base[i] . '.*'
+			endif
+
+		" not first and last
+		else
+			let result .= a:base[i] . '.*'
+		endif
+	endfor
+
+	return result
 endfunction
 
 function! AddComplete(words, pattern)
