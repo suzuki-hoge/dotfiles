@@ -23,6 +23,7 @@ nnoremap æ :!
 
 " history search
 nnoremap <C-p> :<UP>
+nnoremap <S-C-p> :!<UP>
 
 " highlight off
 nnoremap <silent><ESC><ESC> :noh<CR>
