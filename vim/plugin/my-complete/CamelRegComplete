@@ -109,7 +109,35 @@ function! FindWordHeadPos()
 endfunction
 
 function! FindWords2()
-	return ['hoge', 'fuga', 'piyo']
+	let lines = s:currentBufferLines()
+"	let lines = s:otherBufferLines()
+	echo lines
+endfunction
+
+function! s:currentBufferLines()
+	let current = line('.')
+	let currentToTail = getbufline(bufnr('%'), current + 1, '$')
+	let headToCurrent = getbufline(bufnr('%'), 1, current)
+	return reverse(currentToTail) + reverse(headToCurrent)
+endfunction
+
+function! s:otherBufferLines()
+	let n = 1
+	let last = bufnr('$')
+	let lines = []
+
+	while n <= last
+		if buflisted(n) && n != bufnr('%')
+			let lines += s:getLines(n)
+		endif
+		let n = n + 1
+	endwhile
+
+	return lines
+endfunction
+
+function! s:getLines(bufnum)
+	return getbufline(a:bufnum, 1, '$')
 endfunction
 
 function! CreatePattern2(base)

@@ -63,6 +63,7 @@ EOM
 endfunction
 
 "command! T wa | source $rc | call CreateRegTest2()
+"command! F wa | source $rc | call FindWords2()
 
 function! CreateRegTest2()
 	let words = ['a_b_c', 'a_b_c_', '_a_b_c', '_a_b_c_', 'b_c', 'a_b', 'a_c']
