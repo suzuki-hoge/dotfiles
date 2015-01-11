@@ -2,8 +2,8 @@
 
 augroup mycomplete
 	autocmd!
-	autocmd BufEnter * :set completefunc=CamelRegComplete
-"	autocmd BufEnter * :set completefunc=RegexComplete
+"	autocmd BufEnter * :set completefunc=CamelRegComplete
+	autocmd BufEnter * :set completefunc=RegexComplete
 augroup END
 
 function! CamelRegComplete(findstart, base)
@@ -105,20 +105,28 @@ endfunction
 
 function! FindWordHeadPos()
 	let currentLine = strpart(getline('.'), 0, col('.') - 1)
-	return match(currentLine, '[a-zA-Z*$_]*$')
+	return match(currentLine, '[a-zA-Z0-9*$_]*$')
 endfunction
 
 function! FindWords2()
-	let lines = s:currentBufferLines()
-"	let lines = s:otherBufferLines()
-	echo lines
+	return s:toWord(s:currentBufferLines() + s:otherBufferLines())
+endfunction
+
+function! s:toWord(lines)
+	let result = []
+
+	for line in a:lines
+		let result += split(line, '[^a-zA-Z0-9_]')
+	endfor
+
+	return result
 endfunction
 
 function! s:currentBufferLines()
 	let current = line('.')
-	let currentToTail = getbufline(bufnr('%'), current + 1, '$')
 	let headToCurrent = getbufline(bufnr('%'), 1, current)
-	return reverse(currentToTail) + reverse(headToCurrent)
+	let currentToTail = getbufline(bufnr('%'), current + 1, '$')
+	return reverse(headToCurrent) + reverse(currentToTail)
 endfunction
 
 function! s:otherBufferLines()
