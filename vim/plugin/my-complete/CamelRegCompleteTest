@@ -68,26 +68,36 @@ function! CreateRegTest2()
 	let words = ['a_b_c', 'a_b_c_', '_a_b_c', '_a_b_c_', 'b_c', 'a_b', 'a_c']
 	let Words = ['a_b_c', 'a_B_C', 'a_B_c', 'A_B_C', 'a_b_B_c', 'a_B_b_c']
 
-	call s:test(words, '',      '',              words)
-	call s:test(words, 'a',     '^a',            ['a_b_c', 'a_b_c_', 'a_b', 'a_c'])
-	call s:test(words, 'c',     '^c',            [])
-	call s:test(words, '*c',    '.*c.*',         ['a_b_c', 'a_b_c_', '_a_b_c', '_a_b_c_', 'b_c', 'a_c'])
-	call s:test(words, 'c$',    '^c$',           [])
-	call s:test(words, '*c$',   '.*c$',          ['a_b_c', '_a_b_c', 'b_c', 'a_c'])
-	call s:test(words, 'abc',   '^a.*b.*c.*',    ['a_b_c', 'a_b_c_'])
-	call s:test(words, '*abc',  '.*a.*b.*c.*',   ['a_b_c', 'a_b_c_', '_a_b_c', '_a_b_c_'])
-	call s:test(words, 'abc$',  '^a.*b.*c$',     ['a_b_c'])
-	call s:test(words, '*abc$', '.*a.*b.*c$',    ['a_b_c', '_a_b_c'])
-	call s:test(Words, 'aBc',   '^a.*B.*c.*',    ['a_B_c'])
-	call s:test(Words, 'aBC',   '^a.*B.*C.*',    ['a_B_C'])
-	call s:test(Words, 'ABC',   '^A.*B.*C.*',    ['A_B_C'])
-	call s:test(Words, 'abBc',  '^a.*b.*B.*c.*', ['a_b_B_c'])
+	let failures = 0
+
+	let failures += s:test(words, '',      '',              words)
+	let failures += s:test(words, 'a',     '^a',            ['a_b_c', 'a_b_c_', 'a_b', 'a_c'])
+	let failures += s:test(words, 'c',     '^c',            [])
+	let failures += s:test(words, '*c',    '.*c.*',         ['a_b_c', 'a_b_c_', '_a_b_c', '_a_b_c_', 'b_c', 'a_c'])
+	let failures += s:test(words, 'c$',    '^c$',           [])
+	let failures += s:test(words, '*c$',   '.*c$',          ['a_b_c', '_a_b_c', 'b_c', 'a_c'])
+	let failures += s:test(words, 'abc',   '^a.*b.*c.*',    ['a_b_c', 'a_b_c_'])
+	let failures += s:test(words, '*abc',  '.*a.*b.*c.*',   ['a_b_c', 'a_b_c_', '_a_b_c', '_a_b_c_'])
+	let failures += s:test(words, 'abc$',  '^a.*b.*c$',     ['a_b_c'])
+	let failures += s:test(words, '*abc$', '.*a.*b.*c$',    ['a_b_c', '_a_b_c'])
+	let failures += s:test(Words, 'aBc',   '^a.*B.*c.*',    ['a_B_c', 'a_b_B_c', 'a_B_b_c'])
+	let failures += s:test(Words, 'aBC',   '^a.*B.*C.*',    ['a_B_C'])
+	let failures += s:test(Words, 'ABC',   '^A.*B.*C.*',    ['A_B_C'])
+	let failures += s:test(Words, 'abBc',  '^a.*b.*B.*c.*', ['a_b_B_c'])
+
+	if failures == 0
+		echo 'All Green'
+	else
+		throw 'Test Failed'
+	endif
 endfunction
 
 function! s:test(words, key, pattern, result)
-	call s:patternTest(a:key, a:pattern)
-	call s:completeTest(a:words, a:pattern, a:result)
+	let failures = 0
+	let failures += s:patternTest(a:key, a:pattern)
+	let failures += s:completeTest(a:words, a:pattern, a:result)
 	echo ' '
+	return failures
 endfunction
 
 function! s:patternTest(key, pattern)
@@ -95,7 +105,7 @@ function! s:patternTest(key, pattern)
 	let expected = a:pattern
 	let actual = CreatePattern2(a:key)
 
-	call s:assert(origin, expected, actual)
+	return s:assert(origin, expected, actual)
 endfunction
 
 function! s:completeTest(words, pattern, result)
@@ -103,7 +113,7 @@ function! s:completeTest(words, pattern, result)
 	let expected = a:result
 	let actual = AddComplete(a:words, a:pattern)
 
-	call s:assert(origin, expected, actual)
+	return s:assert(origin, expected, actual)
 endfunction
 
 function! s:assert(origin, expected, actual)
@@ -112,10 +122,12 @@ function! s:assert(origin, expected, actual)
 		echon a:origin
 		echon ' -> '
 		echon a:actual
+		return 0
 	else
 		echo 'NG | expected : '
 		echon a:expected
 		echo '     actual   : '
 		echon a:actual
+		return 1
 	endif
 endfunction
