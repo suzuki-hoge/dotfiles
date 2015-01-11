@@ -5,6 +5,9 @@ augroup mycomplete
 	autocmd BufEnter * :set completefunc=RegexComplete
 augroup END
 
+source $mycomplete/position.vim
+source $mycomplete/pattern.vim
+source $mycomplete/words.vim
 source $mycomplete/CamelRegCompleteTest
 
 function! RegexComplete(findstart, base)
@@ -16,127 +19,4 @@ function! RegexComplete(findstart, base)
 	let pattern = CreatePattern2(a:base)
 
 	call AddComplete(words, pattern)
-endfunction
-
-function! FindWordHeadPos()
-	let currentLine = strpart(getline('.'), 0, col('.') - 1)
-	return match(currentLine, '[a-zA-Z0-9*$_]*$')
-endfunction
-
-function! FindWords2()
-	return s:toWord(s:currentBufferLines() + s:otherBufferLines())
-endfunction
-
-function! s:toWord(lines)
-	let result = []
-
-	for line in a:lines
-		let result += split(line, '[^a-zA-Z0-9_]')
-	endfor
-
-	return result
-endfunction
-
-function! s:currentBufferLines()
-	let current = line('.')
-	let headToCurrent = getbufline(bufnr('%'), 1, current)
-	let currentToTail = getbufline(bufnr('%'), current + 1, '$')
-	return reverse(headToCurrent) + reverse(currentToTail)
-endfunction
-
-function! s:otherBufferLines()
-	let n = 1
-	let last = bufnr('$')
-	let lines = []
-
-	while n <= last
-		if buflisted(n) && n != bufnr('%')
-			let lines += s:getLines(n)
-		endif
-		let n = n + 1
-	endwhile
-
-	return lines
-endfunction
-
-function! s:getLines(bufnum)
-	return getbufline(a:bufnum, 1, '$')
-endfunction
-
-function! CreatePattern2(base)
-	let result = ''
-
-	for i in range(len(a:base))
-		if IsFirstCharacter(i)
-			let result .= FirstCharacter(i, a:base)
-
-		elseif IsLastCharacter(i, a:base)
-			let result .= LastCharacter(i, a:base)
-
-		else
-			let result .= MiddleCharacter(i, a:base)
-		endif
-	endfor
-
-	return result
-endfunction
-
-function! IsFirstCharacter(i)
-	return a:i == 0
-endfunction
-
-function! IsLastCharacter(i, string)
-	return a:i == len(a:string) - 1
-endfunction
-
-" *abc -> .*
-" abc -> ^a.*
-function! FirstCharacter(i, string)
-	if a:string[a:i] == '*'
-		return ''
-	else
-		return '^' . a:string[a:i]
-	endif
-endfunction
-
-" abc$ -> $
-" abc -> c.*
-function! LastCharacter(i, string)
-	if a:string[a:i] == '$'
-		return '$'
-	else
-		return '.*' . a:string[a:i] . '.*'
-	endif
-endfunction
-
-" abc -> b.*
-function! MiddleCharacter(i, string)
-	return '.*' . a:string[a:i]
-endfunction
-
-function! AddComplete(words, pattern)
-	let result = []
-
-	if s:hasUppercase(a:pattern)
-		for word in a:words
-			if word =~# a:pattern
-				call complete_add({'word' : word})
-				let result = add(result, word)
-			endif
-		endfor
-
-	else
-		for word in a:words
-			if word =~? a:pattern
-				call complete_add({'word' : word})
-				let result = add(result, word)
-			endif
-		endfor
-	endif
-
-	return result
-endfunction
-
-function! s:hasUppercase(pattern)
-	return tolower(a:pattern) !=# a:pattern
 endfunction
