@@ -66,19 +66,22 @@ endfunction
 
 function! CreateRegTest2()
 	let words = ['a_b_c', 'a_b_c_', '_a_b_c', '_a_b_c_', 'b_c', 'a_b', 'a_c']
+	let Words = ['a_b_c', 'a_B_C', 'a_B_c', 'A_B_C', 'a_b_B_c', 'a_B_b_c']
 
-	call s:test(words, '',       '',             words)
-	call s:test(words, 'a',      '^a',           ['a_b_c', 'a_b_c_', 'a_b', 'a_c'])
-	call s:test(words, 'c',      '^c',           [])
-	call s:test(words, '*c',     '.*c.*',        ['a_b_c', 'a_b_c_', '_a_b_c', '_a_b_c_', 'b_c', 'a_c'])
-	call s:test(words, 'c$',     '^c$',          [])
-	call s:test(words, '*c$',    '.*c$',         ['a_b_c', '_a_b_c', 'b_c', 'a_c'])
-	call s:test(words, 'abc',    '^a.*b.*c.*',   ['a_b_c', 'a_b_c_'])
-	call s:test(words, '*abc',   '.*a.*b.*c.*',  ['a_b_c', 'a_b_c_', '_a_b_c', '_a_b_c_'])
-	call s:test(words, 'abc$',   '^a.*b.*c$',    ['a_b_c'])
-	call s:test(words, '*abc$',  '.*a.*b.*c$',   ['a_b_c', '_a_b_c'])
-"	call s:test(words, 'aBc',    '^a.*B.*c.*',   [])
-"	call s:test(words, 'aBC',    '^a.*B.*C.*',   [])
+	call s:test(words, '',      '',              words)
+	call s:test(words, 'a',     '^a',            ['a_b_c', 'a_b_c_', 'a_b', 'a_c'])
+	call s:test(words, 'c',     '^c',            [])
+	call s:test(words, '*c',    '.*c.*',         ['a_b_c', 'a_b_c_', '_a_b_c', '_a_b_c_', 'b_c', 'a_c'])
+	call s:test(words, 'c$',    '^c$',           [])
+	call s:test(words, '*c$',   '.*c$',          ['a_b_c', '_a_b_c', 'b_c', 'a_c'])
+	call s:test(words, 'abc',   '^a.*b.*c.*',    ['a_b_c', 'a_b_c_'])
+	call s:test(words, '*abc',  '.*a.*b.*c.*',   ['a_b_c', 'a_b_c_', '_a_b_c', '_a_b_c_'])
+	call s:test(words, 'abc$',  '^a.*b.*c$',     ['a_b_c'])
+	call s:test(words, '*abc$', '.*a.*b.*c$',    ['a_b_c', '_a_b_c'])
+	call s:test(Words, 'aBc',   '^a.*B.*c.*',    ['a_B_c'])
+	call s:test(Words, 'aBC',   '^a.*B.*C.*',    ['a_B_C'])
+	call s:test(Words, 'ABC',   '^A.*B.*C.*',    ['A_B_C'])
+	call s:test(Words, 'abBc',  '^a.*b.*B.*c.*', ['a_b_B_c'])
 endfunction
 
 function! s:test(words, key, pattern, result)
