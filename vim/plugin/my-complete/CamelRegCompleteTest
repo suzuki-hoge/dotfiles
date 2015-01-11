@@ -1,69 +1,6 @@
 " vim:set ft=vim:
 
-python << EOM
-
-class Case:
-
-	def __init__(self, base, expected):
-		self.base = base
-		self.expected = expected
-
-class Cases:
-
-	def __init__(self, func):
-		self.func = func
-		self.cases = []
-
-	def add(self, base, expected):
-		case = Case(base, expected)
-		self.cases.append(case)
-
-	def test(self):
-		for case in self.cases:
-			actual = self.__test(case)
-			self.__output(actual, case)
-
-	def __output(self, actual, case):
-		print '[%s] %s(%s) -> %s' % ('OK' if case.expected == actual else 'NG', self.func, case.base, actual)
-		if case.expected != actual:
-			print '  expected : %s\n  actual   : %s' % (case.expected, actual)
-
-	def __test(self, case):
-		return vim.eval("%s('%s')" % (self.func, case.base))
-
-EOM
-
-
-
-" aaaCRT
-" Trans
-" Transfer
-function! CreateRegTest()
-python << EOM
-
-cases = Cases('CreateReg')
-
-cases.add('service',   '^service')
-cases.add('serviceE',  '^service.*E.*')
-cases.add('sEL',       '^s.*E.*L.*')
-cases.add('sEy',       '^s.*E.*y')
-cases.add('serviEL',   '^servi.*E.*L.*')
-cases.add('serviEs',   '^servi.*E.*s')
-cases.add('s*vice',    '^s.*vice')
-cases.add('s*vice*',   '^s.*vice.*')
-cases.add('s*viceEs',  '^s.*vice.*E.*s')
-cases.add('s*viceEL',  '^s.*vice.*E.*L.*')
-cases.add('s*viceELt', '^s.*vice.*E.*L.*t')
-cases.add('CRT',       '^C.*R.*T.*')
-cases.add('Tr',        '^T.*r')
-
-cases.test()
-
-EOM
-endfunction
-
 "command! T wa | source $rc | call CreateRegTest2()
-"command! F wa | source $rc | call FindWords2()
 
 function! CreateRegTest2()
 	let words = ['a_b_c', 'a_b_c_', '_a_b_c', '_a_b_c_', 'b_c', 'a_b', 'a_c']

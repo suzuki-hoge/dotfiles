@@ -2,95 +2,10 @@
 
 augroup mycomplete
 	autocmd!
-"	autocmd BufEnter * :set completefunc=CamelRegComplete
 	autocmd BufEnter * :set completefunc=RegexComplete
 augroup END
 
-function! CamelRegComplete(findstart, base)
-    if a:findstart
-		return FindWordHeadPos()
-    endif
-
-    let words = FindWords()
-	let pattern = CreatePattern(a:base)
-
-	call CompleteAdd(words, pattern)
-endfunction
-
-function! FindWords()
-python << EOM
-
-pattern = re.compile(r'\w\w*\w')
-
-words = lambda line: pattern.findall(line)
-
-import vim
-result = []
-for buf in vim.buffers:
-	for line in buf:
-		result = result + words(line)
-
-vim.command('return %s' % sorted(result, key=lambda c: c.lower()))
-
-EOM
-endfunction
-
-function! CreatePattern(base)
-	if a:base == ''
-		return '.*'
-	else
-		return CreateReg(a:base)
-	endif
-endfunction
-
-function! CreateReg(base)
-python << EOM
-
-result = ''
-firstUpper = True
-base = vim.eval('a:base')
-for i in range(len(base)):
-	c = base[i]
-	if c.isupper():
-		if firstUpper:
-			firstUpper = False
-			if i == 0:
-				tmpformat = '%s%s.*'
-			else:
-				tmpformat = '%s.*%s.*'
-		else:
-			tmpformat = '%s%s.*'
-	elif c == '*':
-		tmpformat = '%s.%s'
-	else:
-		tmpformat = '%s%s'
-
-	result = tmpformat % (result, c)
-
-
-lastformat = '^%s' if '*' in result else '^%s'
-
-vim.command('return "%s"' % (lastformat % result))
-
-EOM
-endfunction
-
-function! CompleteAdd(words, pattern)
-    for word in a:words
-		if word =~# a:pattern
-			call complete_add({'word' : word})
-		endif
-    endfor
-endfunction
-
 source $mycomplete/CamelRegCompleteTest
-
-
-
-
-
-"todo s:
-
 
 function! RegexComplete(findstart, base)
     if a:findstart
