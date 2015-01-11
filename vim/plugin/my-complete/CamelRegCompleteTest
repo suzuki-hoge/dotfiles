@@ -62,48 +62,57 @@ cases.test()
 EOM
 endfunction
 
-"command! T w | source $rc | call CreateRegTest()
-"command! T w | source $rc | call CreateRegTest2()
+"command! T wa | source $rc | call CreateRegTest2()
 
 function! CreateRegTest2()
-	call s:test([], '',       '',             [])
-	call s:test([], '*',      '.*',           [])
-	call s:test([], 'a',      '^a.*',         [])
-	call s:test([], 'abc',    '^a.*b.*c.*',   [])
-	call s:test([], '*abc',   '.*a.*b.*c.*',  [])
-	call s:test([], 'abc$',   '^a.*b.*c.*$',  [])
-	call s:test([], '*abc$',  '.*a.*b.*c.*$', [])
-	call s:test([], 'aBc',    '^a.*B.*c.*',   [])
-	call s:test([], 'aBC',    '^a.*B.*C.*',   [])
+	let words = ['a_b_c', 'a_b_c_', '_a_b_c', '_a_b_c_', 'b_c', 'a_b', 'a_c']
+
+	call s:test(words, '',       '',             words)
+	call s:test(words, 'a',      '^a',           ['a_b_c', 'a_b_c_', 'a_b', 'a_c'])
+	call s:test(words, 'c',      '^c',           [])
+	call s:test(words, '*c',     '.*c.*',        ['a_b_c', 'a_b_c_', '_a_b_c', '_a_b_c_', 'b_c', 'a_c'])
+	call s:test(words, 'c$',     '^c$',          [])
+	call s:test(words, '*c$',    '.*c$',         ['a_b_c', '_a_b_c', 'b_c', 'a_c'])
+	call s:test(words, 'abc',    '^a.*b.*c.*',   ['a_b_c', 'a_b_c_'])
+	call s:test(words, '*abc',   '.*a.*b.*c.*',  ['a_b_c', 'a_b_c_', '_a_b_c', '_a_b_c_'])
+	call s:test(words, 'abc$',   '^a.*b.*c$',    ['a_b_c'])
+	call s:test(words, '*abc$',  '.*a.*b.*c$',   ['a_b_c', '_a_b_c'])
+"	call s:test(words, 'aBc',    '^a.*B.*c.*',   [])
+"	call s:test(words, 'aBC',    '^a.*B.*C.*',   [])
 endfunction
 
 function! s:test(words, key, pattern, result)
 	call s:patternTest(a:key, a:pattern)
-"	call s:completeTest(a:words, a:pattern, a:result)
+	call s:completeTest(a:words, a:pattern, a:result)
 	echo ' '
 endfunction
 
 function! s:patternTest(key, pattern)
+	let origin = a:key
 	let expected = a:pattern
 	let actual = CreatePattern2(a:key)
 
-	call s:assert(expected, actual)
+	call s:assert(origin, expected, actual)
 endfunction
 
 function! s:completeTest(words, pattern, result)
+	let origin = a:words
 	let expected = a:result
 	let actual = AddComplete(a:words, a:pattern)
 
-	call s:assert(expected, actual)
+	call s:assert(origin, expected, actual)
 endfunction
 
-function! s:assert(expected, actual)
+function! s:assert(origin, expected, actual)
 	if a:expected == a:actual
 		echo 'OK | '
+		echon a:origin
+		echon ' -> '
+		echon a:actual
 	else
-		echo 'NG | '
+		echo 'NG | expected : '
+		echon a:expected
+		echo '     actual   : '
+		echon a:actual
 	endif
-	echon a:expected
-	echon ' -> '
-	echon a:actual
 endfunction

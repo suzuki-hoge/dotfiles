@@ -142,9 +142,9 @@ endfunction
 " abc -> ^a.*
 function! FirstCharacter(i, string)
 	if a:string[a:i] == '*'
-		return '.*'
+		return ''
 	else
-		return '^' . a:string[a:i] . '.*'
+		return '^' . a:string[a:i]
 	endif
 endfunction
 
@@ -154,22 +154,24 @@ function! LastCharacter(i, string)
 	if a:string[a:i] == '$'
 		return '$'
 	else
-		return a:string[a:i] . '.*'
+		return '.*' . a:string[a:i] . '.*'
 	endif
 endfunction
 
 " abc -> b.*
 function! MiddleCharacter(i, string)
-	return a:string[a:i] . '.*'
+	return '.*' . a:string[a:i]
 endfunction
 
 function! AddComplete(words, pattern)
 	let result = []
+
     for word in a:words
 		if word =~? a:pattern
 			call complete_add({'word' : word})
 			let result = add(result, word)
 		endif
     endfor
+
 	return result
 endfunction
