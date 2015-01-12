@@ -29,6 +29,8 @@ endfunction
 function! s:first(i, string)
 	if a:string[a:i] == '*'
 		return ''
+	elseif a:string[a:i] == '$'
+		return ''
 	else
 		return '^' . a:string[a:i]
 	endif

@@ -1,7 +1,7 @@
-"command! T wa | source $complete/test/test.vim | call RegexCompleteTest()
+command! T wa | source $complete/test/test.vim | call RegexCompleteTest()
 
 function! RegexCompleteTest()
-	let words = ['a_b_c', 'a_b_c_', '_a_b_c', '_a_b_c_', 'b_c', 'a_b', 'a_c']
+	let words = ['a_b_c', 'a_b_c_', '_a_b_c', '_a_b_c_', 'b_c', 'a_b', 'a_c', '$a_b_c']
 	let Words = ['a_b_c', 'a_B_C', 'a_B_c', 'A_B_C', 'a_b_B_c', 'a_B_b_c']
 
 	let failures = 0
@@ -9,13 +9,14 @@ function! RegexCompleteTest()
 	let failures += s:test(words, '',      '',              words)
 	let failures += s:test(words, 'a',     '^a',            ['a_b_c', 'a_b_c_', 'a_b', 'a_c'])
 	let failures += s:test(words, 'c',     '^c',            [])
-	let failures += s:test(words, '*c',    '.*c.*',         ['a_b_c', 'a_b_c_', '_a_b_c', '_a_b_c_', 'b_c', 'a_c'])
+	let failures += s:test(words, '*c',    '.*c.*',         ['a_b_c', 'a_b_c_', '_a_b_c', '_a_b_c_', 'b_c', 'a_c', '$a_b_c'])
 	let failures += s:test(words, 'c$',    '^c$',           [])
-	let failures += s:test(words, '*c$',   '.*c$',          ['a_b_c', '_a_b_c', 'b_c', 'a_c'])
+	let failures += s:test(words, '*c$',   '.*c$',          ['a_b_c', '_a_b_c', 'b_c', 'a_c', '$a_b_c'])
+	let failures += s:test(words, '$ab',   '.*a.*b.*',      ['a_b_c', 'a_b_c_', '_a_b_c', '_a_b_c_', 'a_b', '$a_b_c'])
 	let failures += s:test(words, 'abc',   '^a.*b.*c.*',    ['a_b_c', 'a_b_c_'])
-	let failures += s:test(words, '*abc',  '.*a.*b.*c.*',   ['a_b_c', 'a_b_c_', '_a_b_c', '_a_b_c_'])
+	let failures += s:test(words, '*abc',  '.*a.*b.*c.*',   ['a_b_c', 'a_b_c_', '_a_b_c', '_a_b_c_', '$a_b_c'])
 	let failures += s:test(words, 'abc$',  '^a.*b.*c$',     ['a_b_c'])
-	let failures += s:test(words, '*abc$', '.*a.*b.*c$',    ['a_b_c', '_a_b_c'])
+	let failures += s:test(words, '*abc$', '.*a.*b.*c$',    ['a_b_c', '_a_b_c', '$a_b_c'])
 	let failures += s:test(Words, 'aBc',   '^a.*B.*c.*',    ['a_B_c', 'a_b_B_c', 'a_B_b_c'])
 	let failures += s:test(Words, 'aBC',   '^a.*B.*C.*',    ['a_B_C'])
 	let failures += s:test(Words, 'ABC',   '^A.*B.*C.*',    ['A_B_C'])

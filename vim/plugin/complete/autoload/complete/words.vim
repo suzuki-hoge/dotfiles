@@ -6,7 +6,7 @@ function! s:toWord(lines)
 	let result = []
 
 	for line in a:lines
-		let result += split(line, '[^a-zA-Z0-9_]')
+		let result += split(line, '[^a-zA-Z0-9_$]')
 	endfor
 
 	return result
