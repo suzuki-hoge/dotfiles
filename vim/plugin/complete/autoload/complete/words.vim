@@ -26,7 +26,7 @@ function! s:otherBufferLines()
 
 	while n <= last
 		if buflisted(n) && n != bufnr('%')
-			let lines += getbufline(a:bufnum, 1, '$')
+			let lines += getbufline(n, 1, '$')
 		endif
 		let n = n + 1
 	endwhile
