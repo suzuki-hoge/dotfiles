@@ -1,10 +1,6 @@
 " vim:set ft=vim:
 
 " emacs (move)
-inoremap <C-p> <UP>
-inoremap <C-n> <DOWN>
-inoremap <C-b> <LEFT>
-inoremap <C-f> <RIGHT>
 inoremap <C-a> <HOME>
 inoremap <C-e> <END>
 
