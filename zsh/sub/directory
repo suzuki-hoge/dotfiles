@@ -49,3 +49,9 @@ function cdpr() {
 function dirs() {
  cd `cat ~/.dotfiles/zsh/directories | percol --match-method regex`
 }
+
+# [percol-chain] 連続移動
+function cdpc() {
+ cdp
+ cdpc
+}
