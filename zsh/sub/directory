@@ -44,3 +44,8 @@ function cdpr() {
  local TARGET=`_lib_recdfind $ROOT $DEPTH`
  cd $ROOT/$TARGET
 }
+
+# [percol] リストから移動
+function dirs() {
+ cd `cat ~/.dotfiles/zsh/directories | percol --match-method regex`
+}
