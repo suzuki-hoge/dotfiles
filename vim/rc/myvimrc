@@ -32,6 +32,9 @@ let $private = $HOME . '/Library/Application Support/KeyRemap4MacBook/private.xm
 " todo
 let $todo = $HOME . '/Dropbox/todos/list.todo'
 
+" blog-memo
+let $blog = $HOME . '/Dropbox/todos/blog.todo'
+
 " import vimsubs
 source $vimsubs/autocommands
 source $vimsubs/commands

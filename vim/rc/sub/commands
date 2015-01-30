@@ -3,6 +3,9 @@
 " edit todo
 command! Todo tabe $todo
 
+" edit blog-memo
+command! Blog tabe $blog
+
 " message
 command! M messages
 
