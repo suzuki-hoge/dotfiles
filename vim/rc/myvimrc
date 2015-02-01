@@ -35,6 +35,9 @@ let $todo = $HOME . '/Dropbox/todos/list.todo'
 " blog-memo
 let $blog = $HOME . '/Dropbox/todos/blog.todo'
 
+" blog-draft
+let $draft = $tmp . '/draft.html'
+
 " import vimsubs
 source $vimsubs/autocommands
 source $vimsubs/commands
