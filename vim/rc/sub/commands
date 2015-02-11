@@ -32,3 +32,19 @@ command! Rel setlocal relativenumber!
 
 " color highlight at console vi
 command! Color syntax on | source $dot/vim/plugin/todo/todo.vim
+
+" insert code block tag
+command! -nargs=1 Codeblock call Codeblock(<f-args>)
+ 
+function! Codeblock(command)
+	let ext = split(a:command, '\.')[1]
+
+	if ext == 'py'
+		let lang = 'python'
+	elseif ext == 'php'
+		let lang = 'php'
+	endif
+
+	let tag = "<pre class='lang:" . lang . " decode:true' title='" . a:command . "'>"
+	execute 'normal ^d0I' . tag
+endfunction
