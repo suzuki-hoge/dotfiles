@@ -129,6 +129,30 @@
 			</item>
 		</list>
 	</item>
+
+	<item>
+		<name>kana Mapping</name>
+		<list>
+			<item>
+				<name>Ctrl + i -> fn + F7</name>
+				<identifier>kana Mapping Ctrl + i -> fn + F7</identifier>
+
+				<autogen>--KeyToKey-- KeyCode::I, VK_CONTROL, KeyCode::K, VK_CONTROL</autogen>
+			</item>
+		</list>
+	</item>
+
+	<item>
+		<name>rolling</name>
+		<list>
+			<item>
+				<name>Option + z -> 123edcxzaqws</name>
+				<identifier>aaakana Mapping Ctrl + i -> fn + F7</identifier>
+
+				<autogen>--KeyToKey-- KeyCode::Z, ModifierFlag::OPTION_L | ModifierFlag::NONE, KeyCode::KEY_1, KeyCode::KEY_2, KeyCode::KEY_3, KeyCode::E, KeyCode::D, KeyCode::C, KeyCode::X, KeyCode::Z, KeyCode::A, KeyCode::Q, KeyCode::W, KeyCode::S</autogen>
+			</item>
+		</list>
+	</item>
 </root>
 
 <!--
