@@ -30,3 +30,23 @@ nnoremap <silent><ESC><ESC> :noh<CR>
 
 " reload vimrc
 nnoremap ® :source $rc<CR>
+
+" word yank
+nnoremap yy yiw
+
+" word paste
+nnoremap yp :call WordPaste()<CR>
+
+function! WordPaste()
+	" delete word
+	execute 'normal! diw'
+
+	" check cursor position
+	if col('.') == len(getline('.'))
+		" at end of line, paste with p
+		execute 'normal! "0p'
+	else
+		" else, paste with P
+		execute 'normal! "0P'
+	endif
+endfunction
