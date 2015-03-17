@@ -147,9 +147,21 @@
 		<list>
 			<item>
 				<name>Option + z -> 123edcxzaqws</name>
-				<identifier>aaakana Mapping Ctrl + i -> fn + F7</identifier>
+				<identifier>rolling Option + z -> 123edcxzaqws</identifier>
 
 				<autogen>--KeyToKey-- KeyCode::Z, ModifierFlag::OPTION_L | ModifierFlag::NONE, KeyCode::KEY_1, KeyCode::KEY_2, KeyCode::KEY_3, KeyCode::E, KeyCode::D, KeyCode::C, KeyCode::X, KeyCode::Z, KeyCode::A, KeyCode::Q, KeyCode::W, KeyCode::S</autogen>
+			</item>
+		</list>
+	</item>
+
+	<item>
+		<name>AD</name>
+		<list>
+			<item>
+				<name>Option + c -> bx1263585@ad.biglobe.net</name>
+				<identifier>AD Option + c -> bx1263585@ad.biglobe.net</identifier>
+
+				<autogen>--KeyToKey-- KeyCode::C, ModifierFlag::OPTION_L | ModifierFlag::NONE, KeyCode::B, KeyCode::X, KeyCode::KEY_1, KeyCode::KEY_2, KeyCode::KEY_6, KeyCode::KEY_3, KeyCode::KEY_5, KeyCode::KEY_8, KeyCode::KEY_5, KeyCode::BRACKET_LEFT, KeyCode::A, KeyCode::D, KeyCode::DOT, KeyCode::B, KeyCode::I, KeyCode::G, KeyCode::L, KeyCode::O, KeyCode::B, KeyCode::E, KeyCode::DOT, KeyCode::N, KeyCode::E, KeyCode::T</autogen>
 			</item>
 		</list>
 	</item>
