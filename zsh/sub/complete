@@ -4,8 +4,20 @@
 autoload -U compinit
 compinit
 
-# shift-tab で逆順補完
+# shift-tabで逆順補完
 bindkey '^[[Z' reverse-menu-complete
 
 # 大文字小文字を無視
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+# fabricのサブコマンドを補完する
+compdef _fabtasks fab
+function _fabtasks {
+	if (( CURRENT == 2 ));then
+		tasks_s=`fab --list | tail -n $(expr \`fab -l | wc -l\` - 2) | sed 's/    / /' | tr -d "\n"`
+		tasks_a=(`echo $tasks_s`)
+		_describe -t commands "subcommand" tasks_a
+	fi
+
+	return 1;
+}
