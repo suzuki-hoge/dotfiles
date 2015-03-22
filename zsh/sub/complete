@@ -14,6 +14,10 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 compdef _fabtasks fab
 function _fabtasks {
 	if (( CURRENT == 2 ));then
+		if [ ! -e fabfile -a ! -e fabfile.py ]; then
+			return 1;
+		fi
+
 		tasks_s=`fab --list | tail -n $(expr \`fab -l | wc -l\` - 2) | sed 's/    / /' | tr -d "\n"`
 		tasks_a=(`echo $tasks_s`)
 		_describe -t commands "subcommand" tasks_a
