@@ -56,7 +56,7 @@ function! WordPaste()
 	endif
 endfunction
 
-" check character
+" check charactor
 function! s:notCloseBracket(_char)
 	let brackets = ')}]>'
 
