@@ -18,9 +18,10 @@ function _fabtasks {
 			return 1;
 		fi
 
-		tasks_s=`fab --list | tail -n $(expr \`fab -l | wc -l\` - 2) | sed 's/    / /' | tr -d "\n"`
-		tasks_a=(`echo $tasks_s`)
-		_describe -t commands "subcommand" tasks_a
+		tasks=`fab --list`
+		num=$(expr `echo $tasks | wc -l` - 2)
+		list=(`echo $tasks | tail -n $num | sed 's/    / /' | tr -d "\n"`)
+		_describe -t commands "subcommand" list
 	fi
 
 	return 1;
