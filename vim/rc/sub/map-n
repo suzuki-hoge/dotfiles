@@ -47,7 +47,7 @@ function! WordPaste()
 	let _char = _line[_col - 1]
 
 	" check cursor position
-	if _col == _len && s:notCloseBracket(_char)
+	if _col == _len && NotCloseBracket(_char)
 		" at end of line, paste with p
 		execute 'normal! "0p'
 	else
@@ -57,7 +57,7 @@ function! WordPaste()
 endfunction
 
 " check charactor
-function! s:notCloseBracket(_char)
+function! NotCloseBracket(_char)
 	let brackets = ')}]>'
 
 	for c in split(brackets, '\zs')
