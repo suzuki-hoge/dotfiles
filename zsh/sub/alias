@@ -22,6 +22,7 @@ alias -g V='| grep -v'
 alias -g P='| percol --match-method regex | xargs'
 alias -g E='| exit'
 alias -g C='| pbcopy'
+alias -g X='| xargs'
 
 alias todo="vim /Users/ryo/Dropbox/todos/list.todo"
 
