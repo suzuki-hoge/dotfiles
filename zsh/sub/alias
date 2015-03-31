@@ -17,6 +17,10 @@ alias gcop="git branch | percol --match-method regex | cut -c2- | xargs git chec
 alias gplp="git branch | percol --match-method regex | cut -c2- | xargs git pull origin"
 alias gpsp="git branch | percol --match-method regex | cut -c2- | xargs git push origin"
 
+alias vi="/Applications/MacVim.app/Contents/MacOS/Vim"
+alias view="/Applications/MacVim.app/Contents/MacOS/view"
+alias vdiff="/Applications/MacVim.app/Contents/MacOS/vimdiff"
+
 alias -g G='| grep'
 alias -g V='| grep -v'
 alias -g P='| percol --match-method regex | xargs'
