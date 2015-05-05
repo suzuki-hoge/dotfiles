@@ -31,5 +31,5 @@ source $todoplg/conf
 source $tmpplg/tmp-buffer
 
 command! -nargs=? -complete=dir F  call frank#main#open(<f-args>)
-command!                        FP call frank#project#open()
-command!                        FL call frank#project#launch()
+command!                        FL call frank#launcher#selector()
+command!                        FP call frank#launcher#current_project()

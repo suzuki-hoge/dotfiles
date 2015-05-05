@@ -8,7 +8,7 @@ function! frank#main#open(...)
 	endif
 
 	try
-		call s:checkTooShallow(path)
+		call frank#check#too_shallow(path)
 
 		call s:new()
 
@@ -38,35 +38,5 @@ function! s:new()
 	setlocal buftype=nofile
 	silent file `='Frank'`
 
-	call s:keymaps()
-endfunction
-
-function! s:keymaps()
-	nnoremap <buffer> e :call LeaveEdit()<CR>
-	nnoremap <buffer> E :call StayEdit()<CR>
-endfunction
-
-function! LeaveEdit()
-	let n = line('.')
-
-	execute 'bwipeout'
-
-	execute '$tabedit ' . g:full[n]
-endfunction
-
-function! StayEdit()
-	let n = line('.')
-
-	execute '$tabedit ' . g:full[n]
-
-	execute 'normal gt'
-endfunction
-
-
-function! s:checkTooShallow(path)
-	let depth = lib#path#depth(a:path)
-
-	if depth < 3
-		throw 'TooShallowDepth'
-	endif
+	call frank#actions#maps()
 endfunction
