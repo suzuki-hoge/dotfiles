@@ -29,3 +29,5 @@ command! -range -nargs=* -complete=custom,HtmlElements VTag :<line1>,<line2>call
 source $todoplg/conf
 
 source $tmpplg/tmp-buffer
+
+command! -nargs=? -complete=dir F call frank#main#open(<f-args>)
