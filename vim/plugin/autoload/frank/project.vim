@@ -1,3 +1,7 @@
+function! frank#project#launch()
+	call s:launcher()
+endfunction
+
 function! frank#project#open()
 	if get(g:, '_frank_project', 'not selected') == 'not selected'
 		call s:launcher()
@@ -30,5 +34,5 @@ function! ProjectSelect()
 
 	execute 'bwipe'
 
-	execute 'F'
+	execute 'FP'
 endfunction

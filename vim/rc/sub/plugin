@@ -32,3 +32,4 @@ source $tmpplg/tmp-buffer
 
 command! -nargs=? -complete=dir F  call frank#main#open(<f-args>)
 command!                        FP call frank#project#open()
+command!                        FL call frank#project#launch()
