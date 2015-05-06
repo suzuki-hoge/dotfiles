@@ -1,5 +1,12 @@
-let s:main = $frank . '/api/main '
+let s:api = $frank . '/api/main '
 
+
+" form F
+" from FP
+" from Launcher <CR>
+" to   frank arg
+" to   frank .
+" to   FP
 function! frank#main#open(...)
 	let arg = get(a:000, 0, '.')
 
@@ -11,7 +18,7 @@ function! frank#main#open(...)
 		call frank#check#frank_exists()
 		call frank#check#launcher_exists()
 
-		call s:new()
+		call s:open_frank()
 
 		let indented = s:indented(path)
 		call lib#buffer#print(indented, 0)
@@ -32,15 +39,18 @@ function! frank#main#open(...)
 	endtry
 endfunction
 
+
 function! s:indented(path)
-	return system(s:main . a:path . ' indented')
+	return system(s:api . a:path . ' indented')
 endfunction
+
 
 function! s:full(path)
-	return ['geta'] + split(system(s:main . a:path . ' full'))
+	return ['geta'] + split(system(s:api . a:path . ' full'))
 endfunction
 
-function! s:new()
+
+function! s:open_frank()
 	execute '45vnew'
 	setlocal bufhidden=wipe
 	setlocal nobuflisted
