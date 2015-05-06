@@ -41,7 +41,6 @@ function! s:full(path)
 endfunction
 
 function! s:new()
-	setlocal foldlevelstart=99
 	execute '45vnew'
 	setlocal bufhidden=wipe
 	setlocal nobuflisted

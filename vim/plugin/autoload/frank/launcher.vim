@@ -47,6 +47,7 @@ endfunction
 function! frank#launcher#configure()
 	execute '$tabedit ' . s:projects_path
 	setlocal bufhidden=wipe
+	setlocal nobuflisted
 endfunction
 
 
