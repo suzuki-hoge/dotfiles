@@ -4,6 +4,7 @@ module Output
 ) where
 
 import Control.Monad
+import System.Directory
 
 import Data.List.Split
 import Entry
@@ -33,9 +34,10 @@ indented' :: String -> IO ()
 indented' path = do
     let count = getCount path * 4
     let space = repeat ' '
+    slash <- doesDirectoryExist path
 
     putStr $ take count space
-    putStrLn $ getName path
+    putStrLn $ getName path slash
 -- <<<
 
 -- get indent space width
@@ -45,9 +47,10 @@ getCount path = length $ filter (== "/") $ splitEvery 1 path
 -- <<<
 
 -- get name
-getName :: String -> String
+getName :: String -> Bool -> String
 
-getName path = last $ splitOn "/" path
+getName path isDirectory = if isDirectory then name ++ "/" else name
+    where name = last $ splitOn "/" path
 -- <<<
 
 indented = recWithOutputter indented'

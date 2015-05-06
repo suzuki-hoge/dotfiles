@@ -7,9 +7,12 @@ output mode root | mode == "full"     = Output.full (kind root) root
 output _    _                         = putStrLn "invalid arguments"
 
 main = do
-    args <- getArgs
-    let path = args !! 0
-    let mode = args !! 1
+--    args <- getArgs
+--    let path = args !! 0
+--    let mode = args !! 1
+
+    let path = "/Users/ryo/Development/Haskell-Practice"
+    let mode = "indented"
 
     subs <- Entry.getEntries path
     let root = Entry.Directory { path = path, kind = Entry.D, subs = subs }
