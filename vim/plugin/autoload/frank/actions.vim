@@ -16,32 +16,33 @@ function! frank#actions#normal_leave_edit()
 
 	execute 'bwipeout'
 
-	execute '$tabedit ' . g:full[n]
+	execute '999tabedit ' . g:full[n]
 endfunction
 
 function! frank#actions#normal_stay_edit()
+	let buf = bufnr('#')
 	let n = line('.')
 
-	execute '$tabedit ' . g:full[n]
+	execute '999tabedit ' . g:full[n]
 
-	execute 'normal gt'
+	execute 'normal ' . buf. 'gt'
 endfunction
 
 function! frank#actions#visual_leave_edit() range
 	execute 'bwipeout'
 
 	for n in range(a:firstline, a:lastline)
-		execute '$tabedit ' . g:full[n]
+		execute '999tabedit ' . g:full[n]
 	endfor
 endfunction
 
 function! frank#actions#visual_stay_edit() range
+	let buf = bufnr('#')
 	for n in range(a:firstline, a:lastline)
-		execute '$tabedit ' . g:full[n]
+		execute '999tabedit ' . g:full[n]
 	endfor
 
-	" 左端とは限らない
-	execute 'normal gt'
+	execute 'normal ' . buf. 'gt'
 endfunction
 
 function! frank#actions#open()
