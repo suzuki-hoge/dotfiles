@@ -1,3 +1,5 @@
+let s:projects_path = $frank . '/projects.frank'
+
 function! frank#launcher#selector()
 	try
 		call frank#check#frank_exists()
@@ -9,7 +11,7 @@ function! frank#launcher#selector()
 		setlocal buftype=nofile
 		silent file `='Launcher'`
 
-		let projects = readfile($frank . '/projects.frank')
+		let projects = readfile(s:projects_path)
 		call lib#buffer#print(projects, 0)
 
 		nnoremap <buffer> <CR> :call frank#launcher#select()<CR>
@@ -32,11 +34,6 @@ function! frank#launcher#current_project()
 endfunction
 
 
-function s:open_current_project()
-	execute 'F ' . g:_frank_current_project
-endfunction
-
-
 function! frank#launcher#select()
 	let g:_frank_current_project = getline('.')
 
@@ -44,4 +41,15 @@ function! frank#launcher#select()
 	execute 'bwipe'
 
 	call s:open_current_project()
+endfunction
+
+
+function! frank#launcher#configure()
+	execute '$tabedit ' . s:projects_path
+	setlocal bufhidden=wipe
+endfunction
+
+
+function s:open_current_project()
+	execute 'F ' . g:_frank_current_project
 endfunction
