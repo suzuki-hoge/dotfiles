@@ -12,7 +12,6 @@ let $plugin         = $dot . '/vim/plugin'
 let $pete           = $plugin . '/petronius-the-arbiter'
 let $surroundtag    = $plugin . '/surround-tag'
 let $todoplg        = $plugin . '/todo'
-let $tmpplg         = $plugin . '/tmp-buffer'
 
 " tmp
 let $tmp = $HOME . '/Documents/tmp'
@@ -39,18 +38,18 @@ let $blog = $HOME . '/Dropbox/todos/blog.todo'
 let $draft = $tmp . '/draft.html'
 
 " import vimsubs
-source $vimsubs/autocommands
-source $vimsubs/commands
-source $vimsubs/map-c
-source $vimsubs/map-i
-source $vimsubs/map-n
-source $vimsubs/map-v
-source $vimsubs/mark
-source $vimsubs/plugin
-source $vimsubs/options
-source $vimsubs/tab
-source $vimsubs/tagbar
-source $vimsubs/vundle
+source $vimsubs/autocommands.vim
+source $vimsubs/commands.vim
+source $vimsubs/map-c.vim
+source $vimsubs/map-i.vim
+source $vimsubs/map-n.vim
+source $vimsubs/map-v.vim
+source $vimsubs/mark.vim
+source $vimsubs/plugin.vim
+source $vimsubs/options.vim
+source $vimsubs/tab.vim
+source $vimsubs/tagbar.vim
+source $vimsubs/vundle.vim
 
 let $autoload  = $plugin . '/autoload'
 let $frank     = $autoload . '/frank'

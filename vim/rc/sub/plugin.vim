@@ -1,3 +1,5 @@
+" vim:set ft=vim:
+
 source $pete/Buffer
 source $pete/PetroniusTheArbiter
 
@@ -27,8 +29,6 @@ command!        -nargs=* -complete=custom,HtmlElements NTag  :              call
 command! -range -nargs=* -complete=custom,HtmlElements VTag :<line1>,<line2>call SurroundTag($SURR_TAG_VISUAL, <f-args>)
 
 source $todoplg/conf
-
-source $tmpplg/tmp-buffer
 
 command! -nargs=? -complete=dir F           call frank#main#open(<f-args>)
 command!                        FL          call frank#launcher#selector()
