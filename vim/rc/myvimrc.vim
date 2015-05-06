@@ -4,27 +4,14 @@
 let $dot = $HOME . '/.dotfiles'
 
 " vim rc files
-let $rc      = $dot . '/vim/rc/myvimrc'
+let $rc      = $dot . '/vim/rc/myvimrc.vim'
 let $vimsubs = $dot . '/vim/rc/sub'
-
-" plugin
-let $plugin         = $dot . '/vim/plugin'
-let $pete           = $plugin . '/petronius-the-arbiter'
 
 " tmp
 let $tmp = $HOME . '/Documents/tmp'
 
-" zsh rc files
-let $zshsubs = $dot . '/zsh/sub'
-
-" development 
-let $dev = $HOME . '/Development'
-
-" workspace
-let $workspace = $HOME . '/Documents/workspace'
-
 " KeyRemap4MacBook - private.xml
-let $private = $HOME . '/Library/Application Support/KeyRemap4MacBook/private.xml'
+let $private = $dot . '/Karabiner/private.xml'
 
 " todo
 let $todo = $HOME . '/Dropbox/todos/list.todo'
@@ -34,6 +21,11 @@ let $blog = $HOME . '/Dropbox/todos/blog.todo'
 
 " blog-draft
 let $draft = $tmp . '/draft.html'
+
+" plugins
+let $plugin = $dot . '/vim/plugin'
+let $frank  = $plugin . '/autoload/frank'
+let $pete   = $plugin . '/autoload/pete'
 
 " import vimsubs
 source $vimsubs/autocommands.vim
@@ -49,7 +41,5 @@ source $vimsubs/tab.vim
 source $vimsubs/tagbar.vim
 source $vimsubs/vundle.vim
 
-let $autoload  = $plugin . '/autoload'
-let $frank     = $autoload . '/frank'
-
+" for autoload
 let &runtimepath .= ',' . $plugin
