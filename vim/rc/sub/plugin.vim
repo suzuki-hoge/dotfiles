@@ -25,3 +25,8 @@ command! -nargs=? -complete=dir F           call frank#main#open(<f-args>)
 command!                        FL          call frank#launcher#selector()
 command!                        FP          call frank#launcher#current_project()
 command!                        FLConfigure call frank#launcher#configure()
+
+augroup regex_complete
+	autocmd!
+	autocmd BufEnter * :set completefunc=complete#main#func
+augroup END

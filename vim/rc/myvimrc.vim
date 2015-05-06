@@ -51,8 +51,5 @@ source $vimsubs/vundle.vim
 
 let $autoload  = $plugin . '/autoload'
 let $frank     = $autoload . '/frank'
-let $launcher  = $autoload . '/frank/launcher'
-let $complete  = $plugin . '/complete'
 
 let &runtimepath .= ',' . $plugin
-let &runtimepath .= ',' . $complete

@@ -1,4 +1,4 @@
-command! T wa | source $complete/test/test.vim | call RegexCompleteTest()
+command! T wa | source $plugin/autoload/complete/test.vim | call RegexCompleteTest()
 
 function! RegexCompleteTest()
 	let words = ['a_b_c', 'a_b_c_', '_a_b_c', '_a_b_c_', 'b_c', 'a_b', 'a_c', '$a_b_c']
