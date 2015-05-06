@@ -2,11 +2,11 @@ let b:stay = 0
 let b:leave = 1
 
 function! frank#actions#maps()
-	nnoremap <buffer> e :call frank#actions#normal_stay_edit()<CR>
-	vnoremap <buffer> e :call frank#actions#visual_stay_edit()<CR>
+	nnoremap <buffer> e :call frank#actions#edit(b:stay)<CR>
+	vnoremap <buffer> e :call frank#actions#edit(b:stay)<CR>
 
-	nnoremap <buffer> E :call frank#actions#normal_leave_edit()<CR>
-	vnoremap <buffer> E :call frank#actions#visual_leave_edit()<CR>
+	nnoremap <buffer> E :call frank#actions#edit(b:leave)<CR>
+	vnoremap <buffer> E :call frank#actions#edit(b:leave)<CR>
 
 	nnoremap <buffer> o :call frank#actions#open('!open', b:stay)<CR>
 	nnoremap <buffer> O :call frank#actions#open('!open', b:leave)<CR>
@@ -17,37 +17,22 @@ function! frank#actions#maps()
 	nnoremap <buffer> c :call frank#actions#clipboard()<CR>
 endfunction
 
-function! frank#actions#normal_stay_edit()
-	let buf = bufnr('#')
-	let n = line('.')
+function! frank#actions#edit(is_leave) range
+	let nums = range(a:firstline, a:lastline)
 
-	execute '999tabedit ' . g:full[n]
-
-	execute 'normal ' . buf. 'gt'
+	if a:is_leave
+		execute 'bwipeout'
+		call s:tabedit_(nums)
+	else
+		let buf = bufnr('#')
+		call s:tabedit_(nums)
+		execute 'normal ' . buf. 'gt'
+	endif
 endfunction
 
-function! frank#actions#visual_stay_edit() range
-	let buf = bufnr('#')
-	for n in range(a:firstline, a:lastline)
-		execute '999tabedit ' . g:full[n]
-	endfor
-
-	execute 'normal ' . buf. 'gt'
-endfunction
-
-function! frank#actions#normal_leave_edit()
-	let n = line('.')
-
-	execute 'bwipeout'
-
-	execute '999tabedit ' . g:full[n]
-endfunction
-
-function! frank#actions#visual_leave_edit() range
-	execute 'bwipeout'
-
-	for n in range(a:firstline, a:lastline)
-		execute '999tabedit ' . g:full[n]
+function! s:tabedit_(nums)
+	for num in a:nums
+		execute '999tabedit ' . g:full[num]
 	endfor
 endfunction
 
