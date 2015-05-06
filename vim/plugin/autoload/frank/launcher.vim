@@ -24,16 +24,11 @@ endfunction
 
 
 function! frank#launcher#current_project()
-	if s:is_project_selected()
+	if exists("g:_frank_current_project")
 		call s:open_current_project()
 	else
 		call frank#launcher#selector()
 	endif
-endfunction
-
-
-function s:is_project_selected()
-	return get(g:, '_frank_current_project', 'not selected') != 'not selected'
 endfunction
 
 

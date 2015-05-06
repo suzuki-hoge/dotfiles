@@ -19,7 +19,7 @@ function! frank#main#open(...)
 		let g:full = s:full(path)
 
 	catch /TooShallowDepth/
-		echo 'too shallow path.'
+		execute 'FP'
 
 	catch /NotExistPath/
 		echo 'not exist path.'
@@ -49,4 +49,5 @@ function! s:new()
 	silent file `='Frank'`
 
 	call frank#actions#maps()
+	source $frank/syntax.vim
 endfunction
