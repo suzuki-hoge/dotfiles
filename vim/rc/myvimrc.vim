@@ -11,7 +11,6 @@ let $vimsubs = $dot . '/vim/rc/sub'
 let $plugin         = $dot . '/vim/plugin'
 let $pete           = $plugin . '/petronius-the-arbiter'
 let $surroundtag    = $plugin . '/surround-tag'
-let $todoplg        = $plugin . '/todo'
 
 " tmp
 let $tmp = $HOME . '/Documents/tmp'

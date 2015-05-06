@@ -25,10 +25,11 @@ nnoremap gw      <C-w>w
 
 
 source $surroundtag/SurroundTag.vim
+
+source $plugin/autoload/todo/configure.vim
+
 command!        -nargs=* -complete=custom,HtmlElements NTag  :              call SurroundTag($SURR_TAG_NORMAL, <f-args>)
 command! -range -nargs=* -complete=custom,HtmlElements VTag :<line1>,<line2>call SurroundTag($SURR_TAG_VISUAL, <f-args>)
-
-source $todoplg/conf
 
 command! -nargs=? -complete=dir F           call frank#main#open(<f-args>)
 command!                        FL          call frank#launcher#selector()
