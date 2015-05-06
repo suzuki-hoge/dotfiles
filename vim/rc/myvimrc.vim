@@ -10,7 +10,6 @@ let $vimsubs = $dot . '/vim/rc/sub'
 " plugin
 let $plugin         = $dot . '/vim/plugin'
 let $pete           = $plugin . '/petronius-the-arbiter'
-let $surroundtag    = $plugin . '/surround-tag'
 
 " tmp
 let $tmp = $HOME . '/Documents/tmp'

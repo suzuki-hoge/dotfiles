@@ -9,6 +9,10 @@ nnoremap <S-l> 10<RIGHT>
 " redo
 nnoremap <S-u> <C-r>
 
+" change window
+nnoremap <Tab>   <C-w>w
+nnoremap <S-Tab> <C-w>W
+
 " Scrolling relative to cursor 
 nnoremap ,, zz
 nnoremap ,j zt
