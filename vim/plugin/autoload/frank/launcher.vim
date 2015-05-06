@@ -18,6 +18,7 @@ function! frank#launcher#selector()
 		call lib#buffer#print(projects, 0)
 
 		nnoremap <buffer> <CR> :call frank#launcher#select()<CR>
+		inoremap <buffer> <CR> <ESC>:call frank#launcher#select()<CR>
 		inoremap <buffer> <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<C-x><C-f>"
 		inoremap <buffer> <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-x><C-f>"
 
