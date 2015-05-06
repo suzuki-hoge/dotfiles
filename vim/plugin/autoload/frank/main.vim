@@ -9,6 +9,9 @@ function! frank#main#open(...)
 
 	try
 		call frank#check#too_shallow(path)
+		call frank#check#exist_directory(path)
+		call frank#check#frank_exists()
+		call frank#check#launcher_exists()
 
 		call s:new()
 
@@ -19,6 +22,15 @@ function! frank#main#open(...)
 
 	catch /TooShallowDepth/
 		echo 'too shallow path.'
+
+	catch /NotExistPath/
+		echo 'not exist path.'
+
+	catch /FrankExists/
+		echo 'frank exists.'
+
+	catch /LauncherExists/
+		echo 'launcher exists.'
 	endtry
 endfunction
 

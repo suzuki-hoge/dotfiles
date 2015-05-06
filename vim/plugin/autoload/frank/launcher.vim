@@ -1,14 +1,25 @@
 function! frank#launcher#selector()
-	execute '20new'
-	setlocal bufhidden=wipe
-	setlocal nobuflisted
-	setlocal buftype=nofile
-	silent file `='Launcher'`
+	try
+		call frank#check#frank_exists()
+		call frank#check#launcher_exists()
 
-	let projects = readfile($frank . '/projects.frank')
-	call lib#buffer#print(projects, 0)
+		execute '20new'
+		setlocal bufhidden=wipe
+		setlocal nobuflisted
+		setlocal buftype=nofile
+		silent file `='Launcher'`
 
-	nnoremap <buffer> <CR> :call frank#launcher#select()<CR>
+		let projects = readfile($frank . '/projects.frank')
+		call lib#buffer#print(projects, 0)
+
+		nnoremap <buffer> <CR> :call frank#launcher#select()<CR>
+
+	catch /FrankExists/
+		echo 'frank exists.'
+
+	catch /LauncherExists/
+		echo 'launcher exists.'
+	endtry
 endfunction
 
 
