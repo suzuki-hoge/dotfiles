@@ -1,13 +1,11 @@
 let s:main = $frank . '/api/main '
 
 function! frank#main#open(...)
-	if a:000 == []
-		let path = '.'
-	else
-		let path = a:1
-	endif
+	let arg = get(a:000, 0, '.')
 
 	try
+		let path = lib#path#fullpath(arg)
+
 		call frank#check#too_shallow(path)
 		call frank#check#exist_directory(path)
 		call frank#check#frank_exists()

@@ -1,10 +1,17 @@
 function! lib#path#fullpath(path)
-	let full = fnamemodify(a:path, ':p')
-	if full =~# '\/$'
-		let full = full[:-2]
+	if !isdirectory(a:path)
+		throw 'NoSuchDirectory'
 	endif
 
-	return full
+	execute 'cd ' . a:path
+	let full = fnamemodify(getcwd(), ':p')
+	execute 'cd -'
+
+	if full == '/'
+		return full
+	else
+		return full[:-2]
+	endif
 endfunction
 
 function! lib#path#extension(path)
