@@ -38,7 +38,7 @@ function! frank#launcher#select()
 	let g:_frank_current_project = getline('.')
 
 	execute 'cd ' . g:_frank_current_project
-	execute 'bwipe'
+	execute 'bwipeout'
 
 	call s:open_current_project()
 endfunction
