@@ -8,8 +8,9 @@ import Pete
 import Mode
 import Comment
 
-help pete mode text = intercalate "\n" $ comment ++ testers ++ executors ++ debuggers
+help pete mode text = intercalate "\n" $ comment ++ repl ++ testers ++ executors ++ debuggers
     where comment = ["  comment     " ++ commentize (Pete.comment pete) text]
+          repl = ["  repl        " ++ (Pete.repl pete)]
           executorPre current n executor | n == current = "* executor    " ++ executor
           executorPre current n executor | n /= current = "  executor    " ++ executor
           executors = zipWith (executorPre $ Mode.executeMode mode) [0..] $ Pete.executors pete

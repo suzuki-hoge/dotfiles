@@ -7,22 +7,25 @@ import Control.Monad
 
 data Pete = Pete {
     comment   :: (String, String),
+    repl      :: String,
     executors :: [String],
     testers   :: [String],
     debuggers :: [String -> String]
 }
 
 instance Show Pete where
-    show (Pete (head, tail) executors testers debuggers) = "\nhead: " ++ head ++ "\ntail: " ++ tail
+    show (Pete (head, tail) repl executors testers debuggers) = ""
 
 petes = [("php", Pete {
                         comment   = ("-- ", ""),
+                        repl       = "!ghci",
                         executors  = ["!php ", "R"],
                         testers    = ["!phpunit "],
-                        debuggers = [\text -> "var_dump($" ++ text ++ ");",
+                        debuggers  = [\text -> "var_dump($" ++ text ++ ");",
                                      \text -> "print_r($" ++ text ++ ");"] }),
          ("js", Pete {
                         comment   = ("// ", ""),
+                        repl = "",
                         executors  = ["R"],
                         testers    = [""],
                         debuggers = [\text -> "console.log(" ++ text ++ ");"] })]
