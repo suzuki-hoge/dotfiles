@@ -14,7 +14,7 @@ class Haskell(Base):
 		return ''
 
 	def run(self):
-		vim.command('!ghc -e main %')
+		vim.command('!/Applications/ghc-7.8.4.app/Contents/bin/ghc -e main %')
 
 	def getDebugLines(self, var):
 		pass
