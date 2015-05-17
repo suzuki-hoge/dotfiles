@@ -1,6 +1,6 @@
 module Pete
 (Pete(..),
-createPete
+createPete,
 ) where
 
 import Control.Monad
