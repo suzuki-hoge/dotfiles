@@ -1,5 +1,6 @@
 import Text.Regex
 import Text.Regex.Posix
+import Control.Monad
 
 is :: (String, String) -> String -> Bool
 is (head, tail) line = line =~ ("^[ |\t]*" ++ head ++ ".*" ++ tail ++ "[ |\t]*$")
@@ -17,21 +18,26 @@ switch (head, tail) line
     | is (head, tail) line == True  = decommentize (head, tail) line
     | is (head, tail) line == False = commentize (head, tail) line
 
-data Pete = Pete { comment :: (String, String) } deriving (Show)
-haskell = Pete { comment = ("// ", " //") }
+data Pete = Pete { comment :: (String, String), extensions :: [String] } deriving (Show)
+petes = [("Haskell", Pete { comment = ("// ", " //"),    extensions = ["hs"]   }),
+         ("Html",    Pete { comment = ("<!-- ", " -->"), extensions = ["html"] })]
 
-createPete extension
-    | extension == "hs" = haskell
-
-dispath :: Pete -> String -> String -> String
-dispath pete command line
+dispath :: Maybe Pete -> String -> String -> String
+dispath (Just pete) command line
     | command == "commentize"   = commentize   comment' line
     | command == "decommentize" = decommentize comment' line
     | command == "switch"       = switch       comment' line
     where comment' = comment pete
+dispath Nothing _ _ = "--- pete failure ---"
+
+find []         _                                         = Nothing
+find ((_,x):xs) extension | elem extension (extensions x) = Just x
+find ((_,x):xs) extension | otherwise                     = find xs extension
+
+isIn extension pete = elem extension $ extensions pete
 
 main = do
-    let pete =  createPete "hs"
+    let pete = find petes "html"
     let command = "commentize"
     let line = "hoge"
 
