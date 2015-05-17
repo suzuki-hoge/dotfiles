@@ -8,29 +8,32 @@ import Control.Monad
 data Pete = Pete {
     comment   :: (String, String),
     repl      :: String,
+    edit      :: String -> String -> String,
+    options   :: [String],
     executors :: [String],
     testers   :: [String],
-    edit      :: String -> String -> String,
     debuggers :: [String -> String]
 }
 
 instance Show Pete where
-    show (Pete (head, tail) repl executors testers edit debuggers) = ""
+    show (Pete (head, tail) repl edit options executors testers debuggers) = ""
 
 petes = [("php", Pete {
                         comment   = ("-- ", ""),
                         repl       = "!ghci",
+                        edit       = tabedit,
+                        options    = ["set expandtab", "set nowrap"],
                         executors  = ["!php ", "R"],
                         testers    = ["!phpunit "],
-                        edit       = tabedit,
                         debuggers  = [\text -> "var_dump($" ++ text ++ ");",
                                      \text -> "print_r($" ++ text ++ ");"] }),
          ("js", Pete {
                         comment   = ("// ", ""),
                         repl = "",
+                        edit       = tabedit,
+                        options    = ["set expandtab"],
                         executors  = ["R"],
                         testers    = [""],
-                        edit       = tabedit,
                         debuggers = [\text -> "console.log(" ++ text ++ ");"] })]
 
 tabedit text extension = "tabedit $tmp/" ++ text ++ "." ++ extension
