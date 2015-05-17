@@ -1,23 +1,26 @@
 import Pete
+import Mode
 import Comment
 
-dispath :: Maybe Pete -> String -> Int -> String -> String
+dispath :: Maybe Pete -> String -> Mode -> String -> String
 dispath (Just pete) command mode text
     | command == "commentize"   = commentize   comment text
     | command == "decommentize" = decommentize comment text
     | command == "switch"       = switch       comment text
-    | command == "debug"        = debugger text
     | command == "execute"      = executor
-    where comment  = Pete.comment pete
-          debugger = Pete.debuggers pete !! mode
-          executor = Pete.executors pete !! mode
+    | command == "test"         = tester
+    | command == "debug"        = debugger text
+    where comment  = Pete.comment   pete
+          executor = Pete.executors pete !! (executeMode mode)
+          tester   = Pete.testers   pete !! (testMode    mode)
+          debugger = Pete.debuggers pete !! (debugMode   mode)
 dispath Nothing _ _ _ = "--- not found pete ---"
 
 
 main = do
     let pete = createPete "php"
-    let command = "execute"
-    let mode = read "0" :: Int
+    let command = "test"
+    let mode = createMode "000"
     let text = "hoge"
 
     putStr $ dispath pete command mode text
