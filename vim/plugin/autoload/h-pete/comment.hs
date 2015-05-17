@@ -1,8 +1,6 @@
 import Text.Regex
 import Text.Regex.Posix
 
--- data comment
-
 is :: (String, String) -> String -> Bool
 is (head, tail) line = line =~ ("^[ |\t]*" ++ head ++ ".*" ++ tail ++ "[ |\t]*$")
 
@@ -19,15 +17,22 @@ switch (head, tail) line
     | is (head, tail) line == True  = decommentize (head, tail) line
     | is (head, tail) line == False = commentize (head, tail) line
 
+data Pete = Pete { comment :: (String, String) } deriving (Show)
+haskell = Pete { comment = ("// ", " //") }
+
+createPete extension
+    | extension == "hs" = haskell
+
+dispath :: Pete -> String -> String -> String
+dispath pete command line
+    | command == "commentize"   = commentize   comment' line
+    | command == "decommentize" = decommentize comment' line
+    | command == "switch"       = switch       comment' line
+    where comment' = comment pete
+
 main = do
-    let comment = ("// ", " //")
+    let pete =  createPete "hs"
+    let command = "commentize"
+    let line = "hoge"
 
-    print $ is comment "// hoge //"
-
-    print $ commentize comment "hoge"
-
-    print $ decommentize comment "// hoge //"
-    print $ decommentize comment "// hoge"
-
-    print $ switch comment "hoge"
-    print $ switch comment "// hoge //"
+    print $ dispath pete command line
