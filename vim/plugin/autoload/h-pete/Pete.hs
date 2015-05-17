@@ -18,7 +18,7 @@ instance Show Pete where
 petes = [("php", Pete {
                         comment   = ("-- ", ""),
                         executors  = ["!php ", "R"],
-                        testers    = ["!phpunit "],
+                        testers    = ["!phpunit ", "a"],
                         debuggers = [\text -> "var_dump($" ++ text ++ ");",
                                      \text -> "print_r($" ++ text ++ ");"] }),
          ("js", Pete {
