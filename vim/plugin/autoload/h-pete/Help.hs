@@ -8,7 +8,7 @@ import Pete
 import Mode
 import Comment
 
-help pete mode text = intercalate "\n" $ comment ++ repl ++ testers ++ executors ++ debuggers
+help pete extension mode text = intercalate "\n" $ comment ++ repl ++ testers ++ executors ++ edit ++ debuggers
     where comment = ["  comment     " ++ commentize (Pete.comment pete) text]
           repl = ["  repl        " ++ (Pete.repl pete)]
           executorPre current n executor | n == current = "* executor    " ++ executor
@@ -17,6 +17,7 @@ help pete mode text = intercalate "\n" $ comment ++ repl ++ testers ++ executors
           testerPre current n tester | n == current = "* tester      " ++ tester
           testerPre current n tester | n /= current = "  tester      " ++ tester
           testers = zipWith (testerPre $ Mode.testMode mode) [0..] $ Pete.testers pete
+          edit = ["  edit        " ++ ((Pete.edit pete) text extension)]
           debuggerPre current n debugger | n == current = "* debugger    " ++ debugger text
           debuggerPre current n debugger | n /= current = "  debugger    " ++ debugger text
           debuggers = zipWith (debuggerPre $ Mode.debugMode mode) [0..] $ Pete.debuggers pete
