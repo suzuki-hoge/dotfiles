@@ -5,17 +5,19 @@ module Pete
 
 import Control.Monad
 
-data Pete = Pete { comment :: (String, String), debuggers :: [String -> String] }
+data Pete = Pete { comment :: (String, String), executors :: [String], debuggers :: [String -> String] }
 
 instance Show Pete where
-    show (Pete (head, tail) debuggers) = "\nhead: " ++ head ++ "\ntail: " ++ tail
+    show (Pete (head, tail) executors debuggers) = "\nhead: " ++ head ++ "\ntail: " ++ tail
 
-petes = [("html", Pete {
-                        comment   = ("<!-- ", " -->"),
-                        debuggers = [\text -> "print $ " ++ text,
-                                     \text -> "putStr $ " ++ text] }),
-         ("js",   Pete {
+petes = [("php", Pete {
+                        comment   = ("-- ", ""),
+                        executors  = ["!php ", "R"],
+                        debuggers = [\text -> "var_dump($" ++ text ++ ");",
+                                     \text -> "print_r($" ++ text ++ ");"] }),
+         ("js", Pete {
                         comment   = ("// ", ""),
+                        executors  = ["R"],
                         debuggers = [\text -> "console.log(" ++ text ++ ");"] })]
 
 createPete' []         _                          = Nothing
