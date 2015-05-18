@@ -7,6 +7,7 @@ import Data.Char
 
 data Mode = Mode {
     executeMode :: Int,
+    makeMode    :: Int,
     testMode    :: Int,
     debugMode   :: Int
 } deriving (Show)
@@ -16,6 +17,7 @@ toInt c = ord c - 48
 
 createMode str = Mode {
     executeMode = toInt $ str !! 0,
-    testMode    = toInt $ str !! 1,
-    debugMode   = toInt $ str !! 2
+    makeMode    = toInt $ str !! 1,
+    testMode    = toInt $ str !! 2,
+    debugMode   = toInt $ str !! 3
 }
