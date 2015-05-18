@@ -43,6 +43,25 @@ function! pete#main#debug(...)
 	execute 'normal o'
 endfunction
 
+function! pete#main#commentize() range
+	for n in range(a:firstline, a:lastline)
+		" todo
+		call setline(n, s:callApi('commentize ', getline(n)))
+	endfor
+endfunction
+
+function! pete#main#decommentize() range
+	for n in range(a:firstline, a:lastline)
+		call setline(n, s:callApi('decommentize ', getline(n)))
+	endfor
+endfunction
+
+function! pete#main#switch() range
+	for n in range(a:firstline, a:lastline)
+		call setline(n, s:callApi('switch ', getline(n)))
+	endfor
+endfunction
+
 function! s:getExtension()
 	return expand('%:e') . ' '
 endfunction
