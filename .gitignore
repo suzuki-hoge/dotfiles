@@ -4,3 +4,6 @@ AccessInfo.py
 stored-token.txt
 shelf.db
 directories
+projects.frank
+*.hi
+*.o
