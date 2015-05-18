@@ -6,12 +6,12 @@ let g:test_mode = 0
 let g:debug_mode = 0
 
 function! pete#main#help()
-	let extension = s:getExtension()
-	let command = 'help '
-	let mode = s:getMode()
-	let text = 'tenshi'
-	let r = system(s:api . extension . command . mode . text)
-	echo r
+	echo s:callApi('help ', 'pete')
+endfunction
+
+function! pete#main#execute(...)
+	let command = s:callApi('execute ', '')
+	execute command . '%' . s:getArgs(a:000)
 endfunction
 
 function! s:getExtension()
@@ -20,4 +20,16 @@ endfunction
 
 function! s:getMode()
 	return g:execute_mode . g:make_mode . g:test_mode . g:debug_mode . ' '
+endfunction
+
+function! s:callApi(command, text)
+	return system(s:api . s:getExtension() . a:command . s:getMode() . a:text)
+endfunction
+
+function! s:getArgs(args)
+	let s = ''
+	for e in a:args
+		let s .= ' ' . e
+	endfor
+	return s
 endfunction

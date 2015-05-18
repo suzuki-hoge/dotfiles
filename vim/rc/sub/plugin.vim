@@ -32,3 +32,4 @@ augroup regex_complete
 augroup END
 
 command! H call pete#main#help()
+command! -nargs=* W wall | call pete#main#execute(<f-args>)
