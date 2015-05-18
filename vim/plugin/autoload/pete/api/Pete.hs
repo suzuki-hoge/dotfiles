@@ -29,8 +29,8 @@ petes = [("php", Pete {
                         executors  = ["!php ", "R"],
                         makers     = ["!ghc --make "],
                         testers    = ["!phpunit "],
-                        debuggers  = [\text -> "var_dump($" ++ text ++ ");",
-                                     \text -> "print_r($" ++ text ++ ");"] }),
+                        debuggers  = [\text -> "echo '<pre>';\nprint_r($" ++ text ++ ");\nexit;",
+                                     \text -> "var_dump($" ++ text ++ ");"] }),
          ("js", Pete {
                         extension  = "js",
                         comment   = ("// ", ""),

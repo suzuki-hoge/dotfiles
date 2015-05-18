@@ -32,6 +32,17 @@ function! pete#main#make(...)
 	execute command . '%' . s:getArgs(a:000)
 endfunction
 
+function! pete#main#options()
+	execute s:callApi('options ', '')
+endfunction
+
+function! pete#main#debug(...)
+	let lines = s:callApi('debug ', get(a:, 1, expand('<cword>')))
+	execute 'normal o'
+	execute 'normal o' . lines
+	execute 'normal o'
+endfunction
+
 function! s:getExtension()
 	return expand('%:e') . ' '
 endfunction
