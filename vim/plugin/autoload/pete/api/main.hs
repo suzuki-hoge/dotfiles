@@ -1,4 +1,6 @@
 import Data.List
+import Control.Applicative
+import System.Environment(getArgs)
 
 import Pete
 import Mode
@@ -17,7 +19,7 @@ dispath (Just pete) command mode text
     | command == "make"         = maker
     | command == "test"         = tester
     | command == "debug"        = debugger text
-    | command == "help"         = help pete mode "pete"
+    | command == "help"         = help pete mode text
     where extension = Pete.extension pete
           comment   = Pete.comment   pete
           repl      = Pete.repl      pete
@@ -30,9 +32,14 @@ dispath (Just pete) command mode text
 dispath Nothing _ _ _ = "--- not found pete ---"
 
 main = do
-    let pete = createPete "php"
-    let command = "help"
-    let mode = createMode "0000"
-    let text = "hoge"
+    extension <- (!! 0) <$> getArgs
+    let pete = createPete extension
+
+    command <- (!! 1) <$> getArgs
+
+    mode' <- (!! 2) <$> getArgs
+    let mode = createMode mode'
+
+    text <- (!! 3) <$> getArgs
 
     putStr $ dispath pete command mode text

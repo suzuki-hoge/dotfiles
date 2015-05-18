@@ -26,8 +26,8 @@ help pete mode text = intercalate "\n" $ extension +++ comment +++ repl +++ edit
           executorPre current n executor | n /= current = "  executor    " ++ executor
           executors = zipWith (executorPre $ Mode.executeMode mode) [0..] $ Pete.executors pete
 
-          makerPre current n maker | n == current = "* maker      " ++ maker
-          makerPre current n maker | n /= current = "  maker      " ++ maker
+          makerPre current n maker | n == current = "* maker       " ++ maker
+          makerPre current n maker | n /= current = "  maker       " ++ maker
           makers = zipWith (makerPre $ Mode.makeMode mode) [0..] $ Pete.makers pete
 
           testerPre current n tester | n == current = "* tester      " ++ tester
