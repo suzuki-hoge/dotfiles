@@ -16,15 +16,6 @@ augroup regex_complete
 augroup END
 
 " pete
-command! H call pete#main#help()
-command! -nargs=* W wall | call pete#main#execute(<f-args>)
-command! -nargs=* T wall | call pete#main#test(<f-args>)
-command! E call pete#main#edit()
-command! R call pete#main#repl()
-command! -nargs=* M wall | call pete#main#make()
-command! O call pete#main#options()
-command! -nargs=? D call pete#main#debug(<f-args>)
-
 nnoremap ÷ :call pete#main#commentize()<CR>
 vnoremap ÷ :call pete#main#commentize()<CR>
 
@@ -33,3 +24,12 @@ vnoremap ? :call pete#main#decommentize()<CR>
 
 nnoremap ¿ :call pete#main#switch()<CR>
 vnoremap ¿ :call pete#main#switch()<CR>
+
+command!          R        call pete#main#repl()
+command!          E        call pete#main#edit()
+command!          O        call pete#main#options()
+command! -nargs=* W wall | call pete#main#execute(<f-args>)
+command! -nargs=* M wall | call pete#main#make()
+command! -nargs=* T wall | call pete#main#test(<f-args>)
+command! -nargs=? D        call pete#main#debug(<f-args>)
+command!          H        call pete#main#help()
