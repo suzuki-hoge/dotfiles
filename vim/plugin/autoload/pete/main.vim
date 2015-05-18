@@ -14,6 +14,24 @@ function! pete#main#execute(...)
 	execute command . '%' . s:getArgs(a:000)
 endfunction
 
+function! pete#main#test(...)
+	let command = s:callApi('test ', '')
+	execute command . '%' . s:getArgs(a:000)
+endfunction
+
+function! pete#main#edit()
+	execute s:callApi('edit ', 'a')
+endfunction
+
+function! pete#main#repl()
+	execute s:callApi('repl ', '')
+endfunction
+
+function! pete#main#make(...)
+	let command = s:callApi('make ', '')
+	execute command . '%' . s:getArgs(a:000)
+endfunction
+
 function! s:getExtension()
 	return expand('%:e') . ' '
 endfunction

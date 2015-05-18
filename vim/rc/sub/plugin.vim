@@ -33,3 +33,7 @@ augroup END
 
 command! H call pete#main#help()
 command! -nargs=* W wall | call pete#main#execute(<f-args>)
+command! -nargs=* T wall | call pete#main#test(<f-args>)
+command! E call pete#main#edit()
+command! R call pete#main#repl()
+command! -nargs=* M wall | call pete#main#make()
