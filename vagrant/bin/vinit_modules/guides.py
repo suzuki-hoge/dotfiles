@@ -1,5 +1,9 @@
 import os
 
+
+os.system("stty erase '^?'")
+
+
 def name_guide():
     inputted = raw_input('\nname:  ')
     if inputted != '':

@@ -23,5 +23,6 @@ f = open('%s/Vagrantfile' % os.getcwd(), 'w')
 f.writelines(line)
 f.close
 
+print '\nComplete'
 # validation
-# backspace
+# ^C
