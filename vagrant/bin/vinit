@@ -26,4 +26,3 @@ else:
     f.close
 
     print '\nComplete'
-    # validation
