@@ -10,19 +10,20 @@ parser = argparse.ArgumentParser(description = 'create Vagrantfile')
 args = parser.parse_args()
 
 
-name = name_guide()
-box_name, box_url = box_guide()
-forwardings = forwarding_guide()
-private_ip = private_ip_guide()
-provision_path = provision_guide()
-spec = spec_guide()
+try:
+    name = name_guide()
+    box_name, box_url = box_guide()
+    forwardings = forwarding_guide()
+    private_ip = private_ip_guide()
+    provision_path = provision_guide()
+    spec = spec_guide()
+except KeyboardInterrupt:
+    print '\n\nExit'
+else:
+    line = vagrantfile(name, box_name, box_url, forwardings, private_ip, provision_path, spec)
+    f = open('%s/Vagrantfile' % os.getcwd(), 'w')
+    f.writelines(line)
+    f.close
 
-
-line = vagrantfile(name, box_name, box_url, forwardings, private_ip, provision_path, spec)
-f = open('%s/Vagrantfile' % os.getcwd(), 'w')
-f.writelines(line)
-f.close
-
-print '\nComplete'
-# validation
-# ^C
+    print '\nComplete'
+    # validation
