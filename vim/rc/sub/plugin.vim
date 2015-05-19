@@ -16,6 +16,11 @@ augroup regex_complete
 augroup END
 
 " pete
+let g:execute_mode = 0
+let g:make_mode = 0
+let g:test_mode = 0
+let g:debug_mode = 0
+
 nnoremap ÷ :call pete#main#commentize()<CR>
 vnoremap ÷ :call pete#main#commentize()<CR>
 
@@ -33,3 +38,8 @@ command! -nargs=* M wall | call pete#main#make()
 command! -nargs=* T wall | call pete#main#test(<f-args>)
 command! -nargs=? D        call pete#main#debug(<f-args>)
 command!          H        call pete#main#help()
+
+command! -nargs=? WM call pete#mode#execute(<f-args>)
+command! -nargs=? MM call pete#mode#make(<f-args>)
+command! -nargs=? TM call pete#mode#test(<f-args>)
+command! -nargs=? DM call pete#mode#debug(<f-args>)

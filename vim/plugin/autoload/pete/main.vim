@@ -1,9 +1,3 @@
-let g:execute_mode = 0
-let g:make_mode = 0
-let g:test_mode = 0
-let g:debug_mode = 0
-
-
 function! pete#main#commentize() range
 	for n in range(a:firstline, a:lastline)
 		" todo
