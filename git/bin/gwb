@@ -26,8 +26,14 @@ branch = '' if args.network else util.getCurrentBranch() if args.branch is None 
 root = util.getRootDir()
 conf = open('%s/.git/config' % root, 'r').read()
 
-src = re.search(r'\n\surl.*\n', conf).group().strip()
-dst = re.sub(r'^.*@', '', src).replace(':', '/')[:-4]
-url = 'https://%s' % dst
+def parse_git(line):
+    return 'https://%s' % re.sub(r'^.*@', '', line).replace(':', '/')[:-4]
 
-os.system('open %s/%s/%s' % (url, page, branch))
+def parse_https(line):
+    return line[6:-4]
+
+url_line = re.search(r'\n\surl.*\n', conf).group().strip()
+
+base_url = parse_git(url_line) if 'git@' in url_line else parse_https(url_line)
+
+os.system('open %s/%s/%s' % (base_url, page, branch))
