@@ -1,5 +1,5 @@
 module Debug(
-debug,
+get,
 help
 ) where
 
@@ -31,13 +31,12 @@ helpLines mode definitions = zipWith prefix [0..] lines
           lines  = map expand definitions
 
 
-debug mode "php" text = printf (php !! mode) text
-debug mode "hs"  text = printf (hs  !! mode) text
+get mode text "php" = printf (php !! mode) text
+get mode text "hs"  = printf (hs  !! mode) text
 
 help mode "php" = unlines $ helpLines mode php
 help mode "hs"  = unlines $ helpLines mode hs
 
 main = do
-    putStr $ debug 0 "hs" "pete"
-
-    putStr $ help 0 "hs"
+    putStrLn $ get 0 "pete" "hs"
+    putStrLn $ help 0 "hs"
