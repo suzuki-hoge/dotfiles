@@ -1,8 +1,9 @@
-module Comment
-(commentize
-, decommentize
-, switch)
-where
+module Comment(
+commentize,
+decommentize,
+switch,
+help
+) where
 
 
 import Text.Regex
@@ -34,6 +35,10 @@ decommentize text "hs"  = decommentize' text hs
 switch text "php" = switch' text php
 switch text "hs"  = switch' text hs
 
+help = commentize
+
 main = do
     putStrLn $ commentize "pete" "php"
     putStrLn $ decommentize "-- pete" "hs"
+
+    putStrLn $ help "pete" "php"
