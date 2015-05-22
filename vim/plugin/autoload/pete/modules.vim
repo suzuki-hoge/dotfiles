@@ -2,12 +2,12 @@ let s:api = $pete . '/api/main '
 
 
 function! pete#modules#callapi(command, text)
-	return system(s:api . s:getExtension() . a:command . s:getMode() . a:text)
+	return system(s:api . a:command . s:getMode() . a:text . s:getExtension())
 endfunction
 
 
 function! s:getExtension()
-	return expand('%:e') . ' '
+	return ' ' . expand('%:e')
 endfunction
 
 

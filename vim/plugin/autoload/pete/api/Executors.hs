@@ -10,7 +10,7 @@ php = [
     ]
 
 hs = [
-    "!runhaskell"
+    "!runhaskell "
     ]
 
 

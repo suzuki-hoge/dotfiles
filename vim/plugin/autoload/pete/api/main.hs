@@ -1,3 +1,4 @@
+import Control.Applicative
 import System.Environment(getArgs)
 
 import Mode
@@ -14,5 +15,9 @@ dispath command modeString text ext
     where mode = createMode modeString
 
 main = do
-    putStrLn $ dispath "Debug"     "0000" "pete" "hs"
-    putStrLn $ dispath "DebugHelp" "0000" "pete" "hs"
+    command    <- (!! 0) <$> getArgs
+    modeString <- (!! 1) <$> getArgs
+    text       <- (!! 2) <$> getArgs
+    ext        <- (!! 3) <$> getArgs
+
+    putStr $ dispath command modeString text ext
