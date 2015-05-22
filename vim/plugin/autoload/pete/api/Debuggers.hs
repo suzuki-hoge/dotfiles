@@ -1,4 +1,4 @@
-module Debug(
+module Debuggers(
 get,
 help
 ) where

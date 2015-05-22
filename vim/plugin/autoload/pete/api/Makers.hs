@@ -1,4 +1,4 @@
-module Maker(
+module Makers(
 get,
 help
 ) where

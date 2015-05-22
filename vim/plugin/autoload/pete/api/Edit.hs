@@ -5,10 +5,10 @@ help
 
 import Text.Printf
 
-get ext text = printf "tabedit %s.%s" text ext :: String
+get text ext = printf "tabedit %s.%s" text ext :: String
 
 help = get
 
 main = do
-    putStrLn $ get "php" "pete"
-    putStrLn $ help "php" "pete"
+    putStrLn $ get "pete" "php"
+    putStrLn $ help "pete" "php"
