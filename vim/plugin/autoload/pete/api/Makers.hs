@@ -4,24 +4,11 @@ help
 ) where
 
 
-php = [
-    "!php "
-    ]
+import Help
 
 
-hs = [
-    "!ghc --make "
-    ]
-
-
-pre :: Int -> Int -> String -> String
-pre n m | n == m = ("* maker " ++)
-pre n m | n /= m = ("  maker " ++)
-
-
-helpLines :: Int -> [String] -> [String]
-helpLines n definitions = zipWith prefix [0..] definitions
-    where prefix = pre n
+php = ["!php "]
+hs  = ["!ghc --make "]
 
 
 get :: Int -> String -> String
@@ -30,8 +17,8 @@ get n "hs"  = hs  !! n
 
 
 help :: Int -> String -> String
-help n "php" = unlines $ helpLines n php
-help n "hs"  = unlines $ helpLines n hs
+help n "php" = unlines $ helpLines "maker " n php
+help n "hs"  = unlines $ helpLines "maker " n hs
 
 
 main = do

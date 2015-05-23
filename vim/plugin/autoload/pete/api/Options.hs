@@ -7,15 +7,8 @@ help
 import Data.String.Utils
 
 
-php = [
-    "set expandtab",
-    "set nowrap"
-    ]
-
-
-hs = [
-    "set expandtab"
-    ]
+php = ["set expandtab", "set nowrap"]
+hs  = ["set expandtab"]
 
 
 get :: String -> String

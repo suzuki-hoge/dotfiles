@@ -13,7 +13,6 @@ import Debuggers
 
 -- HコマンドはHelp.hsで
 -- テスト作る
--- preのリファクタ
 dispath :: String -> String -> String -> String -> String
 dispath command modeString text ext
     | command == "Repl"                = Repl.get  ext

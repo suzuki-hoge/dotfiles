@@ -8,15 +8,8 @@ import Text.Printf
 import Data.String.Utils
 
 
-php = [
-    "echo '<pre>';\nvar_dump($%s);\nexit;",
-    "print_r($%s);"
-    ]
-
-
-hs = [
-    "print %s"
-    ]
+php = ["echo '<pre>';\nvar_dump($%s);\nexit;", "print_r($%s);"]
+hs  = ["print %s"]
 
 
 expand definition = replace "\n" " " expand'

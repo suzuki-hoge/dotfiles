@@ -4,24 +4,11 @@ help
 ) where
 
 
-php = [
-    "!phpunit "
-    ]
+import Help
 
 
-hs = [
-    "!runhaskell "
-    ]
-
-
-pre :: Int -> Int -> String -> String
-pre n m | n == m = ("* tester " ++)
-pre n m | n /= m = ("  tester " ++)
-
-
-helpLines :: Int -> [String] -> [String]
-helpLines n definitions = zipWith prefix [0..] definitions
-    where prefix = pre n
+php = ["!phpunit "]
+hs  = ["!runhaskell "]
 
 
 get :: Int -> String -> String
@@ -30,8 +17,8 @@ get n "hs"  = hs  !! n
 
 
 help :: Int -> String -> String
-help n "php" = unlines $ helpLines n php
-help n "hs"  = unlines $ helpLines n hs
+help n "php" = unlines $ helpLines "tester " n php
+help n "hs"  = unlines $ helpLines "tester " n hs
 
 
 main = do

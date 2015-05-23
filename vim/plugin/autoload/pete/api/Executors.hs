@@ -4,25 +4,11 @@ help
 ) where
 
 
-php = [
-    "!php ",
-    "R"
-    ]
+import Help
 
 
-hs = [
-    "!runhaskell "
-    ]
-
-
-pre :: Int -> Int -> String -> String
-pre n m | n == m = ("* executor " ++)
-pre n m | n /= m = ("  executor " ++)
-
-
-helpLines :: Int -> [String] -> [String]
-helpLines n definitions = zipWith prefix [0..] definitions
-    where prefix = pre n
+php = ["!php ", "Reload"]
+hs  = ["!runhaskell "]
 
 
 get :: Int -> String -> String
@@ -31,8 +17,8 @@ get n "hs"  = hs  !! n
 
 
 help :: Int -> String -> String
-help n "php" = unlines $ helpLines n php
-help n "hs"  = unlines $ helpLines n hs
+help n "php" = unlines $ helpLines "executor " n php
+help n "hs"  = unlines $ helpLines "executor " n hs
 
 
 main = do
