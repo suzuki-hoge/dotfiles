@@ -30,22 +30,21 @@ endfunction
 
 function! pete#main#commentize() range
 	for n in range(a:firstline, a:lastline)
-		" todo
-		call setline(n, pete#modules#callapi('Commentize ', getline(n)))
+		call setline(n, pete#modules#callapi('Commentize ', pete#modules#escape(getline(n))))
 	endfor
 endfunction
 
 
 function! pete#main#decommentize() range
 	for n in range(a:firstline, a:lastline)
-		call setline(n, pete#modules#callapi('Decommentize ', getline(n)))
+		call setline(n, pete#modules#callapi('Decommentize ', pete#modules#escape(getline(n))))
 	endfor
 endfunction
 
 
 function! pete#main#switch() range
 	for n in range(a:firstline, a:lastline)
-		call setline(n, pete#modules#callapi('Switch ', getline(n)))
+		call setline(n, pete#modules#callapi('Switch ', pete#modules#escape(getline(n))))
 	endfor
 endfunction
 

@@ -23,3 +23,8 @@ function! pete#modules#getargs(args)
 	endfor
 	return s
 endfunction
+
+
+function! pete#modules#escape(text)
+	return substitute(a:text, "\\$", "\\\\$", "g")
+endfunction
