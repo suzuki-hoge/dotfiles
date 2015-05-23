@@ -2,8 +2,7 @@ let s:api = $pete . '/api/main '
 
 
 function! pete#modules#callapi(command, text)
-	echo s:api . a:command . s:getMode() . a:text . s:getExtension()
-	return system(s:api . a:command . s:getMode() . a:text . s:getExtension())
+	return system(s:api . a:command . s:getMode() . '"' . a:text . '"' . s:getExtension())
 endfunction
 
 

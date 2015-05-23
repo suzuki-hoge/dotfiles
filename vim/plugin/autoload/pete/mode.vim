@@ -3,7 +3,7 @@ function! pete#mode#execute(...)
 		let g:execute_mode = a:1
 	endif
 
-	execute 'H'
+	execute 'WH'
 endfunction
 
 
@@ -12,7 +12,7 @@ function! pete#mode#make(...)
 		let g:make_mode = a:1
 	endif
 
-	execute 'H'
+	execute 'MH'
 endfunction
 
 
@@ -21,7 +21,7 @@ function! pete#mode#test(...)
 		let g:test_mode = a:1
 	endif
 
-	execute 'H'
+	execute 'TH'
 endfunction
 
 
@@ -30,5 +30,5 @@ function! pete#mode#debug(...)
 		let g:debug_mode = a:1
 	endif
 
-	execute 'H'
+	execute 'DH'
 endfunction
