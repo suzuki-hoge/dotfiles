@@ -10,8 +10,8 @@ import Executors
 import Makers
 import Testers
 import Debuggers
+import Help
 
--- HコマンドはHelp.hsで
 -- テスト作る
 dispath :: String -> String -> String -> String -> String
 dispath command modeString text ext
@@ -33,6 +33,7 @@ dispath command modeString text ext
     | command == "TestHelp"            = Testers.help (testMode mode)    ext
     | command == "Debug"               = Debuggers.get  (debugMode mode) text ext
     | command == "DebugHelp"           = Debuggers.help (debugMode mode) ext
+    | command == "Help"                = Help.line mode text ext
     where mode = createMode modeString
 
 

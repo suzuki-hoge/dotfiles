@@ -61,9 +61,9 @@ function! pete#main#debug(...)
 endfunction
 
 
-"function! pete#main#help()
-"	echo pete#modules#callapi('help ', 'pete')
-"endfunction
+function! pete#main#help()
+	echo pete#modules#callapi('Help ', 'pete')
+endfunction
 
 
 function! s:getWord()

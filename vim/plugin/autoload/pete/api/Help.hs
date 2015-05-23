@@ -1,3 +1,8 @@
+module Help
+(line
+) where
+
+
 import Mode
 import Repl
 import Edit
@@ -11,7 +16,7 @@ import Debuggers
 
 (+++) a b = a ++ "\n\n" ++ b
 
-show_help mode text ext = replHelp +++ editHelp +++ optionsHelp +++ commentHelp +++ executorsHelp +++ makersHelp +++ testersHelp +++ debuggersHelp
+line mode text ext = "\n" ++ replHelp +++ editHelp +++ optionsHelp +++ commentHelp +++ executorsHelp +++ makersHelp +++ testersHelp +++ debuggersHelp
     where replHelp      = Repl.help ext
           editHelp      = Edit.help text ext
           optionsHelp   = Options.help ext
@@ -27,4 +32,4 @@ main = do
     let ext = "hs"
     let text = "pete"
 
-    putStr $ show_help mode text ext
+    putStr $ line mode text ext
