@@ -12,9 +12,9 @@ get text ext = printf "tabedit %s.%s" text ext :: String
 
 
 help :: String -> String -> String
-help = get
+help text ext = "  Edit     : " ++ get text ext
 
 
 main = do
-    putStrLn $ get "pete" "php"
-    putStrLn $ help "pete" "php"
+    print $ get "pete" "php"
+    print $ help "pete" "php"

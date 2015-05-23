@@ -10,9 +10,9 @@ get "hs"  = "!ghci"
 
 
 help :: String -> String
-help = get
+help ext = "  Repl     : " ++ get ext
 
 
 main = do
-    putStrLn $ get "hs"
-    putStrLn $ help "hs"
+    print $ get "hs"
+    print $ help "hs"

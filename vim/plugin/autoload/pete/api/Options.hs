@@ -17,9 +17,9 @@ get "hs"  = unlines hs
 
 
 help :: String -> String
-help ext = init $ init $ replace "\n" ", " $ get ext
+help ext = "  Options  : " ++ (init $ init $ replace "\n" ", " $ get ext)
 
 
 main = do
-    putStrLn $ get "php"
-    putStrLn $ help "php"
+    print $ get "php"
+    print $ help "php"

@@ -4,7 +4,7 @@ help
 ) where
 
 
-import Help
+import Lib
 
 
 php = ["!phpunit "]
@@ -17,11 +17,11 @@ get n "hs"  = hs  !! n
 
 
 help :: Int -> String -> String
-help n "php" = unlines $ helpLines "tester " n php
-help n "hs"  = unlines $ helpLines "tester " n hs
+help n "php" = init $ unlines $ helpLines "Tester   : " n php
+help n "hs"  = init $ unlines $ helpLines "Tester   : " n hs
 
 
 main = do
-    putStrLn $ get 0 "php"
-    putStrLn $ help 0 "php"
-    putStrLn $ help 0 "hs"
+    print $ get 0 "php"
+    print $ help 0 "php"
+    print $ help 0 "hs"

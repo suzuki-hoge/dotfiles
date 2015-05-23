@@ -4,7 +4,7 @@ help
 ) where
 
 
-import Help
+import Lib
 
 
 php = ["!php ", "Reload"]
@@ -17,11 +17,11 @@ get n "hs"  = hs  !! n
 
 
 help :: Int -> String -> String
-help n "php" = unlines $ helpLines "executor " n php
-help n "hs"  = unlines $ helpLines "executor " n hs
+help n "php" = init $ unlines $ helpLines "Executor : " n php
+help n "hs"  = init $ unlines $ helpLines "Executor : " n hs
 
 
 main = do
-    putStrLn $ get 0 "php"
-    putStrLn $ help 0 "php"
-    putStrLn $ help 0 "hs"
+    print $ get 0 "php"
+    print $ help 0 "php"
+    print $ help 0 "hs"

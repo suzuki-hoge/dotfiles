@@ -50,11 +50,11 @@ switch text "hs"  = switch' text hs
 
 
 help :: String -> String -> String
-help = commentize
+help text ext = "  Comment  : " ++ commentize text ext 
 
 
 main = do
-    putStrLn $ commentize "pete" "php"
-    putStrLn $ decommentize "-- pete" "hs"
+    print $ commentize "pete" "php"
+    print $ decommentize "-- pete" "hs"
 
-    putStrLn $ help "pete" "php"
+    print $ help "pete" "php"

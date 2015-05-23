@@ -17,8 +17,8 @@ expand definition = replace "\n" " " expand'
 
 
 pre :: Int -> Int -> String -> String
-pre n m | n == m = ("* debugger " ++)
-pre n m | n /= m = ("  debugger " ++)
+pre n m | n == m = ("* Debugger : " ++)
+pre n m | n /= m = ("  Debugger : " ++)
 
 
 helpLines :: Int -> [String] -> [String]
@@ -38,5 +38,5 @@ help n "hs"  = unlines $ helpLines n hs
 
 
 main = do
-    putStrLn $ get 0 "pete" "hs"
-    putStrLn $ help 0 "hs"
+    print $ get 0 "pete" "hs"
+    print $ help 0 "hs"

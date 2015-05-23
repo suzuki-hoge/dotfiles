@@ -4,7 +4,7 @@ help
 ) where
 
 
-import Help
+import Lib
 
 
 php = ["!php "]
@@ -17,11 +17,11 @@ get n "hs"  = hs  !! n
 
 
 help :: Int -> String -> String
-help n "php" = unlines $ helpLines "maker " n php
-help n "hs"  = unlines $ helpLines "maker " n hs
+help n "php" = init $ unlines $ helpLines "Maker    : " n php
+help n "hs"  = init $ unlines $ helpLines "Maker    : " n hs
 
 
 main = do
-    putStrLn $ get 0 "php"
-    putStrLn $ help 0 "php"
-    putStrLn $ help 0 "hs"
+    print $ get 0 "php"
+    print $ help 0 "php"
+    print $ help 0 "hs"
