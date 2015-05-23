@@ -57,6 +57,7 @@ endfunction
 
 function! pete#main#execute(...)
 	let command = pete#modules#callapi('Execute ', '-')
+	" % or args
 	execute command . '%' . pete#modules#getargs(a:000)
 endfunction
 

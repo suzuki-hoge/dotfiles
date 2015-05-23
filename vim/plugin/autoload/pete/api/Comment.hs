@@ -30,23 +30,27 @@ switch' text comment
     | is' text comment == False = commentize'   text comment
 
 
-php = ("// ", "")
-hs  = ("-- ", "")
+php  = ("// ", "")
+hs   = ("-- ", "")
+html = ("<!-- ", " -->")
 
 
 commentize :: String -> String -> String
-commentize text "php" = commentize' text php
-commentize text "hs"  = commentize' text hs
+commentize text "php"  = commentize' text php
+commentize text "hs"   = commentize' text hs
+commentize text "html" = commentize' text html
 
 
 decommentize :: String -> String -> String
-decommentize text "php" = decommentize' text php
-decommentize text "hs"  = decommentize' text hs
+decommentize text "php"  = decommentize' text php
+decommentize text "hs"   = decommentize' text hs
+decommentize text "html" = decommentize' text html
 
 
 switch :: String -> String -> String
-switch text "php" = switch' text php
-switch text "hs"  = switch' text hs
+switch text "php"  = switch' text php
+switch text "hs"   = switch' text hs
+switch text "html" = switch' text html
 
 
 help :: String -> String -> String

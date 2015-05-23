@@ -12,7 +12,7 @@ import Testers
 import Debuggers
 import Help
 
--- テスト作る
+
 dispath :: String -> String -> String -> String -> String
 dispath command modeString text ext
     | command == "Repl"                = Repl.get  ext
