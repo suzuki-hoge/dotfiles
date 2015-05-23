@@ -9,23 +9,31 @@ php = [
     "R"
     ]
 
+
 hs = [
     "!runhaskell "
     ]
 
 
-pre mode n | n == mode = ("* executor " ++)
-pre mode n | n /= mode = ("  executor " ++)
-
-helpLines mode definitions = zipWith prefix [0..] definitions
-    where prefix = pre mode
+pre :: Int -> Int -> String -> String
+pre n m | n == m = ("* executor " ++)
+pre n m | n /= m = ("  executor " ++)
 
 
-get mode "php" = php !! mode
-get mode "hs"  = hs  !! mode
+helpLines :: Int -> [String] -> [String]
+helpLines n definitions = zipWith prefix [0..] definitions
+    where prefix = pre n
 
-help mode "php" = unlines $ helpLines mode php
-help mode "hs"  = unlines $ helpLines mode hs
+
+get :: Int -> String -> String
+get n "php" = php !! n
+get n "hs"  = hs  !! n
+
+
+help :: Int -> String -> String
+help n "php" = unlines $ helpLines n php
+help n "hs"  = unlines $ helpLines n hs
+
 
 main = do
     putStrLn $ get 0 "php"

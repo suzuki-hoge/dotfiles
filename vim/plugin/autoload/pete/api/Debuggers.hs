@@ -3,6 +3,7 @@ get,
 help
 ) where
 
+
 import Text.Printf
 import Data.String.Utils
 
@@ -22,20 +23,26 @@ expand definition = replace "\n" " " expand'
     where expand' = printf definition "pete" :: String
 
 
-pre mode n | n == mode = ("* debugger " ++)
-pre mode n | n /= mode = ("  debugger " ++)
+pre :: Int -> Int -> String -> String
+pre n m | n == m = ("* debugger " ++)
+pre n m | n /= m = ("  debugger " ++)
 
 
-helpLines mode definitions = zipWith prefix [0..] lines
-    where prefix = pre mode
+helpLines :: Int -> [String] -> [String]
+helpLines n definitions = zipWith prefix [0..] lines
+    where prefix = pre n
           lines  = map expand definitions
 
 
-get mode text "php" = printf (php !! mode) text
-get mode text "hs"  = printf (hs  !! mode) text
+get :: Int -> String -> String -> String
+get n text "php" = printf (php !! n) text
+get n text "hs"  = printf (hs  !! n) text
 
-help mode "php" = unlines $ helpLines mode php
-help mode "hs"  = unlines $ helpLines mode hs
+
+help :: Int -> String -> String
+help n "php" = unlines $ helpLines n php
+help n "hs"  = unlines $ helpLines n hs
+
 
 main = do
     putStrLn $ get 0 "pete" "hs"
