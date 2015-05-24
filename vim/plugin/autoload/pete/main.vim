@@ -72,11 +72,3 @@ function! pete#main#debug(...)
 	execute 'normal o' . lines
 	execute 'normal o'
 endfunction
-
-
-function! pete#modules#editPete()
-	let files = ['Repl', 'Edit', 'Options', 'Comment', 'Executors', 'Makers', 'Testers', 'Debuggers', 'Help']
-	for file in files
-		echo 'tabedit $pete/api/' . file . '.hs'
-	endfor
-endfunction
