@@ -8,14 +8,26 @@ import Data.String.Utils
 import Control.Applicative
 
 
-php = ["set expandtab", "set nowrap"]
-hs  = ["set expandtab"]
+vim  = [""]
+py   = [""]
+hs   = ["set expandtab"]
+html = [""]
+js   = [""]
+css  = [""]
+php  = [""]
+sh   = [""]
 
 
 get :: String -> Maybe String
-get "php" = Just $ unlines php
-get "hs"  = Just $ unlines hs
-get _     = Nothing
+get "vim"  = Just $ unlines vim
+get "py"   = Just $ unlines py
+get "hs"   = Just $ unlines hs
+get "html" = Just $ unlines html
+get "js"   = Just $ unlines js
+get "css"  = Just $ unlines css
+get "php"  = Just $ unlines php
+get "sh"   = Just $ unlines sh
+get _      = Nothing
 
 
 help :: String -> Maybe String

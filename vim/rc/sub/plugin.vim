@@ -52,3 +52,5 @@ command! -nargs=? WM call pete#mode#execute(<f-args>)
 command! -nargs=? MM call pete#mode#make(<f-args>)
 command! -nargs=? TM call pete#mode#test(<f-args>)
 command! -nargs=? DM call pete#mode#debug(<f-args>)
+
+command! PETE call pete#modules#editPete()

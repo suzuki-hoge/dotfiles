@@ -10,8 +10,14 @@ import Data.String.Utils
 import Lib
 
 
-php = ["echo '<pre>';\nvar_dump($%s);\nexit;", "print_r($%s);"]
-hs  = ["print %s"]
+vim  = ["echo %s"]
+py   = ["print %s"]
+hs   = ["print %s", "putStrLn %s"]
+html = [""]
+js   = ["console.log(%s);"]
+css  = [""]
+php  = ["echo '<pre>';\nvar_dump($%s);\nexit;", "print_r($%s);"]
+sh   = ["echo %s"]
 
 
 expand definition = replace "\n" " " expand'
@@ -35,15 +41,27 @@ format Nothing           _    = Nothing
 
 
 get :: Int -> String -> String -> Maybe String
-get n text "php" = format (php !!! n) text
-get n text "hs"  = format (hs  !!! n) text
-get _ _    _     = Nothing
+get n text "vim"  = format (vim  !!! n) text
+get n text "py"   = format (py   !!! n) text
+get n text "hs"   = format (hs   !!! n) text
+get n text "html" = format (html !!! n) text
+get n text "js"   = format (js   !!! n) text
+get n text "css"  = format (css  !!! n) text
+get n text "php"  = format (php  !!! n) text
+get n text "sh"   = format (sh   !!! n) text
+get _ _    _      = Nothing
 
 
 help :: Int -> String -> Maybe String
-help n "php" = Just $ unlines $ helpLines' n php
-help n "hs"  = Just $ unlines $ helpLines' n hs
-help _ _     = Nothing
+help n "vim"  = Just $ unlines $ helpLines' n vim
+help n "py"   = Just $ unlines $ helpLines' n py
+help n "hs"   = Just $ unlines $ helpLines' n hs
+help n "html" = Just $ unlines $ helpLines' n html
+help n "js"   = Just $ unlines $ helpLines' n js
+help n "css"  = Just $ unlines $ helpLines' n css
+help n "php"  = Just $ unlines $ helpLines' n php
+help n "sh"   = Just $ unlines $ helpLines' n sh
+help _ _       = Nothing
 
 
 main = do

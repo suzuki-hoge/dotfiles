@@ -8,9 +8,15 @@ import Control.Applicative
 
 
 get :: String -> Maybe String
-get "php" = Just ""
-get "hs"  = Just "!ghci"
-get _     = Nothing
+get "vim"  = Just ""
+get "py"   = Just "!python"
+get "hs"   = Just "!ghci"
+get "html" = Just ""
+get "js"   = Just ""
+get "css"  = Just ""
+get "php"  = Just ""
+get "sh"   = Just ""
+get _      = Nothing
 
 
 help :: String -> Maybe String
