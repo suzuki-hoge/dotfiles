@@ -2,7 +2,13 @@ let s:api = $pete . '/api/main '
 
 
 function! pete#modules#callapi(command, text)
-	return system(s:api . a:command . s:getMode() . '"' . a:text . '"' . s:getExtension())
+	let result = system(s:api . a:command . s:getMode() . '"' . a:text . '"' . s:getExtension())
+	if result == 'invalid'
+		echo s:api . a:command . s:getMode() . '"' . a:text . '"' . s:getExtension()
+		throw "Invalid"
+	else
+		return result
+	endif
 endfunction
 
 

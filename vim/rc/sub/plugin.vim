@@ -21,32 +21,32 @@ let g:make_mode = 0
 let g:test_mode = 0
 let g:debug_mode = 0
 
-nnoremap ÷ :call pete#main#commentize()<CR>
-vnoremap ÷ :call pete#main#commentize()<CR>
+nnoremap ÷ :call pete#main#callComment('Commentize ')<CR>
+vnoremap ÷ :call pete#main#callComment('Commentize ')<CR>
 
-nnoremap ? :call pete#main#decommentize()<CR>
-vnoremap ? :call pete#main#decommentize()<CR>
+nnoremap ? :call pete#main#callComment('Decommentize ')<CR>
+vnoremap ? :call pete#main#callComment('Decommentize ')<CR>
 
-nnoremap ¿ :call pete#main#switch()<CR>
-vnoremap ¿ :call pete#main#switch()<CR>
+nnoremap ¿ :call pete#main#callComment('Switch ')<CR>
+vnoremap ¿ :call pete#main#callComment('Switch ')<CR>
 
-command!          R        call pete#main#repl()
-command!          E        call pete#main#edit()
-command!          O        call pete#main#options()
+command!          R        call pete#main#call('Repl ', '-')
+command!          E        call pete#main#call('Edit ', 'a')
+command!          O        call pete#main#call('Options ', '-')
 command! -nargs=* W wall | call pete#main#execute(<f-args>)
 command! -nargs=* M wall | call pete#main#make()
 command! -nargs=* T wall | call pete#main#test(<f-args>)
 command! -nargs=? D        call pete#main#debug(<f-args>)
-command!          H        call pete#main#help()
+command!          H        call pete#main#callHelp('Help ', 'pete')
 
-command! RH call pete#main#replHelp()
-command! EH call pete#main#editHelp()
-command! OH call pete#main#optionsHelp()
-command! CH call pete#main#commentHelp()
-command! WH call pete#main#executeHelp(<f-args>)
-command! MH call pete#main#makeHelp()
-command! TH call pete#main#testHelp(<f-args>)
-command! DH call pete#main#debugHelp(<f-args>)
+command! RH call pete#main#callHelp('ReplHelp ', '-')
+command! EH call pete#main#callHelp('EditHelp ', 'a')
+command! OH call pete#main#callHelp('OptionsHelp ', '-')
+command! CH call pete#main#callCommentHelp()
+command! WH call pete#main#callHelp('ExecuteHelp ', '-')
+command! MH call pete#main#callHelp('MakeHelp ', '-')
+command! TH call pete#main#callHelp('TestHelp ', '-')
+command! DH call pete#main#callHelp('DebugHelp ', '-')
 
 command! -nargs=? WM call pete#mode#execute(<f-args>)
 command! -nargs=? MM call pete#mode#make(<f-args>)
