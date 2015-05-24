@@ -14,9 +14,11 @@ import Testers
 import Debuggers
 
 
-(+++) a b = a ++ "\n\n" ++ b
+(+++) :: Maybe String -> Maybe String -> Maybe String
+(+++) (Just a) (Just b) = Just $ a ++ "\n\n" ++ b
+(+++) _        _        = Nothing
 
-line mode text ext = "\n" ++ replHelp +++ editHelp +++ optionsHelp +++ commentHelp +++ executorsHelp +++ makersHelp +++ testersHelp +++ debuggersHelp
+line mode text ext = replHelp +++ editHelp +++ optionsHelp +++ commentHelp +++ executorsHelp +++ makersHelp +++ testersHelp +++ debuggersHelp
     where replHelp      = Repl.help ext
           editHelp      = Edit.help text ext
           optionsHelp   = Options.help ext
@@ -32,4 +34,10 @@ main = do
     let ext = "hs"
     let text = "pete"
 
-    putStr $ line mode text ext
+    print $ line mode text ext
+
+    let mode = createMode "0000"
+    let ext = "invalid"
+    let text = "pete"
+
+    print $ line mode text ext

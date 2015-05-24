@@ -12,7 +12,7 @@ import Executors
 import Makers
 import Testers
 import Debuggers
--- import Help
+import Help
 
 
 dispath :: Maybe String -> Maybe String -> Maybe String -> Maybe String -> Maybe String
@@ -35,10 +35,13 @@ dispath (Just command) (Just modeString) (Just text) (Just ext)
     | command == "TestHelp"            = Testers.help (testMode mode)    ext
     | command == "Debug"               = Debuggers.get  (debugMode mode) text ext
     | command == "DebugHelp"           = Debuggers.help (debugMode mode) ext
-    -- | command == "Help"                = Help.line mode text ext
+    | command == "Help"                = Help.line mode text ext
     where mode = createMode modeString
 dispath _ _ _ _ = Nothing
 
+
+echo (Just s) = putStr s
+echo Nothing  = putStr "invalid"
 
 main = do
     command    <- (!!! 0) <$> getArgs
@@ -46,4 +49,4 @@ main = do
     text       <- (!!! 2) <$> getArgs
     ext        <- (!!! 3) <$> getArgs
 
-    print $ dispath command modeString text ext
+    echo $ dispath command modeString text ext
