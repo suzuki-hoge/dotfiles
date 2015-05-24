@@ -4,15 +4,21 @@ help
 ) where
 
 
-get :: String -> String
-get "php" = ""
-get "hs"  = "!ghci"
+import Control.Applicative
 
 
-help :: String -> String
-help ext = "  Repl     : " ++ get ext
+get :: String -> Maybe String
+get "php" = Just ""
+get "hs"  = Just "!ghci"
+get _     = Nothing
+
+
+help :: String -> Maybe String
+help ext = ("  Repl     : " ++) <$> get ext
 
 
 main = do
     print $ get "hs"
+    print $ get "invalid"
     print $ help "hs"
+    print $ help "invalid"

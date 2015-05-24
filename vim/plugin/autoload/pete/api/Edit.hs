@@ -5,14 +5,15 @@ help
 
 
 import Text.Printf
+import Control.Applicative
 
 
-get :: String -> String -> String
-get text ext = printf "tabedit %s.%s" text ext :: String
+get :: String -> String -> Maybe String
+get text ext = Just (printf "tabedit %s.%s" text ext :: String)
 
 
-help :: String -> String -> String
-help text ext = "  Edit     : " ++ get text ext
+help :: String -> String -> Maybe String
+help text ext = ("  Edit     : " ++) <$> get text ext
 
 
 main = do

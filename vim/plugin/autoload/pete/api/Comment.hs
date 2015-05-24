@@ -8,6 +8,7 @@ help
 
 import Text.Regex
 import Text.Regex.Posix
+import Control.Applicative
 
 
 is' :: String -> (String, String) -> Bool
@@ -35,30 +36,35 @@ hs   = ("-- ", "")
 html = ("<!-- ", " -->")
 
 
-commentize :: String -> String -> String
-commentize text "php"  = commentize' text php
-commentize text "hs"   = commentize' text hs
-commentize text "html" = commentize' text html
+commentize :: String -> String -> Maybe String
+commentize text "php"  = Just $ commentize' text php
+commentize text "hs"   = Just $ commentize' text hs
+commentize text "html" = Just $ commentize' text html
+commentize _    _      = Nothing
 
 
-decommentize :: String -> String -> String
-decommentize text "php"  = decommentize' text php
-decommentize text "hs"   = decommentize' text hs
-decommentize text "html" = decommentize' text html
+decommentize :: String -> String -> Maybe String
+decommentize text "php"  = Just $ decommentize' text php
+decommentize text "hs"   = Just $ decommentize' text hs
+decommentize text "html" = Just $ decommentize' text html
+decommentize _    _      = Nothing
 
 
-switch :: String -> String -> String
-switch text "php"  = switch' text php
-switch text "hs"   = switch' text hs
-switch text "html" = switch' text html
+switch :: String -> String -> Maybe String
+switch text "php"  = Just $ switch' text php
+switch text "hs"   = Just $ switch' text hs
+switch text "html" = Just $ switch' text html
+switch _    _      = Nothing
 
 
-help :: String -> String -> String
-help text ext = "  Comment  : " ++ commentize text ext 
+help :: String -> String -> Maybe String
+help text ext = ("  Comment  : " ++) <$> commentize text ext 
 
 
 main = do
     print $ commentize "pete" "php"
+    print $ commentize "pete" "invalid"
     print $ decommentize "-- pete" "hs"
 
     print $ help "pete" "php"
+    print $ help "pete" "invalid"

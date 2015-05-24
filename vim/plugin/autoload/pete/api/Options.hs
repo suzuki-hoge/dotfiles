@@ -5,21 +5,26 @@ help
 
 
 import Data.String.Utils
+import Control.Applicative
 
 
 php = ["set expandtab", "set nowrap"]
 hs  = ["set expandtab"]
 
 
-get :: String -> String
-get "php" = unlines php
-get "hs"  = unlines hs
+get :: String -> Maybe String
+get "php" = Just $ unlines php
+get "hs"  = Just $ unlines hs
+get _     = Nothing
 
 
-help :: String -> String
-help ext = "  Options  : " ++ (init $ init $ replace "\n" ", " $ get ext)
+help :: String -> Maybe String
+help ext = ("  Options  : " ++) <$> init <$> init <$> replaced
+    where replaced = replace "\n" ", " <$> get ext
 
 
 main = do
     print $ get "php"
+    print $ get "invalid"
     print $ help "php"
+    print $ help "invalid"

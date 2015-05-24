@@ -1,7 +1,9 @@
 import Control.Applicative
 import System.Environment(getArgs)
 
+import Lib
 import Mode
+
 import Repl
 import Edit
 import Options
@@ -10,11 +12,11 @@ import Executors
 import Makers
 import Testers
 import Debuggers
-import Help
+-- import Help
 
 
-dispath :: String -> String -> String -> String -> String
-dispath command modeString text ext
+dispath :: Maybe String -> Maybe String -> Maybe String -> Maybe String -> Maybe String
+dispath (Just command) (Just modeString) (Just text) (Just ext)
     | command == "Repl"                = Repl.get  ext
     | command == "ReplHelp"            = Repl.help ext
     | command == "Edit"                = Edit.get  text ext
@@ -33,14 +35,15 @@ dispath command modeString text ext
     | command == "TestHelp"            = Testers.help (testMode mode)    ext
     | command == "Debug"               = Debuggers.get  (debugMode mode) text ext
     | command == "DebugHelp"           = Debuggers.help (debugMode mode) ext
-    | command == "Help"                = Help.line mode text ext
+    -- | command == "Help"                = Help.line mode text ext
     where mode = createMode modeString
+dispath _ _ _ _ = Nothing
 
 
 main = do
-    command    <- (!! 0) <$> getArgs
-    modeString <- (!! 1) <$> getArgs
-    text       <- (!! 2) <$> getArgs
-    ext        <- (!! 3) <$> getArgs
+    command    <- (!!! 0) <$> getArgs
+    modeString <- (!!! 1) <$> getArgs
+    text       <- (!!! 2) <$> getArgs
+    ext        <- (!!! 3) <$> getArgs
 
-    putStr $ dispath command modeString text ext
+    print $ dispath command modeString text ext
