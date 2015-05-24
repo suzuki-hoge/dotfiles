@@ -32,7 +32,8 @@ endfunction
 
 
 function! pete#modules#escape(text)
-	return substitute(a:text, "\\$", "\\\\$", "g")
+	let s = substitute(a:text, "\\$", "\\\\$", "g")
+	return substitute(s, '"', '\\"', "g")
 endfunction
 
 
