@@ -25,32 +25,32 @@ let g:execute_path = '%'
 let g:make_path = '%'
 let g:test_path = '%'
 
-nnoremap ÷ :call pete#main#callComment('Commentize ')<CR>
-vnoremap ÷ :call pete#main#callComment('Commentize ')<CR>
+nnoremap ÷ :call pete#main#comment('Commentize')<CR>
+vnoremap ÷ :call pete#main#comment('Commentize')<CR>
 
-nnoremap ? :call pete#main#callComment('Decommentize ')<CR>
-vnoremap ? :call pete#main#callComment('Decommentize ')<CR>
+nnoremap ? :call pete#main#comment('Decommentize')<CR>
+vnoremap ? :call pete#main#comment('Decommentize')<CR>
 
-nnoremap ¿ :call pete#main#callComment('Switch ')<CR>
-vnoremap ¿ :call pete#main#callComment('Switch ')<CR>
+nnoremap ¿ :call pete#main#comment('Switch')<CR>
+vnoremap ¿ :call pete#main#comment('Switch')<CR>
 
-command!          R        call pete#main#call('Repl ', '-')
-command!          E        call pete#main#call('Edit ', 'a')
-command!          O        call pete#main#call('Options ', '-')
-command! -nargs=* W wall | call pete#main#callPath('Execute ', g:execute_path, <f-args>)
-command! -nargs=* M wall | call pete#main#callPath('Make ', g:make_path, <f-args>)
-command! -nargs=* T wall | call pete#main#callPath('Test ', g:test_path, <f-args>)
+command!          R        call pete#main#execute('Repl', '-')
+command!          E        call pete#main#execute('Edit', 'a')
+command!          O        call pete#main#execute('Options', '-')
+command! -nargs=* W wall | call pete#main#path('Execute', g:execute_path, <f-args>)
+command! -nargs=* M wall | call pete#main#path('Make', g:make_path, <f-args>)
+command! -nargs=* T wall | call pete#main#path('Test', g:test_path, <f-args>)
 command! -nargs=? D        call pete#main#debug(<f-args>)
-command!          H        call pete#main#callHelp('Help ', 'pete')
+command!          H        call pete#main#execute('Help', 'pete')
 
-command! RH call pete#main#callHelp('ReplHelp ', '-')
-command! EH call pete#main#callHelp('EditHelp ', 'a')
-command! OH call pete#main#callHelp('OptionsHelp ', '-')
-command! CH call pete#main#callCommentHelp()
-command! WH call pete#main#callHelp('ExecuteHelp ', g:execute_path)
-command! MH call pete#main#callHelp('MakeHelp ', g:make_path)
-command! TH call pete#main#callHelp('TestHelp ', g:test_path)
-command! DH call pete#main#callHelp('DebugHelp ', 'pete')
+command! RH call pete#help#execute('ReplHelp', '-')
+command! EH call pete#help#execute('EditHelp', 'a')
+command! OH call pete#help#execute('OptionsHelp', '-')
+command! CH call pete#help#comment()
+command! WH call pete#help#execute('ExecuteHelp', g:execute_path)
+command! MH call pete#help#execute('MakeHelp', g:make_path)
+command! TH call pete#help#execute('TestHelp', g:test_path)
+command! DH call pete#help#execute('DebugHelp', 'pete')
 
 command! -nargs=? WM call pete#mode#execute(<f-args>)
 command! -nargs=? MM call pete#mode#make(<f-args>)

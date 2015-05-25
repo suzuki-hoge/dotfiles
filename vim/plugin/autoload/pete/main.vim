@@ -1,4 +1,4 @@
-function! pete#main#call(command, text)
+function! pete#main#execute(command, text)
 	try
 		execute pete#modules#callapi(a:command, a:text)
 	catch /Invalid/
@@ -7,16 +7,7 @@ function! pete#main#call(command, text)
 endfunction
 
 
-function! pete#main#callHelp(command, text)
-	try
-		echo pete#modules#callapi(a:command, a:text)
-	catch /Invalid/
-		echo 'nothing to show'
-	endtry
-endfunction
-
-
-function! pete#main#callComment(command) range
+function! pete#main#comment(command) range
 	try
 		for n in range(a:firstline, a:lastline)
 			call setline(n, pete#modules#callapi(a:command, pete#modules#escape(getline(n))))
@@ -27,16 +18,7 @@ function! pete#main#callComment(command) range
 endfunction
 
 
-function! pete#main#callCommentHelp()
-	try
-		echo pete#modules#callapi('CommentHelp ', 'pete')
-	catch /Invalid/
-		echo 'nothing to show'
-	endtry
-endfunction
-
-
-function! pete#main#callPath(command, path, ...)
+function! pete#main#path(command, path, ...)
 	try
 		let command = pete#modules#callapi(a:command, a:path)
 		execute command . pete#modules#getargs(a:000)

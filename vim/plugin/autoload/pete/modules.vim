@@ -2,13 +2,18 @@ let s:api = $pete . '/api/dist/build/pete/pete '
 
 
 function! pete#modules#callapi(command, text)
-	let result = system(s:api . a:command . s:getMode() . '"' . a:text . '"' . s:getExtension())
+	let result = system(s:getShLine(a:command, a:text))
 	if result == 'invalid'
-		echo s:api . a:command . s:getMode() . '"' . a:text . '"' . s:getExtension()
+		echo s:getShLine(a:command, a:text)
 		throw "Invalid"
 	else
 		return result
 	endif
+endfunction
+
+
+function! s:getShLine(command, text)
+	return s:api . a:command . ' ' . s:getMode() . '"' . a:text . '"' . s:getExtension()
 endfunction
 
 
