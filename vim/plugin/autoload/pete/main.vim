@@ -39,7 +39,7 @@ endfunction
 function! pete#main#execute(...)
 	try
 		let command = pete#modules#callapi('Execute ', '-')
-		execute command . '%' . pete#modules#getargs(a:000)
+		execute command . g:execute_path . pete#modules#getargs(a:000)
 	catch /Invalid/
 		echo 'nothing to to'
 	endtry
@@ -49,7 +49,7 @@ endfunction
 function! pete#main#make(...)
 	try
 		let command = pete#modules#callapi('Make ', '-')
-		execute command . '%' . pete#modules#getargs(a:000)
+		execute command . g:make_path . pete#modules#getargs(a:000)
 	catch /Invalid/
 		echo 'nothing to to'
 	endtry
@@ -59,7 +59,7 @@ endfunction
 function! pete#main#test(...)
 	try
 		let command = pete#modules#callapi('Test ', '-')
-		execute command . '%' . pete#modules#getargs(a:000)
+		execute command . g:test_path . pete#modules#getargs(a:000)
 	catch /Invalid/
 		echo 'nothing to to'
 	endtry

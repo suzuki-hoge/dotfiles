@@ -21,6 +21,10 @@ let g:make_mode = 0
 let g:test_mode = 0
 let g:debug_mode = 0
 
+let g:execute_path = '%'
+let g:make_path = '%'
+let g:test_path = '%'
+
 nnoremap ÷ :call pete#main#callComment('Commentize ')<CR>
 vnoremap ÷ :call pete#main#callComment('Commentize ')<CR>
 
@@ -34,7 +38,7 @@ command!          R        call pete#main#call('Repl ', '-')
 command!          E        call pete#main#call('Edit ', 'a')
 command!          O        call pete#main#call('Options ', '-')
 command! -nargs=* W wall | call pete#main#execute(<f-args>)
-command! -nargs=* M wall | call pete#main#make()
+command! -nargs=* M wall | call pete#main#make(<f-args>)
 command! -nargs=* T wall | call pete#main#test(<f-args>)
 command! -nargs=? D        call pete#main#debug(<f-args>)
 command!          H        call pete#main#callHelp('Help ', 'pete')
@@ -51,6 +55,9 @@ command! DH call pete#main#callHelp('DebugHelp ', '-')
 command! -nargs=? WM call pete#mode#execute(<f-args>)
 command! -nargs=? MM call pete#mode#make(<f-args>)
 command! -nargs=? TM call pete#mode#test(<f-args>)
-command! -nargs=? DM call pete#mode#debug(<f-args>)
+
+command! -nargs=? -complete=file WP call pete#path#execute(<f-args>)
+command! -nargs=? -complete=file MP call pete#path#make(<f-args>)
+command! -nargs=? -complete=file TP call pete#path#test(<f-args>)
 
 command! PETE call pete#modules#editPete()

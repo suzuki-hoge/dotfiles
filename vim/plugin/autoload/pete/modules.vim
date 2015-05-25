@@ -40,6 +40,6 @@ endfunction
 function! pete#modules#editPete()
 	let files = ['Repl', 'Edit', 'Options', 'Comment', 'Executors', 'Makers', 'Testers', 'Debuggers', 'Help']
 	for file in files
-		execute 'tabedit $pete/api/' . file . '.hs'
+		execute 'tabedit $pete/api/src/' . file . '.hs'
 	endfor
 endfunction
