@@ -1,4 +1,4 @@
-let s:api = $pete . '/api/main '
+let s:api = $pete . '/api/dist/build/pete/pete '
 
 
 function! pete#modules#callapi(command, text)
