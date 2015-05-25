@@ -5,5 +5,5 @@ stored-token.txt
 shelf.db
 directories
 projects.frank
-*.hi
-*.o
+dist
+.cabal-sandbox
