@@ -11,7 +11,7 @@ import Lib
 
 vim  = ["call "]
 py   = ["!python -B ", "Reload "]
-hs   = ["!runhaskell ", "cabal run"]
+hs   = ["!runhaskell ", "!cabal run"]
 html = ["Reload "]
 js   = ["Reload "]
 css  = ["Reload "]
