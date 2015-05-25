@@ -9,9 +9,9 @@ import Control.Applicative
 import Lib
 
 
-vim  = [""]
+vim  = ["source "]
 py   = [""]
-hs   = ["!ghc --make "]
+hs   = ["!cabal configure && cabal build"]
 html = [""]
 js   = [""]
 css  = [""]

@@ -9,9 +9,9 @@ import Control.Applicative
 import Lib
 
 
-vim  = ["source "]
-py   = ["!python ", "Reload "]
-hs   = ["!runhaskell ", "Reload "]
+vim  = ["call "]
+py   = ["!python -B ", "Reload "]
+hs   = ["!runhaskell ", "cabal run"]
 html = ["Reload "]
 js   = ["Reload "]
 css  = ["Reload "]

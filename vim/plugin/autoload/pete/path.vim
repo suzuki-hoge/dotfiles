@@ -28,7 +28,7 @@ function! s:getPath(arg)
 		if filereadable(a:arg[0])
 			return fnamemodify(a:arg[0], ':p')
 		else
-			return fnamemodify(expand('%'), ':p')
+			return a:arg[0]
 		endif
 	endif
 endfunction
