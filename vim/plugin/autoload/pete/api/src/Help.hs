@@ -23,10 +23,10 @@ line mode text ext = replHelp +++ editHelp +++ optionsHelp +++ commentHelp +++ e
           editHelp      = Edit.help text ext
           optionsHelp   = Options.help ext
           commentHelp   = Comment.help          text ext
-          executorsHelp = Executors.help (executeMode mode) ext
-          makersHelp    = Makers.help (makeMode mode)    ext
-          testersHelp   = Testers.help (testMode mode)    ext
-          debuggersHelp = Debuggers.help (debugMode mode) ext
+          executorsHelp = Executors.help (executeMode mode) text ext
+          makersHelp    = Makers.help (makeMode mode)    text ext
+          testersHelp   = Testers.help (testMode mode)    text ext
+          debuggersHelp = Debuggers.help (debugMode mode) text ext
 
 
 main = do

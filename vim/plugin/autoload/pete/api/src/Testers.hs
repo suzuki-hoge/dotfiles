@@ -4,6 +4,8 @@ help
 ) where
 
 
+import Control.Applicative
+
 import Lib
 
 
@@ -17,33 +19,33 @@ php  = ["!phpunit "]
 sh   = [""]
 
 
-get :: Int -> String -> Maybe String
-get n "vim"  = vim  !!! n
-get n "py"   = py   !!! n
-get n "hs"   = hs   !!! n
-get n "html" = html !!! n
-get n "js"   = js   !!! n
-get n "css"  = css  !!! n
-get n "php"  = php  !!! n
-get n "sh"   = sh   !!! n
-get _ _      = Nothing
+get :: Int -> String -> String -> Maybe String
+get n text "vim"  = (++ text) <$> vim  !!! n
+get n text "py"   = (++ text) <$> py   !!! n
+get n text "hs"   = (++ text) <$> hs   !!! n
+get n text "html" = (++ text) <$> html !!! n
+get n text "js"   = (++ text) <$> js   !!! n
+get n text "css"  = (++ text) <$> css  !!! n
+get n text "php"  = (++ text) <$> php  !!! n
+get n text "sh"   = (++ text) <$> sh   !!! n
+get _ _    _      = Nothing
 
 
-help :: Int -> String -> Maybe String
-help n "vim"  = Just $ init $ unlines $ helpLines "Tester   : " n vim
-help n "py"   = Just $ init $ unlines $ helpLines "Tester   : " n py
-help n "hs"   = Just $ init $ unlines $ helpLines "Tester   : " n hs
-help n "html" = Just $ init $ unlines $ helpLines "Tester   : " n html
-help n "js"   = Just $ init $ unlines $ helpLines "Tester   : " n js
-help n "css"  = Just $ init $ unlines $ helpLines "Tester   : " n css
-help n "php"  = Just $ init $ unlines $ helpLines "Tester   : " n php
-help n "sh"   = Just $ init $ unlines $ helpLines "Tester   : " n sh
-help _ _      = Nothing
+help :: Int -> String -> String -> Maybe String
+help n text "vim"  = Just $ init $ unlines $ helpLines "Tester   : " n text vim
+help n text "py"   = Just $ init $ unlines $ helpLines "Tester   : " n text py
+help n text "hs"   = Just $ init $ unlines $ helpLines "Tester   : " n text hs
+help n text "html" = Just $ init $ unlines $ helpLines "Tester   : " n text html
+help n text "js"   = Just $ init $ unlines $ helpLines "Tester   : " n text js
+help n text "css"  = Just $ init $ unlines $ helpLines "Tester   : " n text css
+help n text "php"  = Just $ init $ unlines $ helpLines "Tester   : " n text php
+help n text "sh"   = Just $ init $ unlines $ helpLines "Tester   : " n text sh
+help _ _    _      = Nothing
 
 
 main = do
-    print $ get 0 "php"
-    print $ get 5 "php"
-    print $ get 0 "invalid"
-    print $ help 0 "php"
-    print $ help 0 "invalid"
+    print $ get 0 "$pete" "php"
+    print $ get 5 "$pete" "php"
+    print $ get 0 "$pete" "invalid"
+    print $ help 0 "$pete" "php"
+    print $ help 0 "$pete" "invalid"

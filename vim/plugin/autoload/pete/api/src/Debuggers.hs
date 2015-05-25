@@ -20,8 +20,9 @@ php  = ["echo '<pre>';\nvar_dump($%s);\nexit;", "print_r($%s);"]
 sh   = ["echo %s"]
 
 
-expand definition = replace "\n" " " expand'
-    where expand' = printf definition "pete" :: String
+expand :: String -> String -> String
+expand text definition = replace "\n" " " expand'
+    where expand' = printf definition text :: String
 
 
 pre' :: Int -> Int -> String -> String
@@ -29,10 +30,10 @@ pre' n m | n == m = ("* Debugger : " ++)
 pre' n m | n /= m = ("  Debugger : " ++)
 
 
-helpLines' :: Int -> [String] -> [String]
-helpLines' n definitions = zipWith prefix [0..] lines
+helpLines' :: Int -> String -> [String] -> [String]
+helpLines' n text definitions = zipWith prefix [0..] lines
     where prefix = pre' n
-          lines  = map expand definitions
+          lines  = map (expand text) definitions
 
 
 format :: Maybe String -> String -> Maybe String
@@ -52,21 +53,21 @@ get n text "sh"   = format (sh   !!! n) text
 get _ _    _      = Nothing
 
 
-help :: Int -> String -> Maybe String
-help n "vim"  = Just $ unlines $ helpLines' n vim
-help n "py"   = Just $ unlines $ helpLines' n py
-help n "hs"   = Just $ unlines $ helpLines' n hs
-help n "html" = Just $ unlines $ helpLines' n html
-help n "js"   = Just $ unlines $ helpLines' n js
-help n "css"  = Just $ unlines $ helpLines' n css
-help n "php"  = Just $ unlines $ helpLines' n php
-help n "sh"   = Just $ unlines $ helpLines' n sh
-help _ _       = Nothing
+help :: Int -> String -> String -> Maybe String
+help n text "vim"  = Just $ unlines $ helpLines' n text vim
+help n text "py"   = Just $ unlines $ helpLines' n text py
+help n text "hs"   = Just $ unlines $ helpLines' n text hs
+help n text "html" = Just $ unlines $ helpLines' n text html
+help n text "js"   = Just $ unlines $ helpLines' n text js
+help n text "css"  = Just $ unlines $ helpLines' n text css
+help n text "php"  = Just $ unlines $ helpLines' n text php
+help n text "sh"   = Just $ unlines $ helpLines' n text sh
+help _ _    _       = Nothing
 
 
 main = do
     print $ get 0 "pete" "hs"
     print $ get 5 "pete" "hs"
     print $ get 0 "pete" "invalid"
-    print $ help 0 "hs"
-    print $ help 0 "invalid"
+    print $ help 0 "pete" "hs"
+    print $ help 0 "pete" "invalid"

@@ -36,30 +36,10 @@ function! pete#main#callCommentHelp()
 endfunction
 
 
-function! pete#main#execute(...)
+function! pete#main#callPath(command, path, ...)
 	try
-		let command = pete#modules#callapi('Execute ', '-')
-		execute command . g:execute_path . pete#modules#getargs(a:000)
-	catch /Invalid/
-		echo 'nothing to to'
-	endtry
-endfunction
-
-
-function! pete#main#make(...)
-	try
-		let command = pete#modules#callapi('Make ', '-')
-		execute command . g:make_path . pete#modules#getargs(a:000)
-	catch /Invalid/
-		echo 'nothing to to'
-	endtry
-endfunction
-
-
-function! pete#main#test(...)
-	try
-		let command = pete#modules#callapi('Test ', '-')
-		execute command . g:test_path . pete#modules#getargs(a:000)
+		let command = pete#modules#callapi(a:command, a:path)
+		execute command . pete#modules#getargs(a:000)
 	catch /Invalid/
 		echo 'nothing to to'
 	endtry

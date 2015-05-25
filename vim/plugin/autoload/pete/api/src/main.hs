@@ -27,14 +27,14 @@ dispath (Just command) (Just modeString) (Just text) (Just ext)
     | command == "Decommentize"        = Comment.decommentize  text ext
     | command == "Switch"              = Comment.switch        text ext
     | command == "CommentHelp"         = Comment.help          text ext
-    | command == "Execute"             = Executors.get  (executeMode mode) ext
-    | command == "ExecuteHelp"         = Executors.help (executeMode mode) ext
-    | command == "Make"                = Makers.get  (makeMode mode)    ext
-    | command == "MakeHelp"            = Makers.help (makeMode mode)    ext
-    | command == "Test"                = Testers.get  (testMode mode)    ext
-    | command == "TestHelp"            = Testers.help (testMode mode)    ext
+    | command == "Execute"             = Executors.get  (executeMode mode) text ext
+    | command == "ExecuteHelp"         = Executors.help (executeMode mode) text ext
+    | command == "Make"                = Makers.get  (makeMode mode)    text ext
+    | command == "MakeHelp"            = Makers.help (makeMode mode)    text ext
+    | command == "Test"                = Testers.get  (testMode mode)    text ext
+    | command == "TestHelp"            = Testers.help (testMode mode)    text ext
     | command == "Debug"               = Debuggers.get  (debugMode mode) text ext
-    | command == "DebugHelp"           = Debuggers.help (debugMode mode) ext
+    | command == "DebugHelp"           = Debuggers.help (debugMode mode) text ext
     | command == "Help"                = Help.line mode text ext
     where mode = createMode modeString
 dispath _ _ _ _ = Nothing
