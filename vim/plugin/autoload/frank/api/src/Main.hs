@@ -10,4 +10,6 @@ main = do
     foundLines <- find findOptions
     awkedLines <- awk mkAwkOptions foundLines
 
-    output $ map (mkEntry root) $ lines awkedLines
+    let entries = map (mkEntry root) $ lines awkedLines
+    indentOutput entries
+    fullOutput entries

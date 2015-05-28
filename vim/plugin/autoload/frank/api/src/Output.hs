@@ -1,6 +1,7 @@
 module Output(
 mkEntry,
-output
+indentOutput,
+fullOutput
 ) where
 
 
@@ -21,19 +22,27 @@ mkEntry root awkedLines = Entry { full = full, name = name, depth = depth, inden
           line   = indent ++ name ++ slash
 
 
-output :: [Entry] -> IO ()
-output (x:y:zs) = do
+indentOutput :: [Entry] -> IO ()
+indentOutput (x:y:zs) = do
     let diff = (depth x) - (depth y)
     let close = if diff > 0 then take diff $ repeat '}' else ""
 
     putStr $ line x
     putStrLn close
 
-    output $ y : zs
+    indentOutput $ y : zs
 
-
-output [x] = do
+indentOutput [x] = do
     let close = if (depth x) /= 1 then take (depth x - 1) $ repeat '}' else ""
 
     putStr $ line x
     putStrLn close
+
+
+fullOutput :: [Entry] -> IO ()
+fullOutput (x:xs) = do
+    putStrLn $ full x
+
+    fullOutput xs
+
+fullOutput [] = return ()
