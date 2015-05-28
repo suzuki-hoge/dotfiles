@@ -1,5 +1,4 @@
 module System(
-Path,
 find,
 mkFindOptions,
 awk,
@@ -9,8 +8,9 @@ mkAwkOptions
 
 import System.Process
 
+import Data
 
-type Path = String
+
 type Black = String
 type Options = [String]
 
