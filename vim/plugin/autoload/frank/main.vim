@@ -1,4 +1,4 @@
-let s:api = $frank . '/api/main '
+let s:api = $frank . '/api/dist/build/frank/frank '
 
 
 " form F
@@ -41,7 +41,7 @@ endfunction
 
 
 function! s:indented(path)
-	return system(s:api . a:path . ' indented')
+	return system(s:api . a:path . ' indent')
 endfunction
 
 

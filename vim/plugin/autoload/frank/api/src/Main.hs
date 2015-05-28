@@ -9,9 +9,7 @@ main = do
     root <- (!! 0) <$> getArgs
     mode <- (!! 1) <$> getArgs
 
-    let findOptions = mkFindOptions root [".git", ".svn", ".vagrant", ".DS_Store", "*.pyc", "dist", ".cabal-sandbox"]
-
-    foundLines <- find findOptions
+    foundLines <- find $ mkFindOptions root [".git", ".svn", ".vagrant", ".DS_Store", "*.pyc", "dist", ".cabal-sandbox"]
     awkedLines <- awk mkAwkOptions foundLines
 
     let entries = map (mkEntry root) $ lines awkedLines

@@ -1,8 +1,8 @@
-let b:stay = 0
-let b:leave = 1
-
-
 function! frank#actions#maps()
+	let b:stay = 0
+	let b:leave = 1
+
+
 	nnoremap <buffer> e :call frank#actions#edit(b:leave)<CR>
 	vnoremap <buffer> e :call frank#actions#edit(b:leave)<CR>
 
@@ -35,7 +35,7 @@ endfunction
 
 function! s:tabedit_(nums)
 	for num in a:nums
-		execute '999tabedit ' . g:full[num]
+		execute '$tabedit ' . g:full[num]
 	endfor
 endfunction
 
