@@ -25,6 +25,8 @@ function! frank#actions#maps()
 
 	nnoremap <buffer> H zM
 	nnoremap <buffer> L :set foldlevel=999<CR>
+
+	nnoremap <buffer> D :let @/='[^ ]*\/'<CR>
 endfunction
 
 
