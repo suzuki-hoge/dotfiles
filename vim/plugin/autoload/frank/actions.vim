@@ -16,6 +16,12 @@ function! frank#actions#maps()
 	nnoremap <buffer> Q :call frank#actions#open('!qlmanage -p', b:stay)<CR>
 
 	nnoremap <buffer> c :call frank#actions#clipboard()<CR>
+
+	nnoremap <buffer> h zc
+	nnoremap <buffer> l zo
+
+	nnoremap <buffer> H zM
+	nnoremap <buffer> L zn
 endfunction
 
 

@@ -59,4 +59,8 @@ function! s:open_frank()
 
 	call frank#actions#maps()
 	source $frank/syntax.vim
+
+	set foldmarker={,}
+	set foldmethod=marker
+	set foldlevel=999
 endfunction
