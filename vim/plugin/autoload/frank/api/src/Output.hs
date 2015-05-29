@@ -18,17 +18,22 @@ mkEntry root awkedLines = Entry { full = full, name = name, depth = depth, inden
           depth  = length $ splitOn "/" path
           indent = take ((depth -1) * 4) $ repeat ' '
           name   = last $ splitOn "/" full
-          slash  = if ftype !! 0 == 'd' then "/{" else ""
+          slash  = if ftype !! 0 == 'd' then "/" else ""
           line   = indent ++ name ++ slash
+
+
+bracket diff
+	| diff > 0 = take diff $ repeat '}'
+	| diff < 0 = "{"
+	| otherwise = ""
 
 
 indentOutput :: [Entry] -> IO ()
 indentOutput (x:y:zs) = do
     let diff = (depth x) - (depth y)
-    let close = if diff > 0 then take diff $ repeat '}' else ""
 
     putStr $ line x
-    putStrLn close
+    putStrLn $ bracket diff
 
     indentOutput $ y : zs
 
