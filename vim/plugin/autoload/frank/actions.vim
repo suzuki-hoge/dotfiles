@@ -20,8 +20,11 @@ function! frank#actions#maps()
 	nnoremap <buffer> h zc
 	nnoremap <buffer> l zo
 
+	vnoremap <buffer> h zc
+	vnoremap <buffer> l zo
+
 	nnoremap <buffer> H zM
-	nnoremap <buffer> L zn
+	nnoremap <buffer> L :set foldlevel=999<CR>
 endfunction
 
 

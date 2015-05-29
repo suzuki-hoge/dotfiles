@@ -60,7 +60,15 @@ function! s:open_frank()
 	call frank#actions#maps()
 	source $frank/syntax.vim
 
-	set foldmarker={,}
-	set foldmethod=marker
-	set foldlevel=999
+	setlocal foldmarker={,}
+	setlocal foldmethod=marker
+	setlocal foldlevel=999
+	setlocal fillchars=vert:\|
+	setlocal foldtext=FoldText()
+endfunction
+
+
+function! FoldText()
+	let line = getline(v:foldstart)
+	return getline(v:foldstart)[:-2]
 endfunction
