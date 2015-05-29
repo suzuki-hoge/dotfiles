@@ -64,11 +64,10 @@ function! s:open_frank()
 	setlocal foldmethod=marker
 	setlocal foldlevel=999
 	setlocal fillchars=vert:\|
-	setlocal foldtext=FoldText()
+	setlocal foldtext=frank#main#foldtext()
 endfunction
 
 
-function! FoldText()
-	let line = getline(v:foldstart)
+function! frank#main#foldtext()
 	return getline(v:foldstart)[:-2]
 endfunction
