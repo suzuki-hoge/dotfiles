@@ -1,6 +1,8 @@
 
 import Text.Printf
 
+import Mode
+
 import Data
 import Haskell
 
@@ -44,3 +46,6 @@ main = do
 
     let def = getDef ext
     putStr $ dispatch command modeString text def ext
+
+
+    print $ createMode "281"
