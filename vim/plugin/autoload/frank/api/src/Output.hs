@@ -10,20 +10,29 @@ import Data.List.Split
 import Data
 
 
+space :: Int -> String
+space n = replicate (n * 4) ' '
+
+
+close :: Int -> String
+close n = replicate n '}'
+
+
 mkEntry :: Path -> String -> Entry
 mkEntry root awkedLines = Entry { full = full, name = name, depth = depth, indent = indent, slash = slash, line = line }
     where ftype  = head $ splitOn " " awkedLines
           full   = last $ splitOn " " awkedLines
           path   = drop (length root) full
           depth  = length $ splitOn "/" path
-          indent = replicate ((depth -1) * 4) ' '
+          indent = space (depth -1)
           name   = last $ splitOn "/" full
           slash  = if head ftype == 'd' then "/" else ""
           line   = indent ++ name ++ slash
 
 
+bracket :: Int -> String
 bracket diff
-	| diff > 0 = replicate diff '}'
+	| diff > 0 = close diff
 	| diff < 0 = "{"
 	| otherwise = ""
 
@@ -38,10 +47,10 @@ indentOutput (x:y:zs) = do
     indentOutput $ y : zs
 
 indentOutput [x] = do
-    let close = if depth x /= 1 then replicate (depth x - 1) '}' else ""
+    let bracket = if depth x /= 1 then close (depth x - 1) else ""
 
     putStr $ line x
-    putStrLn close
+    putStrLn bracket
 
 
 fullOutput :: [Entry] -> IO ()
