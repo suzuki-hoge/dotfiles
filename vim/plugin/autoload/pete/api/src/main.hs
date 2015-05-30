@@ -11,12 +11,12 @@ dispatch command mode text def ext
     | command == "Repl"          = repl def
     | command == "Edit"          = printf "tabedit %s.%s" text ext :: String
     | command == "Options"       = options def !! 0
-    -- | command == "OptionsHelp"   = "a"
+    | command == "OptionsHelp"   = unlines $ options def
     | command == "Commentize"    = commentize   (comment def) text
     | command == "Decommentize"  = decommentize (comment def) text
     | command == "Switch"        = switch       (comment def) text
     | command == "Execute"       = executors def !! 0
-    -- | command == "ExecuteHelp"   = "a"
+    | command == "ExecuteHelp"   = helpLines 1 text (executors def)
     | command == "Tool"          = tools def !! 0
     -- | command == "ToolHelp"      = "a"
     | command == "Debug"         = printf (debuggers def !! 0) text :: String
@@ -25,11 +25,22 @@ dispatch command mode text def ext
 
 getDef "hs" = Haskell.get
 
+
+
+pre n text i | n == i = \s -> "* " ++ s ++ text
+pre n text i | n /= i = \s -> "  " ++ s ++ text
+
+
+helpLines n text definitions = unlines $ zipWith prefix [0..] definitions
+    where prefix = pre n text
+
+
+
 main = do
-    let command    = "Decommentize"
+    let command    = "ExecuteHelp"
     let modeString = "0000"
     let text       = "pete"
     let ext        = "hs"
 
     let def = getDef ext
-    print $ dispatch command modeString text def ext
+    putStr $ dispatch command modeString text def ext
