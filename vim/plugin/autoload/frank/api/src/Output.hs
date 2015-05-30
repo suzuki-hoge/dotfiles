@@ -12,25 +12,25 @@ import Data
 
 mkEntry :: Path -> String -> Entry
 mkEntry root awkedLines = Entry { full = full, name = name, depth = depth, indent = indent, slash = slash, line = line }
-    where ftype  = splitOn " " awkedLines !! 0
-          full   = splitOn " " awkedLines !! 1
+    where ftype  = head $ splitOn " " awkedLines
+          full   = last $ splitOn " " awkedLines
           path   = drop (length root) full
           depth  = length $ splitOn "/" path
-          indent = take ((depth -1) * 4) $ repeat ' '
+          indent = replicate ((depth -1) * 4) ' '
           name   = last $ splitOn "/" full
-          slash  = if ftype !! 0 == 'd' then "/" else ""
+          slash  = if head ftype == 'd' then "/" else ""
           line   = indent ++ name ++ slash
 
 
 bracket diff
-	| diff > 0 = take diff $ repeat '}'
+	| diff > 0 = replicate diff '}'
 	| diff < 0 = "{"
 	| otherwise = ""
 
 
 indentOutput :: [Entry] -> IO ()
 indentOutput (x:y:zs) = do
-    let diff = (depth x) - (depth y)
+    let diff = depth x - depth y
 
     putStr $ line x
     putStrLn $ bracket diff
@@ -38,7 +38,7 @@ indentOutput (x:y:zs) = do
     indentOutput $ y : zs
 
 indentOutput [x] = do
-    let close = if (depth x) /= 1 then take (depth x - 1) $ repeat '}' else ""
+    let close = if depth x /= 1 then replicate (depth x - 1) '}' else ""
 
     putStr $ line x
     putStrLn close

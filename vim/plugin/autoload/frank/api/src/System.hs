@@ -20,11 +20,11 @@ find options = readProcess "find" options []
 
 
 mkFindOptions :: Path -> [Black] -> Options
-mkFindOptions path blackNames = [path] ++ (blacks blackNames) ++ ["-ls"]
+mkFindOptions path blackNames = [path] ++ blacks blackNames ++ ["-ls"]
 
 
 awk :: Options -> String -> IO String
-awk options stdin = readProcess "awk" options stdin
+awk = readProcess "awk"
 
 mkAwkOptions :: Options
 mkAwkOptions = ["{ print $3,$11 }"]

@@ -9,6 +9,9 @@ main = do
     root <- (!! 0) <$> getArgs
     mode <- (!! 1) <$> getArgs
 
+    let root = "/Users/ryo/.dotfiles/vim/plugin/autoload/frank"
+    let mode = "indent"
+
     foundLines <- find $ mkFindOptions root [".git", ".svn", ".vagrant", ".DS_Store", "*.pyc", "dist", ".cabal-sandbox"]
     awkedLines <- awk mkAwkOptions foundLines
 
