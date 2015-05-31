@@ -1,6 +1,6 @@
 module Mode
 (Mode(..),
-createMode
+create
 ) where
 
 
@@ -8,17 +8,17 @@ import Data.Char
 
 
 data Mode = Mode {
-    executeMode :: Int,
-    toolMode    :: Int,
-    debugMode   :: Int
+    execute :: Int,
+    tool    :: Int,
+    debug   :: Int
 } deriving (Show)
 
 
 toInt c = ord c - 48
 
 
-createMode str = Mode {
-    executeMode = toInt $ str !! 0,
-    toolMode    = toInt $ str !! 1,
-    debugMode   = toInt $ str !! 2
+create str = Mode {
+    execute = toInt $ str !! 0,
+    tool    = toInt $ str !! 1,
+    debug   = toInt $ str !! 2
 }

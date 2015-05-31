@@ -17,12 +17,13 @@ dispatch command mode text def ext
     | command == "Commentize"    = commentize   (comment def) text
     | command == "Decommentize"  = decommentize (comment def) text
     | command == "Switch"        = switch       (comment def) text
-    | command == "Execute"       = executors def !! 0
-    | command == "ExecuteHelp"   = helpLines 1 text (executors def)
+    | command == "Execute"       = executors def !! executeMode
+    | command == "ExecuteHelp"   = helpLines executeMode text (executors def)
     | command == "Tool"          = tools def !! 0
     -- | command == "ToolHelp"      = "a"
     | command == "Debug"         = printf (debuggers def !! 0) text :: String
     -- | command == "DebugHelp"     = "a"
+    where executeMode = execute mode
     
 
 getDef "hs" = Haskell.get
@@ -40,12 +41,9 @@ helpLines n text definitions = unlines $ zipWith prefix [0..] definitions
 
 main = do
     let command    = "ExecuteHelp"
-    let modeString = "0000"
+    let mode       = create "100"
     let text       = "pete"
     let ext        = "hs"
 
     let def = getDef ext
-    putStr $ dispatch command modeString text def ext
-
-
-    print $ createMode "281"
+    putStr $ dispatch command mode text def ext
