@@ -14,9 +14,11 @@ data Mode = Mode {
 } deriving (Show)
 
 
+toInt :: Char -> Int
 toInt c = ord c - 48
 
 
+create :: String -> Mode
 create str = Mode {
     execute = toInt $ str !! 0,
     tool    = toInt $ str !! 1,

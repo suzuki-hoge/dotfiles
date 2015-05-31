@@ -1,15 +1,19 @@
 module Data(
 Definition(..),
-Comment
+Comment,
+Contents
 ) where
 
+
 type Comment = (String, String)
+type Contents = [String]
+
 
 data Definition = Definition {
     repl      :: String,
-    options   :: [String],
+    options   :: Contents,
     comment   :: Comment,
-    executors :: [String],
-    tools     :: [String],
-    debuggers :: [String]
+    executors :: Contents,
+    tools     :: Contents,
+    debuggers :: Contents
 } deriving (Show)
