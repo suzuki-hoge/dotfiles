@@ -19,8 +19,8 @@ dispatch command mode text definition ext
     | command == "Commentize"    = commentize   text $ comment definition
     | command == "Decommentize"  = decommentize text $ comment definition
     | command == "Switch"        = switch       text $ comment definition
-    | command == "Execute"       = executors definition !! executeMode
-    | command == "Tool"          = tools definition !! toolMode
+    | command == "Execute"       = executors definition !! executeMode ++ text
+    | command == "Tool"          = tools definition !! toolMode ++ text
     | command == "Debug"         = printf (debuggers definition !! debugMode) text
     | command == "ToolHelp"      = helpLines toolMode    text $ tools     definition
     | command == "ExecuteHelp"   = helpLines executeMode text $ executors definition
