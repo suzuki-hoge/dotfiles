@@ -23,7 +23,7 @@ endfunction
 
 
 function! s:getMode()
-	return g:execute_mode . g:make_mode . g:tool_mode . g:debug_mode . ' '
+	return g:execute_mode . g:tool_mode . g:debug_mode . ' '
 endfunction
 
 

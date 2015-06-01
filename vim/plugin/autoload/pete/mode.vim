@@ -7,15 +7,6 @@ function! pete#mode#execute(...)
 endfunction
 
 
-function! pete#mode#make(...)
-	if a:0 == 1
-		let g:make_mode = a:1
-	endif
-
-	execute 'MH'
-endfunction
-
-
 function! pete#mode#tool(...)
 	if a:0 == 1
 		let g:tool_mode = a:1
