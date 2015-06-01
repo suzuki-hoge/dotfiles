@@ -6,7 +6,14 @@ import Control.Exception
 import Mode
 
 import Data
+import Vim
+import Python
 import Haskell
+import Shell
+import Php
+import Html
+import JavaScript
+import Css
 
 import Comment
 
@@ -33,7 +40,14 @@ dispatch command mode text definition ext
 
 getDefinition :: String -> Definition
 getDefinition ext
-    | ext == "hs" = Haskell.get
+    | ext == "vim"  = Vim.get
+    | ext == "py"   = Python.get
+    | ext == "hs"   = Haskell.get
+    | ext == "sh"   = Shell.get
+    | ext == "php"  = Php.get
+    | ext == "html" = Html.get
+    | ext == "js"   = JavaScript.get
+    | ext == "css"  = Css.get
 
 
 pre :: Int -> String -> Int -> (String -> String)
