@@ -12,10 +12,10 @@ function! pete#path#make(...)
 endfunction
 
 
-function! pete#path#test(...)
-	let g:test_path = s:getPath(a:000)
+function! pete#path#tool(...)
+	let g:tool_path = s:getPath(a:000)
 
-	echo 'current test path : ' . g:test_path
+	echo 'current tool path : ' . g:tool_path
 endfunction
 
 

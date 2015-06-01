@@ -1,3 +1,5 @@
+import Control.Applicative
+import System.Environment(getArgs)
 import Text.Printf
 import Control.Exception
 
@@ -22,10 +24,11 @@ dispatch command mode text definition ext
     | command == "Debug"         = printf (debuggers definition !! debugMode) text
     | command == "ToolHelp"      = helpLines toolMode    text $ tools     definition
     | command == "ExecuteHelp"   = helpLines executeMode text $ executors definition
-    | command == "DebugHelp"     = helpLines debugMode   text $ debuggers definition
+    | command == "DebugHelp"     = helpLines debugMode "" formated
     where executeMode = execute mode
           toolMode    = tool mode
           debugMode   = debug mode
+          formated    = map (\def -> printf def "pete" :: String) $ debuggers definition
     
 
 getDefinition :: String -> Definition
@@ -45,10 +48,10 @@ helpLines mode text contents = unlines $ zipWith prefix [0..] contents
 
 call :: IO ()
 call = do
-    let command    = "Toollll"
-    let mode       = create "333"
-    let text       = "pete"
-    let ext        = "hs"
+    command <- (!! 0) <$> getArgs
+    mode    <- create <$> (!! 1) <$> getArgs
+    text    <- (!! 2) <$> getArgs
+    ext     <- (!! 3) <$> getArgs
 
     let definition = getDefinition ext
 

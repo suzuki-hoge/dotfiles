@@ -12,5 +12,5 @@ get = Definition {
     comment   = ("-- ", ""),
     executors = ["!cabal run ", "!runhaskell "],
     tools     = ["!hlint ", "!cabal configure | cabal build "],
-    debuggers = ["print %s"]
+    debuggers = ["print %s", "putStr %s"]
 }

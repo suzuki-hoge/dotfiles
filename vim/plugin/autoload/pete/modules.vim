@@ -23,7 +23,7 @@ endfunction
 
 
 function! s:getMode()
-	return g:execute_mode . g:make_mode . g:test_mode . g:debug_mode . ' '
+	return g:execute_mode . g:make_mode . g:tool_mode . g:debug_mode . ' '
 endfunction
 
 
@@ -39,12 +39,4 @@ endfunction
 function! pete#modules#escape(text)
 	let s = substitute(a:text, "\\$", "\\\\$", "g")
 	return substitute(s, '"', '\\"', "g")
-endfunction
-
-
-function! pete#modules#editPete()
-	let files = ['Repl', 'Edit', 'Options', 'Comment', 'Executors', 'Makers', 'Testers', 'Debuggers', 'Help']
-	for file in files
-		execute 'tabedit $pete/api/src/' . file . '.hs'
-	endfor
 endfunction

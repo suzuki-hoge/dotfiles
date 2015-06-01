@@ -16,9 +16,9 @@ function! pete#mode#make(...)
 endfunction
 
 
-function! pete#mode#test(...)
+function! pete#mode#tool(...)
 	if a:0 == 1
-		let g:test_mode = a:1
+		let g:tool_mode = a:1
 	endif
 
 	execute 'TH'
