@@ -78,5 +78,6 @@ cover _ = do
     putStr "invalid"
     return ()
 
+
 main = do
     call `catch` cover

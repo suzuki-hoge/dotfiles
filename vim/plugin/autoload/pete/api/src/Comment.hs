@@ -22,8 +22,8 @@ commentize text (head, tail) = head ++ text ++ tail
 
 decommentize :: String -> Comment -> String
 decommentize text comment
-    | is text comment == True  = subRegex (mkRegex' comment) text "\\1\\2"
-    | is text comment == False = text
+    |      is text comment  = subRegex (mkRegex' comment) text "\\1\\2"
+    | not (is text comment) = text
 
 
 mkRegex' :: Comment -> Regex
@@ -33,5 +33,5 @@ mkRegex' (head, tail) = mkRegex reg
 
 switch :: String -> Comment -> String
 switch text comment
-    | is text comment == True  = decommentize text comment
-    | is text comment == False = commentize   text comment
+    |      is text comment  = decommentize text comment
+    | not (is text comment) = commentize   text comment
