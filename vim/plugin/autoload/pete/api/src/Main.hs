@@ -5,15 +5,15 @@ import Control.Exception
 
 import Mode
 
-import Data
-import Vim
-import Python
-import Haskell
-import Shell
-import Php
-import Html
-import JavaScript
-import Css
+import Definition.Data
+import Definition.Vim
+import Definition.Python
+import Definition.Haskell
+import Definition.Shell
+import Definition.Php
+import Definition.Html
+import Definition.JavaScript
+import Definition.Css
 
 import Comment
 
@@ -40,14 +40,14 @@ dispatch command mode text definition ext
 
 getDefinition :: String -> Definition
 getDefinition ext
-    | ext == "vim"  = Vim.get
-    | ext == "py"   = Python.get
-    | ext == "hs"   = Haskell.get
-    | ext == "sh"   = Shell.get
-    | ext == "php"  = Php.get
-    | ext == "html" = Html.get
-    | ext == "js"   = JavaScript.get
-    | ext == "css"  = Css.get
+    | ext == "vim"  = Definition.Vim.get
+    | ext == "py"   = Definition.Python.get
+    | ext == "hs"   = Definition.Haskell.get
+    | ext == "sh"   = Definition.Shell.get
+    | ext == "php"  = Definition.Php.get
+    | ext == "html" = Definition.Html.get
+    | ext == "js"   = Definition.JavaScript.get
+    | ext == "css"  = Definition.Css.get
 
 
 pre :: Int -> String -> Int -> (String -> String)

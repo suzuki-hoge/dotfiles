@@ -1,9 +1,9 @@
-module JavaScript(
+module Definition.JavaScript(
 get
 ) where
 
 
-import Data
+import Definition.Data
 
 
 get = Definition {

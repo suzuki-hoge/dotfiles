@@ -1,4 +1,4 @@
-let s:api = $frank . '/api/dist/build/frank/frank.bup '
+let s:api = $frank . '/api/dist/build/frank/frank '
 
 
 " form F

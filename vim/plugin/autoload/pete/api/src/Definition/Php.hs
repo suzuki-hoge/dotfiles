@@ -1,9 +1,9 @@
-module Php(
+module Definition.Php(
 get
 ) where
 
 
-import Data
+import Definition.Data
 
 
 get = Definition {

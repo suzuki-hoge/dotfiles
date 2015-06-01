@@ -1,9 +1,9 @@
-module Python(
+module Definition.Python(
 get
 ) where
 
 
-import Data
+import Definition.Data
 
 
 get = Definition {

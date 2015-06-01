@@ -1,4 +1,4 @@
-module Data(
+module Definition.Data(
 Definition(..),
 Comment,
 Contents

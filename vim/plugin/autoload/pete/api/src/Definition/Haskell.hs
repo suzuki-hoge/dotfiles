@@ -1,9 +1,9 @@
-module Haskell(
+module Definition.Haskell(
 get
 ) where
 
 
-import Data
+import Definition.Data
 
 
 get = Definition {

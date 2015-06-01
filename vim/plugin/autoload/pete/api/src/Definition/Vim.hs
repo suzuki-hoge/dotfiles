@@ -1,9 +1,9 @@
-module Vim(
+module Definition.Vim(
 get
 ) where
 
 
-import Data
+import Definition.Data
 
 
 get = Definition {

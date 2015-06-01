@@ -1,16 +1,16 @@
-module Html(
+module Definition.Css(
 get
 ) where
 
 
-import Data
+import Definition.Data
 
 
 get = Definition {
     repl      = "",
     options   = [],
-    comment   = ("<!-- ", " -->"),
+    comment   = ("// ", ""),
     executors = [],
     tools     = ["Reload "],
-    debuggers = ["<p>%s</p>"]
+    debuggers = ["%s"]
 }

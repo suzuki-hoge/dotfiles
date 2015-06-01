@@ -1,9 +1,9 @@
-module Shell(
+module Definition.Shell(
 get
 ) where
 
 
-import Data
+import Definition.Data
 
 
 get = Definition {

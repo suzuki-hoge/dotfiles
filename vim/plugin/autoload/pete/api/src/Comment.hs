@@ -9,7 +9,7 @@ import Text.Regex
 import Text.Regex.Posix
 import Text.Printf
 
-import Data
+import Definition.Data
 
 
 is :: String -> Comment -> Bool
