@@ -17,13 +17,11 @@ augroup END
 
 " pete
 let g:execute_mode = 0
-let g:make_mode = 0
-let g:tool_mode = 0
-let g:debug_mode = 0
+let g:tool_mode    = 0
+let g:debug_mode   = 0
 
 let g:execute_path = '%'
-let g:make_path = '%'
-let g:tool_path = '%'
+let g:tool_path    = '%'
 
 nnoremap ÷ :call pete#main#comment('Commentize')<CR>
 vnoremap ÷ :call pete#main#comment('Commentize')<CR>
