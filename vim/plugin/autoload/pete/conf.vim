@@ -21,6 +21,6 @@ function! pete#conf#default()
 	let g:tool_mode    = 0
 	let g:debug_mode   = 0
 
-	let g:execute_path = '%'
+	let g:execute_path = ''
 	let g:tool_path    = '%'
 endfunction
