@@ -10,7 +10,7 @@ get = Definition {
     repl      = "!cabal repl",
     options   = ["set expandtab"],
     comment   = ("-- ", ""),
-    executors = ["!cabal run ", "!runhaskell "],
-    tools     = ["!hlint ", "!cabal configure | cabal build "],
+    executors = ["!cabal run ", "!runhaskell ", "!cabal exec runghc "],
+    tools     = ["!hlint ", "!cabal configure | cabal build ", "!cabal exec ghc -- --make "],
     debuggers = ["print %s", "putStr %s"]
 }
