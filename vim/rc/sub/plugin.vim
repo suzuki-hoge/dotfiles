@@ -3,11 +3,13 @@
 " todo
 source $plugin/autoload/todo/configure.vim
 
+
 " frank
 command! -nargs=? -complete=dir F           call frank#main#open(<f-args>)
 command!                        FL          call frank#launcher#selector()
 command!                        FP          call frank#launcher#current_project()
 command!                        FLConfigure call frank#launcher#configure()
+
 
 " complete
 augroup regex_complete
@@ -15,15 +17,20 @@ augroup regex_complete
 	autocmd BufEnter * :set completefunc=complete#main#func
 augroup END
 
+
 " pete
+augroup pete_conf
+	autocmd!
+	autocmd BufEnter * :call pete#conf#read()
+augroup END
+
+
 let g:execute_mode = 0
-let g:make_mode = 0
-let g:tool_mode = 0
-let g:debug_mode = 0
+let g:tool_mode    = 0
+let g:debug_mode   = 0
 
 let g:execute_path = '%'
-let g:make_path = '%'
-let g:tool_path = '%'
+let g:tool_path    = '%'
 
 nnoremap ÷ :call pete#main#comment('Commentize')<CR>
 vnoremap ÷ :call pete#main#comment('Commentize')<CR>
