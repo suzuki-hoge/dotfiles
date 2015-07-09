@@ -4,7 +4,7 @@ import os
 import commands
 import argparse
 
-parser = argparse.ArgumentParser(description = '')
+parser = argparse.ArgumentParser(description = 'status switcher for vagrant machine')
 args = parser.parse_args()
 
 status = commands.getoutput('vagrant status')
