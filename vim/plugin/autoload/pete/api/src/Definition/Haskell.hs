@@ -11,6 +11,6 @@ get = Definition {
     options   = ["set expandtab"],
     comment   = ("-- ", ""),
     executors = ["!cabal run ", "!runhaskell ", "!cabal exec runghc "],
-    tools     = ["!hlint ", "!cabal configure | cabal build ", "!cabal exec ghc -- --make "],
+    tools     = ["!hlint ", "!cabal configure | cabal build ", "!cabal exec ghc -- --make ", "Reload "],
     debuggers = ["print %s", "putStr %s"]
 }
