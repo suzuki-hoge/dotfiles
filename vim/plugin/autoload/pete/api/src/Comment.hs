@@ -13,7 +13,7 @@ import Definition.Data
 
 
 is :: String -> Comment -> Bool
-is text (head, tail) = text =~ ("^[ |\t]*" ++ head ++ ".*" ++ tail ++ "[ |\t]*$")
+is text (head, tail) = text =~ ("^[ |\t]*" ++ (escape head) ++ ".*" ++ tail ++ "[ |\t]*$")
 
 
 commentize :: String -> Comment -> String
@@ -28,10 +28,16 @@ decommentize text comment
 
 mkRegex' :: Comment -> Regex
 mkRegex' (head, tail) = mkRegex reg
-    where reg = printf "^([ |\t]*)%s|%s([ |\t]*)$" head tail :: String
+    where reg = printf "^([ |\t]*)%s|%s([ |\t]*)$" (escape head) tail :: String
 
 
 switch :: String -> Comment -> String
 switch text comment
     |      is text comment  = decommentize text comment
     | not (is text comment) = commentize   text comment
+
+
+escape :: String -> String
+escape str = case str of
+    "$# " -> "\\$# "
+    s     -> s

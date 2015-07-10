@@ -11,6 +11,6 @@ get = Definition {
     options   = [],
     comment   = ("# ", ""),
     executors = ["!python -B "],
-    tools     = ["Reload "],
+    tools     = ["!Reload "],
     debuggers = ["print %s"]
 }

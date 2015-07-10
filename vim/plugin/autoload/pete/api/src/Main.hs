@@ -8,6 +8,7 @@ import Mode
 import Definition.Data
 import Definition.Vim
 import Definition.Python
+import Definition.Hamlet
 import Definition.Haskell
 import Definition.Shell
 import Definition.Php
@@ -40,14 +41,18 @@ dispatch command mode text definition ext
 
 getDefinition :: String -> Definition
 getDefinition ext
-    | ext == "vim"  = Definition.Vim.get
-    | ext == "py"   = Definition.Python.get
-    | ext == "hs"   = Definition.Haskell.get
-    | ext == "sh"   = Definition.Shell.get
-    | ext == "php"  = Definition.Php.get
-    | ext == "html" = Definition.Html.get
-    | ext == "js"   = Definition.JavaScript.get
-    | ext == "css"  = Definition.Css.get
+    | ext == "vim"     = Definition.Vim.get
+    | ext == "py"      = Definition.Python.get
+    | ext == "hs"      = Definition.Haskell.get
+    | ext == "sh"      = Definition.Shell.get
+    | ext == "php"     = Definition.Php.get
+    | ext == "html"    = Definition.Html.get
+    | ext == "hamlet"  = Definition.Hamlet.get
+    | ext == "js"      = Definition.JavaScript.get
+    | ext == "julius"  = Definition.JavaScript.get
+    | ext == "css"     = Definition.Css.get
+    | ext == "cassius" = Definition.Css.get
+    | ext == "lucius"  = Definition.Css.get
 
 
 pre :: Int -> String -> Int -> (String -> String)

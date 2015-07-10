@@ -11,6 +11,6 @@ get = Definition {
     options   = [],
     comment   = ("// ", ""),
     executors = [],
-    tools     = ["Reload "],
+    tools     = ["!Reload "],
     debuggers = ["console.log(%s);"]
 }
