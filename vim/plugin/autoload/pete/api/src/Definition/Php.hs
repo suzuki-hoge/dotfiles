@@ -11,6 +11,6 @@ get = Definition {
     options   = [],
     comment   = ("// ", ""),
     executors = ["!php "],
-    tools     = ["!Reload "],
+    tools     = ["Reload "],
     debuggers = ["echo '<pre>';\nvar_dump($%s);\nexit;"]
 }

@@ -11,6 +11,6 @@ get = Definition {
     options   = ["set expandtab", "set shiftwidth=4"],
     comment   = ("$# ", ""),
     executors = [],
-    tools     = ["!Reload "],
+    tools     = ["Reload "],
     debuggers = [""]
 }
