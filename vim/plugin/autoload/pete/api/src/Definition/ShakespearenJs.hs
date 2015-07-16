@@ -1,4 +1,4 @@
-module Definition.JavaScript(
+module Definition.ShakespearenJs(
 get
 ) where
 
@@ -8,7 +8,7 @@ import Definition.Data
 
 get = Definition {
     repl      = "",
-    options   = [],
+    options   = ["set expandtab"],
     comment   = ("// ", ""),
     executors = ["Reload "],
     tools     = ["Reload "],

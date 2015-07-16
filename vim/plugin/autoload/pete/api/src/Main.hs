@@ -15,6 +15,8 @@ import Definition.Php
 import Definition.Html
 import Definition.JavaScript
 import Definition.Css
+import Definition.ShakespearenJs
+import Definition.ShakespearenCss
 
 import Comment
 
@@ -49,10 +51,10 @@ getDefinition ext
     | ext == "html"    = Definition.Html.get
     | ext == "hamlet"  = Definition.Hamlet.get
     | ext == "js"      = Definition.JavaScript.get
-    | ext == "julius"  = Definition.JavaScript.get
+    | ext == "julius"  = Definition.ShakespearenJs.get
     | ext == "css"     = Definition.Css.get
-    | ext == "cassius" = Definition.Css.get
-    | ext == "lucius"  = Definition.Css.get
+    | ext == "cassius" = Definition.ShakespearenCss.get
+    | ext == "lucius"  = Definition.ShakespearenCss.get
 
 
 pre :: Int -> String -> Int -> (String -> String)

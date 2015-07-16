@@ -10,7 +10,7 @@ get = Definition {
     repl      = "",
     options   = [],
     comment   = ("<!-- ", " -->"),
-    executors = [],
+    executors = ["Reload "],
     tools     = ["Reload "],
     debuggers = ["<p>%s</p>"]
 }

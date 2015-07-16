@@ -1,4 +1,4 @@
-module Definition.JavaScript(
+module Definition.ShakespearenCss(
 get
 ) where
 
@@ -8,9 +8,9 @@ import Definition.Data
 
 get = Definition {
     repl      = "",
-    options   = [],
+    options   = ["set expandtab"],
     comment   = ("// ", ""),
     executors = ["Reload "],
     tools     = ["Reload "],
-    debuggers = ["console.log(%s);"]
+    debuggers = ["%s"]
 }
