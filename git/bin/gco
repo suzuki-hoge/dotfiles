@@ -4,7 +4,9 @@ import os
 import argparse
 
 parser = argparse.ArgumentParser(description = 'alias git checkout "target"')
+parser.add_argument('-b', '--branch',  default = False, action = 'store_true', help = 'add option -b')
 parser.add_argument('target', action = 'store', help = 'branch name or file name')
 args = parser.parse_args()
 
-os.system('git checkout "%s"' % args.target)
+branch = ' -b' if args.branch else ''
+os.system('git checkout%s "%s"' % (branch, args.target))
