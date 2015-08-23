@@ -10,7 +10,7 @@ get = Definition {
     repl      = "",
     options   = ["set expandtab", "set shiftwidth=4"],
     comment   = ("$# ", ""),
-    executors = [],
+    executors = ["Reload "],
     tools     = ["Reload "],
     debuggers = [""]
 }

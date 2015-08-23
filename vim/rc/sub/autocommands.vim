@@ -9,4 +9,8 @@ augroup subrc
 	autocmd BufEnter *.lucius setlocal filetype=css
 	autocmd BufEnter *.cassius setlocal filetype=css
 	autocmd BufEnter *.julius setlocal filetype=javascript
+	autocmd BufEnter *.hamlet O
+	autocmd BufEnter *.lucius O
+	autocmd BufEnter *.cassius O
+	autocmd BufEnter *.julius O
 augroup END
