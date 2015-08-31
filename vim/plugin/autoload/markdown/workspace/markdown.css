@@ -5,8 +5,23 @@ html, body {
     height: 100%;
 }
 
+#nav {
+	position: fixed;
+	top: 0;
+	left: 13px;
+	right: 13px;
+}
+
+#content {
+	position: fixed;
+	top: 90px;
+	left: 13px;
+	right: 13px;
+	bottom: 0;
+}
+
 h2 {
-	margin: 8px 0;
+	margin: 13px 0 5px 0;
 }
 
 #editing {
@@ -17,7 +32,7 @@ h2 {
     margin: 0;
 
     font-family:'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
-    font-size: 12px;
+    font-size: 14px;
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
          -o-box-sizing: border-box;
@@ -34,5 +49,5 @@ h2 {
     background-color: #EEE;
 
     font-family:'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
-    font-size: 12px;
+    font-size: 14px;
 }

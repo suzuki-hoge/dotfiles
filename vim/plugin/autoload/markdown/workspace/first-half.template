@@ -15,5 +15,11 @@
 		<script src="markdown.js"></script>
 	</head>
 	<body>
-		<h2>Markdown Editor</h2>
-		<textarea id="editing" placeholder="input markdown text">
+		<div id="nav">
+			<h2>Markdown Editor</h2>
+			<button id="hide">&lt;&lt;</button>
+			<button id="show" style="display: none;">&gt;&gt;</button>
+		</div>
+
+		<div id="content">
+			<textarea id="editing" placeholder="input markdown text">

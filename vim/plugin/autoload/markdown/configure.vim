@@ -1,5 +1,5 @@
-augroup todo
+augroup markdown
 	autocmd!
-	autocmd BufEnter  *.todo source $plugin/autoload/todo/syntax.vim
-	autocmd FileType todo source $plugin/autoload/todo/syntax.vim
+	autocmd BufWritePost editing.md call markdown#main#update() | Reload
+	autocmd BufEnter  editing.md set ft=markdown
 augroup END
