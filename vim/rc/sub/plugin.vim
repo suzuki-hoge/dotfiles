@@ -60,3 +60,5 @@ command! -nargs=? TM call pete#mode#tool(<f-args>)
 command! -nargs=? -complete=file WP call pete#path#execute(<f-args>)
 command! -nargs=? -complete=file MP call pete#path#make(<f-args>)
 command! -nargs=? -complete=file TP call pete#path#tool(<f-args>)
+
+command! MarkdownEditor call markdown#window#open()

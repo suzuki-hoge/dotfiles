@@ -23,9 +23,10 @@ let $blog = $HOME . '/Dropbox/todos/blog.todo'
 let $draft = $tmp . '/draft.html'
 
 " plugins
-let $plugin = $dot . '/vim/plugin'
-let $frank  = $plugin . '/autoload/frank'
-let $pete   = $plugin . '/autoload/pete'
+let $plugin   = $dot . '/vim/plugin'
+let $frank    = $plugin . '/autoload/frank'
+let $pete     = $plugin . '/autoload/pete'
+let $markdown = $plugin . '/autoload/markdown'
 
 " import vimsubs
 source $vimsubs/autocommands.vim
