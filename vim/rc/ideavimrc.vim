@@ -35,3 +35,8 @@
   " switch
   nnoremap gh gT
   nnoremap gl gt
+
+" jump
+  " switch
+  nnoremap tl <C-]>
+  nnoremap th <C-t>
