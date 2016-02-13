@@ -66,3 +66,7 @@ command! -nargs=? -complete=file MP call pete#path#make(<f-args>)
 command! -nargs=? -complete=file TP call pete#path#tool(<f-args>)
 
 command! MarkdownEditor call markdown#main#open()
+
+" table-converter
+let g:table_converter_root_path = '/Users/ryo/Development/vim/table-converter'
+source /Users/ryo/Development/vim/table-converter/vim/commands.vim
