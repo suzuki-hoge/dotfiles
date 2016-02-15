@@ -12,6 +12,9 @@ SAVEHIST=100000
 # 重複させない
 setopt HIST_IGNORE_DUPS
 
+# 履歴を共有する
+setopt share_history
+
 # 履歴をさかのぼる
 bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward

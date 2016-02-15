@@ -2,3 +2,17 @@
 
 # コマンドラインスタック
 bindkey '^U' push-line
+
+# エディタに移行
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^[e' edit-command-line
+
+# viのfとF
+bindkey '^[f' vi-find-next-char
+bindkey '^[F' vi-find-prev-char
+
+# 直前の単語を挿入
+autoload smart-insert-last-word
+zle -N insert-last-word smart-insert-last-word
+zstyle :insert-last-word match '*([^[:space:]][[:alpha:]/\\]|[[:alpha:]/\\][^[:space:]])*'
