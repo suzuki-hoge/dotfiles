@@ -19,10 +19,8 @@ alias gcop="git branch | percol --match-method regex | cut -c2- | xargs git chec
 alias gplp="git branch | percol --match-method regex | cut -c2- | xargs git pull origin"
 alias gpsp="git branch | percol --match-method regex | cut -c2- | xargs git push origin"
 alias gbdp="git branch | percol --match-method regex | cut -c2- | xargs git branch -D"
-#alias grvp="git branch -r | percol --match-method regex | cut -c2- | xargs git checkout -b reviewing"
-#alias gprp="prfetch | percol --match-method regex | cut -f3 | xargs git checkout"
-alias grvp="git fecth --prune > /dev/null 2>&1; git branch -r | percol --match-method regex | cut -c2- | xargs git checkout -B reviewing"
-alias gprp="prfetch | percol --match-method regex | cut -f3 | xargs -I{} git checkout -B reviewing origin/{} > /dev/null 2>&1"
+alias grvp="git fetch --prune > /dev/null 2>&1; git branch -r | percol --match-method regex | cut -c2- | xargs git checkout -B reviewing"
+alias gprp="git fetch --prune > /dev/null 2>&1; prfetch | percol --match-method regex | cut -f3 | xargs -I{} git checkout -B reviewing origin/{}"
 
 alias vi="/Applications/MacVim.app/Contents/MacOS/Vim"
 alias view="/Applications/MacVim.app/Contents/MacOS/view"
