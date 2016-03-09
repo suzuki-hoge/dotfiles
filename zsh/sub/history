@@ -27,3 +27,9 @@ function percol_select_history() {
 }
 zle -N percol_select_history
 bindkey '^O' percol_select_history
+
+# 実行履歴をクリップボードにコピーする
+function hiscp() {
+ local HISTORIES="`history -n 1 | percol --match-method regex`"
+ echo $HISTORIES | pbcopy
+}
