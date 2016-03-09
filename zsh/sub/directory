@@ -45,6 +45,14 @@ function cdpr() {
  cd $ROOT/$TARGET
 }
 
+# [rec-find-percol] 移動
+function fcdpr() {
+ local ROOT=`_lib_currentOr $1`
+ local DEPTH=`_lib_maxOr $2`
+ local TARGET=`_lib_recffind $ROOT $DEPTH`
+ cd $(dirname $ROOT/$TARGET)
+}
+
 # [percol] リストから移動
 function dirs() {
  cd `cat ~/.dotfiles/zsh/directories | percol --match-method regex`
