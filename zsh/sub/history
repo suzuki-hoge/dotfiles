@@ -21,7 +21,7 @@ bindkey '^N' history-beginning-search-forward
 
 # 実行履歴一覧からコマンドを選択して実行する
 function percol_select_history() {
- BUFFER=`history -n 1 | tail -r | percol --match-method regex --query "$LBUFFER"`
+ BUFFER=`history -n 1 | awk '!a[$0]++' | tail -r | percol --match-method regex --query "$LBUFFER"`
  CURSOR=$#BUFFER
  zle clear-screen
 }
@@ -30,6 +30,6 @@ bindkey '^O' percol_select_history
 
 # 実行履歴をクリップボードにコピーする
 function hiscp() {
- local HISTORIES="`history -n 1 | percol --match-method regex`"
+ local HISTORIES="`history -n 1 | awk '!a[$0]++' | tail -r | percol --match-method regex`"
  echo $HISTORIES | pbcopy
 }
