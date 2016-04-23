@@ -3,10 +3,19 @@
 import os
 import argparse
 
-parser = argparse.ArgumentParser(description = 'alias git checkout "target"')
+parser = argparse.ArgumentParser(description = 'alias git checkout (-b) (feature/)target (origin/feature/target)')
 parser.add_argument('-b', '--branch',  default = False, action = 'store_true', help = 'add option -b')
+parser.add_argument('-f', '--feature', default = False, action = 'store_true', help = 'add feature/ before branch-name')
+parser.add_argument('-o', '--origin',  default = False, action = 'store_true', help = 'fetch from origin')
 parser.add_argument('target', action = 'store', help = 'branch name or file name')
 args = parser.parse_args()
 
-branch = ' -b' if args.branch else ''
-os.system('git checkout%s "%s"' % (branch, args.target))
+option  = '-b'       if args.branch  else ''
+feature = 'feature/' if args.feature else ''
+origin  = 'origin/'  if args.origin  else ''
+target  = args.target
+
+if args.origin:
+	os.system('git checkout %(option)s %(feature)s%(target)s %(origin)s%(feature)s%(target)s' % locals())
+else:
+	os.system('git checkout %(option)s %(feature)s%(target)s' % locals())

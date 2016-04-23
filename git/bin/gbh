@@ -4,7 +4,7 @@ import os
 import argparse
 
 parser = argparse.ArgumentParser(description = 'alias git branch (--all)')
-parser.add_argument('-a', '--all',  default = False, action = 'store_true', help = 'add option --all')
+parser.add_argument('-a', '--all', default = False, action = 'store_true', help = 'add option --all')
 args = parser.parse_args()
 
 all = ' --all' if args.all else ''
