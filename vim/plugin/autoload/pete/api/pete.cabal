@@ -5,10 +5,10 @@ name:                pete
 version:             0.1.0.0
 synopsis:            command line tool, called by vimscript.
 -- description:         
-homepage:            https://github.com/tenshiPure/dotfiles/tree/master/vim/plugin/autoload/pete/api
+homepage:            https://github.com/suzuki-hoge/dotfiles/tree/master/vim/plugin/autoload/pete/api
 license:             BSD3
 license-file:        LICENSE
-author:              tenshiPure
+author:              suzuki-hoge
 maintainer:          user.ryo@gmail.com
 -- copyright:           
 category:            Text
