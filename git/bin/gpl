@@ -7,7 +7,7 @@ from modules import gitUtil
 
 parser = argparse.ArgumentParser(description = 'git pull origin "branch"')
 parser.add_argument('branch', action = 'store', nargs = '?', default = None, help = 'branch name (default : current branch)')
-parser.add_argument('-f', '--force', default = False, action = 'store_true', help = 'pull all branches')
+parser.add_argument('-a', '--all', default = False, action = 'store_true', help = 'pull all branches')
 args = parser.parse_args()
 
 if args.all:
