@@ -27,6 +27,31 @@ alias view="/Applications/MacVim.app/Contents/MacOS/view"
 alias vdiff="/Applications/MacVim.app/Contents/MacOS/vimdiff"
 alias mvim="/Applications/MacVim.app/Contents/MacOS/MacVim"
 
+function gvco() {
+ if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+  vi `git rev-parse --show-cdup`.git/config
+ fi
+}
+
+function gvig() {
+ if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+  vi `git rev-parse --show-cdup`.gitignore
+ fi
+}
+
+function gvit() {
+ if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+  vi `git rev-parse --show-cdup`.github/ISSUE_TEMPLATE.md
+ fi
+}
+
+function gvpt() {
+ if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+  vi `git rev-parse --show-cdup`.github/PULL_REQUEST_TEMPLATE.md
+ fi
+}
+
+
 alias -g G='| grep'
 alias -g V='| grep -v'
 alias -g P='| percol --match-method regex | xargs'
