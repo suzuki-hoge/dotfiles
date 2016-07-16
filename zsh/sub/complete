@@ -4,6 +4,9 @@
 autoload -U compinit
 compinit
 
+# 種別表示
+zstyle ':completion:*' format '%B%d%b'
+
 # shift-tabで逆順補完
 bindkey '^[[Z' reverse-menu-complete
 

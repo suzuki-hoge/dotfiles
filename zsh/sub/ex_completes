@@ -1,0 +1,20 @@
+# vim:set ft=sh:
+
+_python() {
+ files=( $(find . -name "*.py" -type f | cut -c3-) )
+ _describe "python files" files
+}
+compdef _python python
+
+_sh() {
+ files=( $(find . -name "*.sh" -type f | cut -c3-) )
+ _describe "sh files" files
+}
+compdef _sh sh
+
+_pict() {
+ files=( $(find . -name "*.pict" -type f | cut -c3-) )
+ _describe "pict files" files
+}
+compdef _pict pict
+

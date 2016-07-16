@@ -1,12 +1,13 @@
 # vim:set ft=sh:
 
-[ -f $DOTFILES/zsh/sub/_lib ]     && source $DOTFILES/zsh/sub/_lib
-[ -f $DOTFILES/zsh/sub/alias ]     && source $DOTFILES/zsh/sub/alias
-[ -f $DOTFILES/zsh/sub/bindkey ]   && source $DOTFILES/zsh/sub/bindkey
-[ -f $DOTFILES/zsh/sub/color ]     && source $DOTFILES/zsh/sub/color
-[ -f $DOTFILES/zsh/sub/complete ]  && source $DOTFILES/zsh/sub/complete
-[ -f $DOTFILES/zsh/sub/directory ] && source $DOTFILES/zsh/sub/directory
-[ -f $DOTFILES/zsh/sub/history ]   && source $DOTFILES/zsh/sub/history
-[ -f $DOTFILES/zsh/sub/options ]   && source $DOTFILES/zsh/sub/options
-[ -f $DOTFILES/zsh/sub/path ]      && source $DOTFILES/zsh/sub/path
-[ -f $DOTFILES/zsh/sub/prompt ]    && source $DOTFILES/zsh/sub/prompt
+[ -f $DOTFILES/zsh/sub/_lib ]         && source $DOTFILES/zsh/sub/_lib
+[ -f $DOTFILES/zsh/sub/alias ]        && source $DOTFILES/zsh/sub/alias
+[ -f $DOTFILES/zsh/sub/bindkey ]      && source $DOTFILES/zsh/sub/bindkey
+[ -f $DOTFILES/zsh/sub/color ]        && source $DOTFILES/zsh/sub/color
+[ -f $DOTFILES/zsh/sub/complete ]     && source $DOTFILES/zsh/sub/complete
+[ -f $DOTFILES/zsh/sub/directory ]    && source $DOTFILES/zsh/sub/directory
+[ -f $DOTFILES/zsh/sub/ex_completes ] && source $DOTFILES/zsh/sub/ex_completes
+[ -f $DOTFILES/zsh/sub/history ]      && source $DOTFILES/zsh/sub/history
+[ -f $DOTFILES/zsh/sub/options ]      && source $DOTFILES/zsh/sub/options
+[ -f $DOTFILES/zsh/sub/path ]         && source $DOTFILES/zsh/sub/path
+[ -f $DOTFILES/zsh/sub/prompt ]       && source $DOTFILES/zsh/sub/prompt
