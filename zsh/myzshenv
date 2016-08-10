@@ -1,16 +1,13 @@
 # vim:set ft=sh:
 
 # dotfiles
-DOTFILES=~/.dotfiles
+DOTFILES=~/Dropbox/Developments/dotfiles
 
 # my wrappers
 export DOTFILES
 PATH=$PATH:$DOTFILES/git/bin
 PATH=$PATH:$DOTFILES/vagrant/bin
 PATH=$PATH:$DOTFILES/common/bin
-
-# commands
-COMMANDS=~/.commands
 
 # Add GHC 7.8.4 to the PATH, via https://ghcformacosx.github.io/
 export GHC_DOT_APP="/Applications/ghc-7.8.4.app"
@@ -19,7 +16,4 @@ if [ -d "$GHC_DOT_APP" ]; then
 fi
 
 # hlint
-PATH=$PATH:$HOME/Development/HLint/.cabal-sandbox/bin
-
-# yesod
-PATH=$PATH:$HOME/Development/Brass/.cabal-sandbox/bin
+PATH=$PATH:$HOME/Dropbox/Developments/bin/h-lint/.cabal-sandbox/bin

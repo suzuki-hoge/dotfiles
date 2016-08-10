@@ -1,26 +1,20 @@
 " vim:set ft=vim:
 
 " dotfiles
-let $dot = $HOME . '/.dotfiles'
+let $dot = $HOME . '/Dropbox/Developments/dotfiles'
 
 " vim rc files
 let $rc      = $dot . '/vim/rc/myvimrc.vim'
 let $vimsubs = $dot . '/vim/rc/sub'
 
 " tmp
-let $tmp = $HOME . '/Documents/tmp'
+let $tmp = $HOME . '/Dropbox/Documents/tmp'
 
 " KeyRemap4MacBook - private.xml
 let $private = $dot . '/Karabiner/private.xml'
 
 " todo
-let $todo = $HOME . '/Dropbox/todos/list.todo'
-
-" blog-memo
-let $blog = $HOME . '/Dropbox/todos/blog.todo'
-
-" blog-draft
-let $draft = $tmp . '/draft.html'
+let $todo = $HOME . '/Dropbox/Documents/todos/list.todo'
 
 " plugins
 let $plugin   = $dot . '/vim/plugin'
