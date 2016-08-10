@@ -68,5 +68,5 @@ command! -nargs=? -complete=file TP call pete#path#tool(<f-args>)
 command! MarkdownEditor call markdown#main#open()
 
 " table-converter
-let g:table_converter_root_path = '/Users/ryo/Development/vim/table-converter'
-source /Users/ryo/Development/vim/table-converter/vim/commands.vim
+let g:table_converter_root_path = $HOME . '/Dropbox/Developments/vim/table-converter'
+source $HOME/Dropbox/Developments/vim/table-converter/vim/commands.vim

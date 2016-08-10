@@ -1,6 +1,8 @@
 # vim:set ft=sh:
 
-hash -d slf=~/Documents/projects/slf
-hash -d dev=~/Development
-hash -d dot=~/.dotfiles
+hash -d dot=~/Dropbox/Developments/dotfiles
+hash -d dev=~/Developments
+hash -d ddev=~/Dropbox/Developments
 hash -d tmp=~/Documents/tmp
+hash -d dtmp=~/Dropbox/Developments
+hash -d note=~/Dropbox/Documents/note
