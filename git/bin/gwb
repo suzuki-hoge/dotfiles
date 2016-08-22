@@ -3,19 +3,46 @@
 import os
 import argparse
 
-from modules import gitUtil
+from modules import utils
 
-parser = argparse.ArgumentParser(description = "open web page")
-parser.add_argument('-b', '--branch', default = None, action = 'store', help = 'target branch (default : current branch)')
+parser = argparse.ArgumentParser(description = "open github")
 
 page_group = parser.add_mutually_exclusive_group()
-page_group.add_argument('-t', '--tree', default = False, action = 'store_true', help = 'open tree page (default : False)')
-page_group.add_argument('-c', '--commits', default = True, action = 'store_true', help = 'open commits page (default : True)')
-page_group.add_argument('-n', '--network', default = False, action = 'store_true', help = 'open network page (default : False)')
+page_group.add_argument('-f', '--file',         action = 'store_true', default = True)
+page_group.add_argument('-c', '--commit',       action = 'store_true')
+page_group.add_argument('-g', '--graph',        action = 'store_true')
+page_group.add_argument('-i', '--issue',        action = 'store_true')
+page_group.add_argument('-p', '--pull-request', action = 'store_true')
+page_group.add_argument('-w', '--wiki',         action = 'store_true')
+page_group.add_argument('-b', '--burn_down',    action = 'store_true')
+page_group.add_argument('-k', '--kanban',       action = 'store_true')
 
 args = parser.parse_args()
 
-page = 'tree' if args.tree else 'network' if args.network else 'commits'
-branch = '' if args.network else gitUtil.getCurrentBranch() if args.branch is None else args.branch
+owner = utils.get_owner()
+repository = utils.get_repository()
+branch = utils.get_current_branch()
 
-os.system('open https://github.com/%s/%s/%s/%s' % (gitUtil.getOwner(), gitUtil.getRepository(), page, branch))
+if args.file:
+	os.system('open https://github.com/%(owner)s/%(repository)s/tree/%(branch)s' % locals())
+
+if args.commit:
+	os.system('open https://github.com/%(owner)s/%(repository)s/commits/%(branch)s' % locals())
+
+if args.graph:
+	os.system('open https://github.com/%(owner)s/%(repository)s/network' % locals())
+
+if args.issue:
+	os.system('open https://github.com/%(owner)s/%(repository)s/issues' % locals())
+
+if args.pull_request:
+	os.system('open https://github.com/%(owner)s/%(repository)s/pulls' % locals())
+
+if args.wiki:
+	os.system('open https://github.com/%(owner)s/%(repository)s/wiki' % locals())
+
+if args.burn_down:
+	os.system('open https://github.com/%(owner)s/%(repository)s#burndown' % locals())
+
+if args.kanban:
+	os.system('open https://github.com/%(owner)s/%(repository)s#boards' % locals())
