@@ -3,7 +3,7 @@
 set number
 set tabstop=4
 set shiftwidth=4
-set noexpandtab
+set expandtab
 set hidden
 set clipboard=unnamed
 set noswapfile
