@@ -35,6 +35,7 @@
   " switch
   nnoremap gh gT
   nnoremap gl gt
+  nnoremap gj :q<CR>
 
 " jump
   " switch
