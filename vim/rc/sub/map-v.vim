@@ -11,3 +11,7 @@ vnoremap , <ESC>ggVG
 
 " visual box
 vnoremap v <C-v>
+
+" Scrolling relative to cursor 
+vnoremap zj zt
+vnoremap zk zb
