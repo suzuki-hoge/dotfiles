@@ -7,8 +7,10 @@ let $dot = $HOME . '/Dropbox/Developments/dotfiles'
 let $rc      = $dot . '/vim/rc/myvimrc.vim'
 let $vimsubs = $dot . '/vim/rc/sub'
 
-" tmp
+" path
 let $tmp = $HOME . '/Dropbox/Documents/tmp'
+let $vimsubs = $dot . '/vim/rc/sub'
+let $devnote = $HOME . '/Dropbox/Developments/note/dev-note'
 
 " KeyRemap4MacBook - private.xml
 let $private = $dot . '/Karabiner/private.xml'

@@ -14,9 +14,8 @@ nnoremap <Tab>   <C-w>w
 nnoremap <S-Tab> <C-w>W
 
 " Scrolling relative to cursor 
-nnoremap ,, zz
-nnoremap ,j zt
-nnoremap ,k zb
+nnoremap zj zt
+nnoremap zk zb
 
 " highlight under cursor word
 nnoremap * :let @/ = '\<' . expand('<cword>') . '\>'<CR>:set hlsearch<CR>

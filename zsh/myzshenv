@@ -9,11 +9,8 @@ PATH=$PATH:$DOTFILES/git/bin
 PATH=$PATH:$DOTFILES/vagrant/bin
 PATH=$PATH:$DOTFILES/common/bin
 
-# Add GHC 7.8.4 to the PATH, via https://ghcformacosx.github.io/
-export GHC_DOT_APP="/Applications/ghc-7.8.4.app"
-if [ -d "$GHC_DOT_APP" ]; then
-  export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
-fi
+# for brew
+export PATH="/usr/local/bin:$PATH"
 
-# hlint
-PATH=$PATH:$HOME/Dropbox/Developments/bin/h-lint/.cabal-sandbox/bin
+# for stack
+export PATH="$PATH:$HOME/.local/bin"
