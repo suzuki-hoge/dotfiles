@@ -1,4 +1,4 @@
-# vim:set ft=sh:
+# vim:set ft=zsh:
 
 alias reload='source ~/.zshrc'
 
@@ -12,7 +12,7 @@ alias lag="ls -lA | grep"
 alias lap="ls -A | percol | xargs"
 
 alias grbd="git rebase develop"
-alias grbd="git rebase master"
+alias grbm="git rebase master"
 alias grbc="git rebase --continue"
 alias gstp="git status -s | percol --match-method regex | cut -c4- | xargs"
 alias gdfp="git status -s | percol --match-method regex | cut -c4- | xargs git diff"

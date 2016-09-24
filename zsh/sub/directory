@@ -1,4 +1,4 @@
-# vim:set ft=sh:
+# vim:set ft=zsh:
 
 # ディレクトリ名のみで移動を可能にする
 setopt auto_cd

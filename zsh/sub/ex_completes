@@ -1,4 +1,4 @@
-# vim:set ft=sh:
+# vim:set ft=zsh:
 
 _python() {
  files=( $(find . -name "*.py" -type f | cut -c3-) )
