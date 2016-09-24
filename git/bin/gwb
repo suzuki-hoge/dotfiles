@@ -8,7 +8,7 @@ from modules import utils
 parser = argparse.ArgumentParser(description = "open github")
 
 page_group = parser.add_mutually_exclusive_group()
-page_group.add_argument('-f', '--file',         action = 'store_true', default = True)
+page_group.add_argument('-f', '--file',         action = 'store_true')
 page_group.add_argument('-c', '--commit',       action = 'store_true')
 page_group.add_argument('-g', '--graph',        action = 'store_true')
 page_group.add_argument('-i', '--issue',        action = 'store_true')
