@@ -13,4 +13,5 @@ augroup subrc
 	autocmd BufEnter *.lucius O
 	autocmd BufEnter *.cassius O
 	autocmd BufEnter *.julius O
+	autocmd BufEnter *.md setlocal filetype=markdown
 augroup END
