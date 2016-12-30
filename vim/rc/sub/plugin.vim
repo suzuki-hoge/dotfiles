@@ -67,6 +67,12 @@ command! -nargs=? -complete=file TP call pete#path#tool(<f-args>)
 
 command! MarkdownEditor call markdown#main#open()
 
+
 " table-converter
 let g:table_converter_root_path = $HOME . '/Dropbox/Developments/vim/table-converter'
 source $HOME/Dropbox/Developments/vim/table-converter/vim/commands.vim
+
+
+" markdown-index
+command! MI            call markdown_index#main#main()
+command! MarkdownIndex call markdown_index#main#main()

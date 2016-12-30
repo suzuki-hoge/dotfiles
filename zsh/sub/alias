@@ -59,6 +59,7 @@ alias -g P='| percol --match-method regex | xargs'
 alias -g E='| exit'
 alias -g C='| pbcopy'
 alias -g X='| xargs'
+alias -g L='| wc -l'
 
 alias todo="vi /Users/ryo/Dropbox/todos/list.todo"
 

@@ -1,0 +1,18 @@
+#!/usr/bin/python
+
+import os
+import argparse
+
+from modules import utils
+
+parser = argparse.ArgumentParser(description = 'create pull request')
+parser.add_argument('target', metavar = 'Target', type = str, help = 'target branch')
+args = parser.parse_args()
+
+target = args.target
+
+owner = utils.get_owner()
+repository = utils.get_repository()
+current = utils.get_current_branch()
+
+os.system('open https://github.com/%(owner)s/%(repository)s/compare/%(target)s...%(current)s' % locals())
