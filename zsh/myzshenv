@@ -14,3 +14,6 @@ export PATH="/usr/local/bin:$PATH"
 
 # for stack
 export PATH="$PATH:$HOME/.local/bin"
+
+# for activator
+export PATH=$PATH:$HOME/Dropbox/Developments/bin/activator/bin 
