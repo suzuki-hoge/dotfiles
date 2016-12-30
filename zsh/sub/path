@@ -3,7 +3,8 @@
 hash -d dot=~/Dropbox/Developments/dotfiles
 hash -d dev=~/Developments
 hash -d ddev=~/Dropbox/Developments
-hash -d tmp=~/Documents/tmp
-hash -d dtmp=~/Dropbox/Developments
+hash -d ltmp=~/Documents/tmp
+hash -d ldocs=~/Documents/tmp/docs
+hash -d tmp=~/Dropbox/Documents/tmp
 hash -d note=~/Dropbox/Documents/note
 hash -d devnote=~/Dropbox/Developments/note/dev-note

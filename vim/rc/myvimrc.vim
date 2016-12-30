@@ -10,6 +10,7 @@ let $vimsubs = $dot . '/vim/rc/sub'
 " path
 let $tmp = $HOME . '/Dropbox/Documents/tmp'
 let $vimsubs = $dot . '/vim/rc/sub'
+let $ddev = $HOME . '/Dropbox/Developments'
 let $devnote = $HOME . '/Dropbox/Developments/note/dev-note'
 
 " KeyRemap4MacBook - private.xml
