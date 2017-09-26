@@ -16,6 +16,5 @@ def __mask_or(element):
         return value
 
 
-def to_value(line, json):
-    key = line.split(' | ')[0]
+def to_value(key, json):
     return json.get(key).get('value')
