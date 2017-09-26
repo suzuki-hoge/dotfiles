@@ -13,4 +13,4 @@ def __max_witdh(json, width):
 
 
 def __to_line(key, element, max_width_1, max_width_2, max_width_3):
-    return ' | '.join([key.ljust(max_width_1), element['label'].ljust(max_width_2), element['tags'].ljust(max_width_3), element['value']])
+    return ' | '.join([key.rjust(max_width_1), element['label'].ljust(max_width_2), element['tags'].ljust(max_width_3), element['value']])

@@ -1,52 +1,34 @@
+import sys
+
 from pure import converter, formatter
 from system import filer
 
-print filer.notes('local')
 
-json = filer.read('local', 'url')
-masked_json = converter.mask(json)
-
-print converter.to_value('1', json)
-
-print formatter.vertical_align(masked_json)
+def notes(book_name):
+    print filer.notes(book_name)
 
 
-"""
-fng
+def read(book_name, note_name):
+    json = filer.read(args[1], args[2])
+    masked_json = converter.mask(json)
+    print formatter.vertical_align(masked_json)
 
-    path
-  > url
-    password
-"""
 
-"""
-fng url
+def value(book_name, note_name, key):
+    json = filer.read(args[1], args[2])
+    print converter.to_value(key, json)
 
-    1 | foo | ...
-  > 2 | foo | ...
-    3 | foo | ...
-"""
 
-"""
-fnl
+args = sys.argv
 
-    path
-  > url
-    password
-"""
+# python filterable_note.py local
+if len(args) == 2:
+    notes(args[1])
 
-"""
-fnl url
+# python filterable_note.py local url
+elif len(args) == 3:
+    read(args[1], args[2])
 
-    1 | foo | ...
-  > 2 | foo | ...
-    3 | foo | ...
-"""
-
-"""
-python filterable_note.py global
-
-python filterable_note.py global url
-
-python filterable_note.py global url 1
-"""
+# python filterable_note.py local url 1
+else:
+    value(args[1], args[2], args[3])
