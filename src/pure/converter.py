@@ -1,31 +1,21 @@
-def to_lines(json):
-    return '\n'.join([__to_line(key, element) for key, element in json.iteritems()])
+def mask(json):
+    for key, element in json.iteritems():
+        element['value'] = __mask_or(element)
+    return json
 
 
-def __to_line(key, element):
-    return '%s, %s, %s, %s' % (key, __label(element), __tags(element), __value(element))
+def __mask_or(element):
+    view = element.get('view', 'show')
+    value = element.get('value')
 
-
-def __label(element):
-    return element['label']
-
-
-def __tags(element):
-    return ' / '.join(element['tags'])
-
-
-def __value(element):
-    view = element['view']
-    value = element['value']
-
-    if view == 'cut' and 90 < len(value):
-        return value[:90] + '...'
-    elif view == 'mask':
+    if view == 'mask':
         return '***'
+    elif 90 < len(value):
+        return value[:90] + '...'
     else:
         return value
 
 
 def to_value(line, json):
-    key = line.split(',')[0]
-    return json[key]['value']
+    key = line.split(' | ')[0]
+    return json.get(key).get('value')
