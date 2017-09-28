@@ -1,12 +1,12 @@
 def mask(json):
-    for key, element in json.iteritems():
-        element['value'] = __mask_or(element)
+    for line_id, line in json.iteritems():
+        line['value'] = __mask_or(line)
     return json
 
 
-def __mask_or(element):
-    view = element.get('view', 'show')
-    value = element.get('value')
+def __mask_or(line):
+    view = line.get('view', 'show')
+    value = line.get('value')
 
     if view == 'mask':
         return '***'
@@ -16,5 +16,5 @@ def __mask_or(element):
         return value
 
 
-def to_value(key, json):
-    return json.get(key).get('value')
+def to_value(line_id, json):
+    return json.get(line_id).get('value')
