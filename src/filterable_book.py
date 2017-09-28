@@ -10,7 +10,7 @@ def books(book):
 
 def lines(book, note):
     json = filer.lines(book, note)
-    masked_json = converter.mask(json)
+    masked_json = converter.for_stdout(json)
     print formatter.vertical_align(masked_json)
 
 

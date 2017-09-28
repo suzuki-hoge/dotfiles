@@ -20,4 +20,4 @@ line_id=`echo $1 | sed 's/^ *//' | sed 's/ *$//'`
 
 line_value=`python $script $book $note $line_id`
 
-echo $line_value
+printf "$line_value"
