@@ -10,8 +10,8 @@ def __mask_or(line):
 
     if view == 'mask':
         return '***'
-    elif 90 < len(value):
-        return value[:90] + '...'
+    elif 120 < len(value):
+        return value[:120] + ' ...'
     else:
         return value
 
