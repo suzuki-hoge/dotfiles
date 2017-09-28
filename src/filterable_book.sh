@@ -15,7 +15,7 @@ page=`python $script $book $note | percol`
 
 IFS='|'
 set -- $page
-line_id=`echo $1 | tr -d ' '`
+line_id=`echo $1 | sed 's/^ *//' | sed 's/ *$//'`
 
 
 line_value=`python $script $book $note $line_id`
