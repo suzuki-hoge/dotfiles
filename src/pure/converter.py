@@ -1,6 +1,6 @@
-def mask(json):
+def for_stdout(json):
     for line_id, line in json.iteritems():
-        line['value'] = __mask_or(line)
+        line['value'] = __non_new_line(__mask_or(line))
     return json
 
 
@@ -16,5 +16,9 @@ def __mask_or(line):
         return value
 
 
+def __non_new_line(value):
+    return value.replace('\n', ' ')
+
+
 def to_value(line_id, json):
-    return json.get(line_id).get('value')
+    return json.get(line_id).get('value').strip()
