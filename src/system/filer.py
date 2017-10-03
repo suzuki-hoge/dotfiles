@@ -22,4 +22,4 @@ def lines(book, note):
 
 def __read_one(book_path, note):
     with file('%(book_path)s/%(note)s.json' % locals(), 'r') as f:
-        return json.load(f)
+        return json.load(f, 'utf-8')
