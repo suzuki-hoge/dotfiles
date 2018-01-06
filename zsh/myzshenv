@@ -8,6 +8,7 @@ export DOTFILES
 PATH=$PATH:$DOTFILES/git/bin
 PATH=$PATH:$DOTFILES/vagrant/bin
 PATH=$PATH:$DOTFILES/common/bin
+PATH=$PATH:$DOTFILES/apps/dictionary/bin
 
 # for brew
 export PATH="/usr/local/bin:$PATH"

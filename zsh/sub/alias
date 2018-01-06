@@ -121,3 +121,7 @@ function l() {
 function la() {
   ls -lA $1
 }
+
+function d() {
+  dictionary.py $*
+}
