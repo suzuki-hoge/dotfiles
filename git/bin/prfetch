@@ -1,18 +1,20 @@
 #!/usr/bin/env ruby
-# prfetch|percol|cut -f3|xargs git checkout
 
-require 'git'
 require 'octokit'
 
-remote_name = ARGV[1] || 'origin'
+def current_repo()
+    require 'git'
 
-git = Git.open('./')
-remote = git.remotes.select { |r| r.name == remote_name }.first
-repo = if (match = remote.url.match(%r{^git@[^:]+:(?<repo>.+)(?:\.git)?$}))
-          match['repo']
-        elsif (match = remote.url.match(%r{^https://[^/]+/(?<repo>.+)(?:\.git)?$}))
-          match['repo']
-        end
+    git = Git.open('./')
+    remote = git.remotes.select { |r| r.name == 'origin' }.first
+    if (match = remote.url.match(%r{^git@[^:]+:(?<repo>.+)(?:\.git)?$}))
+        match['repo']
+    elsif (match = remote.url.match(%r{^https://[^/]+/(?<repo>.+)(?:\.git)?$}))
+        match['repo']
+    end
+end
+
+repo = ARGV[0] || current_repo()
 exit 1 unless repo
 
 repo = repo.split(".")[0]
@@ -23,5 +25,5 @@ ssid = `/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/
 proxy = ssid == "BigWiFi" ? "http://133.205.242.72:8080" : ""
 
 Octokit::Client.new(netrc: true, proxy: proxy).pull_requests(repo).each do |pr|
-  puts "#{pr['number']}\t#{pr['title']}\t#{pr['head']['ref']}"
+  puts "#{pr['number']}\t#{pr['title']}\t#{pr['head']['ref']}\t#{pr['base']['repo']['name']}"
 end

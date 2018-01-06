@@ -22,6 +22,7 @@ alias gpsp="git branch | percol --match-method regex | cut -c2- | xargs git push
 alias gbdp="git branch | percol --match-method regex | cut -c2- | xargs git branch -D"
 alias grvp="git fetch --prune > /dev/null 2>&1; git branch -r | percol --match-method regex | cut -c2- | xargs git checkout -B reviewing"
 alias gprp="git fetch --prune > /dev/null 2>&1; prfetch | percol --match-method regex | cut -f3 | xargs -I{} git checkout -B reviewing origin/{}"
+alias gfl="fl git O"
 
 alias vi="/Applications/MacVim.app/Contents/MacOS/Vim"
 alias view="/Applications/MacVim.app/Contents/MacOS/view"
@@ -60,6 +61,7 @@ alias -g E='| exit'
 alias -g C='| pbcopy'
 alias -g X='| xargs'
 alias -g L='| wc -l'
+alias -g O='| xargs open'
 
 alias todo="vi /Users/ryo/Dropbox/todos/list.todo"
 
@@ -78,6 +80,36 @@ function vipr() {
  vi $ROOT/$TARGET
 }
 
-function qlook(){
+function qlook() {
  qlmanage -p $1 >& /dev/null
+}
+
+# filterable book
+function fg() {
+ filterable_book_sh global $1
+}
+
+function fl() {
+ filterable_book_sh local $1
+}
+
+alias cdfg() {
+ cd `fg dir`
+}
+
+alias cdfl() {
+ cd `fl dir`
+}
+
+function gpls {
+  repos=('biglobe-isp/docomo-mobile.git' 'biglobe-isp/mobile-tools.git')
+  fetched=''
+  for repo in $repos; do
+    fetched=${fetched}`prfetch $repo`
+  done
+  selected=`echo $fetched | percol --match-method regex` 
+  number=`echo $selected | cut -f1`
+  repository=`echo $selected | cut -f4`
+
+  open https://github.com/biglobe-isp/$repository/pull/$number
 }
