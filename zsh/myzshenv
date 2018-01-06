@@ -17,3 +17,9 @@ export PATH="$PATH:$HOME/.local/bin"
 
 # for activator
 export PATH=$PATH:$HOME/Dropbox/Developments/bin/activator/bin 
+
+# for filterable book
+export PATH=$PATH:$HOME/Dropbox/Developments/tool/filterable-book/src
+
+# npm
+export PATH=$PATH:$HOME/.nodebrew/current/bin

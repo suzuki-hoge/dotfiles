@@ -11,3 +11,6 @@ command! Rel setlocal relativenumber!
 
 " reload browser
 command! Reload silent !open $dot/apps/chrome.app
+
+" markdown syntax
+command! Md set ft=markdown

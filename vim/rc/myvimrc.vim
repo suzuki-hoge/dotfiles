@@ -41,3 +41,7 @@ source $vimsubs/vundle.vim
 
 " for autoload
 let &runtimepath .= ',' . $plugin
+
+" tmp
+command! V so /Users/ryo/Dropbox/Developments/tool/v-search/v_search.vim
+
