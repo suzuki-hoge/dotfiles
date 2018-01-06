@@ -101,7 +101,7 @@ alias cdfl() {
  cd `fl dir`
 }
 
-function gpls {
+function gpls() {
   repos=('biglobe-isp/docomo-mobile.git' 'biglobe-isp/mobile-tools.git')
   fetched=''
   for repo in $repos; do
@@ -112,4 +112,12 @@ function gpls {
   repository=`echo $selected | cut -f4`
 
   open https://github.com/biglobe-isp/$repository/pull/$number
+}
+
+function l() {
+  ls -l $1
+}
+
+function la() {
+  ls -lA $1
 }
