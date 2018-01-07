@@ -52,7 +52,7 @@ alias -g L='| wc -l'
 alias -g O='| xargs open'
 
 # working directory or specified path
-function current_or() { # common/command.zsh, directory/command.zsh
+function current_or() {
   if [ -z $1 ];then
     echo .
   else
