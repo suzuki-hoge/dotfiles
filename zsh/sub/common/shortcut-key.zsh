@@ -1,18 +1,17 @@
-# vim:set ft=zsh:
-
-# コマンドラインスタック
+# command line stack
 bindkey '^U' push-line
 
-# エディタに移行
+# edit by vi
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^[e' edit-command-line
 
-# viのfとF
+# char jump like vim
 bindkey '^[f' vi-find-next-char
 bindkey '^[F' vi-find-prev-char
 
-# 直前の単語を挿入
+# insert last last word
 autoload smart-insert-last-word
 zle -N insert-last-word smart-insert-last-word
 zstyle :insert-last-word match '*([^[:space:]][[:alpha:]/\\]|[[:alpha:]/\\][^[:space:]])*'
+bindkey '^[.' insert-last-word
