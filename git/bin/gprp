@@ -1,0 +1,3 @@
+#!/bin/zsh
+
+git fetch --prune > /dev/null 2>&1; prfetch | percol --match-method regex | cut -f3 | xargs -I{} git checkout -B reviewing origin/{}

@@ -1,6 +1,3 @@
-import sys
-sys.dont_write_bytecode = True
-
 import commands
 
 def get_current_branch():
