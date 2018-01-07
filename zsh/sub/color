@@ -1,4 +1,0 @@
-# vim:set ft=zsh:
-
-# lsに色をつける
-export CLICOLOR=true

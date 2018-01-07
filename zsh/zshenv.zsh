@@ -1,5 +1,3 @@
-# vim:set ft=sh:
-
 # dotfiles
 DOTFILES=~/Dropbox/Developments/dotfiles
 
@@ -9,6 +7,7 @@ PATH=$PATH:$DOTFILES/git/bin
 PATH=$PATH:$DOTFILES/vagrant/bin
 PATH=$PATH:$DOTFILES/common/bin
 PATH=$PATH:$DOTFILES/apps/dictionary/bin
+PATH=$PATH:$DOTFILES/apps/find/bin
 
 # for brew
 export PATH="/usr/local/bin:$PATH"
