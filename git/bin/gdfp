@@ -1,0 +1,3 @@
+#!/bin/zsh
+
+git status -s | percol --match-method regex | cut -c4- | xargs git diff

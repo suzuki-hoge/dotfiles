@@ -1,8 +1,5 @@
 " vim:set ft=vim:
 
-" edit todo
-command! Todo tabe $todo
-
 " message
 command! M messages
 
@@ -10,7 +7,7 @@ command! M messages
 command! Rel setlocal relativenumber!
 
 " reload browser
-command! Reload silent !open $dot/apps/chrome.app
+command! R silent !open $dot/apps/reload.app
 
 " markdown syntax
 command! Md set ft=markdown

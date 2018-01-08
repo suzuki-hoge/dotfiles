@@ -1,0 +1,3 @@
+#!/bin/zsh
+
+git branch | percol --match-method regex | cut -c2- | xargs git checkout
