@@ -4,7 +4,7 @@ import json
 
 
 home = os.path.expanduser('~')
-global_book_path = '%(home)s/Dropbox/.filterable-book' % locals()
+global_book_path = '%(home)s/Dropbox/Developments/dotfiles/apps/filterable-book/def' % locals() # todo
 local_book_path = '%(home)s/.filterable-book' % locals()
 
 book_paths = {'global': global_book_path, 'local': local_book_path}

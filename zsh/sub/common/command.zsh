@@ -11,11 +11,6 @@ function la() {
   ls -1A $1
 }
 
-# look up a word in a dictionary
-function d() {
-  dictionary.py $*
-}
-
 # preview
 function qlook() {
   qlmanage -p $1 >& /dev/null
@@ -58,4 +53,19 @@ function current_or() {
   else
     echo $1
   fi
+}
+
+# look up a word in a dictionary
+function d() {
+  dictionary.py $*
+}
+
+# search global notes
+function fg() {
+  filterable_book.sh global $1
+}
+
+# search local notes
+function fl() {
+  filterable_book.sh local $1
 }
