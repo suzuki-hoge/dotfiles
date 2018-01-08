@@ -1,3 +1,4 @@
+# subs
 source $DOTFILES/zsh/sub/common/command.zsh
 source $DOTFILES/zsh/sub/common/option.zsh
 source $DOTFILES/zsh/sub/common/shortcut-key.zsh
@@ -15,4 +16,5 @@ source $DOTFILES/zsh/sub/history/shortcut-key.zsh
 
 source $DOTFILES/zsh/sub/prompt/option.zsh
 
+# local
 source $HOME/.dotfiles/zsh/local.zsh
