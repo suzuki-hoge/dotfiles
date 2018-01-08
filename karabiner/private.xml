@@ -130,7 +130,7 @@
 		</list>
 	</item>
 
-    <include path = "{{ ENV_HOME }}/Dropbox/Developments/dotfiles/karabiner/local.xml" />
+    <include path = "{{ ENV_HOME }}/.dotfiles/karabiner/local.xml" />
 </root>
 
 <!--
