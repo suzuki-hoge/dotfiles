@@ -1,7 +1,7 @@
 # dotfiles
 DOTFILES=~/Dropbox/Developments/dotfiles
 
-# my wrappers
+# globals
 export DOTFILES
 PATH=$PATH:$DOTFILES/git/bin
 PATH=$PATH:$DOTFILES/vagrant/bin
@@ -9,6 +9,9 @@ PATH=$PATH:$DOTFILES/common/bin
 PATH=$PATH:$DOTFILES/apps/dictionary/bin
 PATH=$PATH:$DOTFILES/apps/find/bin
 PATH=$PATH:$DOTFILES/apps/filterable-book/bin
+
+# locals
+PATH=$PATH:$HOME/.dotfiles/bin
 
 # for brew
 export PATH="/usr/local/bin:$PATH"

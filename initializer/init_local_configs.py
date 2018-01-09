@@ -15,7 +15,8 @@ templates = [
     }
 ]
 directories = [
-    'filterable-book'
+    'filterable-book',
+    'bin'
 ]
 
 def touch_if_not_exists(template):
