@@ -38,3 +38,6 @@ nnoremap yy yiw
 
 " word paste
 nnoremap yp viwp
+
+" rewrite all
+nnoremap c, ggcG
