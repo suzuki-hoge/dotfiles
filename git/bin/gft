@@ -1,7 +1,0 @@
-#!/usr/bin/python
-
-import sys
-import os
-
-target = sys.argv[1].split('/')[-1].split('.')[0] if '/' in sys.argv[1] else sys.argv[1]
-os.system('./gradlew :test --tests "*%(target)s*" -i' % locals())

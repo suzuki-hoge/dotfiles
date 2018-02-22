@@ -1,0 +1,16 @@
+#!/usr/bin/python
+
+# -*- coding: utf-8 -*-
+
+import sys
+lines = sys.stdin.readlines()
+
+trim = lambda x: x.strip()
+
+keys = trim(lines[0]).split('\t')
+values = map(trim, lines[1:] )
+
+key_value = lambda line: ['"%(key)s": "%(value)s"' % locals() for key, value in zip(keys, line.split('\t'))]
+to_json_row = lambda line: '{%s}' % ','.join(key_value(line))
+
+print '[%s]' % ','.join(map(to_json_row, values))
