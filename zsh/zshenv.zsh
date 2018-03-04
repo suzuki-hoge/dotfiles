@@ -25,6 +25,3 @@ export PATH=$PATH:$HOME/Dropbox/Developments/bin/activator/bin
 
 # npm
 export PATH=$PATH:$HOME/.nodebrew/current/bin
-
-# tmp
-export PATH=$PATH:$HOME/Dropbox/Developments/tool/chunked-executor

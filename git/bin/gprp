@@ -1,3 +1,11 @@
 #!/bin/zsh
 
-git fetch --prune > /dev/null 2>&1; prfetch | percol --match-method regex | cut -f3 | xargs -I{} git checkout -B reviewing origin/{}
+git fetch --prune > /dev/null 2>&1
+git branch -D reviewing > /dev/null 2>&1
+
+script_path=`dirname "${0}"`/github-pull-requests/github_pull_requests.sh
+
+number=`sh $script_path | percol --match-method regex | tr -s ' ' '\n' | head -n 1`
+
+git fetch origin pull/$number/head:reviewing
+git checkout reviewing
