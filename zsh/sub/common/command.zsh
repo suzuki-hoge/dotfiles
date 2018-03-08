@@ -42,6 +42,7 @@ alias -g V='| grep -v'
 alias -g P='| percol --match-method regex | xargs'
 alias -g E='| exit'
 alias -g C="| tr -d '\n' | pbcopy"
+alias -g CC='| pbcopy'
 alias -g X='| xargs'
 alias -g L='| wc -l'
 alias -g O='| xargs open'
