@@ -1,11 +1,21 @@
 #!/bin/zsh
 
+# get number
+if [ $# -eq 0 ]; then
+  script_path=`dirname "${0}"`/github-pull-requests/github_pull_requests.sh
+  number=`sh $script_path | percol --match-method regex | tr -s ' ' '\n' | head -n 1`
+else
+  number=$1
+fi
+
+# clean up
 git fetch --prune > /dev/null 2>&1
+git reset .
+git checkout .
+git checkout -b reviewing-shelter
 git branch -D reviewing > /dev/null 2>&1
 
-script_path=`dirname "${0}"`/github-pull-requests/github_pull_requests.sh
-
-number=`sh $script_path | percol --match-method regex | tr -s ' ' '\n' | head -n 1`
-
+# checkout
 git fetch origin pull/$number/head:reviewing
 git checkout reviewing
+git branch -D reviewing-shelter > /dev/null 2>&1

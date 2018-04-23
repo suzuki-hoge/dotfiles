@@ -69,8 +69,8 @@ command! MarkdownEditor call markdown#main#open()
 
 
 " table-converter
-let g:table_converter_root_path = $HOME . '/Dropbox/Developments/vim/table-converter'
-source $HOME/Dropbox/Developments/vim/table-converter/vim/commands.vim
+let g:table_converter_root_path = $HOME . '/Dropbox/Developments/dotfiles/apps/table-converter'
+source ~/Dropbox/Developments/dotfiles/apps/table-converter/vim/commands.vim
 
 
 " markdown-index

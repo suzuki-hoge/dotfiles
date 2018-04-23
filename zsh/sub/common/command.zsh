@@ -16,12 +16,6 @@ function qlook() {
   qlmanage -p $1 >& /dev/null
 }
 
-# replace editor commands
-alias vi="/Applications/MacVim.app/Contents/MacOS/Vim"
-alias view="/Applications/MacVim.app/Contents/MacOS/view"
-alias vdiff="/Applications/MacVim.app/Contents/MacOS/vimdiff"
-alias mvim="/Applications/MacVim.app/Contents/MacOS/MacVim"
-
 # interactive search and edit
 function vip() {
   local ROOT=`current_or $1`
