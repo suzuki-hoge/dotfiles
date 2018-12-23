@@ -148,6 +148,7 @@ function! interactive_filter#main#mkviml(name)
 
     call system('echo ' . $PWD . ' > ' . '~/.dotfiles/vim/launcher/' . a:name . '.viml')
 
+    " todo: complete 見ろ
     while 1 == 1
         execute 'tabnext'
         call system('echo "' . expand('%:p') . '" >> ' . '~/.dotfiles/vim/launcher/' . a:name . '.viml')

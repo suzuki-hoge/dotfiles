@@ -1,10 +1,7 @@
 " vim:set ft=vim:
 
 " complete
-augroup regex_complete
-	autocmd!
-	autocmd BufEnter * :set completefunc=complete#main#func
-augroup END
+source $plugin/autoload/complete/autocmd.vim
 
 " table-converter
 let g:table_converter_root_path = $HOME . '/Dropbox/Developments/dotfiles/apps/table-converter'

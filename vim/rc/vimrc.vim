@@ -3,9 +3,9 @@ let $dot = $HOME . '/Dropbox/Developments/dotfiles'
 
 " plugins
 let $plugin   = $dot . '/vim/plugin'
-let $frank    = $plugin . '/autoload/frank'
-let $pete     = $plugin . '/autoload/pete'
-let $markdown = $plugin . '/autoload/markdown'
+
+" for autoload
+let &runtimepath .= ',' . $plugin
 
 " subs
 let $vimsubs = $dot . '/vim/rc/sub'
@@ -22,6 +22,3 @@ source $vimsubs/tab.vim
 
 " local
 source $HOME/.dotfiles/vim/rc/local.vim
-
-" for autoload
-let &runtimepath .= ',' . $plugin
