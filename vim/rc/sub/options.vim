@@ -10,5 +10,6 @@ set noswapfile
 set nobackup
 set viminfo=
 set noundofile
+set hlsearch
 
 hi CursorIM guifg=black guibg=red gui=NONE ctermfg=black ctermbg=white cterm=reverse

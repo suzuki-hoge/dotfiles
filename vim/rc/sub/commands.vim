@@ -11,3 +11,6 @@ command! R silent !open $dot/apps/reload.app
 
 " markdown syntax
 command! Md set ft=markdown
+
+" open browser
+command! B silent !/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window %

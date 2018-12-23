@@ -76,3 +76,8 @@ source ~/Dropbox/Developments/dotfiles/apps/table-converter/vim/commands.vim
 " markdown-index
 command! MI            call markdown_index#main#main()
 command! MarkdownIndex call markdown_index#main#main()
+
+command! IF  call interactive_filter#main#launch(1 == 0)
+command! IFF call interactive_filter#main#launch(1 == 1)
+
+command! -nargs=? O call interactive_filter#main#mkviml(<f-args>)

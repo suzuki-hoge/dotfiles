@@ -21,7 +21,7 @@ source $vimsubs/options.vim
 source $vimsubs/tab.vim
 
 " local
-source $HOME/.dotfiles/vim/local.vim
+source $HOME/.dotfiles/vim/rc/local.vim
 
 " for autoload
 let &runtimepath .= ',' . $plugin
