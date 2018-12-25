@@ -6,3 +6,6 @@ source $plugin/autoload/launcher/command.vim
 
 " aligner
 source $plugin/autoload/aligner/command.vim
+
+" markdown
+source $plugin/autoload/markdown/command.vim
