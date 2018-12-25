@@ -71,3 +71,16 @@ endfunction
 function! lib#list#range(start, end)
     return lib#list#list(range(a:start, a:end))
 endfunction
+
+"
+" test
+"
+
+call lib#test#assert(lib#list#list([1, 2, 3, 4, 5]).map('a:x + 1').filter('a:x % 2 == 0').flatMap('[a:x, a:x]').get(), [2, 2, 4, 4, 6, 6])
+call lib#test#assert(lib#list#list('foo').map("a:x . '!'").map('toupper(a:x)').join(''), 'F!O!O!')
+
+function! s:foo(x)
+    return a:x % 2 == 0 ? 'even' : 'odd'
+endfunction
+
+call lib#test#assert(lib#list#range(1, 3).mapF(function('s:foo')).unique(), ['even', 'odd'])
