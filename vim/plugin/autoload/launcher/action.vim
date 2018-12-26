@@ -19,6 +19,8 @@ function! launcher#action#choice()
 
         call launcher#refresh#subs('.')
 
+        echo ''
+
     elseif currentContent.type == 'file'
         execute currentContent.status == 'not selected' ? 'normal 0r+' : 'normal 0r '
         execute 'normal j'
@@ -43,6 +45,8 @@ function! launcher#action#fix()
     elseif currentContent.type == 'directory'
         execute 'cd ' . currentContent.path
         execute 'bd'
+
+        echo ''
 
     elseif currentContent.type == 'file'
         call s:editAll([currentContent.path])

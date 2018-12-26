@@ -9,3 +9,6 @@ source $plugin/autoload/aligner/command.vim
 
 " markdown
 source $plugin/autoload/markdown/command.vim
+
+" extension
+source $plugin/autoload/extension/autocmd.vim
