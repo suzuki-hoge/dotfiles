@@ -1,5 +1,3 @@
-" vim:set ft=vim:
-
 " move
 nnoremap <S-k> 10<UP>
 nnoremap <S-j> 10<DOWN>
@@ -29,9 +27,6 @@ nnoremap <C-p> :<UP>
 
 " highlight off
 nnoremap <silent><ESC><ESC> :noh<CR>
-
-" reload vimrc
-nnoremap ® :source $rc<CR>
 
 " word yank
 nnoremap yy yiw

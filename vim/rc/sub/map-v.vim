@@ -1,5 +1,3 @@
-" vim:set ft=vim:
-
 " move
 vnoremap <S-k> 10<UP>
 vnoremap <S-j> 10<DOWN>

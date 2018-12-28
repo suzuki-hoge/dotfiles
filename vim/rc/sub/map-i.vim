@@ -1,5 +1,3 @@
-" vim:set ft=vim:
-
 " emacs (move)
 inoremap <C-a> <HOME>
 inoremap <C-e> <END>
@@ -15,5 +13,5 @@ inoremap <C-u> <C-u>
 inoremap <ESC> <ESC>:set iminsert=0<CR>
 
 " complete
-inoremap <expr> <C-p>    pumvisible() ? "\<C-p>" : "\<C-x><C-u>"
-inoremap <expr> <C-n>    pumvisible() ? "\<C-n>" : "\<C-x><C-u>"
+inoremap <expr> <C-p> pumvisible() ? "\<C-p>" : "\<C-x><C-u>"
+inoremap <expr> <C-n> pumvisible() ? "\<C-n>" : "\<C-x><C-u>"

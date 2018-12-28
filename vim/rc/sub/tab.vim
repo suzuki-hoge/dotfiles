@@ -1,5 +1,3 @@
-" vim:set ft=vim:
-
 " change tab
 nnoremap <Space> gt
 nnoremap <S-Space> gT
