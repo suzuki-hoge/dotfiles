@@ -6,6 +6,7 @@ function! extension#markdown#enter()
     " comment
 
     " snipet
+    command! -nargs=? SniQuote call extension#markdown#quote(<f-args>)
 
     " tool
     command! TlBrowser call extension#markdown#browser()
@@ -19,6 +20,7 @@ function! extension#markdown#leave()
     " comment
 
     " snipet
+    delcommand SniQuote
 
     " tool
     delcommand TlBrowser
@@ -31,6 +33,15 @@ function! extension#markdown#run()
 endfunction
 
 " snipet
+function! extension#markdown#quote(...)
+    let lang = len(a:000) == 1 ? a:1 : ''
+
+    call extension#common#snipet([
+\       '```' . lang,
+\       '```'
+\   ])
+    execute 'normal kk'
+endfunction
 
 " tool
 function! extension#markdown#browser()
