@@ -1,4 +1,5 @@
-import System.Environment (getArgs)
+module Fs where
+
 import Data.Char (ord)
 import Data.List (nub, transpose, intercalate)
 import Data.List.Split (splitOn)
@@ -29,20 +30,19 @@ alignAll orgDelim dstDelim ns = map (intercalate dstDelim . align ns . cols orgD
             where pad n col = col ++ replicate (n - len col) ' '
 
 cols :: Delim -> Line -> Cols
-cols d = map (filter (/= ' ')) . splitOn d
+cols d = map strip . splitOn d
+    where
+        strip = lstrip . rstrip
+        lstrip = dropWhile (== ' ')
+        rstrip = reverse . lstrip . reverse
 
 convert :: Delim -> Delim -> [Line] -> String
 convert orgDelim dstDelim lines = let
     widths = maximums orgDelim lines
-    in unlines $ alignAll orgDelim dstDelim widths lines
+    in intercalate "\n" $ alignAll orgDelim dstDelim widths lines
 
 invalidCommas :: Delim -> [Line] -> String
 invalidCommas d lines = ("delimiter mismatch\n" ++) . unlines . map show $ delims d lines
 
-main :: IO ()
-main = do
-    lines <- splitOn "\\n" . (!! 0) <$> getArgs
-    orgDelim <- (!! 1) <$> getArgs
-    dstDelim <- (!! 2) <$> getArgs
-
-    putStr $ if isValidCommas orgDelim lines then convert orgDelim dstDelim lines else invalidCommas orgDelim lines
+fix :: Delim -> Delim -> [Line] -> String
+fix orgDelim dstDelim lines = if isValidCommas orgDelim lines then convert orgDelim dstDelim lines else invalidCommas orgDelim lines

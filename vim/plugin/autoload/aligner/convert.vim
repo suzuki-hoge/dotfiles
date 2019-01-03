@@ -1,14 +1,16 @@
-function! aligner#convert#toMarkdown() range
+function! aligner#convert#toMarkdown(...) range
+    let delim = len(a:000) == 1 ? a:1 : ','
+
     let selected = getline(a:firstline, a:lastline)
 
     let header = selected[0]
-    let seps = lib#list#range(1, len(substitute(header, '[^,]', '', 'g')) + 1).map("':--'").join(',')
+    let seps = lib#list#range(1, len(substitute(header, '[^' . delim . ']', '', 'g')) + 1).map("':--'").join(delim)
     let bodies = selected[1:]
 
-    let response = s:apiCall([header] + [seps] + bodies, ',', ' | ')
+    let response = s:apiCall([header] + [seps] + bodies, delim, ' | ')
 
     if response[0] != 'delimiter mismatch' | call lib#buffer#update(response, a:firstline, a:lastline)
-    else                                   | echo join([response[0]] + response[2:], "\n")               | endif
+    else                                   | echo join(response[0:1] + response[3:], "\n")           | endif
 endfunction
 
 function! aligner#convert#toCsv() range
@@ -42,7 +44,9 @@ function! aligner#convert#align(...) range
 endfunction
 
 function! s:apiCall(lines, orgDelim, dstDelim)
-    let line = join(a:lines, '\\n')
+    let line = substitute(join(a:lines, '\\n'), '`', '\\`', 'g')
+"     echo line
+"     return ['delimiter mismatch']
     return lib#system#asList($plugin . '/autoload/aligner/api/align', '"' . line . '"', '"' . a:orgDelim . '"', '"' . a:dstDelim . '"')
 endfunction
 
