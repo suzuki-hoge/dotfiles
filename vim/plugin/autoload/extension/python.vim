@@ -14,8 +14,9 @@ function! extension#python#enter()
     vnoremap ¿ :call extension#common#switch('#')<CR>
 
     " snipet
-    command!          SniUtf8 call extension#python#utf8()
-    command! -nargs=1 SniFile call extension#python#file(<f-args>)
+    command!          SniUtf8   call extension#python#utf8()
+    command! -nargs=1 SniFile   call extension#python#file(<f-args>)
+    command!          SniStdout call extension#python#stdout()
 
     " tool
 
@@ -39,6 +40,7 @@ function! extension#python#leave()
     " snipet
     delcommand SniUtf8
     delcommand SniFile
+    delcommand SniStdout
 
     " tool
 
@@ -57,6 +59,13 @@ function! extension#python#file(mode)
     call extension#common#snipet([
 \       "with open(path, '" . a:mode . "') as f:",
 \       'lines = f.read().splitlines()'
+\   ])
+endfunction
+
+function! extension#python#stdout()
+    call extension#common#snipet([
+\       'import sys, codecs',
+\       "sys.stdout = codecs.getwriter('utf-8')(sys.stdout)"
 \   ])
 endfunction
 
