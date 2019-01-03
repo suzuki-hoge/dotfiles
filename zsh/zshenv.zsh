@@ -25,3 +25,9 @@ export PATH=$PATH:$HOME/Dropbox/Developments/bin/activator/bin
 
 # npm
 export PATH=$PATH:$HOME/.nodebrew/current/bin
+
+# ruby
+export PATH=$HOME/.rbenv/shims:$PATH
+
+# python
+export PATH=$HOME/.pyenv/shims:$PATH
