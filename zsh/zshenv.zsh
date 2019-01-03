@@ -10,6 +10,7 @@ PATH=$PATH:$DOTFILES/apps/dictionary/bin
 PATH=$PATH:$DOTFILES/apps/find/bin
 PATH=$PATH:$DOTFILES/apps/filterable-book/bin
 PATH=$PATH:$DOTFILES/apps/tsv_to_json/bin
+PATH=$PATH:$DOTFILES/apps/save-all/bin
 
 # locals
 PATH=$PATH:$HOME/.dotfiles/bin

@@ -1,0 +1,26 @@
+#!/usr/bin/python
+
+import os
+import sys
+import argparse
+
+parser = argparse.ArgumentParser(description = 'save contents')
+parser.add_argument('-p', '--path', action = 'store', help = 'contents url path')
+parser.add_argument('-d', '--dir', action = 'store', help = 'save to')
+parser.add_argument('-b', '--base-name', action = 'store', help = 'prefix')
+args = parser.parse_args()
+
+with open(args.path, 'r') as f:
+    paths = f.read().splitlines()
+
+total = len(paths)
+
+for i, path in enumerate(paths):
+    sys.stdout.write('\r{} / {}'.format(i + 1, total))
+    sys.stdout.flush()
+
+    out = '{}/{}-{}.{}'.format(args.dir, args.base_name, i + 1, path.split('.')[-1])
+    os.system('curl -sSo {} {}'.format(out, path))
+
+print '\ndone'
+os.system('open {}'.format(args.dir))
