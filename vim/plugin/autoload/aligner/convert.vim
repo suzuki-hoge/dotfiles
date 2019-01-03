@@ -45,9 +45,7 @@ endfunction
 
 function! s:apiCall(lines, orgDelim, dstDelim)
     let line = substitute(join(a:lines, '\\n'), '`', '\\`', 'g')
-"     echo line
-"     return ['delimiter mismatch']
-    return lib#system#asList($plugin . '/autoload/aligner/api/align', '"' . line . '"', '"' . a:orgDelim . '"', '"' . a:dstDelim . '"')
+    return lib#system#asList($plugin . '/autoload/aligner/api/Align', '"' . line . '"', '"' . a:orgDelim . '"', '"' . a:dstDelim . '"')
 endfunction
 
 function! s:update(lines, start, end, error)

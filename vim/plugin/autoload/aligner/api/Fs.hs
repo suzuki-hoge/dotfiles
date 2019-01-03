@@ -4,6 +4,8 @@ import Data.Char (ord)
 import Data.List (nub, transpose, intercalate)
 import Data.List.Split (splitOn)
 import Text.Printf (printf)
+import Text.Regex (subRegex, mkRegex)
+import Codec.Binary.UTF8.String (encodeString, decodeString)
 
 type Line = String
 type Cols = [String]
@@ -30,11 +32,7 @@ alignAll orgDelim dstDelim ns = map (intercalate dstDelim . align ns . cols orgD
             where pad n col = col ++ replicate (n - len col) ' '
 
 cols :: Delim -> Line -> Cols
-cols d = map strip . splitOn d
-    where
-        strip = lstrip . rstrip
-        lstrip = dropWhile (== ' ')
-        rstrip = reverse . lstrip . reverse
+cols d line = splitOn d $ decodeString $ subRegex (mkRegex $ " *\\" ++ d ++ " *") (encodeString line) d
 
 convert :: Delim -> Delim -> [Line] -> String
 convert orgDelim dstDelim lines = let

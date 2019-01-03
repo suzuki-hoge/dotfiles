@@ -1,6 +1,8 @@
 function! lib#system#asList(...)
     let command = len(a:000) == 1 ? a:1 : join(a:000, ' ')
 
+    echom command
+
     return split(system(command), '\n')
 endfunction
 
