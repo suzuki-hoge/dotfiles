@@ -3,7 +3,6 @@ function! lib#buffer#update(putting, start, end)
     call append(a:start - 1, a:putting)
 endfunction
 
-
 function! lib#buffer#selected()
     let tmp = @*
     execute 'silent normal gvy'

@@ -43,7 +43,7 @@ endfunction
 " run
 function! extension#js#run()
     call extension#common#writeAll()
-    call system($dot . '/apps/reload.app/Contents/MacOS/applet')
+    call lib#system#call($dot . '/apps/reload.app/Contents/MacOS/applet')
 endfunction
 
 " snipet

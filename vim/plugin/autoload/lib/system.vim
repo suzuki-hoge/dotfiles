@@ -1,20 +1,25 @@
 function! lib#system#asList(...)
-    let command = len(a:000) == 1 ? a:1 : join(a:000, ' ')
-    echom command
+    let response = s:call(a:000)
 
-    return split(system(command), '\n')
+    return split(response, '\n')
 endfunction
 
 function! lib#system#call(...)
-    let command = len(a:000) == 1 ? a:1 : join(a:000, ' ')
-    echom command
-
-    call system(command)
+    call s:call(a:000)
 endfunction
 
 function! lib#system#echo(...)
-    let command = len(a:000) == 1 ? a:1 : join(a:000, ' ')
-    echom command
+    let response = s:call(a:000)
 
-    echo system(command)
+    echo response
+endfunction
+
+function! s:call(args)
+    let request = join(a:args, ' ')
+    call lib#log#append('request', request)
+
+    let response = system(request)
+    call lib#log#append('response', substitute(response, "\n", '\\n', 'g'))
+
+    return response
 endfunction

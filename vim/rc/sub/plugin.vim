@@ -1,3 +1,6 @@
+" log
+source $plugin/autoload/lib/log.vim
+
 " complete
 source $plugin/autoload/complete/autocmd.vim
 

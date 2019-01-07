@@ -2,17 +2,17 @@
 function! extension#common#run(cmd, path, ...)
     call extension#common#writeAll()
 
-    echom ' '
+    echo ' '
 
     let cmd = a:cmd . ' ' . a:path . ' ' . join(a:000, ' ')
 
-    echom cmd
-    echom ' '
+    echo cmd
+    echo ' '
 
     for line in lib#system#asList(cmd)
-        echom line | endfor
+        echo line | endfor
 
-    echom ' '
+    echo ' '
 endfunction
 
 function! extension#common#writeAll()
