@@ -12,3 +12,6 @@ source $plugin/autoload/markdown/command.vim
 
 " extension
 source $plugin/autoload/extension/autocmd.vim
+
+" calculator
+source $plugin/autoload/calculator/command.vim
