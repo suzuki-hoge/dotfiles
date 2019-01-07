@@ -1,5 +1,5 @@
-# dotfiles
-DOTFILES=~/Dropbox/Developments/dotfiles
+# local
+source $HOME/.dotfiles/zsh/local.zsh
 
 # globals
 export DOTFILES

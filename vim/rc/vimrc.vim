@@ -1,5 +1,5 @@
-" dotfiles
-let $dot = $HOME . '/Dropbox/Developments/dotfiles'
+" local
+source $HOME/.dotfiles/vim/local.vim
 
 " plugins
 let $plugin   = $dot . '/vim/plugin'
@@ -19,6 +19,3 @@ source $vimsubs/mark.vim
 source $vimsubs/plugin.vim
 source $vimsubs/options.vim
 source $vimsubs/tab.vim
-
-" local
-source $HOME/.dotfiles/vim/rc/local.vim
