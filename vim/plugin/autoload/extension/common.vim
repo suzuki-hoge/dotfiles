@@ -18,7 +18,7 @@ endfunction
 function! extension#common#writeAll()
     let current = tabpagenr()
 
-    tabdo if buflisted(bufnr('%')) && bufname('%') != '' | execute 'w' | endif
+    tabdo call lib#buffer#close('%', 'w', '')
 
     execute 'normal ' . current . 'gt'
 endfunction
