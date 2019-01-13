@@ -44,8 +44,8 @@ function! aligner#convert#align(...) range
 endfunction
 
 function! s:apiCall(lines, orgDelim, dstDelim)
-    let line = substitute(join(a:lines, '\\n'), '`', '\\`', 'g')
-    return lib#system#asList($plugin . '/autoload/aligner/api/Align', '"' . line . '"', '"' . a:orgDelim . '"', '"' . a:dstDelim . '"')
+    let line = lib#string#replace(join(a:lines, '\n'), ["'", "'\\\\''"])
+    return lib#system#asList($plugin . '/autoload/aligner/api/Align', "'" . line . "'", "'" . a:orgDelim . "'", "'" . a:dstDelim . "'")
 endfunction
 
 function! s:update(lines, start, end, error)

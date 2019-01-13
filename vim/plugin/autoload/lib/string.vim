@@ -40,6 +40,14 @@ function! s:pad(s, n, fill)
     return repeat(a:fill, a:n - len(a:s))
 endfunction
 
+function! lib#string#replace(s, ...)
+    let result = a:s
+    for [src, dst] in a:000
+        let result = substitute(result, src, dst, 'g')
+    endfor
+    return result
+endfunction
+
 "
 " test
 "
@@ -54,3 +62,8 @@ call lib#test#assert(lib#string#padl(1, 3, '0'), '001')
 
 call lib#test#assert(lib#string#padr('foo', 5, '-'), 'foo--')
 call lib#test#assert(lib#string#padr('foo', 2, '-'), 'foo')
+
+call lib#test#assert(lib#string#padr('foo', 2, '-'), 'foo')
+
+call lib#test#assert(lib#string#replace('12345', ['2', 'B'], ['4', 'D']), '1B3D5')
+call lib#test#assert(lib#string#replace("echo 'foo'", ["'", "\'"]), "echo \'foo\'")
