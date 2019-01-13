@@ -15,6 +15,3 @@ source $DOTFILES/zsh/sub/history/option.zsh
 source $DOTFILES/zsh/sub/history/shortcut-key.zsh
 
 source $DOTFILES/zsh/sub/prompt/option.zsh
-
-# local
-source $HOME/.dotfiles/zsh/local.zsh

@@ -1,5 +1,3 @@
-" vim:set ft=vim:
-
 " change tab
 nnoremap <Space> gt
 nnoremap <S-Space> gT
@@ -18,4 +16,4 @@ nnoremap <S-C-Space> :bdelete!<CR>
 " without <Space>
 nnoremap gh gT
 nnoremap gl gt
-nnoremap gj :bdelete<CR>
+nnoremap gj :call lib#buffer#close('%', 'wq', 'q!')<CR>

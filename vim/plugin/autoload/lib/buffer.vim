@@ -1,33 +1,21 @@
-function! lib#buffer#clean()
-	execute '1,$delete _'
+function! lib#buffer#update(putting, start, end)
+    execute a:start . ',' . a:end . 'd'
+    call append(a:start - 1, a:putting)
 endfunction
 
-function! lib#buffer#print(data, finishpos)
-	call lib#buffer#clean()
-	call s:print(a:data)
-	call lib#cursor#move(a:finishpos)
+function! lib#buffer#selected()
+    let tmp = @*
+    execute 'silent normal gvy'
+    let selected = @*
+    let @* = tmp
+    return selected
 endfunction
 
-function! lib#buffer#append(data, finishpos)
-	let data = s:split(a:data)
-	call s:append(data)
-	call lib#cursor#move(a:finishpos)
+function! lib#buffer#close(buf, own, others)
+    if s:isOwn(a:buf) | execute a:own
+    else              | execute a:others | endif
 endfunction
 
-function! s:print(data)
-	let data = s:split(a:data)
-	call s:append(data)
-	execute '1delete _'
-endfunction
-
-function! s:append(data)
-	call append('$', a:data)
-endfunction
-
-function! s:split(data)
-	if type(a:data) == type([])
-		return a:data
-	elseif type(a:data) == type('')
-		return split(a:data, '\n')
-	endif
+function! s:isOwn(buf)
+    return buflisted(bufnr(a:buf)) && bufname(a:buf) != ''
 endfunction

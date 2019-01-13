@@ -5,4 +5,4 @@ WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 export CLICOLOR=true
 
 # path alias
-hash -d dot=~/Dropbox/Developments/dotfiles
+hash -d dot=$DOTFILES

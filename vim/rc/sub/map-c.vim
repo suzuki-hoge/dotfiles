@@ -1,5 +1,3 @@
-" vim:set ft=vim:
-
 " history search (beginning search)
 cnoremap <C-p> <UP>
 cnoremap <C-n> <DOWN>

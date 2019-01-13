@@ -1,7 +1,8 @@
-" vim:set ft=vim:
-
 " marking
-nnoremap <silent>mm :<C-u>call <SID>Marking()<CR>
+nnoremap <silent>mm :<C-u>call <SID>marking()<CR>
+
+" jump
+nnoremap m '
 
 " jump to Last Insert
 nnoremap mli '^
@@ -16,7 +17,7 @@ nnoremap mk ['
 nnoremap mj ]'
 
 " show mark list
-nnoremap ms :marks<CR>
+nnoremap mls :marks<CR>
 
 " marker candidates
 if !exists('g:markers')
@@ -24,7 +25,7 @@ if !exists('g:markers')
 endif
 
 " marking by auto increment alphabet
-function! s:Marking()
+function! s:marking()
     if !exists('b:marker_index')
         let b:marker_index = 0
     else

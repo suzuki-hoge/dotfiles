@@ -1,7 +1,2 @@
 .DS_Store
 *.pyc
-shelf.db
-directories
-projects.frank
-dist
-.cabal-sandbox
