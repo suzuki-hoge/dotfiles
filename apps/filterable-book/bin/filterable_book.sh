@@ -5,19 +5,19 @@ book=$1
 
 
 if [ "$#" = 1 ]; then
-    note=`python $script $1 | percol`
+    note=`python2 $script $1 | percol`
 else
     note=$2
 fi
 
 
-page=`python $script $book $note | percol`
+page=`python2 $script $book $note | percol`
 
 IFS='|'
 set -- $page
 line_id=`echo $1 | sed 's/^ *//' | sed 's/ *$//'`
 
 
-line_value=`python $script $book $note $line_id`
+line_value=`python2 $script $book $note $line_id`
 
 printf "$line_value"
