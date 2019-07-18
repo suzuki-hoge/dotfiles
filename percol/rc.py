@@ -1,4 +1,4 @@
-percol.view.PROMPT = ur"<bold><yellow>></yellow></bold> %q"
+percol.view.PROMPT = r"<bold><yellow>></yellow></bold> %q"
 
 percol.import_keymap({
     "C-h" : lambda percol: percol.command.delete_backward_char(),
