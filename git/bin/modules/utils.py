@@ -15,4 +15,4 @@ def get_owner():
 
 def get_repository():
 	remote_url = commands.getoutput('grep "url =" %s/.git/config' % get_root_dir())
-	return remote_url.split('/')[-1][:-4]
+	return remote_url.split('/')[-1].replace('.git', '')
