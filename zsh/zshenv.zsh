@@ -11,6 +11,7 @@ PATH=$PATH:$DOTFILES/apps/find/bin
 PATH=$PATH:$DOTFILES/apps/filterable-book/bin
 PATH=$PATH:$DOTFILES/apps/tsv_to_json/bin
 PATH=$PATH:$DOTFILES/apps/save-all/bin
+PATH=$PATH:$DOTFILES/apps/calendar/bin
 
 # locals
 PATH=$PATH:$HOME/.dotfiles/bin

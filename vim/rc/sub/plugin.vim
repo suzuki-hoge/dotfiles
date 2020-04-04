@@ -22,3 +22,6 @@ source $plugin/autoload/calculator/command.vim
 " calculator
 source $plugin/autoload/dot_hoge_editor/command.vim
 
+" calendar
+source $plugin/autoload/calendar/autocmd.vim
+
