@@ -18,3 +18,7 @@ source $plugin/autoload/extension/autocmd.vim
 
 " calculator
 source $plugin/autoload/calculator/command.vim
+
+" calculator
+source $plugin/autoload/dot_hoge_editor/command.vim
+
