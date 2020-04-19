@@ -11,6 +11,7 @@ inoremap <C-u> <C-u>
 
 " auto ime off
 inoremap <ESC> <ESC>:set iminsert=0<CR>
+set imdisable
 
 " complete
 inoremap <expr> <C-p> pumvisible() ? "\<C-p>" : "\<C-x><C-u>"

@@ -64,3 +64,14 @@ function fg() {
 function fl() {
   filterable_book.sh local $1
 }
+
+# initialize dot hoge
+function dh() {
+  mkdir -p .hoge
+  echo 'unfixed' > .hoge/.tag
+  echo 'active' >> .hoge/.tag
+  touch .hoge/.pub
+
+  dir=`basename $(pwd)`
+  ln -sf ~/Dropbox/Taggings/control-tab ~/Dropbox/Links/status/active
+}
