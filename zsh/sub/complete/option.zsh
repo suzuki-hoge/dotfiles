@@ -1,6 +1,6 @@
 # enable
 autoload -U compinit
-compinit
+compinit -u
 
 # view type
 zstyle ':completion:*' format '%B%d%b'
