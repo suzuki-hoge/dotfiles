@@ -1,6 +1,10 @@
 #!/bin/zsh
 
-python $DOTFILES/vim/plugin/autoload/calendar/calendar.py 2020 4 2020 4 12 /tmp/work.calendar
+y=`date "+%Y"`
+m=`date "+%m"`
+d=`date "+%d"`
+
+python $DOTFILES/vim/plugin/autoload/calendar/calendar.py $y $m $y $m $d /tmp/work.calendar
 
 vi /tmp/work.calendar
 
