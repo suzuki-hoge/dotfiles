@@ -65,6 +65,8 @@ vnoremap <Space>u :action FindUsages<CR>
 
 nnoremap <Space>l :action ReformatCode<CR>
 
+nnoremap <Space>e :action RecentFiles<CR>
+
 nnoremap <Space><Space> :action CodeCompletion<CR>
 
 nnoremap <Space><CR> :action ShowIntentionActions<CR>
