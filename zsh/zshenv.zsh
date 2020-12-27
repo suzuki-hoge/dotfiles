@@ -6,7 +6,6 @@ export DOTFILES
 PATH=$PATH:$DOTFILES/git/bin
 PATH=$PATH:$DOTFILES/vagrant/bin
 PATH=$PATH:$DOTFILES/common/bin
-PATH=$PATH:$DOTFILES/apps/dictionary/bin
 PATH=$PATH:$DOTFILES/apps/find/bin
 PATH=$PATH:$DOTFILES/apps/filterable-book/bin
 PATH=$PATH:$DOTFILES/apps/tsv_to_json/bin
