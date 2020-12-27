@@ -1,0 +1,1 @@
+osascript `dirname $0`/spelling.scpt $1
