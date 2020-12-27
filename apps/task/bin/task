@@ -1,0 +1,6 @@
+#!/bin/zsh
+
+vi /tmp/task.md
+
+ruby $DOTFILES/apps/task/bin/task.rb
+
