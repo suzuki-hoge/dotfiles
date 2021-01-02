@@ -63,7 +63,7 @@ vnoremap <Space>F :action FindInPath<CR>
 nnoremap <Space>u :action FindUsages<CR>
 vnoremap <Space>u :action FindUsages<CR>
 
-nnoremap <Space>l :action ReformatCode<CR>
+nnoremap <Space>l :action ReformatCode<CR>:w<CR>
 
 nnoremap <Space>e :action RecentFiles<CR>
 

@@ -16,7 +16,7 @@ function! calculator#process#calc(exp)
         return ''
     else
         try
-            return eval(calculator#process#implicit_add(a:exp))
+            return string(eval(calculator#process#implicit_add(a:exp)))
         catch
             return '-'
         endtry
