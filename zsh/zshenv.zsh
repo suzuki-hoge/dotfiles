@@ -12,6 +12,7 @@ PATH=$PATH:$DOTFILES/apps/calendar/bin
 PATH=$PATH:$DOTFILES/apps/calculator/bin
 PATH=$PATH:$DOTFILES/apps/task/bin
 PATH=$PATH:$DOTFILES/apps/spelling/bin
+PATH=$PATH:$DOTFILES/apps/dictionary/bin
 
 # locals
 PATH=$PATH:$HOME/.dotfiles/bin
