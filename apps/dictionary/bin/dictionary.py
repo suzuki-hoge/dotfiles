@@ -1,8 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import re, sys
+import re, sys, commands, codecs
 from DictionaryServices import DCSCopyTextDefinition
+
+
+sys.stdout = codecs.getwriter('utf8')(sys.stdout)
 
 
 def look_up(word):
@@ -25,18 +28,50 @@ def format_for_e_to_j(line):
     return '\n' + line
 
 
+def suggest_and_re_process(word):
+    suggests = filter(lambda s: s != '', commands.getoutput('sp %s' % word).split(', '))
+
+    if suggests:
+        print ''
+
+        for i, suggest in enumerate(suggests, 1):
+            print '%d: %s' % (i, suggest)
+
+        print '\n0: abort\n'
+
+        n = input('enter: ') - 1
+
+        if n != -1:
+            process(suggests[n])
+
+    else:
+        print '\nno suggests.'
+
+
 def process(word):
     result = look_up(word)
 
     if re.match('[a-zA-Z]', word) is None:
-        print format_for_j_to_e(result)
+        if result is None:
+            print '\nno results.'
+
+        else:
+            print format_for_j_to_e(result)
 
     else:
-        print format_for_e_to_j(result)
+        if result is None:
+            suggest_and_re_process(word)
+
+        else:
+            print format_for_e_to_j(result)
 
 
 if __name__ == '__main__':
     word = sys.argv[1].decode('utf-8')
 
-    process(word)
+    try:
+        process(word)
+
+    except KeyboardInterrupt:
+        sys.exit(0)
 
