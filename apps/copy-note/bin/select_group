@@ -1,0 +1,1 @@
+jq -r ".[] | .group" ~/.copy-note.json | percol --match-method regex | xargs -Igroup select_key group

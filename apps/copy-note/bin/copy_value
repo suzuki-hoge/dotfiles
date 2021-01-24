@@ -1,0 +1,4 @@
+group=$1
+key=$2
+
+jq -r ".[] | select(.group == \"$1\") | .items[] | select(.key == \"$2\") | .val" ~/.copy-note.json | pbcopy
