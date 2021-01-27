@@ -1,3 +1,3 @@
 group=$1
 
-jq -r ".[] | select(.group == \"$group\") | .items[] | .key" ~/.copy-note.json | percol --match-method regex | xargs -Ikey copy_value $group key
+jq -r ".[] | select(.group == \"$group\") | .items[] | .key" ~/.copy-note.json | percol --match-method regex | xargs -Ikey action $group key
