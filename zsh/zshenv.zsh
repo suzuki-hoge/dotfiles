@@ -7,13 +7,13 @@ PATH=$PATH:$DOTFILES/git/bin
 PATH=$PATH:$DOTFILES/vagrant/bin
 PATH=$PATH:$DOTFILES/common/bin
 PATH=$PATH:$DOTFILES/apps/find/bin
-PATH=$PATH:$DOTFILES/apps/filterable-book/bin
 PATH=$PATH:$DOTFILES/apps/save-all/bin
 PATH=$PATH:$DOTFILES/apps/calendar/bin
 PATH=$PATH:$DOTFILES/apps/calculator/bin
 PATH=$PATH:$DOTFILES/apps/task/bin
 PATH=$PATH:$DOTFILES/apps/spelling/bin
 PATH=$PATH:$DOTFILES/apps/dictionary/bin
+PATH=$PATH:$DOTFILES/apps/copy-note/bin
 
 # locals
 PATH=$PATH:$HOME/.dotfiles/bin

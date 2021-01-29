@@ -1,0 +1,7 @@
+if [ $# -eq 0 ]; then
+    select_group
+else
+    group=$1
+
+    select_key $group
+fi
