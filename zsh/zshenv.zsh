@@ -14,6 +14,7 @@ PATH=$PATH:$DOTFILES/apps/task/bin
 PATH=$PATH:$DOTFILES/apps/spelling/bin
 PATH=$PATH:$DOTFILES/apps/dictionary/bin
 PATH=$PATH:$DOTFILES/apps/copy-note/bin
+PATH=$PATH:$DOTFILES/apps/poem-lint/bin
 
 # locals
 PATH=$PATH:$HOME/.dotfiles/bin
