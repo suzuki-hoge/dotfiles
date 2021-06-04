@@ -6,23 +6,14 @@ import sys, commands
 def keys():
     bookmarks = '~/.bookmark-launcher.json'
 
-    dirs = commands.getoutput("""yq -r '.roots.bookmark_bar.children[] | select(.name == "bl") | .children[] | select(.type == "folder") | .name' %(bookmarks)s""" % locals()).split('\n')
-
-    for dir in dirs:
-        keys = commands.getoutput("""yq -r '.roots.bookmark_bar.children[] | select(.name == "bl") | .children[] | select(.name == "%(dir)s") | .children[].name' %(bookmarks)s""" % locals()).split('\n')
-        for key in keys:
-            print '%(dir)s / %(key)s' % locals()
+    for name in commands.getoutput("""jq -r '.roots.bookmark_bar.children[] | select(.name == "bl") | .children[] | .children[] | .name' %(bookmarks)s""" % locals()).split('\n'):
+        print name
 
 
 def val(key):
     bookmarks = '~/.bookmark-launcher.json'
 
-    dir = key.split('/')[0].strip()
-    name = key.split('/')[1].strip()
-
-    val = commands.getoutput("""yq -r '.roots.bookmark_bar.children[] | select(.name == "bl") | .children[] | select(.name == "%(dir)s") | .children[] | select(.name == "%(name)s") | .url' %(bookmarks)s""" % locals()).strip()
-
-    print val
+    print commands.getoutput("""jq -r '.roots.bookmark_bar.children[] | select(.name == "bl") | .children[] | .children[] | select(.name == "%(key)s") | .url' %(bookmarks)s""" % locals()).strip()
 
 
 if len(sys.argv) == 1:
