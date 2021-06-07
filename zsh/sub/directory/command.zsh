@@ -37,3 +37,13 @@ function cdpc() {
     cdpc
   fi
 }
+
+# copy full path
+function fp() {
+  if [ $# -eq 1 ]; then
+    echo $(cd $(dirname $1); pwd)/$(basename $1) | tr -d '\n' | pbcopy
+  else
+    pwd | tr -d '\n' | pbcopy
+  fi
+}
+
