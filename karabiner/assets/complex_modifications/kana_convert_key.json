@@ -1,0 +1,21 @@
+{
+  "title": "6. kana convert key",
+  "rules": [
+    {
+      "description": "カナ",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "i",
+            "modifiers": { "mandatory": [ "right_control" ] }
+          },
+          "to": [
+            { "key_code": "k", "modifiers": [ "right_control" ] }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
