@@ -1,0 +1,51 @@
+{
+  "title": "3. symbol key",
+  "rules": [
+    {
+      "description": "~",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "h",
+            "modifiers": { "mandatory": [ "left_control" ] }
+          },
+          "to": [
+            { "key_code": "equal_sign", "modifiers": [ "shift" ] }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "-",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "semicolon",
+            "modifiers": { "mandatory": [ "left_control" ] }
+          },
+          "to": [
+            { "key_code": "hyphen" }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "=",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "p",
+            "modifiers": { "mandatory": [ "left_control" ] }
+          },
+          "to": [
+            { "key_code": "hyphen", "modifiers": [ "shift" ] }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

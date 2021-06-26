@@ -1,0 +1,156 @@
+{
+  "title": "2. shift ten key",
+  "rules": [
+    {
+      "description": "shift + 0",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "n",
+            "modifiers": { "mandatory": [ "control", "shift" ] }
+          },
+          "to": [
+            { "key_code": "international3", "modifiers": [ "shift" ] }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "shift + 1",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "m",
+            "modifiers": { "mandatory": [ "control", "shift" ] }
+          },
+          "to": [
+            { "key_code": "1", "modifiers": [ "shift" ] }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "shift + 2",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "comma",
+            "modifiers": { "mandatory": [ "control", "shift" ] }
+          },
+          "to": [
+            { "key_code": "2", "modifiers": [ "shift" ] }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "shift + 3",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "period",
+            "modifiers": { "mandatory": [ "control", "shift" ] }
+          },
+          "to": [
+            { "key_code": "3", "modifiers": [ "shift" ] }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "shift + 4",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "j",
+            "modifiers": { "mandatory": [ "control", "shift" ] }
+          },
+          "to": [
+            { "key_code": "4", "modifiers": [ "shift" ] }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "shift + 5",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "k",
+            "modifiers": { "mandatory": [ "control", "shift" ] }
+          },
+          "to": [
+            { "key_code": "5", "modifiers": [ "shift" ] }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "shift + 6",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "l",
+            "modifiers": { "mandatory": [ "left_control", "shift" ] }
+          },
+          "to": [
+            { "key_code": "6", "modifiers": [ "shift" ] }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "shift + 7",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "u",
+            "modifiers": { "mandatory": [ "left_control", "shift" ] }
+          },
+          "to": [
+            { "key_code": "7", "modifiers": [ "shift" ] }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "shift + 8",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "i",
+            "modifiers": { "mandatory": [ "control", "shift" ] }
+          },
+          "to": [
+            { "key_code": "8", "modifiers": [ "shift" ] }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "shift + 9",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "o",
+            "modifiers": { "mandatory": [ "control", "shift" ] }
+          },
+          "to": [
+            { "key_code": "9", "modifiers": [ "shift" ] }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

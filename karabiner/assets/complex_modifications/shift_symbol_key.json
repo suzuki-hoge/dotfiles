@@ -1,0 +1,68 @@
+{
+  "title": "4. shift symbol key",
+  "rules": [
+    {
+      "description": "^",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "h",
+            "modifiers": { "mandatory": [ "control", "shift" ] }
+          },
+          "to": [
+            { "key_code": "equal_sign" }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "->",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "semicolon",
+            "modifiers": { "mandatory": [ "control", "shift" ] }
+          },
+          "to": [
+            { "key_code": "hyphen" },
+            { "key_code": "period", "modifiers": [ "shift" ] }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "=>",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "p",
+            "modifiers": { "mandatory": [ "control", "shift" ] }
+          },
+          "to": [
+            { "key_code": "hyphen", "modifiers": [ "shift" ] },
+            { "key_code": "period", "modifiers": [ "shift" ] }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "\\",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "y",
+            "modifiers": { "mandatory": [ "control", "shift" ] }
+          },
+          "to": [
+            { "key_code": "international3", "modifiers": [ "option" ] }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
