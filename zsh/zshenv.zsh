@@ -35,3 +35,8 @@ export PATH=$HOME/.rbenv/shims:$PATH
 
 # python
 export PATH=$HOME/.pyenv/shims:$PATH
+export PATH=$HOME/Library/Python/3.8/bin:$PATH
+
+# brew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+

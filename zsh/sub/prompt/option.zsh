@@ -1,7 +1,14 @@
+function mark {
+  if [ `uname -m` = 'arm64' ]; then
+    echo ''
+  else
+    echo '>'
+  fi
+}
 # left prompt
 PROMPT="
 %d
-> "
+`mark` "
 
 # right prompt
 RPROMPT=$'`git_info`'
