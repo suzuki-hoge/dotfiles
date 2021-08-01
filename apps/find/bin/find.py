@@ -21,7 +21,7 @@ is_d = os.path.isdir
 is_f = lambda x: not is_d(x)
 join = os.path.join
 
-blacks = ['.git', '.svn', '.vagrant', 'idea', '.DS_Store', '.pyc', '.cabal-sandbox']
+blacks = ['.git', '.svn', '.vagrant', 'idea', '.DS_Store', '.pyc', '.cabal-sandbox', '.stack-work', '.gradle', '.cache', 'node_modules']
 limit = 10000
 
 result = []
