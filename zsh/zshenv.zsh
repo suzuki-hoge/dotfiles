@@ -12,7 +12,6 @@ path=(
     /opt/homebrew/bin(N-/)              # ARM64 brew bins
     /usr/local/bin                      # x86_64 brew bins
     $DOTFILES/git/bin
-    $DOTFILES/vagrant/bin
     $DOTFILES/common/bin
     $DOTFILES/apps/find/bin
     $DOTFILES/apps/save-all/bin
