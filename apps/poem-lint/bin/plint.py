@@ -1,22 +1,25 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import sys, commands, itertools
+import sys, commands, yaml
 
 import defs
 
 
 def check(path):
     print '\n%s' % path
-    for (black, white) in defs.pairs:
-        lines = filter(str.strip, commands.getoutput("grep -n '%s' %s" % (black, path)).split('\n'))
+    for (warning, suggest, excludes) in defs.pairs:
+        lines = filter(str.strip, commands.getoutput("grep -n '%s' %s" % (warning, path)).split('\n'))
         for line in lines:
-            print '    %s → %s' % (line.replace(black, '\033[31m%s\033[0m' % black), '\033[32m%s\033[0m' % white)
+            if any([exclude in line for exclude in excludes]):
+                pass
+            else:
+                print '    %s → %s' % (line.replace(warning, '\033[31m%s\033[0m' % warning), '\033[32m%s\033[0m' % suggest)
 
 
 def book():
     with open('./config.yaml', 'r') as f:
-        paths = ['config.yaml'] + [line.strip().replace('- ', '') + '.md' for line in itertools.dropwhile(lambda line: 'chapters' not in line, f.read().splitlines()) if line][1:]
+        paths =  ['config.yaml'] + ['%s.md' % chapter for chapter in yaml.safe_load(f)['chapters']]
 
     for path in paths:
         check(path)
