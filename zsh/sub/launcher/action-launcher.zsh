@@ -1,13 +1,13 @@
 function al() {
-  item=`yq -r ".[] | .item" ~/.action-launcher.yaml | percol --match-method regex | xargs echo`
+  item=`python ./action-parser.py items | percol --match-method regex | xargs echo`
 
   BK=$IFS
   IFS=$'\n'
 
-  for item in `yq -c ".[] | select(.item == \"$item\") | .commands[]" ~/.action-launcher.yaml`
+  for item in `python ./action-parser.py commands $item`
   do
-    val=`echo $item | yq -r .val | sed 's/<CR>/\'$'\n/'`
-    act=`echo $item | yq -r .act`
+    val=`echo $item | jq -r .val | sed 's/<CR>/\'$'\n/'`
+    act=`echo $item | jq -r .act`
 
     case "$act" in
       "copy" )
