@@ -18,3 +18,4 @@ source $DOTFILES/zsh/sub/prompt/option.zsh
 
 source $DOTFILES/zsh/sub/launcher/action-launcher.zsh
 source $DOTFILES/zsh/sub/launcher/bookmark-launcher.zsh
+
