@@ -50,21 +50,6 @@ function current_or() {
   fi
 }
 
-# look up a word in a dictionary
-function d() {
-  dictionary.py $*
-}
-
-# search global notes
-function fg() {
-  filterable_book.sh global $1
-}
-
-# search local notes
-function fl() {
-  filterable_book.sh local $1
-}
-
 # initialize dot hoge
 function dh() {
   mkdir -p .hoge
@@ -75,3 +60,9 @@ function dh() {
   dir=`basename $(pwd)`
   ln -sf ~/Dropbox/Taggings/control-tab ~/Dropbox/Links/status/active
 }
+
+# echo paths
+function paths() {
+  echo $PATH | tr : '\n'
+}
+
