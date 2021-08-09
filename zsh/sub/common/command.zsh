@@ -50,21 +50,6 @@ function current_or() {
   fi
 }
 
-# look up a word in a dictionary
-function d() {
-  dictionary.py $*
-}
-
-# search global notes
-function fg() {
-  filterable_book.sh global $1
-}
-
-# search local notes
-function fl() {
-  filterable_book.sh local $1
-}
-
 # initialize dot hoge
 function dh() {
   mkdir -p .hoge
@@ -75,3 +60,38 @@ function dh() {
   dir=`basename $(pwd)`
   ln -sf ~/Dropbox/Taggings/control-tab ~/Dropbox/Links/status/active
 }
+
+# echo paths
+function paths() {
+  echo $PATH | tr : '\n'
+}
+
+# extend which
+function wch() {
+  result=`type $1`
+
+  if [ "`echo $result | grep 'not found'`" ]; then
+    echo 'not found'
+  elif [ "`echo $result | grep 'shell builtin'`" ]; then
+    echo 'shell built-in'
+  else
+    found=`echo $result | rev | cut -d ' ' -f 1 | rev`
+    dir=`dirname $found`
+    if [ $# = 1 ]; then
+      echo $found
+    elif [ $2 = 'ls' ]; then
+      ls $dir
+    elif [ $2 = 'dir' ]; then
+      echo $dir
+    elif [ $2 = 'cd' ]; then
+      cd $dir
+    elif [ $2 = 'vi' ]; then
+      if [ "`file $found | grep 'ASCII text'`" ]; then
+        vi $found
+      else
+        echo 'not a text'
+      fi
+    fi
+  fi
+}
+
