@@ -1,42 +1,31 @@
 # local
 source $HOME/.dotfiles/zsh/local.zsh
 
-# globals
+# paths
+setopt no_global_rcs
+
 export DOTFILES
-PATH=$PATH:$DOTFILES/git/bin
-PATH=$PATH:$DOTFILES/vagrant/bin
-PATH=$PATH:$DOTFILES/common/bin
-PATH=$PATH:$DOTFILES/apps/find/bin
-PATH=$PATH:$DOTFILES/apps/save-all/bin
-PATH=$PATH:$DOTFILES/apps/calendar/bin
-PATH=$PATH:$DOTFILES/apps/calculator/bin
-PATH=$PATH:$DOTFILES/apps/task/bin
-PATH=$PATH:$DOTFILES/apps/spelling/bin
-PATH=$PATH:$DOTFILES/apps/dictionary/bin
-PATH=$PATH:$DOTFILES/apps/poem-lint/bin
 
-# locals
-PATH=$PATH:$HOME/.dotfiles/bin
-
-# for brew
-export PATH="/usr/local/bin:$PATH"
-
-# for stack
-export PATH="$PATH:$HOME/.local/bin"
-
-# for activator
-export PATH=$PATH:$HOME/Dropbox/Developments/bin/activator/bin 
-
-# npm
-export PATH=$PATH:$HOME/.nodebrew/current/bin
-
-# ruby
-export PATH=$HOME/.rbenv/shims:$PATH
-
-# python
-export PATH=$HOME/.pyenv/shims:$PATH
-export PATH=$HOME/Library/Python/3.8/bin:$PATH
-
-# brew
-eval "$(/opt/homebrew/bin/brew shellenv)"
+typeset -U path PATH
+path=(
+    $path                               # origins
+    /opt/homebrew/bin(N-/)              # ARM64 brew bins
+    /usr/local/bin                      # x86_64 brew bins
+    $DOTFILES/git/bin
+    $DOTFILES/common/bin
+    $DOTFILES/apps/find/bin
+    $DOTFILES/apps/save-all/bin
+    $DOTFILES/apps/calendar/bin
+    $DOTFILES/apps/calculator/bin
+    $DOTFILES/apps/task/bin
+    $DOTFILES/apps/spelling/bin
+    $DOTFILES/apps/dictionary/bin
+    $DOTFILES/apps/poem-lint/bin
+    $HOME/.local/bin                                    # stack
+    $HOME/Dropbox/Developments/bin/activator/bin(N-/)   # activator
+    $HOME/.nodebrew/current/bin(N-/)                    # npm
+    $HOME/.rbenv/shims(N-/)                             # ruby
+    $HOME/.pyenv/shims(N-/)                             # python
+    $HOME/Library/Python/3.8/bin(N-/)                   # python
+)
 
