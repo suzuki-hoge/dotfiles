@@ -1,0 +1,23 @@
+#!/usr/bin/python
+
+import os
+import argparse
+import commands
+
+from modules import utils
+
+parser = argparse.ArgumentParser(description = 'seartch pull request from commit')
+parser.add_argument('commit', metavar = 'Commit', type = str, help = 'commit')
+args = parser.parse_args()
+
+commit = args.commit
+
+owner = utils.get_owner()
+repository = utils.get_repository()
+
+logs = commands.getoutput("git log --merges --oneline --reverse --ancestry-path %s...develop | grep 'Merge pull request #'" % commit).split('\n')
+
+number = logs[0].split(' ')[4][1:]
+
+os.system('open https://github.com/%(owner)s/%(repository)s/pull/%(number)s' % locals())
+
