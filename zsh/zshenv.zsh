@@ -27,5 +27,6 @@ path=(
     $HOME/.rbenv/shims(N-/)                             # ruby
     $HOME/.pyenv/shims(N-/)                             # python
     $HOME/Library/Python/3.8/bin(N-/)                   # python
+    $HOME/.cargo/bin                                    # rust
 )
 
