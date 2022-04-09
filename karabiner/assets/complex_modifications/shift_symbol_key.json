@@ -58,7 +58,7 @@
             "modifiers": { "mandatory": [ "control", "shift" ] }
           },
           "to": [
-            { "key_code": "international3", "modifiers": [ "option" ] }
+            { "key_code": "international3", "modifiers": [ "left_option" ] }
           ]
         }
       ]
