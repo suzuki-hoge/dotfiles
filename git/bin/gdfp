@@ -1,3 +1,19 @@
 #!/bin/zsh
 
-git status -s | percol --match-method regex | cut -c4- | xargs git diff
+local -A opthash
+zparseopts -D -A opthash -- a s
+
+if [[ -n "${opthash[(i)-a]}" ]]; then
+  if [[ -n "${opthash[(i)-s]}" ]]; then
+    git diff --staged
+  else
+    git diff
+  fi
+else
+  if [[ -n "${opthash[(i)-s]}" ]]; then
+    git status -s | grep '^[MARCD]' | percol --match-method regex | cut -c4- | xargs git diff --staged
+  else
+    git status -s | grep ' [MARCD]' | percol --match-method regex | cut -c4- | xargs git diff
+  fi
+fi
+
