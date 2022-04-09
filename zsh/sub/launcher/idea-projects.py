@@ -1,38 +1,36 @@
-from os.path import expanduser, isfile
-from commands import getoutput
+# -*- coding: utf-8 -*-
 
-xml = '/Library/Application Support/JetBrains/IntelliJIdea2021.1/options/recentProjects.xml'
+import os, sys, yaml, json
 
-with open('%s/%s' % (expanduser('~'), xml), 'r') as f:
-    lines = f.read().splitlines()
 
-length = 0
-projects = []
+def projects():
+    with open(os.environ['HOME'] + '/.idea-projects.yaml', 'r') as f:
+        projects = yaml.safe_load(f)
 
-for line in lines:
-    if 'USER_HOME' in line and 'entry' in line:
-        path = '%s/%s' % (expanduser('~'), '/'.join(line.split('/')[1:])[:-2])
+    ws = [15, 30, 10, 10, 10, 10, 10]
+    for group in projects['groups']:
+        for project in group['projects']:
+            cols = [group['name'], project['name']] + (project['tags'] or []).split(',')
+            for i, col in enumerate(cols):
+                print col.strip().ljust(ws[i], ' '),
+            print ''
 
-        name_file = path + '/.idea/.name'
-        top_iml = getoutput("ls %s/*.iml" % path)
-        idea_iml = getoutput("ls %s/.idea/*.iml" % path)
 
-        if isfile(name_file):
-            name = getoutput('cat %s' % name_file)
+def path(line):
+    with open(os.environ['HOME'] + '/.idea-projects.yaml', 'r') as f:
+        projects = yaml.safe_load(f)
 
-        elif 'No such file' not in top_iml:
-            name = top_iml.split('/')[-1][:-4]
+    group_name = line.split('|')[0].strip()
+    project_name = line.split('|')[1].strip()
 
-        elif 'No such file' not in idea_iml:
-            name = idea_iml.split('/')[-1][:-4]
+    for group in projects['groups']:
+        for project in group['projects']:
+            if group['name'] == group_name and project['name'] == project_name:
+                print project['path']
 
-        else:
-            name = path.split('/')[-1]
 
-        length = max(length, len(name))
-
-        projects.append((name, path))
-
-for (name, path) in sorted(projects):
-    print '%s | %s' % (name.ljust(length, ' '), path)
+if len(sys.argv) == 2 and sys.argv[1] == 'projects':
+    projects()
+elif len(sys.argv) == 3 and sys.argv[1] == 'path':
+    path(sys.argv[2])
 
