@@ -1,0 +1,4 @@
+#!/bin/zsh
+
+ruby `dirname $0`/docker-info.rb $1
+

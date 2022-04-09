@@ -21,6 +21,7 @@ path=(
     $DOTFILES/apps/spelling/bin
     $DOTFILES/apps/dictionary/bin
     $DOTFILES/apps/poem-lint/bin
+    $DOTFILES/apps/docker-info/bin
     $HOME/.local/bin                                    # stack
     $HOME/Dropbox/Developments/bin/activator/bin(N-/)   # activator
     $HOME/.nodebrew/current/bin(N-/)                    # npm
