@@ -36,9 +36,9 @@ class Date:
         if self.v.month != self.first.month:
             return '#'
         elif self.v.weekday() == 5:
-            return '<'
-        elif self.v.weekday() == 6:
             return '>'
+        elif self.v.weekday() == 6:
+            return '<'
         else:
             return ' '
 
@@ -53,7 +53,7 @@ weeks = [''.join(map(mk, xrange(n, n + 7))) for n in lefts]
 with open(out, 'w') as f:
     f.write('                       %d %02d' % (req_y, req_m))
     f.write('\n\n')
-    f.write('    Su< Mo  Tu  We  Th  Fr  Sa>')
+    f.write('    Su> Mo  Tu  We  Th  Fr  Sa<')
     f.write('\n\n')
     f.write('\n'.join(map(lambda week: '    ' + week, weeks)))
 
