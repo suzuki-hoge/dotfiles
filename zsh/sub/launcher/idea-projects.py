@@ -20,8 +20,8 @@ def path(line):
     with open(os.environ['HOME'] + '/.idea-projects.yaml', 'r') as f:
         projects = yaml.safe_load(f)
 
-    group_name = line.split('|')[0].strip()
-    project_name = line.split('|')[1].strip()
+    group_name = line.split(' ')[0].strip()
+    project_name = line.split(' ')[1].strip()
 
     for group in projects['groups']:
         for project in group['projects']:
