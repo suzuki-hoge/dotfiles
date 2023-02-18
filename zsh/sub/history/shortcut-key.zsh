@@ -1,6 +1,6 @@
 # interactive search and put to command line
 function f_put_searched_history() {
-  BUFFER=`history -n 1 | awk '!a[$0]++' | tail -r | percol --match-method regex --query "$LBUFFER"`
+  BUFFER=`history -n 1 | awk '!a[$0]++' | tail -r | bf "$LBUFFER"`
   CURSOR=$#BUFFER
   zle clear-screen
 }

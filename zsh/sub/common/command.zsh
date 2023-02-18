@@ -17,23 +17,23 @@ function qlook() {
 }
 
 # interactive search and edit
-function vip() {
+function vif() {
   local ROOT=`current_or $1`
-  local TARGET=`find.py $ROOT -f | percol --match-method regex`
+  local TARGET=`b-find -f $ROOT | bf`
   vi $ROOT/$TARGET
 }
 
 # recursive interactive search and edit
-function vipr() {
+function vifr() {
   local ROOT=`current_or $1`
-  local TARGET=`find.py $ROOT -f -r | percol --match-method regex`
+  local TARGET=`b-find -f -r $ROOT | bf`
   vi $ROOT/$TARGET
 }
 
 # global alias
 alias -g G='| grep'
 alias -g V='| grep -v'
-alias -g P='| percol --match-method regex | xargs'
+alias -g F='| bf | xargs'
 alias -g E='&& exit'
 alias -g C="| tr -d '\n' | pbcopy"
 alias -g CC='| pbcopy'

@@ -16,7 +16,9 @@ source $DOTFILES/zsh/sub/history/shortcut-key.zsh
 
 source $DOTFILES/zsh/sub/prompt/option.zsh
 
-source $DOTFILES/zsh/sub/launcher/action-launcher.zsh
-source $DOTFILES/zsh/sub/launcher/bookmark-launcher.zsh
-source $DOTFILES/zsh/sub/launcher/idea-launcher.zsh
+# bins
+source $HOME/Dropbox/Taggings/bins/wrapper-alias/cli-git.zsh
+source $HOME/Dropbox/Taggings/bins/wrapper-alias/cli-misc.zsh
+source $HOME/Dropbox/Taggings/bins/wrapper-alias/tui-git.zsh
+source $HOME/Dropbox/Taggings/bins/wrapper-alias/tui-misc.zsh
 

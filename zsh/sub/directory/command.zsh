@@ -16,21 +16,21 @@ function dir() {
 }
 
 # interactive search and cd
-function cdp() {
+function cdf() {
   local ROOT=`current_or $1`
-  local TARGET=`find.py $ROOT -d | percol --match-method regex`
+  local TARGET=`b-find -d $ROOT | bf`
   cd $ROOT/$TARGET
 }
 
 # recursive interactive search and cd
-function cdpr() {
+function cdfr() {
   local ROOT=`current_or $1`
-  local TARGET=`find.py $ROOT -d -r | percol --match-method regex`
+  local TARGET=`b-find -d -r $ROOT | bf`
   cd $ROOT/$TARGET
 }
 
 # chaining cdp
-function cdpc() {
+function cdfc() {
   cdp
   x=`find . -type d -depth 1`
   if [ $#x -ne 0 ]; then

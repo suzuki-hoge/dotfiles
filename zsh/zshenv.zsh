@@ -8,10 +8,11 @@ export DOTFILES
 
 typeset -U path PATH
 path=(
-    $path                               # origins
     /opt/homebrew/bin(N-/)              # ARM64 brew bins
+    /opt/homebrew/sbin(N-/)             # ARM64 brew bins
+    $path                               # origins
     /usr/local/bin                      # x86_64 brew bins
-    $DOTFILES/git/bin
+    $HOME/Dropbox/Taggings/bins/wrapper-bin
     $DOTFILES/common/bin
     $DOTFILES/apps/find/bin
     $DOTFILES/apps/save-all/bin
@@ -22,6 +23,7 @@ path=(
     $DOTFILES/apps/dictionary/bin
     $DOTFILES/apps/poem-lint/bin
     $DOTFILES/apps/docker-info/bin
+    $DOTFILES/apps/docker-info/bin
     $HOME/.local/bin                                    # stack
     $HOME/Dropbox/Developments/bin/activator/bin(N-/)   # activator
     $HOME/.nodebrew/current/bin(N-/)                    # npm
@@ -31,3 +33,4 @@ path=(
     $HOME/.cargo/bin                                    # rust
 )
 
+. "$HOME/.cargo/env"
