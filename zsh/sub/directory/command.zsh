@@ -29,12 +29,12 @@ function cdfr() {
   cd $ROOT/$TARGET
 }
 
-# chaining cdp
+# chaining cdf
 function cdfc() {
-  cdp
+  cdf
   x=`find . -type d -depth 1`
   if [ $#x -ne 0 ]; then
-    cdpc
+    cdfc
   fi
 }
 

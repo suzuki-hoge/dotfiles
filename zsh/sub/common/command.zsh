@@ -20,14 +20,18 @@ function qlook() {
 function vif() {
   local ROOT=`current_or $1`
   local TARGET=`b-find -f $ROOT | bf`
-  vi $ROOT/$TARGET
+  if [ ${#TARGET} != 0 ]; then
+    vi $ROOT/$TARGET
+  fi
 }
 
 # recursive interactive search and edit
 function vifr() {
   local ROOT=`current_or $1`
   local TARGET=`b-find -f -r $ROOT | bf`
-  vi $ROOT/$TARGET
+  if [ ${#TARGET} != 0 ]; then
+    vi $ROOT/$TARGET
+  fi
 }
 
 # global alias

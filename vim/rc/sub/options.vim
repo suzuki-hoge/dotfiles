@@ -12,5 +12,6 @@ set hlsearch
 set incsearch
 set nowrap
 set nrformats=
+set shortmess-=S
 
 hi CursorIM guifg=black guibg=red gui=NONE ctermfg=black ctermbg=white cterm=reverse
