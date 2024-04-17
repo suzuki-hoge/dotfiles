@@ -1,6 +1,9 @@
 # reload zsh configs
 alias reload='source ~/.zshrc'
 
+# launch editor
+alias ed='open -n -a "IntelliJ IDEA.app" --args .'
+
 # vertical ls
 function l() {
   ls -1 $1

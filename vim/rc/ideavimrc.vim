@@ -71,6 +71,9 @@ nnoremap <Space><Space> :action CodeCompletion<CR>
 
 nnoremap <Space><CR> :action ShowIntentionActions<CR>
 
+nnoremap <Space>b :action ShowBookmarks<CR>
+nnoremap <Space>B :action ToggleBookmark<CR>
+
 " reload
 nnoremap <Space>s :source ~/.ideavimrc<CR>
 
