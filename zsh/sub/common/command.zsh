@@ -2,7 +2,7 @@
 alias reload='source ~/.zshrc'
 
 # launch editor
-alias ed='open -n -a "IntelliJ IDEA.app" --args .'
+alias ed='open -n -a "IntelliJ IDEA 2.app" --args .'
 
 # vertical ls
 function l() {
