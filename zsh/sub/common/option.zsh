@@ -5,4 +5,5 @@ WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 export CLICOLOR=true
 
 # path alias
+hash -d d=$DOTFILES
 hash -d dot=$DOTFILES

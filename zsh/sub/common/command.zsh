@@ -48,6 +48,10 @@ alias -g X='| xargs'
 alias -g L='| wc -l'
 alias -g O='| xargs open'
 
+# alias
+alias bd='source /Users/ryo/Dropbox/Taggings/bins/wrapper-bin/project-directory'
+alias bb='source /Users/ryo/Dropbox/Taggings/bins/wrapper-bin/project-task'
+
 # working directory or specified path
 function current_or() {
   if [ -z $1 ];then
