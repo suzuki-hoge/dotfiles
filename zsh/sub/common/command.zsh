@@ -108,3 +108,31 @@ function wch() {
   fi
 }
 
+vs() {
+  osascript <<'EOF'
+    tell application "iTerm2"
+        activate
+        if (count of windows) = 0 then
+            create window with default profile
+        end if
+        tell current session of current window
+            split vertically with same profile
+        end tell
+    end tell
+EOF
+}
+
+sp() {
+  osascript <<'EOF'
+    tell application "iTerm2"
+      activate
+      if (count of windows) = 0 then
+          create window with default profile
+      end if
+      tell current session of current window
+          split horizontally with same profile
+      end tell
+    end tell
+EOF
+}
+
