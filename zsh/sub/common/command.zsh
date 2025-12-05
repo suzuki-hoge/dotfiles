@@ -136,3 +136,64 @@ sp() {
 EOF
 }
 
+function ss() {
+  local dir filename ts file latest qlook_mode=0
+
+  dir="./tmp-screen-shot"
+
+  # -q オプションのチェック
+  if [[ "$1" == "-q" ]]; then
+    qlook_mode=1
+    shift
+  fi
+
+  # qlook モードの場合
+  if [[ $qlook_mode -eq 1 ]]; then
+    if [[ -n "$1" ]]; then
+      # ファイル名が指定された場合
+      file="$dir/$1.png"
+    else
+      # ファイル名が指定されなかった場合は latest を使う
+      file="$dir/latest.png"
+    fi
+
+    if [[ ! -f "$file" ]]; then
+      echo "Error: file not found: $file" >&2
+      return 1
+    fi
+
+    qlmanage -p "$file" >/dev/null 2>&1
+    return 0
+  fi
+
+  # 以降は既存の保存処理
+  mkdir -p -- "$dir" || {
+    echo "Error: cannot create directory: $dir" >&2
+    return 1
+  }
+
+  if [[ -n "$1" ]]; then
+    # ファイル名が指定された場合
+    filename="$1.png"
+  else
+    # ファイル名が指定されなかった場合
+    ts="$(date +%Y%m%d-%H%M%S)"
+    filename="ss-$ts.png"
+  fi
+
+  file="$dir/$filename"
+  latest="$dir/latest.png"
+
+  if ! pngpaste "$file" >/dev/null 2>&1; then
+    [[ -f "$file" ]] && rm -f -- "$file"
+    echo "Error: failed to save image from clipboard. Is there an image in the clipboard?" >&2
+    return 1
+  fi
+
+  # latest を更新
+  cp -- "$file" "$latest"
+
+  echo "Saved:   $file"
+  echo "Updated: $latest"
+}
+
