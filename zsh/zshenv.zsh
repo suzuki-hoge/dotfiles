@@ -31,6 +31,7 @@ path=(
     $HOME/.pyenv/shims(N-/)                             # python
     $HOME/Library/Python/3.8/bin(N-/)                   # python
     $HOME/.cargo/bin                                    # rust
+    $HOME/go/bin                                        # go
 )
 
 . "$HOME/.cargo/env"
