@@ -197,3 +197,62 @@ function ss() {
   echo "Updated: $latest"
 }
 
+function tm() {
+  case "$1" in
+    -l)
+      # セッション一覧
+      tmux list-sessions 2>/dev/null || echo "no sessions"
+      ;;
+    -a)
+      # セッション選択して attach
+      local sessions=$(tmux list-sessions -F '#{session_name}' 2>/dev/null)
+      if [[ -z "$sessions" ]]; then
+        echo "no sessions"
+        return
+      fi
+      local session=$(echo "$sessions" | bf)
+      [[ -n "$session" ]] && tmux attach -t "$session"
+      ;;
+    -s)
+      # 事前定義レイアウトで起動
+      local layouts_dir="$HOME/Dropbox/dotfiles/tmux/layouts"
+      local layouts=$(ls "$layouts_dir" 2>/dev/null | sed 's/\.zsh$//')
+      if [[ -z "$layouts" ]]; then
+        echo "no layouts"
+        return
+      fi
+      local layout=$(echo "$layouts" | bf)
+      if [[ -n "$layout" ]]; then
+        local layout_file="$layouts_dir/$layout.zsh"
+        export TM_SESSION="$layout"
+        export TM_DIR="$HOME"
+        source "$layout_file"
+        tmux attach -t "$TM_SESSION"
+      fi
+      ;;
+    -d)
+      # セッション選択して削除
+      local sessions=$(tmux list-sessions -F '#{session_name}' 2>/dev/null)
+      if [[ -z "$sessions" ]]; then
+        echo "no sessions"
+        return
+      fi
+      local session=$(echo "$sessions" | bf)
+      [[ -n "$session" ]] && tmux kill-session -t "$session"
+      ;;
+    -r)
+      # 設定反映
+      tmux source ~/.tmux.conf && echo "reloaded"
+      ;;
+    *)
+      # デフォルト: カレントディレクトリ名でセッション起動/attach
+      local session_name=$(basename "$PWD")
+      if tmux has-session -t "$session_name" 2>/dev/null; then
+        tmux attach -t "$session_name"
+      else
+        tmux new-session -s "$session_name"
+      fi
+      ;;
+  esac
+}
+

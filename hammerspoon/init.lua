@@ -2,7 +2,8 @@
 -- Uses bundleID to avoid localized app-name issues
 
 -- local terminalBundleID = "com.googlecode.iterm2"
-local terminalBundleID = "com.apple.Terminal"
+-- local terminalBundleID = "com.apple.Terminal"
+local terminalBundleID = "com.github.wez.wezterm"
 
 hs.hotkey.bind({"ctrl"}, "q", function()
   local front = hs.application.frontmostApplication()
