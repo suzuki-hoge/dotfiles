@@ -30,7 +30,6 @@ config.keys = {
     mods = 'CMD',
     action = wezterm.action.Multiple {
       wezterm.action.ClearScrollback('ScrollbackAndViewport'),
---       wezterm.action.SendKey { key = 'L', mods = 'CTRL' },
     },
   },
   -- Ctrl + R で透過率トグル (100% <-> 50%)
@@ -52,5 +51,17 @@ config.keys = {
 config.window_padding = { left = 15, right = 0, top = 0, bottom = 0 }
 config.enable_scroll_bar = false
 config.window_decorations = 'RESIZE'  -- タイトルバーを非表示（リサイズは可能）
+
+-- タブ名をカレントディレクトリ名に設定
+wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
+  local pane = tab.active_pane
+  local cwd = pane.current_working_dir
+  if cwd then
+    local dir_name = cwd.file_path:match("([^/]+)/?$")
+    return dir_name or cwd.file_path
+  end
+  -- cwd が取得できない場合もプロセス名は使わずフォールバック
+  return "shell"
+end)
 
 return config
