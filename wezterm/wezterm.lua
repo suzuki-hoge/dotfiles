@@ -23,6 +23,15 @@ config.automatically_reload_config = true
 -- ビープ音オフ
 config.audible_bell = 'Disabled'
 
+-- カラーカスタマイズ
+config.colors = {
+  cursor_bg = '#cdd6f4',       -- カーソル背景（テキストカラーと同じ）
+  cursor_fg = '#1e1e2e',       -- カーソル上の文字色（背景色と同じ）
+  compose_cursor = '#cdd6f4',  -- IME 未確定文字の下線
+}
+-- IME プリエディットを System に任せる（背景色問題を回避）
+config.ime_preedit_rendering = 'System'
+
 -- キーバインド
 config.keys = {
   -- Shift + Enter で改行を送信（Claude Code用）
