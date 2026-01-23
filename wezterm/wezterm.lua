@@ -20,6 +20,9 @@ config.scrollback_lines = 1000000
 -- 設定自動リロード
 config.automatically_reload_config = true
 
+-- ビープ音オフ
+config.audible_bell = 'Disabled'
+
 -- キーバインド
 config.keys = {
   -- Shift + Enter で改行を送信（Claude Code用）

@@ -245,13 +245,20 @@ function tm() {
       tmux source ~/.tmux.conf && echo "reloaded"
       ;;
     *)
-      # デフォルト: カレントディレクトリ名でセッション起動/attach
-      local session_name=$(basename "$PWD")
+      # デフォルト: カレントディレクトリ名でセッション起動
+      local base_name=$(basename "$PWD")
+      local session_name="$base_name"
+
       if tmux has-session -t "$session_name" 2>/dev/null; then
-        tmux attach -t "$session_name"
-      else
-        tmux new-session -s "$session_name"
+        # 既存セッションがある場合、連番で新規作成
+        local n=2
+        while tmux has-session -t "$base_name $n" 2>/dev/null; do
+          ((n++))
+        done
+        session_name="$base_name $n"
       fi
+
+      tmux new-session -s "$session_name"
       ;;
   esac
 }
