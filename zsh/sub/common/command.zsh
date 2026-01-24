@@ -194,6 +194,7 @@ function ss() {
   echo "Updated: $latest"
 }
 
+# tmux/layouts/README.md を参照
 function tm() {
   case "$1" in
     -l)
@@ -231,7 +232,12 @@ function tm() {
 
         export TM_DIR="${start_dir:-$HOME}"
         source "$layout_file"
-        tmux attach -t "$TM_SESSION"
+        # TM_START_WINDOW が指定されていればそのウィンドウにアタッチ
+        if [[ -n "$TM_START_WINDOW" ]]; then
+          tmux attach -t "$TM_SESSION:$TM_START_WINDOW"
+        else
+          tmux attach -t "$TM_SESSION"
+        fi
       fi
       ;;
     -d)
