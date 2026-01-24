@@ -1,0 +1,6 @@
+- 日本語で対応すること
+- zsh などの設定ファイルがある場所は以下のいずれかなので、それ以外の範囲を全探索しなくてい
+    - ~/Dropbox/Taggings/bins
+    - ~/Dropbox/dotfiles
+    - ~ 直下の隠しファイル
+    - ~/.dotfiles

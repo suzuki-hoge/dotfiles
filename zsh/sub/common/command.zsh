@@ -49,9 +49,6 @@ alias -g L='| wc -l'
 alias -g O='| xargs open'
 
 # alias
-alias bd='source /Users/ryo/Dropbox/Taggings/bins/wrapper-bin/project-directory'
-alias bb='source /Users/ryo/Dropbox/Taggings/bins/wrapper-bin/project-task'
-
 alias dp='docker ps --format "table {{.Names}}\t{{.Ports}}\t{{.Status}}" | sort'
 
 # working directory or specified path
