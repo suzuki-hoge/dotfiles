@@ -222,7 +222,14 @@ function tm() {
       if [[ -n "$layout" ]]; then
         local layout_file="$layouts_dir/$layout.zsh"
         export TM_SESSION="$layout"
-        export TM_DIR="$HOME"
+
+        # レイアウトファイルから TM_START_DIR を抽出して cd
+        local start_dir=$(grep -m1 '^TM_START_DIR=' "$layout_file" | cut -d'=' -f2 | tr -d '"' | tr -d "'")
+        if [[ -n "$start_dir" ]]; then
+          cd "$start_dir"
+        fi
+
+        export TM_DIR="${start_dir:-$HOME}"
         source "$layout_file"
         tmux attach -t "$TM_SESSION"
       fi

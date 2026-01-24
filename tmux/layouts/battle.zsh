@@ -1,7 +1,8 @@
 # battle レイアウト
 # TM_SESSION, TM_DIR は tm -s から渡される
+TM_START_DIR="/Users/ryo/Developments/miraito-program-battle"
 
-local base="/Users/ryo/Developments/miraito-program-battle"
+local base="$TM_START_DIR"
 
 tmux new-session -d -s "$TM_SESSION" -c "$base" -n win1
 tmux new-window -t "$TM_SESSION" -c "$base" -n win2
