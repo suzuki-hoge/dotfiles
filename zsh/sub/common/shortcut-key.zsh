@@ -1,3 +1,6 @@
+# emacs モードを明示的に有効化（EDITOR=vim でも emacs キーバインドを使う）
+bindkey -e
+
 # command line stack
 bindkey '^U' push-line
 
