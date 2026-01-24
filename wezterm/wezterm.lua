@@ -58,6 +58,9 @@ config.keys = {
       window:set_config_overrides(overrides)
     end),
   },
+  -- Ctrl + Shift + 矢印でタブを左右に移動
+  { key = 'LeftArrow', mods = 'CTRL|SHIFT', action = wezterm.action.MoveTabRelative(-1) },
+  { key = 'RightArrow', mods = 'CTRL|SHIFT', action = wezterm.action.MoveTabRelative(1) },
 }
 
 config.window_padding = { left = 15, right = 0, top = 0, bottom = 0 }
