@@ -214,7 +214,7 @@ function tm() {
     -s)
       # 事前定義レイアウトで起動
       local layouts_dir="$HOME/Dropbox/dotfiles/tmux/layouts"
-      local layouts=$(ls "$layouts_dir" 2>/dev/null | sed 's/\.zsh$//')
+      local layouts=$(ls "$layouts_dir"/*.zsh 2>/dev/null | xargs -n1 basename | sed 's/\.zsh$//')
       if [[ -z "$layouts" ]]; then
         echo "no layouts"
         return
@@ -222,7 +222,15 @@ function tm() {
       local layout=$(echo "$layouts" | bf)
       if [[ -n "$layout" ]]; then
         local layout_file="$layouts_dir/$layout.zsh"
-        export TM_SESSION="$layout"
+        local session_name="$layout"
+        if tmux has-session -t "$session_name" 2>/dev/null; then
+          local n=2
+          while tmux has-session -t "$layout $n" 2>/dev/null; do
+            ((n++))
+          done
+          session_name="$layout $n"
+        fi
+        export TM_SESSION="$session_name"
 
         # レイアウトファイルから TM_START_DIR を抽出して cd
         local start_dir=$(grep -m1 '^TM_START_DIR=' "$layout_file" | cut -d'=' -f2 | tr -d '"' | tr -d "'")
