@@ -22,7 +22,6 @@ config.automatically_reload_config = true
 
 -- ビープ音オフ
 config.audible_bell = 'Disabled'
-
 -- カラーカスタマイズ
 config.colors = {
   cursor_bg = '#cdd6f4',       -- カーソル背景（テキストカラーと同じ）
@@ -34,6 +33,8 @@ config.ime_preedit_rendering = 'System'
 
 -- キーバインド
 config.keys = {
+  -- 日本語キーボードで ¥ キーをバックスラッシュとして入力
+  { key = '¥', action = wezterm.action.SendString('\\') },
   -- Shift + Enter で改行を送信（Claude Code用）
   { key = 'Enter', mods = 'SHIFT', action = wezterm.action.SendString('\n') },
   -- Cmd + K でスクロールバックとビューポートをクリア（Ctrl+L でプロンプト再描画）
@@ -61,6 +62,8 @@ config.keys = {
   -- Ctrl + Shift + 矢印でタブを左右に移動
   { key = 'LeftArrow', mods = 'CTRL|SHIFT', action = wezterm.action.MoveTabRelative(-1) },
   { key = 'RightArrow', mods = 'CTRL|SHIFT', action = wezterm.action.MoveTabRelative(1) },
+  -- Cmd + Shift + P でコマンドパレットを開く
+  { key = 'P', mods = 'CMD|SHIFT', action = wezterm.action.ActivateCommandPalette },
 }
 
 config.window_padding = { left = 15, right = 0, top = 0, bottom = 0 }
