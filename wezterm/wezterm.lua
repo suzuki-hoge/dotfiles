@@ -64,6 +64,15 @@ config.keys = {
   { key = 'RightArrow', mods = 'CTRL|SHIFT', action = wezterm.action.MoveTabRelative(1) },
   -- Cmd + Shift + P でコマンドパレットを開く
   { key = 'P', mods = 'CMD|SHIFT', action = wezterm.action.ActivateCommandPalette },
+  -- Cmd + Shift + C でスクロールバック含む全テキストをクリップボードにコピー
+  {
+    key = 'c',
+    mods = 'CMD|SHIFT',
+    action = wezterm.action_callback(function(window, pane)
+      local text = pane:get_lines_as_text(pane:get_dimensions().scrollback_rows)
+      window:copy_to_clipboard(text, 'Clipboard')
+    end),
+  },
 }
 
 config.window_padding = { left = 15, right = 0, top = 0, bottom = 0 }
